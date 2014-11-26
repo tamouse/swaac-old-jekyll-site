@@ -1,0 +1,28 @@
+<hr />
+
+<footer class="footer">
+
+<div class="well">
+  <div class="row">
+    <div class="col-md-4">
+      <ul>
+        <li><a href="{{ "/about/" | prepend: site.baseurl  }}">about <i class="fa fa-info-circle"></i></a></li>
+        <li><a href="{{ "/feed.xml" | prepend: site.baseurl }}">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <ul>
+        <li><a href="//github.com/{{site.github_username}}">github <i class="fa fa-github"></i></a></li>
+        <li><a href="//twitter.com/{{site.twitter_username}}">twitter <i class="fa fa-twitter"></i></a></li>
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <ul>
+        <li>{{site.description}}</li>
+        <li><a href="{{ "/colophon/" | prepend: site.baseurl }}">Colophon</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</footer>

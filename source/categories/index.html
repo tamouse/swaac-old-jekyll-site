@@ -1,0 +1,20 @@
+---
+layout: default
+title: "Categories"
+---
+
+<div class="container">
+  <div class="page-header">
+    <h2>{{ page.title }}</h2>
+  </div>
+
+  {% capture categories %}{% for cat in site.categories %}
+  {{cat|first}}
+  {% endfor %}{% endcapture %}
+  {% assign categories = categories | split:' ' | sort %}
+  {% for cat in categories %}
+    <a href="{{ site.baseurl }}/categories/{{ cat }}/index.html">{{ cat }}</a>
+    &bullet;
+  {% endfor %}
+
+</div>

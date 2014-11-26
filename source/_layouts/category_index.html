@@ -1,0 +1,10 @@
+---
+layout: default
+---
+<div class="container">
+  <div class="page-header">
+    <h1>{{page.category}}</h1>
+  </div>
+  {% assign posts = site.categories[page.category] %}
+  {% include post_index.html posts=posts %}
+</div>

@@ -1,0 +1,28 @@
+---
+---
+
+@import "bootstrap";
+@import "font-awesome";
+@import "sticky-footer";
+@import "syntax-highlighting";
+
+ul.link-list {
+    display: inline;
+    padding-left: 0px;
+    list-style: none;
+
+    li {
+        display: inline;
+        padding-right: 3px;
+    }
+}
+
+img { max-width: 100%; }
+
+.fancy-img {
+    max-width: 100%;
+    border: 1px solid black;
+    padding: 2px;
+    display: block;
+    margin: 2px auto;
+}

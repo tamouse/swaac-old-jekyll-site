@@ -1,0 +1,35 @@
+title: "My Awesome Jekyll Site with Twitter Bootstrap"
+email: me@example.com
+description: > 
+  Just some stuff, you know?
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "https://me.github.io"
+twitter_username: me
+github_username:  me
+
+# Build settings
+source: source
+destination: public
+permalink: pretty
+
+gems:
+  - jekyll-redirect-from
+  - jekyll-archives
+
+markdown: kramdown
+kramdown:
+  input: GFM # Githup Flavoured Markdown
+  hard_wrap: false
+  
+highlighter: pygments
+lsi: false
+
+jekyll-archives:
+  layout: default
+  enabled:
+    - categories
+
+paginate: 15
+
+# images:
+#   s3path: "http://tt.imageshare.s3.amazonaws.com/"
