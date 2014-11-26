@@ -6,6 +6,11 @@ setting up new jekyll sites.
 The twitter bootstrap and fontawesome files are included in this template, and
 are compiled by jekyll during the build step.
 
+## Demo
+
+The repo is it's own demo! View on github pages as
+<http://blog.tamouse.org/jekyll-twitter-bootstrap-template/>.
+
 ## Customization
 
 If you want to customize bootstrap, modify the
@@ -16,6 +21,9 @@ modify existing bootstrap styles, etc., by modifying
 `source/css/styles.scss`.
 
 ## Deployment
+
+You may first want to change the `_config.yml` file -- especially the
+`baseurl` value since it points to *this* repo's *gh-pages*.
 
 There is a deployment script in `script/deploy.sh` that by default
 assumes a `_deploy` directory in root that contains it's own `.git`

@@ -2,7 +2,7 @@ title: "My Awesome Jekyll Site with Twitter Bootstrap"
 email: me@example.com
 description: > 
   Just some stuff, you know?
-baseurl: "" # the subpath of your site, e.g. /blog/
+baseurl: "/jekyll-twitter-bootstrap-template/" # the subpath of your site, e.g. /blog/
 url: "https://me.github.io"
 twitter_username: me
 github_username:  me
