@@ -1,20 +1,16 @@
-title: "My Awesome Jekyll Site with Twitter Bootstrap"
-email: me@example.com
+title: "Software as a Craft"
+email: tamouse@gmail.com
 description: > 
-  Just some stuff, you know?
-baseurl: "/jekyll-twitter-bootstrap-template" # the subpath of your site, e.g. /blog/
-url: "https://me.github.io"
-twitter_username: me
-github_username:  me
+  The development blog of tamouse.
+baseurl: ''
+url: "http://swaac.tamouse.org"
+twitter_username: tamouse
+github_username:  tamouse
 
 # Build settings
 source: source
 destination: public
 permalink: pretty
-
-gems:
-  - jekyll-redirect-from
-  - jekyll-archives
 
 markdown: kramdown
 kramdown:
@@ -24,12 +20,4 @@ kramdown:
 highlighter: pygments
 lsi: false
 
-jekyll-archives:
-  layout: default
-  enabled:
-    - categories
-
-paginate: 15
-
-# images:
-#   s3path: "http://tt.imageshare.s3.amazonaws.com/"
+s3path: "http://tt.imageshare.s3.amazonaws.com/swaac/"
