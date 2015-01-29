@@ -1,11 +1,14 @@
 ---
 layout: post
-title: "Index - Scorched"
+title: "Scorched"
 date: 2013-09-29 14:00
 categories: [swaac]
 tags: [ruby,framework,web,controller,minimal]
 source: http://scorchedrb.com/
 ---
+A repost of <{{page.source}}>.
+
+
 > [Simple, Powerful, Scorched](http://scorchedrb.com)
 > ===================================================
 > 

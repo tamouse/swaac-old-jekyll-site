@@ -6,10 +6,11 @@ categories: [swaac]
 tags: [rails, tools]
 source: http://www.petekeen.net/essential-tools-for-starting-a-rails-app-in-2013
 ---
-# Essential Tools for Starting a Rails App in 2013
+A repost of <{{page.source}}>.
 
-> Sunday, 15 September 2013
-> 
+## Author: Pete Keen
+## Sunday, 15 September 2013
+
 > Over the past few years I've written a number of Rails applications.
 > It's become my default "scratch an itch" tool for when I need to build
 > an app quickly to do a task. Even though Rails is mostly

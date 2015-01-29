@@ -6,6 +6,9 @@ categories: [swaac]
 tags: [rails, sql, activerecord]
 source: http://hashrocket.com/blog/posts/sql-window-functions
 ---
+A repost of <{{page.source}}> by [Joshua Davey](http://hashrocket.com/blog/rocketeers/josh-davey).
+
+
 > SQL Window Functions and You
 > ============================
 > 

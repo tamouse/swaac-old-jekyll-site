@@ -1,10 +1,6 @@
 ---
-# BEGIN: redirect added by jekyllpress on 2014-09-29 00:34:42 -0500
-redirect_from:
-  - /blog/2011/10/12/so-passes-a-real-hero-of-the-computing-age/
-# END:   redirect added by jekyllpress on 2014-09-29 00:34:42 -0500
 layout: post
-title: "So passes a real hero of the computing age"
+title: "So passes a real hero of the computing age. RIP Dennis Ritchie"
 date: 2011-10-13 04:00:49
 categories: [swaac]
 tags: [dennis-ritchie]

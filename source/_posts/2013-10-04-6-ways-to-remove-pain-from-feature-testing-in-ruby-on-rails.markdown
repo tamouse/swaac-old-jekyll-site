@@ -6,6 +6,10 @@ categories: [swaac]
 tags: [ruby, testing]
 source: http://gaslight.co/blog/6-ways-to-remove-pain-from-feature-testing-in-ruby-on-rails
 ---
+A repost of <{{page.source}}>.
+
+
+
 > # [6 Ways to Remove Pain From Feature Testing in Ruby on Rails](http://gaslight.co/blog/6-ways-to-remove-pain-from-feature-testing-in-ruby-on-rails)
 
 > by [Mitch Lloyd](http://gaslight.co/blog?author=mitchlloyd) [October 2, 2013](http://gaslight.co/blog/6-ways-to-remove-pain-from-feature-testing-in-ruby-on-rails)

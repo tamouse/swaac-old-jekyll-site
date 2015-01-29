@@ -3,6 +3,7 @@ layout: default
 ---
 <header class="page-header">
 <h1>{{ page.title }} {% if page.subtitle %}<small>{{page.subtitle}}</small>{% endif %}</h1>
+{%if page.date%}<p><em>Last updated: {{page.date}}</em></p>{%endif%}
 </header>
 
 <article>

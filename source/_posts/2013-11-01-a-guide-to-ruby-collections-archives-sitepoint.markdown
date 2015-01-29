@@ -7,6 +7,15 @@ categories: [swaac]
 tags: [ruby, collections, enumerable, enumerator, hashes, arrays, sets, ranges]
 source: http://www.sitepoint.com/series/a-guide-to-ruby-collections/
 ---
+A useful guide Ruby Collections:
+* Arrays
+* Hashes
+* Sets
+* Ranges
+* Enumerable
+* Enumerator
+
+
 > A Guide to Ruby Collections
 > ---------------------------
 

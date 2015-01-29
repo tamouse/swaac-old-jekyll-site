@@ -1,15 +1,18 @@
 ---
-# BEGIN: redirect added by jekyllpress on 2014-09-29 00:34:42 -0500
-redirect_from:
-  - /blog/2013/05/15/introduction-to-software-as-a-craft/
-# END:   redirect added by jekyllpress on 2014-09-29 00:34:42 -0500
-layout: post
-title: "Introduction to Software as a Craft"
-date: 2013-05-15 13:18
-comments: true
-categories: [swaac]
+layout: page
+title: SWAAC
+navbar: true
+date: Thu Jan 29 02:48:44 2015
 ---
-I have been thinking about software as a craft for some months now. Having gotten a new job working as a quality assurance cum process architect since October, and being surrounded by really cool software devs of varying experience, talent, and skills, I am thinking about how can one achieve the mindset of a master crafts-person in the realm of software development?
+
+## Introduction to Software as a Craft
+
+I have been thinking about software as a craft for some months
+now. Having gotten a new job working as a quality assurance cum
+process architect since October, and being surrounded by really cool
+software devs of varying experience, talent, and skills, I am thinking
+about how can one achieve the mindset of a master crafts-person in the
+realm of software development?
 
 This involves many aspects, from being able to think about and approach problems, to interacting with users, managers, other devs, and so on, to learning the environments one needs to work in, to building the flows to make work go smoothly, to acquiring the skills to ensure high quality output, to just about everything else in the near and far vicinity of putting out a useful web site.
 

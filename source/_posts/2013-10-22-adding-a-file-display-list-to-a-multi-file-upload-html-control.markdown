@@ -6,6 +6,9 @@ categories: [swaac]
 tags: [javascript, file-uploads, display, user-feedback, user-experience, ux, code]
 source: http://www.raymondcamden.com/index.cfm/2013/9/10/Adding-a-file-display-list-to-a-multifile-upload-HTML-control
 ---
+A repost of <{{page.source}}> by [Raymond Camden](http://www.raymondcamden.com/).
+
+
 > [Adding a file display list to a multi-file upload HTML control](http://www.raymondcamden.com/index.cfm/2013/9/10/Adding-a-file-display-list-to-a-multifile-upload-HTML-control)
 > --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 > 

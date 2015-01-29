@@ -7,6 +7,9 @@ categories: [swaac]
 tags: [css, web-design, user-interface, ui]
 source: http://sarasoueidan.com/blog/css-shapes/
 ---
+A repost of <{{page.source}}> by [Sara Soueidan](https://github.com/SaraSoueidan/).
+
+
 > Creating Non-Rectangular Layouts with CSS Shapes
 > ================================================
 > 

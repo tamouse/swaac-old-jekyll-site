@@ -6,6 +6,9 @@ categories: [swaac]
 tags: [javascript, code, multi-file-uploads, user-feedback, user-experience, ux]
 source: http://www.raymondcamden.com/index.cfm/2013/10/1/MultiFile-Uploads-and-Multiple-Selects
 ---
+A repost of <{{page.source}}> by [Raymond Camden](http://www.raymondcamden.com/).
+
+
 > [Multi-File Uploads and Multiple Selects](http://www.raymondcamden.com/index.cfm/2013/10/1/MultiFile-Uploads-and-Multiple-Selects)
 > ----------------------------------------------------------------------------------------------------------------------------------
 > 

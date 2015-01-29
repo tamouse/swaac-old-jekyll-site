@@ -6,6 +6,9 @@ categories: [swaac]
 tags: [pdf, phantomjs]
 source: http://big-elephants.com/2012-12/pdf-rendering-with-phantomjs/
 ---
+A repost of <{{page.source}}>
+
+
 > Pdf Rendering With Phantomjs {.entry-title}
 > ============================
 > 

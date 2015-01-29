@@ -1,10 +1,6 @@
 ---
-# BEGIN: redirect added by jekyllpress on 2014-09-29 00:34:42 -0500
-redirect_from:
-  - /blog/2011/10/25/another-personal-hero-falls/
-# END:   redirect added by jekyllpress on 2014-09-29 00:34:42 -0500
 layout: post
-title: "Another personal hero falls...."
+title: "Another personal hero falls. RIP John McCarthy"
 date: 2011-10-25 08:22:32
 categories: [swaac]
 tags: [john-mccarthy, lisp, passing]

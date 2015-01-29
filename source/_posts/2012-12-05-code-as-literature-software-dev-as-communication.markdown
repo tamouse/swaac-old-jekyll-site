@@ -1,8 +1,4 @@
 ---
-# BEGIN: redirect added by jekyllpress on 2014-09-29 00:34:42 -0500
-redirect_from:
-  - /blog/2012/12/04/code-as-literature-software-dev-as-communication/
-# END:   redirect added by jekyllpress on 2014-09-29 00:34:42 -0500
 layout: post
 title: "code as literature, software dev as communication"
 date: 2012-12-05 05:02:50
@@ -10,6 +6,8 @@ categories: [swaac]
 tags: [communication]
 ---
 Kind of a random bit of monologue, but I thought it might be interesting to save and think about sometime in the future.
+
+
 
 ```
 my very young dev coworker gave me an enourmous compliment today

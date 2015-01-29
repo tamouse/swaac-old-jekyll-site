@@ -7,6 +7,10 @@ categories: [swaac]
 tags: [jekyll, issues, stackoverflow, answers]
 source: http://stackoverflow.com/questions/10264249/cant-get-page-data-from-jekyll-plugin
 ---
+A repost of <{{page.source}}>.
+
+
+
 > # Can't get page data from Jekyll plugin
 > 
 > I'm trying to write a custom tag plugin for Jekyll that will output a hierarchical navigation tree of all the pages (not posts) on the site. I'm basically wanting a bunch nested `<ul>`'s with links (with the page title as the link text) to the pages with the current page noted by a certain CSS class.
