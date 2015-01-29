@@ -16,7 +16,10 @@ html {
           bottom: 0;
           width: 100%;
           height: $sticky-footer-margin;
-          background-color: $gray-lighter;
+
+          .well {
+              background-color: $body-bg
+          }
       }
 
   }
