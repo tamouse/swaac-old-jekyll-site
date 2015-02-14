@@ -3,6 +3,7 @@ _site
 public/
 _deploy/
 save-for-later/
+saved_pages/
 tmp/
 s3-images/
 _deploy/
