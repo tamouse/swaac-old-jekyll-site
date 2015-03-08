@@ -7,7 +7,7 @@ layout: post
 title: "Caption Hover Effects in CSS3"
 date: 2013-07-06 12:14
 categories: [swaac]
-tags: [tech, css3, ui, link]
+tags: [tech, css3, ui, links]
 ---
 Link to a tutuorial on CSS3 hover effects for image captions.
 

@@ -3,7 +3,7 @@ layout: post
 title: "How to: Converting Instance Variables to YAML in Ruby"
 date: 2014-11-02 23:51
 categories: [swaac]
-tags: [ruby, instance-variables, how-to]
+tags: [ruby, instance-variables, howtos]
 source: https://github.com/tamouse/example_converting_instance_variables_to_yaml_in_ruby
 ---
 (Reposting from my old [wiki][tamwiki]):

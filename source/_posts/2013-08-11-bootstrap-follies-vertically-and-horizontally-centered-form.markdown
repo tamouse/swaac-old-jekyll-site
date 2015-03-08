@@ -7,7 +7,7 @@ layout: post
 title: "Bootstrap Follies: Vertically and Horizontally Centered Form"
 date: 2013-08-11 09:59
 categories: [swaac]
-tags: [css, design, bootstrap, howto]
+tags: [css, design, bootstrap, howtos]
 ---
 [Bootstrap](http://getbootstrap.com/2.3.2/) provides a really nice
 framework and set of components to make a very nice looking web page

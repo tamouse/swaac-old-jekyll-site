@@ -3,7 +3,7 @@ layout: post
 title: "Adding Real-Time To A RESTful Rails App - Liam Kaufman"
 date: 2013-09-24 23:09
 categories: [swaac]
-tags: [socket.io, node.js, rails, real-time]
+tags: [socket.io, node-js, rails, real-time]
 source: http://liamkaufman.com/blog/2013/02/27/adding-real-time-to-a-restful-rails-app/
 ---
 A reposting of <{{page.source}}> by [Liam Kaufman](http://liamkaufman.com/blog/)

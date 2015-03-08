@@ -3,7 +3,7 @@ layout: post
 title: "Validation Contexts"
 date: 2015-01-20 06:27
 categories: ["swaac"]
-tags: ["rails", "validation", "link", "justin-weiss", "practicing-rails"]
+tags: ["rails", "validation", "links", "justin-weiss", "practicing-rails"]
 source: http://www.justinweiss.com/blog/2014/09/15/a-lightweight-way-to-handle-different-validation-situations/
 ---
 By introduction, [Justin Weiss](http://www.justinweiss.com) is a

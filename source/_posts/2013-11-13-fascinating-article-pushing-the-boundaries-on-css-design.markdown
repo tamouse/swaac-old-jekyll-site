@@ -7,7 +7,7 @@ layout: post
 title: "Fascinating article pushing the boundaries on CSS design"
 date: 2013-11-13 18:54
 categories: swaac
-tags: [webdesign, howtos, css]
+tags: [web-design, howtos, css]
 ---
 Over on her blog,
 [Sara Soueidan](http://sarasoueidan.com/blog/css-shapes/) writes about

@@ -3,7 +3,7 @@ layout: post
 title: "Good collection of Backbone.js topics"
 date: 2013-11-03 06:55
 categories: [technology]
-tags: [backbone.js]
+tags: [backbone-js]
 ---
 Here's a pretty good collection of topics on developing Backbone.js
 applications:

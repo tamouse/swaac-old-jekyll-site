@@ -3,7 +3,7 @@ layout: link
 title: "Link: How to Use the HTML5 Sectioning Elements"
 date: 2015-03-05 21:34
 categories: ["html"]
-tags: ["link", "tutorial"]
+tags: ["links", "tutorials"]
 link:
   href: http://blog.teamtreehouse.com/use-html5-sectioning-elements
   title: "How to Use The HTML5 Sectioning Elements"
