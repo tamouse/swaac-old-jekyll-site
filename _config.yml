@@ -1,6 +1,6 @@
 title: "Software as a Craft"
 email: tamouse@gmail.com
-description: > 
+description: >
   The development blog of tamouse.
 baseurl: ''
 url: "http://swaac.tamouse.org"
@@ -16,8 +16,8 @@ markdown: kramdown
 kramdown:
   input: GFM # Githup Flavoured Markdown
   hard_wrap: false
-  
+
 highlighter: pygments
 lsi: false
 
-s3path: "http://tt.imageshare.s3.amazonaws.com/swaac/"
+s3path: "http://swaac.tamouse.org.s3.amazonaws.com/"
