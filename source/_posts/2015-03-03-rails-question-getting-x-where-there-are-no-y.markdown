@@ -6,7 +6,7 @@ categories: [rails]
 tags: [questions, examples, code, ruby]
 source: https://github.com/tamouse/example_questions_without_answers
 ---
-There was a question recently in the `#emacs` IRC channel on
+There was a question recently in the `#RubyOnRails` IRC channel on
 [freenode]: "How can I retrieve all the questions that don't have
 answers?". [This Rails coding example shows the answer][source].
 
@@ -36,5 +36,3 @@ Question.includes(:answers).where.not(answers: {id: nil})
 
 [freenode]: http://www.freenode.net "Freenode IRC Network"
 [source]: {{ page.source }} "GitHub repo for example source"
-
-
