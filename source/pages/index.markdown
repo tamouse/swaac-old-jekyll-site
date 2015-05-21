@@ -3,6 +3,13 @@ layout: page
 title: Pages
 navbar: true
 ---
+
+* [Links]({{ site.baseurl | append: "/pages/links/" }})
+
+*****
+
+
+
 This area can be used for static web site pages that aren't blog
 posts, such as a colophon, an "about me" or "about this blog" page,
 collections of information, documentation, notes, etc.
@@ -17,4 +24,3 @@ to false and it won't show up.
 
 A good practice here is to provide a table of contents into the rest
 of the pages.
-
