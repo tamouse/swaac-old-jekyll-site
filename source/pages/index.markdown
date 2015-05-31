@@ -2,25 +2,25 @@
 layout: page
 title: Pages
 navbar: true
+links:
+  - text: Links
+    href: "/pages/links/"
+
+  - text: Learning
+    href: "/pages/learning/"
+
+  - text: Notes on Ruby and Rails
+    href: "/pages/notes-on-ruby-and-rails/"
+
+  - text: Security Concerns
+    href: "/pages/security-concerns/"
+
+  - text: Thor Scripting
+    href: "/pages/thor_scripting/"
+
 ---
 
-* [Links]({{ site.baseurl | append: "/pages/links/" }})
+{% for link in page.links %}
+* [{{link.text}}]({{ link.href | prepend: site.baseurl}})
 
-*****
-
-
-
-This area can be used for static web site pages that aren't blog
-posts, such as a colophon, an "about me" or "about this blog" page,
-collections of information, documentation, notes, etc.
-
-It's certainly possible to make your entire site about non-blog static
-pages as well, such as a recipe / cookbook site, or a knowledge base,
-or even a replacement for a wiki.
-
-The `navbar` front matter page variable determines whether this page
-will be included in the navigation bar on the site. Omit it or set it
-to false and it won't show up.
-
-A good practice here is to provide a table of contents into the rest
-of the pages.
+{% endfor %}
