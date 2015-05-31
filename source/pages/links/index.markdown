@@ -5,10 +5,21 @@ title: Useful Links
 
 (Better than browser bookmarks or pocket, or org-mode? Almost a wiki?)
 
+# Databases
+
+* [Constructing a less than simple query with rails and arel](http://blog.donwilson.net/2011/11/constructing-a-less-than-simple-query-with-rails-and-arel/)
+This is from back in 2011, so is probably out of date, but still contains some fascinating use of AREL instead of writing straight SQL.
+
+* [The definitive guide to Arel, the SQL manager for Ruby](http://jpospisil.com/2014/06/16/the-definitive-guide-to-arel-the-sql-manager-for-ruby.html)
+This is more recent, still talking about using [AREL] but in much more depth.
+
+[AREL]: https://github.com/rails/arel "ActiveRecord Relations - an SQL AST"
+
+
+
 # Design
 
-*
-  [6 Steps to Perfecting Minimalism in Web Design](http://www.webdesignerdepot.com/2014/06/6-steps-to-perfecting-minimalism-in-web-design/)
+* [6 Steps to Perfecting Minimalism in Web Design](http://www.webdesignerdepot.com/2014/06/6-steps-to-perfecting-minimalism-in-web-design/)
   with a great example site by [Brian Danahar](http://www.briandanaher.com/).
 
 # CSS
