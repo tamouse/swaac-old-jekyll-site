@@ -219,6 +219,11 @@ and generate the most requests that come to me.
   recommend for small beginner projects so you can show it off to your
   friends); RailsBridge tutorials include these very important tools.
 
+* [**RailsGirls Guides**](http://guides.railsgirls.com/) -- I haven't
+  explored these in depth yet, I just got the site yesterday. However,
+  I can see just from the list of guides these would be pretty great,
+  just like the RailsBridge site above.
+
 * [**Hartl's Rails Tutorial**](http://www.railstutorial.org/) -- the
   most often recommended site to learn how to create web applications
   in Rails, it goes beyond the Rails stack itself, teaching Ruby,

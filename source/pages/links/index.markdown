@@ -15,13 +15,6 @@ This is more recent, still talking about using [AREL] but in much more depth.
 
 [AREL]: https://github.com/rails/arel "ActiveRecord Relations - an SQL AST"
 
-
-
-# Design
-
-* [6 Steps to Perfecting Minimalism in Web Design](http://www.webdesignerdepot.com/2014/06/6-steps-to-perfecting-minimalism-in-web-design/)
-  with a great example site by [Brian Danahar](http://www.briandanaher.com/).
-
 # CSS
 
 * [Autoprefixer](https://css-tricks.com/autoprefixer/)
@@ -40,6 +33,28 @@ This is more recent, still talking about using [AREL] but in much more depth.
 * [CSS-Tricks Blog](https://css-tricks.com/) is a great site for
   learning about nify CSS stuff.
 
+# Design
+
+* [6 Steps to Perfecting Minimalism in Web Design](http://www.webdesignerdepot.com/2014/06/6-steps-to-perfecting-minimalism-in-web-design/)
+  with a great example site by [Brian Danahar](http://www.briandanaher.com/).
+
+# Docker
+
+* [Getting Started with Compose and Rails](http://docs.docker.com/compose/rails/)
+
+* [Optimizing your Dockerfiles](http://tech.paulcz.net/2015/03/optimizing-your-dockerfiles/)
+
+* [Rails on Docker (via Thoughtbot)](http://robots.thoughtbot.com/rails-on-docker)
+
+* [Rails Development Using Docker and Vagrant (Abe Voelker)](https://blog.abevoelker.com/rails-development-using-docker-and-vagrant/)
+
+* [How to Create a Persistent Ruby Gems Container with Docker By Phil Misiowiec](http://www.atlashealth.com/blog/2014/09/persistent-ruby-gems-docker-container/#.VRq0d5NjOfg)
+
+* [Docker and Microservices](http://blog.giantswarm.io/getting-started-with-microservices-using-ruby-on-rails-and-docker)
+
+* [A Productive Development Environment with Docker on OS/X](http://www.ybrikman.com/writing/2015/05/19/docker-osx-dev/)
+  A good write-up on using docker in rails development.
+
 # Emacs
 
 * Jekor's Emacs Tutorials:
@@ -53,8 +68,14 @@ This is more recent, still talking about using [AREL] but in much more depth.
   [twitter](http://twitter.com/mickeynp). Blog posts about using
   Emacs's more advanced and powerful features.
 
-
 # Javascript
+
+* [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS)
+  Kyle Simpson's tour de force on JavaScript in online form.
+
+* [Javascript Abstract Equality Comparison Algorithm](http://www.ecma-international.org/ecma-262/5.1/#sec-11.9.3)
+
+* [Writing Idiomatic Javascript](https://github.com/rwaldron/idiomatic.js)
 
 ## Angular
 
@@ -76,3 +97,28 @@ This is more recent, still talking about using [AREL] but in much more depth.
   tutorial for using React.JS with Rails, including
   [sample code](https://github.com/fervisa/accounts-react-rails)
   [(my fork)](https://github.com/tamouse/accounts-react-rails).
+
+# Rails
+
+* [Rails Application Templates in the Real World](http://www.sitepoint.com/rails-application-templates-real-world)
+  Template All The Things!! [My Rails App Template](https://gist.github.com/tamouse/bd7438f7722ae1d6b314)
+
+* [A list of reserved words in Rails](http://bparanj.blogspot.ie/2011/07/reserved-words-in-rails.html)
+
+* [Adam Niedzeilski: 10 easy-to-fix Ruby / Ruby on Rails mistakes](http://adamniedzielski.github.io/blog/2015/01/31/11-easy-to-fix-ruby-slash-ruby-on-rails-mistakes/)
+
+* [Definitive Guide to Forms-based Authentication](http://stackoverflow.com/questions/549/the-definitive-guide-to-forms-based-website-authentication)
+
+* [Data Driven Controllers](http://spin.atomicobject.com/2015/01/26/data-driven-rails-controllers/)
+
+* [Page-specific Javascript in Rails](http://brandonhilkert.com/blog/page-specific-javascript-in-rails/)
+
+* [Rails Testing Antipatterns talk](https://speakerdeck.com/kfaustino/rails-testing-antipatterns)
+
+# Ruby
+
+* [Forwardable Deep Dive](http://www.saturnflyer.com/blog/jim/2015/01/20/ruby-forwardable-deep-dive/)
+
+* [New Methods in Ruby 2.2](http://www.sitepoint.com/new-methods-ruby-2-2/)
+
+* [Just use double quoted strings](http://viget.com/extend/just-use-double-quoted-ruby-strings)

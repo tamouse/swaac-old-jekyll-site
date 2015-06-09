@@ -9,9 +9,6 @@ links:
   - text: Learning
     href: "/pages/learning/"
 
-  - text: Notes on Ruby and Rails
-    href: "/pages/notes-on-ruby-and-rails/"
-
   - text: Security Concerns
     href: "/pages/security-concerns/"
 
