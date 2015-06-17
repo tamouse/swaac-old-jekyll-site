@@ -9,10 +9,7 @@ source: https://github.com/tamouse/how_to_translate_nested_attributes
 I want to use localization to rename nested, polymorphic attributes
 when used in errors for the parent model.
 
-*(The code for this example app is at <{{page.source}}>.)*
-
-
-#### Example
+### Example
 
 * User model
 * Address model, polymorphic
@@ -158,8 +155,34 @@ had to be on the attribute itself was incorrect. I'm glad I used a
 different translation in the first attempt, but I'm not so glad I
 didn't see it sooner. :D
 
-The downside to this approach is that you end up repeating
-yourself for every polymorphic relationship, as well as the base.
+<del>The downside to this approach is that you end up repeating
+yourself for every polymorphic relationship, as well as the
+base.</del>
+
+*Update:* And then, when I think about YAML, it's easy to DRY it up:
+
+``` yaml
+en:
+  activerecord:
+    attributes:
+      address: &address
+        street: "Street"
+        locality: "City"
+        region: "State"
+        country: "Country"
+        postal_code: "Zip"
+      mailing_address:
+        <<: *address
+      employer:
+        name: "Nom"
+      user:
+        username: "Handle"
+        email: "E-mail address"
+```
+
+And upon even further thinking about how Rails' I18n tags work, it
+makes perfect sense as the translation tags are keys joined by dots,
+and I just should have realized what was going on in the beginning.
 
 
 ### Links Used
