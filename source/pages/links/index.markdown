@@ -98,6 +98,12 @@ This is more recent, still talking about using [AREL] but in much more depth.
   [sample code](https://github.com/fervisa/accounts-react-rails)
   [(my fork)](https://github.com/tamouse/accounts-react-rails).
 
+# Jekyll
+
+* [Introducing Jekyll-hook: Run your own GitHub Pages — Development Seed](https://developmentseed.org/blog/2013/05/01/introducing-jekyll-hook/)
+* [Prose · A Content Editor for GitHub](http://prose.io/), [prose/prose](https://github.com/prose/prose)
+* [Build websites in HTML or Jekyll. Have your non-technical team update inline - CloudCannon](http://cloudcannon.com/)
+
 # Rails
 
 * [Rails Application Templates in the Real World](http://www.sitepoint.com/rails-application-templates-real-world)
