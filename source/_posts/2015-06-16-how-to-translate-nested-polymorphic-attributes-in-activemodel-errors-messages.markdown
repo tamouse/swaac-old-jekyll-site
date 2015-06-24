@@ -4,7 +4,7 @@ title: "How to Translate Nested Polymorphic Attributes in ActiveModel::Errors Me
 date: 2015-06-16 20:56
 categories: ["rails"]
 tags: ["learning", "rails", "polymorphic", "nested", "attributes", "errors", "translation"]
-source: https://github.com/tamouse/how_to_translate_nested_attributes
+source: https://github.com/tamouse/rails-example-how-to-translate-nested-attributes
 ---
 I want to use localization to rename nested, polymorphic attributes
 when used in errors for the parent model.
