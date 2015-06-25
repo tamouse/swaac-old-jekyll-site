@@ -92,6 +92,46 @@ signing up to get e-mail from Justin, but it's always good stuff.
   working in someone else's domain of expertise. Alexander's views on
   architecture apply to software architecture as well.
 
+* [**Beautiful Code**](http://shop.oreilly.com/product/9780596510046.do) by Andy Oram and Greg Wilson.
+
+  A book with a purpose, that isn't a how to, so much as a how to
+  think. The forward speaks eloquently to my purpose with this blog
+  and web site:
+
+> I got my first job as a programmer in the summer of 1982. Two weeks
+after I started, one of the system administrators loaned me Kernighan
+and Plauger’s The Elements of Programming Style (McGraw-Hill) and
+Wirth’s Algorithms + Data Structures = Programs (Prentice Hall). They
+were a revelation—for the first time, I saw that programs could be
+more than just instructions for computers. They could be as elegant as
+well-made kitchen cabinets, as graceful as a suspension bridge, or as
+eloquent as one of George Orwell’s essays.
+
+> Time and again since that summer, I have heard people bemoan the
+fact that our profes- sion doesn’t teach students to see
+this. Architects are taught to look at buildings, and com- posers
+study one another’s scores, but programmers—they look at each other’s
+work only when there’s a bug to fix; even then, they try to look at as
+little as possible. We tell stu- dents to use sensible variable names,
+introduce them to some basic design patterns, and then wonder why so
+much of what they write is so ugly.
+
+> This book is our attempt to fix this. In May 2006, I asked some
+well-known (and not so well-known) software designers to dissect and
+discuss the most beautiful piece of code they knew. As this book
+shows, they have found beauty in many different places. For some, it
+lives in the small details of elegantly crafted software. Others find
+beauty in the big picture—in how a program’s structure allows it to
+evolve gracefully over time, or in the techniques used to build it.
+
+> Wherever they find it, I am grateful to our contributors for taking
+time to give us a tour. I hope that you enjoy reading this book as
+much as Andy and I have enjoyed editing it, and that it inspires you
+to create something beautiful, too.
+
+> - Greg Wilson
+
+
 ## Ruby-specific
 
 * [**Eloquent Ruby**](https://www.goodreads.com/book/show/9364729-eloquent-ruby)
