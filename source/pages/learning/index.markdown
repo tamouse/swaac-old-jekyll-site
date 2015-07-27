@@ -242,6 +242,10 @@ and generate the most requests that come to me.
   curation site that gives order and structure to learning how to
   develop web applications.
 
+* [**Code Kata**](http://codekata.com/) -- Dave Thomas's site that
+  lists a great set of coding exercises. You can work these more than
+  once, in fact that is what you do with kata.
+
 * [**Exercism.IO**](http://exercism.io/) -- a site devoted to helping
   people learn and think deeply about writing excellent code. It has
   projects you implement and then get feedback on from others, and
@@ -318,6 +322,7 @@ and generate the most requests that come to me.
   people definitely enjoy this progressive way of learning. The ruby
   koans definitely guide you in the way of test-first development,
   which is a beneficial practice for all to know.
+
 
 # Bootcamps
 

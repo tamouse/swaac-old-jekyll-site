@@ -106,6 +106,8 @@ This is more recent, still talking about using [AREL] but in much more depth.
 
 # Rails
 
+* [Enumerated Types with ActiveRecord and PostgreSQL](http://www.sitepoint.com/enumerated-types-with-activerecord-and-postgresql/?utm_source=rubyweekly&utm_medium=email)
+
 * [Rails Application Templates in the Real World](http://www.sitepoint.com/rails-application-templates-real-world)
   Template All The Things!! [My Rails App Template](https://gist.github.com/tamouse/bd7438f7722ae1d6b314)
 
