@@ -119,11 +119,9 @@ class Order < ActiveRecord::Base
   def force_immutable
     if self.persisted?
       IMMUTABLE.any? do |attr|
-        errors.add(attr, :immutable)
-        self.changed.include?(attr)
-
-        # Optional: restore pristine state for the attribute
-        self[attr] = self.changed_attributes[attr]
+        self.changed.include?(attr) &&
+          errors.add(attr, :immutable) &&
+          self[attr] = self.changed_attributes[attr]
       end
     end
   end
