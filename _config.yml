@@ -1,3 +1,4 @@
+# Blog settings
 title: "Software as a Craft"
 email: tamouse@gmail.com
 description: >
@@ -6,18 +7,18 @@ baseurl: ''
 url: "http://swaac.tamouse.org"
 twitter_username: tamouse
 github_username:  tamouse
+s3path: "http://swaac.tamouse.org.s3.amazonaws.com/"
 
 # Build settings
 source: source
 destination: public
 permalink: pretty
-
 markdown: kramdown
 kramdown:
   input: GFM # Githup Flavoured Markdown
   hard_wrap: false
-
-highlighter: pygments
-lsi: false
-
-s3path: "http://swaac.tamouse.org.s3.amazonaws.com/"
+# highlighter: pygments
+# lsi: false
+gems:
+  - jekyll-gist
+  - jekyll-sitemap
