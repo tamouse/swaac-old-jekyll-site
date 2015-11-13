@@ -2,8 +2,11 @@ _site
 .sass-cache
 public/
 _deploy/
-save-for-later/
-saved_pages/
+_save-for-later/
+_saved_pages/
 tmp/
-s3-images/
+_s3-images/
 _deploy/
+_dist/
+bower_components/
+node_modules/

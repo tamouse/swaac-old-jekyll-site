@@ -1,0 +1,9 @@
+---
+layout: default
+title: "All Posts"
+navbar: true
+---
+<h1 class="page-heading">{{ page.title }} <small>{{ page.subtitle}}</small></h1>
+
+{% assign posts = site.posts %}
+{% include post_index.html posts=posts %}
