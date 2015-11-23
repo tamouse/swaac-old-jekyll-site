@@ -15,6 +15,8 @@ This is more recent, still talking about using [AREL] but in much more depth.
 
 [AREL]: https://github.com/rails/arel "ActiveRecord Relations - an SQL AST"
 
+* [Dont Let Your Data Out of the Database - Pat Shaughnessy](http://patshaughnessy.net/2015/6/18/dont-let-your-data-out-of-the-database)
+
 # CSS
 
 * [Autoprefixer](https://css-tricks.com/autoprefixer/)
@@ -123,6 +125,8 @@ This is more recent, still talking about using [AREL] but in much more depth.
 
 * [Rails Testing Antipatterns talk](https://speakerdeck.com/kfaustino/rails-testing-antipatterns)
 
+* [How to preload Rails scopes - Justin Weiss](http://www.justinweiss.com/articles/how-to-preload-rails-scopes/)
+
 # Ruby
 
 * [Forwardable Deep Dive](http://www.saturnflyer.com/blog/jim/2015/01/20/ruby-forwardable-deep-dive/)
@@ -130,3 +134,24 @@ This is more recent, still talking about using [AREL] but in much more depth.
 * [New Methods in Ruby 2.2](http://www.sitepoint.com/new-methods-ruby-2-2/)
 
 * [Just use double quoted strings](http://viget.com/extend/just-use-double-quoted-ruby-strings)
+
+* [Whats youre favorite ruby trick or quirk that most people dont know about.  ruby](https://www.reddit.com/r/ruby/comments/29hr4x/whats_youre_favorite_ruby_trick_or_quirk_that/)
+
+* [Docker support in RubyMine](http://plugins.jetbrains.com/update/index?pr=ruby&updateId=19837)
+
+
+# Shell, Command Line, Bash, etc.
+
+* [Learn Enough Command Line To Be Dangerous](http://www.learnenough.com/command-line-tutorial) -- by Michael Hartl of RailsTutorial fame.
+
+# Testing
+
+* Randy Coulman has written a [series on testing](http://randycoulman.com/blog/categories/getting-testy/) that I think you'll find useful.
+
+# Tools
+
+## Version Control, Git, etc
+
+* [Telling stories with your Git history - FutureLearn](https://about.futurelearn.com/blog/telling-stories-with-your-git-history/)
+
+* [The Importance of Writing Good Commit Messages](https://about.futurelearn.com/blog/a-commit-message-from-our-repo-2/) -- a follow-up to the previous link.

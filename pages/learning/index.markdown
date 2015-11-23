@@ -2,6 +2,7 @@
 layout: page
 title: Resources for learning how to program, especially how to program in Ruby and Rails
 date: 2015-05-31 18:11
+navbar: true
 ---
 
 Many
@@ -323,6 +324,30 @@ and generate the most requests that come to me.
   koans definitely guide you in the way of test-first development,
   which is a beneficial practice for all to know.
 
+# Teaching Organizations
+
+These are the ones I'm familiar with at this point in time (late 2015)
+in the Twin Cities area:
+
+* [**Frontend Masters**](https://frontendmasters.com/) -- Based out of
+  Savage, MN, they offer both live in-person and online courses, and
+  they have recorded all the training sessions for on-demand viewing
+  if you're a member. The quality of these sessions and the videos are
+  extremely good (these are not your twitch.tv live sessions of
+  someone rambling about their code as they hack away) All the courses
+  I've taken and viewed are fantastic.
+
+  FrontendMasters tackles intermediate and advanced topics in
+  developing on the front end of web applications. Heavy into
+  JavaScript, libraries, frameworks, techniques, and so on.
+
+* [**Girl Develop It! Minneapolis**](http://www.meetup.com/Girl-Develop-It-Minneapolis/)
+  serves up training courses mainly in the HTML, CSS, and JS arena,
+  and is focused on bringing this training to women and other
+  underrepresented groups. The training sessions are focused on beginners,
+  which rather fills the gap between the beginner and intermediate.
+  There are GDI chapeter in several other cities as well. The parent
+  organization is at <https://www.girldevelopit.com/>.
 
 # Bootcamps
 
@@ -346,3 +371,16 @@ If you're ever in the Minneapolis area, look me up at
 [TC Rails Hack Night](http://www.tchacknight.com/),
 [Rails.MN](http://www.rails.mn/), and [Ruby.MN](http://www.ruby.mn/)
 -- I attend those pretty regularly (weather permitting).
+
+# More Advanced
+
+If you want to go deep and learn more about computer science, the book
+[*Structure and Interpretation of Computer Programs*](https://mitpress.mit.edu/sicp/)
+is probably your best bet in terms of a real CS text book that's
+available online for free. It's not a tutorial, but there are
+exercises in the text. The book uses Scheme, a lisp-like
+programming language. Everyone should learn a little lisp at some
+point. :) However it's not mandatory one use Scheme (or Clojure as the
+local Clojure user group has been doing). The analytical concepts
+apply across all languages. If you're focused on JavaScript or Ruby,
+you can work the examples in those languages, too.
