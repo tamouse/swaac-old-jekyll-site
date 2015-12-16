@@ -27,6 +27,10 @@ gulp.task('bower', function() {
          .pipe(gulp.dest(config.bowerDir))
 });
 
+gulp.task('jekyll-build-dist', ['css','icons','bower'], function () {
+  return cp.spawn('bundle', ['exec', 'jekyll', 'build', '--config', '_config.yml,_baseurl.yml', '--destination', config.distDir], {stdio: 'inherit'});
+});
+
 gulp.task('jekyll-build', ['css','icons','bower'], function (done) {
   browserSync.notify(messages.jekyllBuild);
   return cp.spawn('bundle', ['exec', 'jekyll', 'build', '--incremental'], {stdio: 'inherit'})
@@ -72,11 +76,12 @@ gulp.task('serve', ['build'], function() {
 
   // Start a watch for rebuilds
   gulp.watch(['_sass/*.scss'], ['css'])
-  gulp.watch(['_config.yml', '*.html', '*.md', '*.xml', 'pages/**/*.*', '_layouts/*.html', '_includes/*', '_posts/*'], ['jekyll-rebuild']);
-});
-
-gulp.task('jekyll-build-dist', ['css','icons','bower'], function () {
-  return cp.spawn('bundle', ['exec', 'jekyll', 'build', '--config', '_config.yml,_baseurl.yml', '--destination', config.distDir], {stdio: 'inherit'});
+  gulp.watch([
+    '_config.yml',
+    '_posts/**/*',
+    'pages/**/*',
+    'index.*'
+  ], ['jekyll-rebuild']);
 });
 
 gulp.task('dist', ['bower', 'icons', 'css', 'jekyll-build-dist']);
