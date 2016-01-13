@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Learning Elixir"
-date: 2015-07-02 07:20
 categories: ["elixir"]
 tags: [elixir, learning, reading, programming, language]
+
 ---
 
 Notes and thoughts while learning elixir.

@@ -2,7 +2,7 @@
 layout: default
 ---
 <header class="page-header">
-<h1>{{ page.title }}{% if page.subtitle %}<small>{{page.subtitle}}</small>{% endif %}</h1>
+<h1>{{ page.title }}{% if page.subtitle %}<br><small>{{page.subtitle}}</small>{% endif %}</h1>
 {{ page.date | date: "%b %-d, %Y" }}
 {% if page.author %} &bullet; Author: {{ page.author }}{% endif %}
 {% if page.meta %} &bullet; Meta: {{ page.meta }}{% endif %}

@@ -33,7 +33,7 @@ gulp.task('jekyll-build-dist', ['css','icons','bower'], function () {
 
 gulp.task('jekyll-build', ['css','icons','bower'], function (done) {
   browserSync.notify(messages.jekyllBuild);
-  return cp.spawn('bundle', ['exec', 'jekyll', 'build', '--incremental'], {stdio: 'inherit'})
+  return cp.spawn('bundle', ['exec', 'jekyll', 'build', '--incremental', '--drafts'], {stdio: 'inherit'})
     .on('close', done);
 });
 
@@ -78,6 +78,7 @@ gulp.task('serve', ['build'], function() {
   gulp.watch(['_sass/*.scss'], ['css'])
   gulp.watch([
     '_config.yml',
+    '_drafts/**/*',
     '_posts/**/*',
     'pages/**/*',
     'index.*'
