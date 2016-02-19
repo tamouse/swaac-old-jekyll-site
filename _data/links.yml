@@ -16,6 +16,30 @@
 #   notes: |
 #     thoughts on this link
 ---
+- href: "https://launchschool.com/"
+  title: "LaunchSchool"
+  date: 2016-01-23
+  category:
+    - online-learning
+  tags:
+    - web-development
+    - ruby-on-rails
+  notes: |
+
+    "The Slow Path for Serious Beginners to a Career in Software Development"
+
+    Our program is about slowly building up proficiency in
+    fundamentals, while at the same time exposing you to new workflows
+    and practices. This requires a long, deliberate, and sometimes
+    circular path to learning. Don't rush, take it slow, follow the
+    path, and 500 hours later, you'll be transformed. This is the slow
+    path to mastery.
+
+    Cost is $199 / month.
+
+
+
+
 - href: "http://googletesting.blogspot.co.uk/2015/04/just-say-no-to-more-end-to-end-tests.html"
   title: "Just Say No to More End-to-end Tests"
   date: 2015-04-22

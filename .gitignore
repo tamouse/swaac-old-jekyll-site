@@ -10,3 +10,4 @@ _deploy/
 _dist/
 bower_components/
 node_modules/
+/.jekyll-metadata
