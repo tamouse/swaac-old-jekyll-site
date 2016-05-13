@@ -1,0 +1,23 @@
+---
+layout: page
+title: "JavaScript Examples"
+links:
+- text: "Sorting Astronauts"
+  href: "/pages/javascript-examples/astronauts/"
+
+---
+<section>
+  <h1 class="page-header">Here are some examples of JavaScript.</h1>
+
+  <ul>
+    {% for link in page.links %}
+    <li>
+      <a href="{{ link.href | prepend: site.baseurl }}"
+	 target="_blank"
+	 title="{{ link.text }}">
+	{{ link.text }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>

@@ -15,6 +15,13 @@ links:
   - text: Thor Scripting
     href: "/pages/thor_scripting/"
 
+  - text: "CSS Examples"
+    href: "/pages/css-examples/"
+
+  - text: "JavaScript Examples"
+    href: "/pages/javascript-examples/"
+
+
 ---
 
 {% for link in page.links %}

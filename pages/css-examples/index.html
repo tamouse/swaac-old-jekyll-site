@@ -1,0 +1,21 @@
+---
+layout: page
+title: "CSS Examples"
+links:
+- text: Clearfix Example
+  href: /pages/css-examples/clearfix-example.html
+---
+<section>
+  <h1 class="page-header">Here are some examples on using CSS.</h1>
+  <ul>
+    {% for link in page.links %}
+    <li>
+      <a href="{{ link.href | prepend: site.baseurl }}"
+	 target="_blank"
+	 title="{{ link.text }}">
+	{{ link.text }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
