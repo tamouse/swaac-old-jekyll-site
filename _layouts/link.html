@@ -5,14 +5,24 @@ layout: default
   <header class="page-header">
     <h1><a href="{{page.link.href}}">{{ page.link.title }}</a></h1>
     <ul>
-      <li>Author: <a href="{{page.link.author.url}}">{{page.link.author.name}}</a></li>
-      <li>Article date: {{page.link.date}}</li>
+      {% if page.link.author %}<li>Author: <a href="{{page.link.author.url}}">{{page.link.author.name}}</a></li>{% endif %}
+      {% if page.link.date %}<li>Article date: {{page.link.date}}</li>{% endif %}
       {% if page.categories %}<li> <ul class="link-list"><li>Categories:</li>{% for cat in page.categories %}<li role="presentation"><a href="{{site.baseurl}}/categories/{{cat}}">{{cat}}</a></li>{% endfor %}</ul></li>{% endif %}
       {% if page.tags %}<li><ul class="link-list"><li>Tags: </li>{% for tag in page.tags %}<li role="presentation"><a href="{{site.baseurl}}/tags/{{tag}}">{{tag}}</a></li> {% endfor %}</ul></li>{% endif %}
     </ul>
   </header>
   <article>
     {{ content }}
+
+    <h2>
+      Go to page:
+      <a href="{{page.link.href}}">
+	{{page.link.href}}
+	<small>
+	  {{page.link.title}}
+	</small>
+      </a>
+    </h2>
   </article>
   <footer>
     <hr>

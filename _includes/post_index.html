@@ -1,8 +1,8 @@
 <table id="posts-index">
   <thead>
     <tr>
-      <th width="20%">Date</th>
-      <th>Post</th>
+      <th width="29%">Date</th>
+      <th width="70%">Post</th>
     </tr>
   </thead>
   <tfoot>
@@ -10,8 +10,11 @@
   <tbody>
     {% for post in include.posts %}
     <tr>
-      <td valign="top"><h2><span style="display:none;">{{post.date}}</span><small>{{ post.date | date: "%b %-d, %Y" }}</small></h2></td>
-      <td valign="top">
+      <td valign="middle">
+	<span style="display:none;">{{post.date}}</span>
+	<small class="nowrap">{{ post.date | date: "%b %-d, %Y" }}</small>
+      </td>
+      <td valign="middle">
         <h2><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
         {% if post.excerpt %}<p>{{ post.excerpt | markdownify }}</p>{% endif %}
       </td>
