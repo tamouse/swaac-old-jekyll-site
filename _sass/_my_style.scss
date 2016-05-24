@@ -44,3 +44,24 @@ footer.footer {
         background-color: $body-bg;
     }
 }
+
+hr.divider {
+    width: 85%;
+    height: 5px;
+    background: linear-gradient(to left, transparent, $grey, $grey, transparent);
+}
+hr.divider-primary {
+    background: linear-gradient(to left, transparent, $brand-primary, $brand-primary, transparent);
+}
+
+@media screen and (min-width: $screen-md-min) {
+    main {
+	max-width: 800px;
+    }
+}
+
+@media screen and (min-width: $screen-lg-min) {
+    main {
+	max-width: 800px;
+    }
+}

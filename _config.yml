@@ -29,4 +29,6 @@ exclude:
 - gulpfile.js
 - node_modules
 - bower_components
-s3path: "http://swaac.tamouse.org.s3.amazonaws.com/"
+
+
+s3path: "https://s3.amazonaws.com/swaac.tamouse.org/"
