@@ -147,7 +147,7 @@ Amy's talk struck right to the heart of this, outlining why it's a
 good idea, and once you decide to try it, how to engage them, and then
 how to bring them up to speed once they join your organization.
 
-In her usual brilliant and affable way, Amy provided a lot of human
+In her usual brilliant and high-energy way, Amy provided a lot of human
 and humane reasons for all of this, and presented her own difficulties
 in dealing with the third step of this, handling your own work and
 reactions when working with someone who needs a lot of hand-holding.
