@@ -137,7 +137,7 @@ on Saturday, and they were awesome.
 GDI, whose mission is the teach beginning HTML, CSS, and JavaScript to
 Women. The hope is to bring diversity into the web development world.
 
-[Amy]: http://twitter.com/amlyhamm "Amy Gelbardt on Twitter"
+[Amy]: http://twitter.com/amlyhamm "Amy Gebardt on Twitter"
 
 With that, and with all the bootcamps, however, there is a
 backpressure created as many firms and agencies don't wish to hire
@@ -157,10 +157,10 @@ reactions when working with someone who needs a lot of hand-holding.
 <figure>
 <div class="text-center">
 <img src="{{ "images/wcmpls-amyg-hiring-junior-devs.jpg" | prepend:
-site.s3path }}" class="" alt="Amy Gelbardt brings the excitement!" />
+site.s3path }}" class="" alt="Amy Gebardt brings the excitement!" />
 </div>
 <figcaption class="text-center">
-<p><a href="https://twitter.com/amlyhamm">Amy Gelbhardt</a> brings the
+<p><a href="https://twitter.com/amlyhamm">Amy Gebhardt</a> brings the
 excitement!</p>
 <p><small>Credit: <a href="https://twitter.com/amlyhamm">@amlyhamm</a></small></p>
 </figcaption>
