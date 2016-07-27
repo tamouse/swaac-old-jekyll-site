@@ -15,21 +15,15 @@
         <li class="divider"></li>
         <li><a href="{{ "/pages/learning" | prepend: site.baseurl }}">Learning</a></li>
         <li class="divider"></li>
-        <li><a href="{{ "/about" | prepend: site.baseurl }}">About</a></li>
+        <li><a href="{{ "/pages/about" | prepend: site.baseurl }}">About</a></li>
         <li class="divider"></li>
-        <li><a href="{{ "/swaac-intro" | prepend: site.baseurl }}">SWaaC Intro</a></li>
+        <li><a href="{{ "/pages/swaac-intro" | prepend: site.baseurl }}">SWaaC Intro</a></li>
         <li class="divider"></li>
         <li><a href="{{ "/pages" | prepend: site.baseurl }}">Pages</a></li>
         <li class="divider"></li>
         <li><a href="{{ "/tags" | prepend: site.baseurl }}">Tags</a></li>
         <li class="divider"></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            {% capture categories %}{% for cat in site.categories %} {{ cat[0] }} {% endfor %}{% endcapture %}{% assign sorted_categories = categories | split:' ' | sort %}{% for cat in sorted_categories %}
-            <li><a href="{{site.baseurl}}/categories/{{cat}}/index.html">{{cat}}</a></li>{% endfor %}
-          </ul>
-        </li><!-- li.dropdown -->
+	<li><a href="{{ "/categories" | prepend: site.baseurl }}">Categories</a></li>
       </ul>
     </div><!--/.navbar-collapse -->
   </div>

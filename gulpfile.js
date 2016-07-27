@@ -78,10 +78,17 @@ gulp.task('serve', ['build'], function() {
   gulp.watch(['_sass/*.scss'], ['css'])
   gulp.watch([
     '_config.yml',
+    '_layouts/**/*',
+    '_includes/**/*',
     '_drafts/**/*',
     '_posts/**/*',
     'pages/**/*',
-    'index.*'
+    '*.html',
+    '*.xml',
+    '*.txt',
+    'favicon.*',
+    'categories/*',
+    'tags/*'
   ], ['jekyll-rebuild']);
 });
 

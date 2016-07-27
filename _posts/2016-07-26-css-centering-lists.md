@@ -14,7 +14,6 @@ Sometimes it's a bit unclear still what to do when you have a list of items to c
 
 Here's an example of doing that:
 
-
 ## Codepen Snippet
 
 <p data-height="449" data-theme-id="light" data-slug-hash="YWvpOo" data-default-tab="result" data-user="tamouse" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/tamouse/pen/YWvpOo/">CSS Centering Lists Hrz & Vrt</a> by Tamara Temple (<a href="http://codepen.io/tamouse">@tamouse</a>) on <a href="http://codepen.io">CodePen</a>.</p>
@@ -70,3 +69,148 @@ The CSS uses the relative parent and absolute child, making the `cases` section 
   background-color: #eee;
 }
 {% endhighlight %}
+
+# Update: Wed Jul 27 08:55:22 2016
+
+## Centering Font Icons in Circles
+
+We had an additional problem of centering font icons in a
+circle. Originally we banged away with `text-align` and `line-height`
+but that's rather pointless if anything changes very much (including
+viewport).
+
+So back to the CSS way. Doing this in Sass by using a mixin ends up
+being rather easy. Using Sass, create a couple of mixins:
+
+{% highlight scss linenos %}
+@mixin center-parent {
+  position: relative;
+}
+@mixin center-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+{% endhighlight %}
+
+In this case, we set up the HTML in much the same way:
+
+{% highlight html linenos %}
+<div class="icons">
+  <h3 class="icon-list-caption">Follow me on:</h3>
+  <div class="icon-list-wrapper">
+    <div class="icon-list">
+      <div class="icon-item">
+        <div class="icon fa fa-facebook"></div>
+        <div class="icon-text">Facebook</div>
+      </div>
+      <div class="icon-item">
+        <div class="icon fa fa-github"></div>
+        <div class="icon-text">Github</div>
+      </div>
+      <div class="icon-item">
+        <div class="icon fa fa-twitter"></div>
+        <div class="icon-text">Twitter</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endhighlight %}
+
+And the following Sass using the mixins above:
+
+{% highlight scss linenos %}
+$icon-size: 62px;
+$icon-font-size: 24px;
+
+.icons {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.icon-list-caption {
+  display: block;
+  margin: 40px 0;
+  text-align: center;
+}
+
+.icon-list-wrapper {
+  @include center-parent;
+}
+
+.icon-list {
+  @include center-child;
+}
+
+.icon-item {
+  border: 0.5px solid #ccc;
+  padding: 10px;
+  display: inline-block;
+  border-radius: 50%;
+  width: $icon-size;
+  height: $icon-size;
+
+  @include center-parent;
+}
+
+.icon {
+  @include center-child;
+
+  display: inline;
+  font-size: $icon-font-size;
+  color: darken(cyan, 30%);
+}
+
+.icon-text {
+  display: none;
+}
+{% endhighlight %}
+
+
+## Codepen Snippet
+
+<p data-height="265" data-theme-id="light" data-slug-hash="jAKGWW" data-default-tab="result" data-user="tamouse" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/tamouse/pen/jAKGWW/">Social Icon Font Centering</a> by Tamara Temple (<a href="http://codepen.io/tamouse">@tamouse</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+
+## Using Plain Old CSS
+
+If you don't want to use Sass, you can accomplish the same thing in plain old CSS by creating new classes for the parent and child, and add them to the appropriate HTML elements:
+
+{% highlight css linenos %}
+.center-parent {
+  position: relative;
+}
+.center-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+{% endhighlight %}
+
+{% highlight html linenos %}
+<div class="icons">
+  <h3 class="icon-list-caption">Follow me on:</h3>
+  <div class="icon-list-wrapper center-parent">
+    <div class="icon-list center-child">
+      <div class="icon-item center-parent">
+        <div class="icon fa fa-facebook center-child"></div>
+        <div class="icon-text">Facebook</div>
+      </div>
+      <div class="icon-item center-parent">
+        <div class="icon fa fa-github center-child"></div>
+        <div class="icon-text">Github</div>
+      </div>
+      <div class="icon-item center-parent">
+        <div class="icon fa fa-twitter center-child"></div>
+        <div class="icon-text">Twitter</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endhighlight %}
+
+<p data-height="265" data-theme-id="light" data-slug-hash="BzVmvJ" data-default-tab="result" data-user="tamouse" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/tamouse/pen/BzVmvJ/">Social Icon Font Centering</a> by Tamara Temple (<a href="http://codepen.io/tamouse">@tamouse</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
