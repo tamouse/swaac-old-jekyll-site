@@ -58,6 +58,41 @@ hr.divider-primary {
     background: linear-gradient(to left, transparent, $brand-primary, $brand-primary, transparent);
 }
 
+.call-out {
+  border: 1px dashed $grey;
+  padding: 12px 12px 12px 20%;
+  background-image: url(../../../images/finger-pointing-right7.png);
+  background-position-x: 5%;
+  background-position-y: 50%;
+  background-repeat: no-repeat;
+}
+
+@mixin terminal($bg: black, $fg: white) {
+  font-family: monospace;
+  color: $fg;
+  background-color: $bg;
+  padding: 10px;
+  overflow: auto;
+  white-space: pre;
+
+}
+
+.terminal-output {
+  @include terminal;
+}
+
+.file-contents {
+  @include terminal(darkslategrey, yellow);
+}
+
+.terminal-command {
+  @include terminal;
+  &::first-letter {
+    color: yellow;
+  }
+}
+
+
 @media screen and (min-width: $screen-md-min) {
     main {
 	max-width: 800px;

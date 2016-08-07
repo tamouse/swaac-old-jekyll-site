@@ -9,6 +9,9 @@ links:
   - text: Learning
     href: "/pages/learning/"
 
+  - text: Absolute Beginner
+    href: "/pages/learning/beginner"
+
   - text: Security Concerns
     href: "/pages/security-concerns/"
 

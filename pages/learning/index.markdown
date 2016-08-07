@@ -9,6 +9,10 @@ Many
 people ask me "How do I learn to program?" and "What book(!) should I
 read to learn Rails?".
 
+**UPDATE:** I've created a section for the
+[Absolute Beginner]({{site.baseurl}}/pages/learning/beginner) as well,
+you might find it useful.
+
 These are legitimate questions, but they aren't necessarily the right
 questions to ask in order to begin the journey of becoming a software
 craftsperson.
