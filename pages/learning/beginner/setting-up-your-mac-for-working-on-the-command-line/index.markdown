@@ -8,13 +8,46 @@ Before beginning, I strongly urge you to get Michael Hartl's
 [Learn Enough Command Line to Be Dangerous](https://www.learnenough.com/command-line-tutorial)
 which is seriously the best introduction to this whole thing.
 
+See also: [Conventions Used in This Section]({{ "/pages/learning/beginner/conventions-used-in-this-section"}}).
+
 #### Page Contents
 {:.no_toc}
 
 * contents
 {:toc}
 
-## Starting up
+
+
+## Intro
+
+I'd love to provide the TL;DR for this, but I can't. I don't know
+what's on your system already, what level you're at, or even a kind
+voice to listen to your questions and respond.
+
+Using the caommand line effectively means having it configured to your
+needs. So this page is going to introduce how to configure your
+command line.
+
+There are two, sometimes three, files involved in this:
+
+* `.bash_profile`
+* `.profile`
+* `.bashrc`
+
+The rest of this will tell you how to set them up.
+
+## You'll need to know
+
+* [How to open Terminal on a Mac]({{ site.baseurl }}/pages/learning/beginner/how-do-i-get-to-the-command-line-on-a-mac/)
+* Various shell commands:
+
+  * `cd`
+  * `chmod`
+  * `cp`
+  * `echo`
+  * `ls`
+
+## Gathering Current Information
 
 1. [Open up the Terminal]({{ site.baseurl }}/pages/learning/beginner/how-do-i-get-to-the-command-line-on-a-mac/)
 
@@ -48,6 +81,20 @@ which is seriously the best introduction to this whole thing.
 
 In fact, *any* combination is okay, there'll be a section below on
 each case.
+
+Here are the combinations:
+
+1. You don't have any of them (default OSX setup)
+2. You have `.profile` but not the other two
+3. You have `.bash_profile` but not the other two
+4. You have `.bashrc` but not the other two
+5. You have `.bash_profile` and `.bashrc`, but not `.profile`
+6. You have `.profile` and `.bashrc`, but not `.bash_profile`
+7. You have all three
+
+
+
+
 
 ## If you don't have any of the three files
 
