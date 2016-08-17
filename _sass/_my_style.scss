@@ -92,6 +92,11 @@ hr.divider-primary {
   }
 }
 
+.restrain-x {
+  max-width: 100%;
+  overflow-x: scroll;
+}
+
 
 @media screen and (min-width: $screen-md-min) {
     main {
