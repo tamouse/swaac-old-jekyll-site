@@ -16,5 +16,9 @@
     "gulp-replace": "^0.5.4",
     "gulp-ruby-sass": "^1.0.5",
     "gulp-task-listing": "^1.0.1"
+  },
+  "scripts": {
+    "start": "gulp",
+    "publish": "gulp dist && (cd _dist && git add --all && git commit -m publish && git push -fu origin HEAD)"
   }
 }
