@@ -22,6 +22,13 @@ Jekyll sites. I first began using Git for deployment with old PHP
 sites, for example. Simple sites that basically involve copying over
 the old site with the new material can use this technique.
 
+**Update 2016-09-25 13:56**: Another aspect to hosting is, of course,
+the server configuation. I just wrote up
+[My nginx virtual hosting configuration]({% post_url
+2016-09-25-my-nginx-virtual-hosting-configuration %}) describing my
+`nginx` configuration for static sites.
+
+
 * contents
 {:toc}
 
