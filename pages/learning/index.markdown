@@ -5,9 +5,8 @@ date: 2015-05-31 18:11
 navbar: true
 ---
 
-Many
-people ask me "How do I learn to program?" and "What book(!) should I
-read to learn Rails?".
+Many people ask me "How do I learn to program?" and "What book(!)
+should I read to learn Rails?".
 
 **UPDATE:** I've created a section for the
 [Absolute Beginner]({{site.baseurl}}/pages/learning/beginner) as well,
@@ -336,6 +335,20 @@ and generate the most requests that come to me.
   koans definitely guide you in the way of test-first development,
   which is a beneficial practice for all to know.
 
+# Podcasts
+
+I am not such a big fan of podcasts, but that has more to do with my personal learning style. Nevertheless, there are some great pocasts out there.
+
+* [**CodeNewbies**](http://www.codenewbie.org/) -- started off as a
+  twitter chat, and grew into a thing, CodeNewbies offers podcasts on
+  topics that range far and wide. Recent topics have included
+  Scrum/Agile methods, maintaining your mental health while
+  programming, interviews with folks who have created significant web
+  sites (Gina Trapani of LifeHacker!!), mobile, databases, single-page
+  apps, you name it. One of the best aspects I can see directly is
+  that this is a *very* open, diverse collaboration.
+
+
 # Teaching Organizations
 
 These are the ones I'm familiar with at this point in time (late 2015)
@@ -380,9 +393,15 @@ conference type, make an effort to find people in your area to talk
 to.
 
 If you're ever in the Minneapolis area, look me up at
-[TC Rails Hack Night](http://www.tchacknight.com/),
-[Rails.MN](http://www.rails.mn/), and [Ruby.MN](http://www.ruby.mn/)
+[Rails.MN](http://www.rails.mn/) and [Ruby.MN](http://www.ruby.mn/)
 -- I attend those pretty regularly (weather permitting).
+
+I also "run" the weekly **Toast and Tech** meetup from
+[GDI Minneapolis](http://www.meetup.com/Girl-Develop-It-Minneapolis/)
+on Tuesdays at the
+[Canteen](https://www.yelp.com/biz/canteen-3255-minneapolis-2). Stop
+on by and have wonderful toast, coffee, and working with a bunch of
+wonderful folks learning web and other development.
 
 # More Advanced
 
