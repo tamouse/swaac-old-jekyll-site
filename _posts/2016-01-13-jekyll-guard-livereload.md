@@ -6,6 +6,12 @@ categories: [jekyll, workflow]
 tags: [jekyll, workflow, guard, livereload]
 
 ---
+**UPDATE:** This scheme described here doesn't actually work all that
+well. What I'm going to suggest is look at the jekyll plugin
+[`hawkins`](https://github.com/awood/hawkins) for a really simple and
+*working* method to get live reloading with everything working in
+Jekyll.
+
 Recently looking around, and chatting with some folks on the `#jekyll`
 irc channel on freenode, I started to rethink the work I'd done
 creating the [drink_up_doctor] gem using [Gulp] to drive the work cycle.

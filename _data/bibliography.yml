@@ -1,0 +1,235 @@
+# Bibliography of Software as a Craft
+---
+Duckett2011:
+  type: book
+  title: "HTML & CSS: design and build websites"
+  author: "Duckett, Jon"
+  publisher: "John Wiley & Sons, Inc"
+  year: 2011
+  url: 'http://www.htmlandcssbook.com/'
+  ISBN: '978-1-118-00818-8'
+  keywords:
+    - html
+    - css
+  abstract: |
+
+    WELCOME TO A NICER WAY TO LEARN ABOUT HTML & CSS
+
+    A book about code that doesn't read like a 1980s VCR manual...
+
+    It's not just for programmers, it's written and presented to
+    make it easy for designers, bloggers, content and e-commerce
+    managers, marketers to learn about the code used to write web
+    pages...
+
+Ducket2014:
+  type: book
+  title: "JavaScript & jQuery: interactive front-end web development"
+  author: "Duckett, Jon"
+  publisher: "John Wiley & Sons, Inc"
+  year: 2014
+  url: 'http://www.javascriptbook.com/'
+  ISBN: '978-1-118-53164-8'
+  keywords:
+    - javascript
+    - jquery
+  abstract: |
+
+    This is not your average programming book.
+
+    We understand that all kinds of people build websites these days
+    (and that they don’t all have a degree in computer science).
+
+    So, if you want to use JavaScript to make your web pages more
+    interactive, interesting, and usable, we can help. Even if you
+    have never done any programming.
+
+Pine2009:
+  type: book
+  title: "Learn to Program"
+  version: 2
+  author: "Pine, Chris"
+  publisher: "Pragmatic Programmers, LLC"
+  year: 2009
+  url: 'https://pragprog.com/book/ltp2/learn-to-program'
+  ISBN: '978-1-93435-636-4'
+  keywords:
+    - programming
+    - ruby
+
+  abstract: |
+
+    Computers are everywhere, on every desk, in your iPod, cell phone,
+    and PDA. To live well in the 21st century, you need to know how to
+    make computers do things. And to really make computers do what you
+    want, you have to learn to program.
+
+    Fortunately, that’s easier now than ever before. Chris Pine’s book
+    will teach you how to program. You’ll learn to use your computer
+    better, to get it to do what you want it to do. Starting with
+    small, simple one-line programs to calculate your age in seconds,
+    you’ll see how to advance to fully structured, real
+    programs. You’ll learn the same technology used to drive modern
+    dynamic websites and large, professional applications.
+
+    It’s now easier to learn to write your own computer software than
+    it has ever been before. Now everyone can learn to write programs
+    for themselves—-no previous experience is necessary. Chris takes a
+    thorough, but light-hearted approach that teaches you how to
+    program with a minimum of fuss or bother.
+
+WebDevRec2015:
+  type: book
+  title: "Web Development Recipes"
+  year: 2015
+  authors:
+    - 'Hogan, Brian P.'
+    - 'Warren, Chris'
+    - 'Weber, Mike'
+    - 'Johnson, Chris'
+  publisher: 'Pragmatic Programmers, LLC'
+  ISBN: '978-1-68050-056-1'
+  abstract: |
+    Web development is constantly changing, and you need to stay on
+    top of your game. Discover a wide spectrum of web development
+    techniques, from how to improve the way you present content, to
+    solutions for data analysis, testing, and deployment.
+
+    In this edition we introduce new tools, add new recipes, and
+    modernize old ones. You’ll use Vagrant to automate server setup,
+    and you’ll discover new ways to develop blogs and static
+    sites. You’ll learn how to use Grunt to script the deployment of
+    your web project, and use Angular to build a single-page app.
+
+    You’ll learn how to make content stand out with simple
+    cross-browser styles; create animations that work well everywhere
+    without plugins; and create lightweight, responsive layouts. We’ll
+    show you how to use preprocessors like CoffeeScript and Sass;
+    write tests for your code; use Git and Dropbox to collaborate;
+    configure and secure the Apache web server; use virtualization to
+    set up your own servers automatically; and much more.
+
+    Whether you’re new to front-end development, or you’ve got a few
+    years of experience, you’ll become a more versatile developer by
+    finding out how – and why – to use these solutions in your next
+    project.
+
+Spraul2012:
+  type: book
+  title: "Think Like a Programmer"
+  author: 'Spraul, V. Anton'
+  year: 2012
+  publisher: No Starch Press
+  url: 'https://www.nostarch.com/thinklikeaprogrammer'
+  ISBN: '978-1-59327-424-5'
+  keywords:
+    - programming
+    - 'c++'
+    - computer science
+    - introductory
+  abstract: |
+
+    The real challenge of programming isn't learning a language's
+    syntax—it's learning to creatively solve problems so you can build
+    something great. In this one-of-a-kind text, author V. Anton
+    Spraul breaks down the ways that programmers solve problems and
+    teaches you what other introductory books often ignore: how to
+    Think Like a Programmer. Each chapter tackles a single programming
+    concept, like classes, pointers, and recursion, and open-ended
+    exercises throughout challenge you to apply your knowledge. You'll
+    also learn how to:
+
+    - Split problems into discrete components to make them easier to solve
+    - Make the most of code reuse with functions, classes, and libraries
+    - Pick the perfect data structure for a particular job
+    - Master more advanced programming tools like recursion and dynamic memory
+    - Organize your thoughts and develop strategies to tackle particular types of problems
+
+    Although the book's examples are written in C++, the creative
+    problem-solving concepts they illustrate go beyond any particular
+    language; in fact, they often reach outside the realm of computer
+    science. As the most skillful programmers know, writing great code
+    is a creative art—and the first step in creating your masterpiece
+    is learning to Think Like a Programmer.
+
+Shotts2012:
+  type: book
+  author: "Shotts, William E."
+  title: 'The Linux command line: a complete introduction'
+  ISBN: 978-1-59327-389-7
+  publisher: No Starch Press
+  keywords:
+    - linux
+    - scripting languages (computer science)
+    - operating systems (computers)
+  dewey: 'QA76.76.O63S5556 2011'
+  loc: "005.4'32--dc23"
+
+POODR:
+  type: book
+  author: "Metz, Sandi"
+  title: "Practical object-oriented design in Ruby: an agile primer"
+  ISBN: '0-321-72133-0'
+  keywords:
+    - object-oriented programming
+    - computer science
+    - ruby
+  url: 'http://www.poodr.com/'
+  publisher: Pearson Educational, Inc
+  year: 2013
+  abstract: |
+
+    Practical Object-Oriented Design in Ruby (POODR) is a programmers
+    tale about how to write object-oriented code.
+
+    Written by Sandi Metz, it explains object-oriented design (OOD)
+    using realistic, understandable examples.  POODR is a practical,
+    readable introduction to how OOD can lower your costs and improve
+    your applications.
+
+    POODR will help you:
+      - Decide what belongs in a single class
+      - Avoid entangling objects that should be kept separate
+      - Define flexible interfaces among objects
+      - Reduce programming overhead costs with duck typing
+      - Successfully apply inheritance
+      - Build objects via composition
+      - Design cost-effective tests
+      - Craft simple, straightforward, understandable code
+
+    If your code is killing you and the joy is gone, POODR has the cure.
+
+    A note on pronunciation: Think pooder, as if you were a three year
+    old attempting to say computer.  Please don’t think anything else,
+    though you may smile as you say it if you like.
+
+Black2014:
+  type: book
+  author: "Black, David"
+  title: "The Well-Grounded Rubyist, Second Edition"
+  version: 2
+  ISBN: 9781617291692
+  year: 2014
+  keywords:
+    - ruby
+    - computer science
+    - computer programming language
+  publisher: Manning Publications
+  url: https://manning.com/books/the-well-grounded-rubyist-second-edition
+  abstract: |
+
+    The Well-Grounded Rubyist, Second Edition addresses both newcomers
+    to Ruby as well as Ruby programmers who want to deepen their
+    understanding of the language. This beautifully written and
+    totally revised second edition includes coverage of features that
+    are new in Ruby 2.1, as well as expanded and updated coverage of
+    aspects of the language that have changed.
+
+    The Well-Grounded Rubyist, Second Edition is a beautifully written
+    tutorial that begins with your first Ruby program and goes on to
+    explore sophisticated topics like callable objects, reflection,
+    and threading. The book concentrates on the language, preparing
+    you to use Ruby in any way you choose. This second edition
+    includes coverage of new Ruby features such as keyword arguments,
+    lazy enumerators, and Module\#prepend, along with updated
+    information on new and changed core classes and methods.
