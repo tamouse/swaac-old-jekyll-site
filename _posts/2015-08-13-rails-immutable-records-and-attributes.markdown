@@ -83,7 +83,7 @@ class Order < ActiveRecord::Base
 
   def force_immutable
     if self.persisted?
-      IMMUTABLE.any? do |attr|
+      IMMUTABLE.each do |attr|
         self.changed.include?(attr) &&
           errors.add(attr, :immutable)
       end
@@ -118,7 +118,7 @@ class Order < ActiveRecord::Base
 
   def force_immutable
     if self.persisted?
-      IMMUTABLE.any? do |attr|
+      IMMUTABLE.each do |attr|
         self.changed.include?(attr) &&
           errors.add(attr, :immutable) &&
           self[attr] = self.changed_attributes[attr]
