@@ -12,7 +12,7 @@
     <meta name="description" content="The development blog of tamouse">
 
     <link rel="stylesheet" href="" />
-    <link rel="canonical" href="/swaac/2013/12/23/how-to-add-travis-ci-capability-to-a-github-repo/">
+    <link rel="canonical" href="http://swaac.tamouse.org/swaac/2013/12/23/how-to-add-travis-ci-capability-to-a-github-repo/">
     <link href="/favicon.png" rel="icon">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
 </head>
@@ -78,7 +78,7 @@ this together.</p>
 
 <!--more-->
 
-<h2 id="configuring-travisyml">Configuring <code class="highlighter-rouge">.travis.yml</code></h2>
+<h2 id="configuring-">Configuring <code class="highlighter-rouge">.travis.yml</code></h2>
 
 <p>The first part of getting a repository ready to run under Travis is to
 create a <code class="highlighter-rouge">.travis.yml</code> file to tell Travis how to build and test your
@@ -110,7 +110,7 @@ language. The version we’re using is 2.0.0 (with no particular build
 set at this point). The two sections we need in the <code class="highlighter-rouge">.travis.yml</code> file
 are:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">language</span><span class="pi">:</span> <span class="s">ruby</span>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">language</span><span class="pi">:</span> <span class="s">ruby</span>
 <span class="s">rvm</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="s">2.0.0</span>
 </code></pre>
@@ -138,7 +138,7 @@ in the environment.</p>
 <code class="highlighter-rouge">SECRET_KEY_BASE</code> to make the Devise gem happy. Environment variables
 are set in the <code class="highlighter-rouge">env</code> section of the <code class="highlighter-rouge">.travis.yml</code> file:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">env</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">env</span><span class="pi">:</span>
   <span class="s">SECRET_KEY_BASE="$(bundle exec rake secret)"</span>
 </code></pre>
 </div>
@@ -149,7 +149,7 @@ a secret token, which is just a hashed string, and is quite suitable
 for the secret key base. The above setting results in travis running
 the following at the start of the build:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">export </span><span class="nv">SECRET_KEY_BASE</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>bundle <span class="nb">exec </span>rake secret<span class="k">)</span><span class="s2">"</span>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">export </span><span class="nv">SECRET_KEY_BASE</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>bundle <span class="nb">exec </span>rake secret<span class="k">)</span><span class="s2">"</span>
 </code></pre>
 </div>
 
@@ -165,7 +165,7 @@ because it makes use of the JSON variable type that was introduced at
 that version. Travis by default uses Postgresql v. 9.1, so we need to
 tell it what to use. The <code class="highlighter-rouge">addons</code> section lets us specify the version:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">addons</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">addons</span><span class="pi">:</span>
   <span class="s">postgresql</span><span class="pi">:</span> <span class="s">9.2</span>
 </code></pre>
 </div>
@@ -208,7 +208,7 @@ the current build.</p>
 <p>(Note these might be done quite differently when creating the
 production environment.)</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">before_script</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">before_script</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="s">/bin/cp $TRAVIS_BUILD_DIR/config/database.sample.yml $TRAVIS_BUILD_DIR/config/database.yml</span>
   <span class="pi">-</span> <span class="s">/bin/cp $TRAVIS_BUILD_DIR/config/env_vars.sample.rb $TRAVIS_BUILD_DIR/config/env_vars.rb</span>
 </code></pre>
@@ -221,17 +221,17 @@ does not persist databases across runs). Since we’re using Postgresql,
 we simply run the client and create the database with the default
 user, <code class="highlighter-rouge">postgres</code> as specified by travis.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">before_script</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">before_script</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="s">psql -c 'create database howto_repo_test;' -U postgres</span>
 </code></pre>
 </div>
 
-<h4 id="the-beforescript-section">The <code class="highlighter-rouge">before_script</code> Section</h4>
+<h4 id="the--section">The <code class="highlighter-rouge">before_script</code> Section</h4>
 
 <p>Combining the previous two subsections, the resultant <code class="highlighter-rouge">before_script</code>
 section that runs all these is:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">before_script</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">before_script</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="s">/bin/cp $TRAVIS_BUILD_DIR/config/database.sample.yml $TRAVIS_BUILD_DIR/config/database.yml</span>
   <span class="pi">-</span> <span class="s">/bin/cp $TRAVIS_BUILD_DIR/config/env_vars.sample.rb $TRAVIS_BUILD_DIR/config/env_vars.rb</span>
   <span class="pi">-</span> <span class="s">psql -c 'create database howto_repo_test;' -U postgres</span>
@@ -250,7 +250,7 @@ takes a long time to build the native version).</p>
 
 <p>We can tell Travis to cache the bundle within the <code class="highlighter-rouge">cache</code> section:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">cache</span><span class="pi">:</span> <span class="s">bundler</span>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">cache</span><span class="pi">:</span> <span class="s">bundler</span>
 </code></pre>
 </div>
 
@@ -262,18 +262,18 @@ continuous testing and debugging locally. We don’t want these in the
 CI run, however, so I’ve put all the local stuff inside a <code class="highlighter-rouge">guard</code>
 group within the Gemfile. We need to tell Travis not to include it:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">bundler_args</span><span class="pi">:</span> <span class="s">--without guard --deployment</span>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">bundler_args</span><span class="pi">:</span> <span class="s">--without guard --deployment</span>
 </code></pre>
 </div>
 
 <p>which tells bundler to omit the <code class="highlighter-rouge">guard</code> section, and install things as
 if this were a deployment.</p>
 
-<h2 id="final-travisyml-contents">Final <code class="highlighter-rouge">.travis.yml</code> Contents</h2>
+<h2 id="final--contents">Final <code class="highlighter-rouge">.travis.yml</code> Contents</h2>
 
 <p>Putting the whole thing together:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">language</span><span class="pi">:</span> <span class="s">ruby</span>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">language</span><span class="pi">:</span> <span class="s">ruby</span>
 <span class="s">cache</span><span class="pi">:</span> <span class="s">bundler</span>
 <span class="s">bundler_args</span><span class="pi">:</span> <span class="s">--without guard --deployment</span>
 <span class="s">rvm</span><span class="pi">:</span>

@@ -12,7 +12,7 @@
     <meta name="description" content="The development blog of tamouse">
 
     <link rel="stylesheet" href="" />
-    <link rel="canonical" href="/deployment/2016/01/12/using-git-to-deploy-static-sites/">
+    <link rel="canonical" href="http://swaac.tamouse.org/deployment/2016/01/12/using-git-to-deploy-static-sites/">
     <link href="/favicon.png" rel="icon">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
 </head>
@@ -147,13 +147,13 @@ serve your static site from the document root we’ll define below.</p>
 
 <p>Create a directory for your site:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">remote$ </span>mkdir -p Sites/my_static_site
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">remote$ </span>mkdir -p Sites/my_static_site
 </code></pre>
 </div>
 
 <p>Create a bare repository that can receive the updates:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">remote$ </span>mkdir -p Repos/my_static_site.git
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">remote$ </span>mkdir -p Repos/my_static_site.git
 <span class="gp">remote$ </span><span class="nb">cd </span>Repos/my_static_site.git
 <span class="gp">remote$ </span>git init --bare
 </code></pre>
@@ -168,7 +168,7 @@ we’ve created above. Create the file <code class="highlighter-rouge">post-rece
 directory of the bare repository (<code class="highlighter-rouge">Repos/my_static_site.git</code> in our
 example above).</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
 <span class="nb">echo</span> <span class="s2">"[log] </span><span class="nv">$0</span><span class="s2">"</span>
 <span class="nb">export </span><span class="nv">GIT_WORK_TREE</span><span class="o">=</span><span class="s2">"/full/path/to/Site/my_static_site"</span>
 <span class="nb">export </span><span class="nv">BRANCH</span><span class="o">=</span><span class="s2">"master"</span>
@@ -196,14 +196,14 @@ contains a line to ignore this directory.</p>
 <p>Let’s prepare that directory by running <code class="highlighter-rouge">jekyll build</code> once to create
 the full site.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>jekyll build
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>jekyll build
 </code></pre>
 </div>
 
 <p>Now that the directory is there, step into it and set up the Git-based
 deployment.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">cd </span>_site
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">cd </span>_site
 <span class="gp">_site/$ </span>git init <span class="c"># make this directory into *another* git repo</span>
 <span class="gp">_site/$ </span>git add .
 <span class="gp">_site/$ </span>git commit -m <span class="s1">'first time'</span>
@@ -213,7 +213,7 @@ deployment.</p>
 <p>Now we add the remote repository on our server that we created above
 as the origin, and push our first commit:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">_site/$ </span>git remote add origin you@remote:Repos/my_static_site.git
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">_site/$ </span>git remote add origin you@remote:Repos/my_static_site.git
 <span class="gp">_site/$ </span>git push origin master
 </code></pre>
 </div>
@@ -243,7 +243,7 @@ script that you can run locally to publish might look something like
 this. Create a file <code class="highlighter-rouge">publish.sh</code> with the following content in your
 local site directory:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
 jekyll build
 <span class="nb">cd </span>_site
 git add --all --verbose
@@ -259,7 +259,7 @@ don’t much care about the git log content for the published site. You
 might, though, so you might want to pass it in as an argument to the
 publish script:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git commit -m <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>git commit -m <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
 </code></pre>
 </div>
 
@@ -267,7 +267,7 @@ publish script:</p>
 
 <p>Make sure to exclude the file in your <code class="highlighter-rouge">_config.yml</code> file:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">exclude</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">exclude</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="s">publish.sh</span>
 </code></pre>
 </div>
@@ -275,7 +275,7 @@ publish script:</p>
 <p>Set the file executable, and then you can publish by just calling the
 script:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>chmod -x ./publish.sh <span class="c"># just once</span>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>chmod -x ./publish.sh <span class="c"># just once</span>
 <span class="gp">$ </span>./publish.sh
 </code></pre>
 </div>

@@ -12,7 +12,7 @@
     <meta name="description" content="The development blog of tamouse">
 
     <link rel="stylesheet" href="" />
-    <link rel="canonical" href="/rails/2015/01/29/link-stop-writing-rails-controllers/">
+    <link rel="canonical" href="http://swaac.tamouse.org/rails/2015/01/29/link-stop-writing-rails-controllers/">
     <link href="/favicon.png" rel="icon">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
 </head>
@@ -86,7 +86,7 @@ process of handling a request into three parts.</p>
 </blockquote>
 
 <blockquote>
-  <h3 id="convert-parameters">1. Convert parameters.</h3>
+  <h3 id="1-convert-parameters">1. Convert parameters.</h3>
 
   <p>This step is handled by some sort of context builder. It is mostly
 in charge of gathering parameters, but may need to pluck out
@@ -96,7 +96,7 @@ data blob via a Hash or Struct).</p>
 </blockquote>
 
 <blockquote>
-  <h3 id="process-the-domain-request--action">2. Process the domain request / action.</h3>
+  <h3 id="2-process-the-domain-request--action">2. Process the domain request / action.</h3>
 
   <p>The domain level service object takes the necessary information and
 processes it (update the database, send emails, external
@@ -106,7 +106,7 @@ HTTP), objects, errors, etc.</p>
 </blockquote>
 
 <blockquote>
-  <h3 id="glue">3. Glue.</h3>
+  <h3 id="3-glue">3. Glue.</h3>
 
   <p>DDC is the glue that holds it all together. It creates a controller
 class that does all the default things for you, but allows you to

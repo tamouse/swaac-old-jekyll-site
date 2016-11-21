@@ -12,7 +12,7 @@
     <meta name="description" content="The development blog of tamouse">
 
     <link rel="stylesheet" href="" />
-    <link rel="canonical" href="/swaac/2013/10/04/6-ways-to-remove-pain-from-feature-testing-in-ruby-on-rails/">
+    <link rel="canonical" href="http://swaac.tamouse.org/swaac/2013/10/04/6-ways-to-remove-pain-from-feature-testing-in-ruby-on-rails/">
     <link href="/favicon.png" rel="icon">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
 </head>
@@ -68,7 +68,7 @@ Oct 4, 2013
 <p>A repost of <a href="http://gaslight.co/blog/6-ways-to-remove-pain-from-feature-testing-in-ruby-on-rails">http://gaslight.co/blog/6-ways-to-remove-pain-from-feature-testing-in-ruby-on-rails</a>.</p>
 
 <blockquote>
-  <h1 id="ways-to-remove-pain-from-feature-testing-in-ruby-on-railshttpgaslightcoblog6-ways-to-remove-pain-from-feature-testing-in-ruby-on-rails"><a href="http://gaslight.co/blog/6-ways-to-remove-pain-from-feature-testing-in-ruby-on-rails">6 Ways to Remove Pain From Feature Testing in Ruby on Rails</a></h1>
+  <h1 id="6-ways-to-remove-pain-from-feature-testing-in-ruby-on-rails"><a href="http://gaslight.co/blog/6-ways-to-remove-pain-from-feature-testing-in-ruby-on-rails">6 Ways to Remove Pain From Feature Testing in Ruby on Rails</a></h1>
 </blockquote>
 
 <blockquote>
@@ -76,7 +76,7 @@ Oct 4, 2013
 
   <p>Writing feature tests in Ruby on Rails used to be the most painful part of my development work flow. Now I kind of like it. Here’s what’s different:</p>
 
-  <h2 id="dont-use-cucumber">1 - Don’t Use Cucumber</h2>
+  <h2 id="1---dont-use-cucumber">1 - Don’t Use Cucumber</h2>
 
   <p>If you have Cucumber installed, uninstall it. This stuff is already hard enough without trying to parse natural language into Ruby code.</p>
 
@@ -113,7 +113,7 @@ end
 
   <p>This doesn’t look too bad but a more complicated feature would really start to get muddy and the login logic will eventually be duplicated between tests. Even this example doesn’t read as well as I would like.</p>
 
-  <h2 id="use-page-objects">2 - Use Page Objects</h2>
+  <h2 id="2---use-page-objects">2 - Use Page Objects</h2>
 
   <p>Capybara selectors are likely to break as development continues. Your copy-writer decides the login button should say “Sign into a world of possibilities”. Now you need to fix your tests.</p>
 
@@ -177,7 +177,7 @@ end
 
   <p>These page objects are very minimal, but they can grow to provide additional error checking as the user navigates through the UI or pass off other pages (or sections of pages) to assert on and interact with. Page objects pay off so often and so much that <strong>I always use page objects in my feature tests</strong>. Just as I never write SQL in my Rails views, I never access the DOM in a feature test without a page object.</p>
 
-  <h2 id="create-useful-failure-messages">3 - Create Useful Failure Messages</h2>
+  <h2 id="3---create-useful-failure-messages">3 - Create Useful Failure Messages</h2>
 
   <p>Failing feature tests can be hard to diagnose. Let’s say you used a page object like this:</p>
 
@@ -203,7 +203,7 @@ Failure/Error: expect(workpaper_page).to have_one_workpaper(workpaper)
 
   <p>I’ve been using this technique sparingly and I’m still looking for a more elegant approach, but this helps me to get more descriptive error messages and avoid debugging trips to the browser. Let me know if you have some good ways of integrating messages like this into your tests.</p>
 
-  <h2 id="embrace-asynchronous-testing">4 - Embrace Asynchronous Testing</h2>
+  <h2 id="4---embrace-asynchronous-testing">4 - Embrace Asynchronous Testing</h2>
 
   <p>Many frustrations with browser automation testing stem from mistakes using assertions that need to wait. Adding a sleep to your tests an okay way to debug code if you think you have a timing issue, but <code class="highlighter-rouge">sleep</code> should should never make it into your final test code.</p>
 
@@ -227,7 +227,7 @@ Failure/Error: expect(workpaper_page).to have_one_workpaper(workpaper)
 
   <p>But when would you ever make a polling assertion like this without Capybara? Read on…</p>
 
-  <h2 id="get-serious-about-data-building">5 - Get Serious About Data Building</h2>
+  <h2 id="5---get-serious-about-data-building">5 - Get Serious About Data Building</h2>
 
   <p>Early on I remember hearing a mantra for feature tests that went something like “Do everything from the perspective of the user”. This advice primarily served to discourage testers from manually manipulating your data in feature tests. I can confidently say that this was bad advice. It’s impractical to sign up a new user with a credit card and complete 20 other provisioning steps just to click an approval button.</p>
 
@@ -287,7 +287,7 @@ end
 </code></pre>
   </div>
 
-  <h2 id="prefer-refining-existing-tests-over-creating-new-ones">6 - Prefer Refining Existing Tests Over Creating New Ones</h2>
+  <h2 id="6---prefer-refining-existing-tests-over-creating-new-ones">6 - Prefer Refining Existing Tests Over Creating New Ones</h2>
 
   <p>When I started doing feature tests in Rails I got some advice that went something like “each test should have one user action and one assertion”. So I worked like this:</p>
 

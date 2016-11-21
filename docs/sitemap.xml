@@ -1,2493 +1,1998 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>http://swaac.tamouse.org/emacs/2016/11/14/installing-emacs-on-mac-with-homebrew/</loc>
-    <lastmod>2016-11-14T10:09:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/wordpress/2016/11/14/installing-wordpress-things-without-ftp/</loc>
-    <lastmod>2016-11-14T00:21:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/class/2016/11/13/frontendmasters-course-devops-for-frontend-devs/</loc>
-    <lastmod>2016-11-13T12:52:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/wordpress/2016/11/13/links-from-gdi-intro-to-wordpress-class/</loc>
-    <lastmod>2016-11-13T12:25:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tools/2016/10/12/signing-a-pdf-with-preview/</loc>
-    <lastmod>2016-10-12T11:55:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/testing/2016/10/10/testing-blur-events-in-cucumber-slash-capybara/</loc>
-    <lastmod>2016-10-10T16:18:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/git/2016/10/08/how-to-set-up-your-own-private-remote-git-repository/</loc>
-    <lastmod>2016-10-08T00:22:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/links/2016/09/26/madebymike-svg-has-more-potential/</loc>
-    <lastmod>2016-09-26T18:46:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/devops/2016/09/25/my-nginx-virtual-hosting-configuration/</loc>
-    <lastmod>2016-09-25T13:29:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/css/2016/09/14/building-resizeable-components-with-relative-css/</loc>
-    <lastmod>2016-09-14T22:58:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/day-in-the-life/2016/09/13/when-your-tools-environment-computer-and-everything-you-know-fails-you/</loc>
-    <lastmod>2016-09-13T22:23:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/links/www/2016/08/17/the-average-web-page-data-from-analyzing-8-million-websites/</loc>
-    <lastmod>2016-08-17T14:09:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/learning/beginner/2016/08/07/beginner-learning-section-in-pages/</loc>
-    <lastmod>2016-08-07T09:15:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/css/2016/07/26/css-centering-lists/</loc>
-    <lastmod>2016-07-26T00:00:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/learning/2016/07/23/the-traits-of-a-proficient-programmer-gregory-brown/</loc>
-    <lastmod>2016-07-23T23:15:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/react-native/2016/07/09/learning-react-native/</loc>
-    <lastmod>2016-07-09T01:18:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/2016/07/09/rails-action-mailer-asset-host/</loc>
-    <lastmod>2016-07-09T01:16:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/2016/06/23/rails-dot-mn-presentationon-rails-routing/</loc>
-    <lastmod>2016-06-23T07:25:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/sysadmin/osx/2016/06/23/fix-osx-file-open-dialog-missing-sidebar-items/</loc>
-    <lastmod>2016-06-23T07:13:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/productivity/2016/06/23/how-to-harness-the-machines-being-productive-with-task-runners/</loc>
-    <lastmod>2016-06-23T06:50:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/css/2016/06/16/147-colors-grid-css-color-names/</loc>
-    <lastmod>2016-06-16T08:21:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/html/css/learning/book/link/2016/06/16/html-and-css-design-and-build-websites/</loc>
-    <lastmod>2016-06-16T08:16:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/correspondence/2016/05/30/the-manuscripts-of-edsger-w-dijkstra/</loc>
-    <lastmod>2016-05-30T08:18:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/management/2016/05/30/the-quiet-crisis-unfolding-in-software-development/</loc>
-    <lastmod>2016-05-30T07:51:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2016/05/30/your-software-is-never-perfect/</loc>
-    <lastmod>2016-05-30T07:41:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/osx/2016/05/28/tip-ejecting-a-volume-from-the-command-line-on-osx/</loc>
-    <lastmod>2016-05-28T06:39:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/learning/testing/2016/05/24/learn-by-learning-to-test-first/</loc>
-    <lastmod>2016-05-24T07:55:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/wordpress/2016/05/23/wordcamp-mpls-diving-back-into-wordpress/</loc>
-    <lastmod>2016-05-23T04:10:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/javascript/reactjs/2016/05/13/a-set-of-reactjs-demos/</loc>
-    <lastmod>2016-05-13T13:02:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/emacs/2016/04/13/using-web-mode-for-javascript-in-emacs/</loc>
-    <lastmod>2016-04-13T08:16:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/ruby/2016/03/14/new-hash-operators-in-ruby-2-dot-3/</loc>
-    <lastmod>2016-03-14T23:27:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/rails/2016/02/18/my-way-of-implementing-service-objects-in-rails/</loc>
-    <lastmod>2016-02-18T20:57:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/jekyll/workflow/2016/01/13/jekyll-guard-livereload/</loc>
-    <lastmod>2016-01-13T00:00:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/deployment/2016/01/12/using-git-to-deploy-static-sites/</loc>
-    <lastmod>2016-01-12T20:42:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/rails/2015/12/15/self-referential-models-categories/</loc>
-    <lastmod>2015-12-15T19:37:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/learning/2015/12/03/link-4-reasons-why-you-shouldnt-learn-to-code-from-codecademy/</loc>
-    <lastmod>2015-12-03T00:14:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/programming/2015/12/01/tweet-by-at-c089-hidden-costs-of-poor-programming/</loc>
-    <lastmod>2015-12-01T07:27:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/testing/2015/11/13/link-getting-testy/</loc>
-    <lastmod>2015-11-13T08:44:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/deployment/2015/10/30/klabnik-waxes-tweet-on-continuous-delivery/</loc>
-    <lastmod>2015-10-30T09:45:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/web-publishing/2015/10/16/registrar-domain-name-service-web-hosting-service/</loc>
-    <lastmod>2015-10-16T04:20:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/programming/2015/10/12/link-learn-enough-command-line-to-be-dangerous-by-michael-hartl/</loc>
-    <lastmod>2015-10-12T06:40:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/programming/2015/09/02/link-the-worst-mistake-in-computer-science/</loc>
-    <lastmod>2015-09-02T10:07:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/programming/2015/08/28/ledgards-programming-proverbs/</loc>
-    <lastmod>2015-08-28T21:17:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/rails/2015/08/13/rails-immutable-records-and-attributes/</loc>
-    <lastmod>2015-08-13T05:58:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/links/rails/jquery/2015/07/31/link-jquery-ui-autocomplete-with-ruby-on-rails/</loc>
-    <lastmod>2015-07-31T07:00:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/links/rails/2015/07/31/link-handling-csv-views-in-rails/</loc>
-    <lastmod>2015-07-31T06:50:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/learning/2015/07/27/where-do-i-go-next-code-kata/</loc>
-    <lastmod>2015-07-27T00:46:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/links/2015/07/12/todays-reading/</loc>
-    <lastmod>2015-07-12T11:59:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/links/2015/07/11/todays-reading/</loc>
-    <lastmod>2015-07-11T08:26:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/ruby/2015/07/03/link-list-of-little-known-ruby-tricks/</loc>
-    <lastmod>2015-07-03T21:29:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/learning/2015/07/03/what-are-the-fundamentals-of-software-engineering/</loc>
-    <lastmod>2015-07-03T14:01:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/elixir/2015/06/30/first-thing-i-learned-about-working-with-elixir/</loc>
-    <lastmod>2015-06-30T13:16:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/docker/2015/06/28/interesting-uses-of-docker/</loc>
-    <lastmod>2015-06-28T18:34:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/git/links/2015/06/25/why-write-good-commit-messages-futurelearn-blog/</loc>
-    <lastmod>2015-06-25T14:54:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/databases/links/2015/06/25/keep-your-data-in-your-database-pat-shaughnessy/</loc>
-    <lastmod>2015-06-25T14:36:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/rails/links/2015/06/25/how-to-preload-rails-scopes-justin-weiss/</loc>
-    <lastmod>2015-06-25T14:11:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/misc/2015/06/22/todays-reading/</loc>
-    <lastmod>2015-06-22T22:38:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/misc/2015/06/20/todays-readings-and-stuff/</loc>
-    <lastmod>2015-06-20T21:21:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/rails/2015/06/16/how-to-translate-nested-polymorphic-attributes-in-activemodel-errors-messages/</loc>
-    <lastmod>2015-06-16T20:56:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/jekyll/2015/06/14/user-editing-for-jekyll-sites/</loc>
-    <lastmod>2015-06-14T09:45:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/misc/2015/06/13/todays-reading/</loc>
-    <lastmod>2015-06-13T06:34:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/testing/2015/06/06/just-say-no-to-more-end-to-end-tests-google-dev-blog/</loc>
-    <lastmod>2015-06-06T15:46:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/jekyll/2015/05/30/new-site-jekyll-tips/</loc>
-    <lastmod>2015-05-30T20:53:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tex/beamer/2015/05/30/til-beamer-installation-and-missing-fonts/</loc>
-    <lastmod>2015-05-30T06:01:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/misc/2015/05/28/todays-reading/</loc>
-    <lastmod>2015-05-28T07:10:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tbp/2015/05/26/tiny-best-practices/</loc>
-    <lastmod>2015-05-26T10:44:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/rails/tbp/2015/05/26/tbp-bistate-booleans-in-rails/</loc>
-    <lastmod>2015-05-26T10:32:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/emacs/org-mode/2015/05/25/using-emacss-org-mode-and-editing-yaml-frontmatter-in-jekyll-posts/</loc>
-    <lastmod>2015-05-25T10:20:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/ruby/snippet/2015/05/22/snippet-getting-the-end-of-the-month-in-ruby/</loc>
-    <lastmod>2015-05-22T06:45:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/vagrant/2015/05/09/multiple-vagrant-rails-development-box-setup-times/</loc>
-    <lastmod>2015-05-09T21:12:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/thoughts/2015/05/02/love-letter/</loc>
-    <lastmod>2015-05-02T09:12:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/learning/2015/04/29/the-x-y-problem/</loc>
-    <lastmod>2015-04-29T08:53:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/ruby/2015/04/15/til-kernel-number-gets-is-different-from-io-number-gets/</loc>
-    <lastmod>2015-04-15T21:33:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/devops/2015/04/09/installing-phantomjs-on-ubuntu-linux/</loc>
-    <lastmod>2015-04-09T06:13:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/javascript/2015/04/04/you-dont-know-javascript-class/</loc>
-    <lastmod>2015-04-04T01:02:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/angularjs/2015/03/27/learning-ui-router-and-passing-values-in-$stateparams/</loc>
-    <lastmod>2015-03-27T00:37:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/jekyll/2015/03/08/a-new-release-of-jekyllpress/</loc>
-    <lastmod>2015-03-08T21:14:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/jekyll/2015/03/08/link-sharing-rails-views-with-jekyll/</loc>
-    <lastmod>2015-03-08T15:45:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/html/2015/03/05/link-how-to-use-the-html5-sectioning-elements/</loc>
-    <lastmod>2015-03-05T21:34:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/rails/2015/03/03/rails-question-getting-x-where-there-are-no-y/</loc>
-    <lastmod>2015-03-03T05:38:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/javascript/2015/02/13/reactjs-course-with-frontend-masters/</loc>
-    <lastmod>2015-02-13T22:56:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/ruby/2015/02/13/tenderlove-weird-stuff-with-hashes/</loc>
-    <lastmod>2015-02-13T21:55:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/ruby/2015/02/03/first-vs-take/</loc>
-    <lastmod>2015-02-03T03:37:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/rails/2015/01/29/link-stop-writing-rails-controllers/</loc>
-    <lastmod>2015-01-29T21:07:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2015/01/28/using-packer-and-vagrant-to-build-virtual-machines/</loc>
-    <lastmod>2015-01-28T00:07:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2015/01/24/emacs-org-mode/</loc>
-    <lastmod>2015-01-24T20:24:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2015/01/20/rails-4-dot-2-config-for/</loc>
-    <lastmod>2015-01-20T07:30:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2015/01/20/validation-contexts/</loc>
-    <lastmod>2015-01-20T06:27:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2014/12/22/repost-rspec-3-and-deprecated-and-return-blocks/</loc>
-    <lastmod>2014-12-22T22:43:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2014/11/02/how-to-converting-instance-variables-to-yaml-in-ruby/</loc>
-    <lastmod>2014-11-02T23:51:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2014/11/02/documenting-regular-expressions/</loc>
-    <lastmod>2014-11-02T15:35:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2014/11/02/dealing-with-mixed-encodings-in-a-file/</loc>
-    <lastmod>2014-11-02T15:12:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2014/10/22/link-when-women-stopped-coding/</loc>
-    <lastmod>2014-10-22T01:11:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2014/10/22/link-the-best-coding-language-for-you-to-learn/</loc>
-    <lastmod>2014-10-22T00:57:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/technology/2014/10/03/howto-quick-steps-to-install-emacs-24-without-x-on-ubuntu/</loc>
-    <lastmod>2014-10-03T09:31:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2014/09/27/converting-blog-to-pure-jekyll/</loc>
-    <lastmod>2014-09-27T14:29:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2014/07/28/a-new-jekyllpress-gem/</loc>
-    <lastmod>2014-07-28T00:29:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2014/07/27/chris-pines-learn-to-program-on-unshelved-comic/</loc>
-    <lastmod>2014-07-27T07:09:56-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2014/07/12/career-advice/</loc>
-    <lastmod>2014-07-12T13:56:33-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2014/07/05/a-place-to-get-started-in-web-design/</loc>
-    <lastmod>2014-07-05T10:57:18-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2014/05/11/learning-resources-for-software-development-and-pr/</loc>
-    <lastmod>2014-05-11T22:52:50-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2014/04/24/turning-off-ipv6-in-os-slash-x-maverics-10-dot-9/</loc>
-    <lastmod>2014-04-24T09:56:56-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2014/03/08/playing-around-with-thor-generators/</loc>
-    <lastmod>2014-03-08T15:06:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2014/02/04/dieter-rams-10-principles-for-good-design-readymag/</loc>
-    <lastmod>2014-02-04T11:48:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2014/01/24/my-nerd-story-what-you-say-to-young-girls-matters-linux-dot-com/</loc>
-    <lastmod>2014-01-24T04:31:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2014/01/15/this-is-why-gandi-dot-net-is-my-registrar-of-choice/</loc>
-    <lastmod>2014-01-15T20:00:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2014/01/06/from-static-to-dynamic-typing-a-change-in-beliefs/</loc>
-    <lastmod>2014-01-06T02:33:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/12/23/ux-what-does-flat-design-really-mean-link/</loc>
-    <lastmod>2013-12-23T23:53:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/12/23/how-to-add-travis-ci-capability-to-a-github-repo/</loc>
-    <lastmod>2013-12-23T16:39:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/12/22/cool-things-web-sequence-diagramer/</loc>
-    <lastmod>2013-12-22T18:29:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/12/20/this-is-why-i-dont-like-sites-like-codeacademy/</loc>
-    <lastmod>2013-12-20T02:28:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/12/04/possible-bug-ie8-wont-show-table-atargets-is-null-or-not-an-object-datatables-forums/</loc>
-    <lastmod>2013-12-04T12:31:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/11/27/mvc-is-dead-its-time-to-move-on/</loc>
-    <lastmod>2013-11-27T13:55:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/11/17/devops-for-developers-video-series/</loc>
-    <lastmod>2013-11-17T21:25:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/11/13/fascinating-article-pushing-the-boundaries-on-css-design/</loc>
-    <lastmod>2013-11-13T18:54:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/11/13/creating-non-rectangular-layouts-with-css-shapes/</loc>
-    <lastmod>2013-11-13T18:52:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/11/11/hashrocket-blog-sql-window-functions-and-you/</loc>
-    <lastmod>2013-11-11T06:13:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/technology/2013/11/03/good-collection-of-backbone-dot-js-topics/</loc>
-    <lastmod>2013-11-03T06:55:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/11/01/a-guide-to-ruby-collections-archives-sitepoint/</loc>
-    <lastmod>2013-11-01T13:43:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/10/30/apache-slash-php-5-dot-x-remote-code-execution-exploit/</loc>
-    <lastmod>2013-10-30T19:58:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/10/24/pdf-rendering-with-phantomjs-big-elephants/</loc>
-    <lastmod>2013-10-24T23:40:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/technology/2013/10/24/bootstrap-follies-solving-a-repsonsive-positioning-problem/</loc>
-    <lastmod>2013-10-24T09:23:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/10/22/adding-a-file-display-list-to-a-multi-file-upload-html-control/</loc>
-    <lastmod>2013-10-22T11:08:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/10/22/multi-file-uploads-and-multiple-selects/</loc>
-    <lastmod>2013-10-22T10:45:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/10/20/free-free-100-s-of-free-programming-books/</loc>
-    <lastmod>2013-10-20T23:33:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/10/15/ruby-cant-get-page-data-from-jekyll-plugin-stack-overflow/</loc>
-    <lastmod>2013-10-15T10:54:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/10/08/devops-toolbox-introduction/</loc>
-    <lastmod>2013-10-08T22:17:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/technology/2013/10/05/generate-a-full-rails-app-with-a-composer/</loc>
-    <lastmod>2013-10-05T08:15:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/git/2013/10/05/delete-a-remote-git-branch/</loc>
-    <lastmod>2013-10-05T08:03:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/10/04/6-ways-to-remove-pain-from-feature-testing-in-ruby-on-rails/</loc>
-    <lastmod>2013-10-04T20:07:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/09/29/index-scorched/</loc>
-    <lastmod>2013-09-29T14:00:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/09/28/jekyll-making-posts-sticky/</loc>
-    <lastmod>2013-09-28T17:13:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/09/24/adding-real-time-to-rails-with-socket-dot-io-node-dot-js-and-backbone-dot-js-with-demo-liam-kaufman/</loc>
-    <lastmod>2013-09-24T23:18:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/09/24/adding-real-time-to-a-restful-rails-app-liam-kaufman/</loc>
-    <lastmod>2013-09-24T23:09:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/09/20/activerecord-enhanced-query-objects/</loc>
-    <lastmod>2013-09-20T18:09:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/09/20/the-predicate-module-pattern/</loc>
-    <lastmod>2013-09-20T18:03:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/09/20/essential-tools-for-starting-a-rails-app-in-2013-pete-keen/</loc>
-    <lastmod>2013-09-20T17:54:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/09/17/json-how-to-send-raw-post-data-in-a-rails-functional-test-stack-overflow/</loc>
-    <lastmod>2013-09-17T14:09:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/09/14/the-laws-of-software-design/</loc>
-    <lastmod>2013-09-14T01:37:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/09/11/why-you-should-stop-pirating-googles-geo-apis-pete-wardens-blog/</loc>
-    <lastmod>2013-09-11T22:49:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/09/09/cool-thing-today-showterm-dot-io/</loc>
-    <lastmod>2013-09-09T15:10:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/09/08/running-headless-selenium-with-chrome/</loc>
-    <lastmod>2013-09-08T13:48:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/09/07/red-burns-list/</loc>
-    <lastmod>2013-09-07T11:37:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/09/04/must-have-gems-for-development-machine-in-ruby-on-rails-codebeerstartups/</loc>
-    <lastmod>2013-09-04T11:06:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/09/04/implementing-multi-table-full-text-search-with-postgres-in-rails-hashdog-blog/</loc>
-    <lastmod>2013-09-04T10:27:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/09/03/mass-inserting-data-in-rails-without-killing-your-performance-coffeepowered/</loc>
-    <lastmod>2013-09-03T10:22:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/09/01/rspec-custom-formatters-displaying-test-durations/</loc>
-    <lastmod>2013-09-01T13:23:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/08/31/nginx-takes-the-slippery-road-away-from-open-source/</loc>
-    <lastmod>2013-08-31T06:59:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/08/29/getting-keywords-from-a-web-page-via-nokogiri/</loc>
-    <lastmod>2013-08-29T20:15:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/08/29/deploying-rails-app-using-nginx/</loc>
-    <lastmod>2013-08-29T12:49:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/08/29/deploying-a-rails-app-using-nginx-unicorn-postgres-and-capistrano-to-digital-ocean/</loc>
-    <lastmod>2013-08-29T00:00:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/08/29/a-simple-content-management-system-in-sinatra-part-1/</loc>
-    <lastmod>2013-08-29T00:00:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/technology/2013/08/28/how-to-reset-your-time-capsule-to-factory-settings-without-losing-your-data/</loc>
-    <lastmod>2013-08-28T09:42:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/08/26/jekyllizing-my-cookbook/</loc>
-    <lastmod>2013-08-26T00:40:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/08/25/css-tricks-drop-caps/</loc>
-    <lastmod>2013-08-25T19:44:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/08/11/bootstrap-follies-vertically-and-horizontally-centered-form/</loc>
-    <lastmod>2013-08-11T09:59:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/08/08/shout-out-for-codeship-dot-io-adding-transcripts-to-video-blogs/</loc>
-    <lastmod>2013-08-08T18:59:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/08/02/programmers-creativity/</loc>
-    <lastmod>2013-08-02T04:51:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/07/06/caption-hover-effects-in-css3/</loc>
-    <lastmod>2013-07-06T12:14:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/05/15/roles-and-activities-in-software-development/</loc>
-    <lastmod>2013-05-15T21:00:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/05/15/possible-topics-for-swaac/</loc>
-    <lastmod>2013-05-15T13:20:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2013/02/25/unit-testing-backbone-dot-js-applications/</loc>
-    <lastmod>2013-02-25T16:01:00-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2012/12/04/code-as-literature-software-dev-as-communication/</loc>
-    <lastmod>2012-12-04T23:02:50-06:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2011/10/25/another-personal-hero-falls/</loc>
-    <lastmod>2011-10-25T03:22:32-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/swaac/2011/10/12/so-passes-a-real-hero-of-the-computing-age/</loc>
-    <lastmod>2011-10-12T23:00:49-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/404/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/pages/javascript-examples/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/pages/learning/beginner/conventions-used-in-this-section/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/pages/learning/beginner/how-do-i-get-to-the-command-line-on-a-mac/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/pages/learning/beginner/setting-up-your-mac-for-working-on-the-command-line/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/pages/links/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/pages/security-concerns/implementing-password-recovery/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/pages/security-concerns/strong-passwords/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/pages/security-concerns/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/pages/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/pages/about/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/pages/learning/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/pages/learning/beginner/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/pages/swaac-intro/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/pages/thor_scripting/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/pages/css-examples/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/pages/colophon/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/pages/css-examples/clearfix/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/dennis-ritchie/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/john-mccarthy/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/lisp/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/passing/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/communication/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/software/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/development/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/testing/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/unit-testing/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/backbone-js/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/javascript/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/node-js/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/test-em/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/mocha-js/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/sinon-js/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/chai-js/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/web-apps/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/tech/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/css3/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/ui/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/links/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/quotes/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/creativity/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/a11y/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/praise/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/css/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/design/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/bootstrap/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/howtos/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/drop-caps/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/jekyll/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/apple/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/time-capsule/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/admin/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/tutorials/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/sinatra/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/cms/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/content-management-systems/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/web-app/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/simple/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/software-development/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/devops/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/rails/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/nginx/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/postgres/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/postgresql/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/unicorn/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/digital-ocean/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/ubuntu/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/capistrano/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/deployment/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/ruby/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/nokogiri/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/scraping/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/opensource/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/rspec/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/mass-insertion/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/performance/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/activerecord/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/tools/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/gems/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/productivity/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/usability/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/red-burns/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/headless/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/selenium/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/web-development/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/coding/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/demos/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/show-and-tell/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/open-software/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/gis/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/google/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/apis/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/data-science-toolkit/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/books/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/max-kanat-alexander/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/code-simplicity/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/json/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/predicates/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/coding-practice/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/enhanced-query-objects/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/scopes/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/poros/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/socket.io/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/real-time/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/blogging/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/framework/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/web/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/controller/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/minimal/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/remote/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/branch/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/remove/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/sysadmin/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/issues/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/stackoverflow/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/answers/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/programming/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/free/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/code/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/multi-file-uploads/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/user-feedback/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/user-experience/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/ux/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/file-uploads/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/display/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/twitter-bootstrap/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/pdf/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/phantomjs/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/security/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/internet/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/apache/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/php/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/collections/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/enumerable/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/enumerator/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/hashes/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/arrays/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/sets/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/ranges/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/sql/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/web-design/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/user-interface/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/videos/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/design-patterns/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/mvc/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/move/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/errors/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/IE/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/education/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/learning/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/codeacademy/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/cool-things/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/wikis/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/gollum/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/web-sequence-diagrams/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/continuous-integration/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/UX/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/duck-typing/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/gandi/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/web-hosting/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/gender-roles/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/women-in-tech/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/dieter-rams/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/vitsoe/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/automation/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/thor/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/fun-with-programming/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/osx/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/networking/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/ipv6/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/beginners/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/classes/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/frontend-masters/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/careers/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/advice/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/strategies/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/comics/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/jekyllpress/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/emacs/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/installation/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/think-like-a-programmer/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/problem-solving/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/design-of-solutions/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/roger-huang/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/gender-bias/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/politics/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/npr/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/steve-henn/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/character-sets/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/encoding/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/regexp/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/documentation/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/instance-variables/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/rspec3/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/validation/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/justin-weiss/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/practicing-rails/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/configuration/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/org-mode/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/vagrant/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/packer/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/dev-env/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/codeship/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/controllers/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/data-driven-controllers/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/thin-controllers/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/rethinking-rails/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/enumerators/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/lazy/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/lazy-enumerators/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/avdi/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/rubytapas/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/hash/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/dup/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/freeze/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/reactjs/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/js-frameworks/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/questions/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/examples/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/sectioning/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/html5/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/binding/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/rake/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/ui-router/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/stateparams/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/class/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/kyle-simpson/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/karma/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/virtual-machines/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/gets/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/ARGV/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/TIL/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/asking/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/how-to-ask/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/getting-unstuck/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/dates/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/snippets/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/yaml/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/frontmatter/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/babel/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/tiny-best-practices/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/tbp/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/booleans/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/bistate/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/tristate/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/troubleshooting/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/missing-fonts/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/tips/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/end-to-end/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/user-editing/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/polymorphic/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/nested/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/attributes/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/translation/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/docker/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/associations/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/databases/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/git/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/commit/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/messages/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/teamwork/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/UTF-8/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/emoji/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/containers/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/jessica-frazelle/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/desktop/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/elixir/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/new-lang/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/first-thing/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/software-engineering/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/concepts/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/point-of-view/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/swaac/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/reddit/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/tricks/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/nfs/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/practice/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/kata/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/exercises/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/views/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/handlers/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/csv/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/jquery/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/autocomplete/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/immutability/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/proverbs/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/null/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/tutorial/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/link/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/command-line/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/publishing/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/web-publishing/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/registrar/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/dns/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/domain-name-service/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/web-hosting-service/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/providers/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/glossary/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/definitions/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/GDI/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/front-end-series/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/klabnik/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/continuous-delivery/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/release-cycles/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/TDD/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/randy-coulman/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/twitter/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/code-academy/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/fails/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/self-referencing-models/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/workflow/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/guard/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/livereload/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/service-objects/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/plain%20old%20ruby%20objects/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/new-2.3/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/operators/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/web-mode/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/sam-slotsky/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/relearning/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/themes/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/custom-themes/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/wordcamp/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/tdd/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/eject/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/diskutil/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/improvement/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/mindfulness/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/teams/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/management/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/humane/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/dijkstra/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/ewd/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/archive/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/html/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/book/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/colours/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/colour-names/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/task-runners/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/grunt/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/gulp/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/webpack/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/npm-scripts/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/fix/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/sidebar/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/file/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/open/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/dialog/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/action-mailer/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/asset-host/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/react/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/react-native/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/learning-notes/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/proficiency/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/gregory-brown/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/oreilly/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/centering/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/problems/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/beginner/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/web-site-analysis/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/html-content/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/analysis/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/charts/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/graphs/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/catalin-rosu/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/css-tricks/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/relative/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/virtualhosts/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/static-site/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/svg/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/webdev/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/image/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/server/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/private/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/howto/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/cucumber/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/steps/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/capybara/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/blur/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/focus/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/using/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/send_keys/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/signing/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/preview/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/mac/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/macos/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/wordpress/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/gdi/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/frontendmasters/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/jemyoung/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/plugins/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/tags/homebrew/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/swaac/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/technology/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/git/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/rails/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/ruby/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/javascript/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/html/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/jekyll/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/angularjs/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/devops/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/learning/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/thoughts/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/vagrant/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/snippet/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/emacs/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/org-mode/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/tbp/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/misc/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/tex/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/beamer/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/testing/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/links/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/databases/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/docker/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/elixir/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/jquery/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/programming/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/web-publishing/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/deployment/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/workflow/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/reactjs/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/wordpress/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/osx/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/management/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/correspondence/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/css/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/book/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/link/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/productivity/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/sysadmin/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/react-native/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/beginner/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/www/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/day-in-the-life/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/tools/</loc>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/categories/class/</loc>
-  </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2011/10/12/so-passes-a-real-hero-of-the-computing-age/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2011/10/25/another-personal-hero-falls/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2012/12/04/code-as-literature-software-dev-as-communication/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/02/25/unit-testing-backbone-dot-js-applications/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/05/15/possible-topics-for-swaac/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/05/15/roles-and-activities-in-software-development/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/07/06/caption-hover-effects-in-css3/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/08/02/programmers-creativity/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/08/08/shout-out-for-codeship-dot-io-adding-transcripts-to-video-blogs/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/08/11/bootstrap-follies-vertically-and-horizontally-centered-form/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/08/25/css-tricks-drop-caps/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/08/26/jekyllizing-my-cookbook/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/technology/2013/08/28/how-to-reset-your-time-capsule-to-factory-settings-without-losing-your-data/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/08/29/a-simple-content-management-system-in-sinatra-part-1/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/08/29/deploying-a-rails-app-using-nginx-unicorn-postgres-and-capistrano-to-digital-ocean/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/08/29/deploying-rails-app-using-nginx/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/08/29/getting-keywords-from-a-web-page-via-nokogiri/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/08/31/nginx-takes-the-slippery-road-away-from-open-source/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/09/01/rspec-custom-formatters-displaying-test-durations/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/09/03/mass-inserting-data-in-rails-without-killing-your-performance-coffeepowered/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/09/04/implementing-multi-table-full-text-search-with-postgres-in-rails-hashdog-blog/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/09/04/must-have-gems-for-development-machine-in-ruby-on-rails-codebeerstartups/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/09/07/red-burns-list/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/09/08/running-headless-selenium-with-chrome/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/09/09/cool-thing-today-showterm-dot-io/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/09/11/why-you-should-stop-pirating-googles-geo-apis-pete-wardens-blog/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/09/14/the-laws-of-software-design/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/09/17/json-how-to-send-raw-post-data-in-a-rails-functional-test-stack-overflow/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/09/20/essential-tools-for-starting-a-rails-app-in-2013-pete-keen/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/09/20/the-predicate-module-pattern/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/09/20/activerecord-enhanced-query-objects/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/09/24/adding-real-time-to-a-restful-rails-app-liam-kaufman/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/09/24/adding-real-time-to-rails-with-socket-dot-io-node-dot-js-and-backbone-dot-js-with-demo-liam-kaufman/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/09/28/jekyll-making-posts-sticky/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/09/29/index-scorched/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/10/04/6-ways-to-remove-pain-from-feature-testing-in-ruby-on-rails/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/git/2013/10/05/delete-a-remote-git-branch/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/technology/2013/10/05/generate-a-full-rails-app-with-a-composer/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/10/08/devops-toolbox-introduction/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/10/15/ruby-cant-get-page-data-from-jekyll-plugin-stack-overflow/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/10/20/free-free-100-s-of-free-programming-books/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/10/22/multi-file-uploads-and-multiple-selects/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/10/22/adding-a-file-display-list-to-a-multi-file-upload-html-control/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/technology/2013/10/24/bootstrap-follies-solving-a-repsonsive-positioning-problem/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/10/24/pdf-rendering-with-phantomjs-big-elephants/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/10/30/apache-slash-php-5-dot-x-remote-code-execution-exploit/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/11/01/a-guide-to-ruby-collections-archives-sitepoint/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/technology/2013/11/03/good-collection-of-backbone-dot-js-topics/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/11/11/hashrocket-blog-sql-window-functions-and-you/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/11/13/creating-non-rectangular-layouts-with-css-shapes/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/11/13/fascinating-article-pushing-the-boundaries-on-css-design/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/11/17/devops-for-developers-video-series/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/11/27/mvc-is-dead-its-time-to-move-on/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/12/04/possible-bug-ie8-wont-show-table-atargets-is-null-or-not-an-object-datatables-forums/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/12/20/this-is-why-i-dont-like-sites-like-codeacademy/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/12/22/cool-things-web-sequence-diagramer/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/12/23/how-to-add-travis-ci-capability-to-a-github-repo/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2013/12/23/ux-what-does-flat-design-really-mean-link/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2014/01/06/from-static-to-dynamic-typing-a-change-in-beliefs/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2014/01/15/this-is-why-gandi-dot-net-is-my-registrar-of-choice/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2014/01/24/my-nerd-story-what-you-say-to-young-girls-matters-linux-dot-com/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2014/02/04/dieter-rams-10-principles-for-good-design-readymag/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2014/03/08/playing-around-with-thor-generators/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2014/04/24/turning-off-ipv6-in-os-slash-x-maverics-10-dot-9/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2014/05/11/learning-resources-for-software-development-and-pr/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2014/07/05/a-place-to-get-started-in-web-design/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2014/07/12/career-advice/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2014/07/27/chris-pines-learn-to-program-on-unshelved-comic/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2014/07/28/a-new-jekyllpress-gem/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2014/09/27/converting-blog-to-pure-jekyll/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/technology/2014/10/03/howto-quick-steps-to-install-emacs-24-without-x-on-ubuntu/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2014/10/22/link-the-best-coding-language-for-you-to-learn/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2014/10/22/link-when-women-stopped-coding/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2014/11/02/dealing-with-mixed-encodings-in-a-file/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2014/11/02/documenting-regular-expressions/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2014/11/02/how-to-converting-instance-variables-to-yaml-in-ruby/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2014/12/22/repost-rspec-3-and-deprecated-and-return-blocks/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2015/01/20/validation-contexts/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2015/01/20/rails-4-dot-2-config-for/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2015/01/24/emacs-org-mode/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2015/01/28/using-packer-and-vagrant-to-build-virtual-machines/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/rails/2015/01/29/link-stop-writing-rails-controllers/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/ruby/2015/02/03/first-vs-take/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/ruby/2015/02/13/tenderlove-weird-stuff-with-hashes/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/javascript/2015/02/13/reactjs-course-with-frontend-masters/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/rails/2015/03/03/rails-question-getting-x-where-there-are-no-y/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/html/2015/03/05/link-how-to-use-the-html5-sectioning-elements/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/jekyll/2015/03/08/link-sharing-rails-views-with-jekyll/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/jekyll/2015/03/08/a-new-release-of-jekyllpress/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/angularjs/2015/03/27/learning-ui-router-and-passing-values-in-$stateparams/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/javascript/2015/04/04/you-dont-know-javascript-class/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/devops/2015/04/09/installing-phantomjs-on-ubuntu-linux/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/ruby/2015/04/15/til-kernel-number-gets-is-different-from-io-number-gets/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/learning/2015/04/29/the-x-y-problem/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/thoughts/2015/05/02/love-letter/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/vagrant/2015/05/09/multiple-vagrant-rails-development-box-setup-times/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/ruby/snippet/2015/05/22/snippet-getting-the-end-of-the-month-in-ruby/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/emacs/org-mode/2015/05/25/using-emacss-org-mode-and-editing-yaml-frontmatter-in-jekyll-posts/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/rails/tbp/2015/05/26/tbp-bistate-booleans-in-rails/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/tbp/2015/05/26/tiny-best-practices/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/misc/2015/05/28/todays-reading/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/tex/beamer/2015/05/30/til-beamer-installation-and-missing-fonts/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/jekyll/2015/05/30/new-site-jekyll-tips/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/testing/2015/06/06/just-say-no-to-more-end-to-end-tests-google-dev-blog/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/misc/2015/06/13/todays-reading/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/jekyll/2015/06/14/user-editing-for-jekyll-sites/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/rails/2015/06/16/how-to-translate-nested-polymorphic-attributes-in-activemodel-errors-messages/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/misc/2015/06/20/todays-readings-and-stuff/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/misc/2015/06/22/todays-reading/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/rails/links/2015/06/25/how-to-preload-rails-scopes-justin-weiss/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/databases/links/2015/06/25/keep-your-data-in-your-database-pat-shaughnessy/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/git/links/2015/06/25/why-write-good-commit-messages-futurelearn-blog/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/docker/2015/06/28/interesting-uses-of-docker/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/elixir/2015/06/30/first-thing-i-learned-about-working-with-elixir/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/learning/2015/07/03/what-are-the-fundamentals-of-software-engineering/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/ruby/2015/07/03/link-list-of-little-known-ruby-tricks/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/links/2015/07/11/todays-reading/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/links/2015/07/12/todays-reading/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/learning/2015/07/27/where-do-i-go-next-code-kata/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/links/rails/2015/07/31/link-handling-csv-views-in-rails/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/links/rails/jquery/2015/07/31/link-jquery-ui-autocomplete-with-ruby-on-rails/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/rails/2015/08/13/rails-immutable-records-and-attributes/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/programming/2015/08/28/ledgards-programming-proverbs/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/programming/2015/09/02/link-the-worst-mistake-in-computer-science/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/programming/2015/10/12/link-learn-enough-command-line-to-be-dangerous-by-michael-hartl/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/web-publishing/2015/10/16/registrar-domain-name-service-web-hosting-service/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/deployment/2015/10/30/klabnik-waxes-tweet-on-continuous-delivery/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/testing/2015/11/13/link-getting-testy/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/programming/2015/12/01/tweet-by-at-c089-hidden-costs-of-poor-programming/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/learning/2015/12/03/link-4-reasons-why-you-shouldnt-learn-to-code-from-codecademy/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/rails/2015/12/15/self-referential-models-categories/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/deployment/2016/01/12/using-git-to-deploy-static-sites/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/jekyll/workflow/2016/01/13/jekyll-guard-livereload/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/rails/2016/02/18/my-way-of-implementing-service-objects-in-rails/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/ruby/2016/03/14/new-hash-operators-in-ruby-2-dot-3/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/emacs/2016/04/13/using-web-mode-for-javascript-in-emacs/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/javascript/reactjs/2016/05/13/a-set-of-reactjs-demos/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/wordpress/2016/05/23/wordcamp-mpls-diving-back-into-wordpress/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/learning/testing/2016/05/24/learn-by-learning-to-test-first/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/osx/2016/05/28/tip-ejecting-a-volume-from-the-command-line-on-osx/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/swaac/2016/05/30/your-software-is-never-perfect/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/management/2016/05/30/the-quiet-crisis-unfolding-in-software-development/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/correspondence/2016/05/30/the-manuscripts-of-edsger-w-dijkstra/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/html/css/learning/book/link/2016/06/16/html-and-css-design-and-build-websites/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/css/2016/06/16/147-colors-grid-css-color-names/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/productivity/2016/06/23/how-to-harness-the-machines-being-productive-with-task-runners/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/sysadmin/osx/2016/06/23/fix-osx-file-open-dialog-missing-sidebar-items/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/2016/06/23/rails-dot-mn-presentationon-rails-routing/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/2016/07/09/rails-action-mailer-asset-host/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/react-native/2016/07/09/learning-react-native/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/learning/2016/07/23/the-traits-of-a-proficient-programmer-gregory-brown/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/css/2016/07/26/css-centering-lists/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/learning/beginner/2016/08/07/beginner-learning-section-in-pages/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/links/www/2016/08/17/the-average-web-page-data-from-analyzing-8-million-websites/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/day-in-the-life/2016/09/13/when-your-tools-environment-computer-and-everything-you-know-fails-you/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/css/2016/09/14/building-resizeable-components-with-relative-css/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/devops/2016/09/25/my-nginx-virtual-hosting-configuration/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/links/2016/09/26/madebymike-svg-has-more-potential/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/git/2016/10/08/how-to-set-up-your-own-private-remote-git-repository/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/testing/2016/10/10/testing-blur-events-in-cucumber-slash-capybara/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/tools/2016/10/12/signing-a-pdf-with-preview/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/wordpress/2016/11/13/links-from-gdi-intro-to-wordpress-class/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/class/2016/11/13/frontendmasters-course-devops-for-frontend-devs/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/wordpress/2016/11/14/installing-wordpress-things-without-ftp/</loc>
-    </url>
-    <url>
-      <loc>http://swaac.tamouse.org/emacs/2016/11/14/installing-emacs-on-mac-with-homebrew/</loc>
-    </url>
-  <url>
-    <loc>http://swaac.tamouse.org/pages/css-examples/clearfix/clearfix-example.html</loc>
-    <lastmod>2016-07-26T20:29:53-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/pages/css-examples/clearfix/no-clearfix-example.html</loc>
-    <lastmod>2016-07-26T20:30:01-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://swaac.tamouse.org/pages/javascript-examples/astronauts/index.html</loc>
-    <lastmod>2016-05-13T09:38:27-05:00</lastmod>
-  </url>
+<url>
+<loc>http://swaac.tamouse.org/emacs/2016/11/14/installing-emacs-on-mac-with-homebrew/</loc>
+<lastmod>2016-11-14T10:09:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/wordpress/2016/11/14/installing-wordpress-things-without-ftp/</loc>
+<lastmod>2016-11-14T00:21:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/class/2016/11/13/frontendmasters-course-devops-for-frontend-devs/</loc>
+<lastmod>2016-11-13T12:52:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/wordpress/2016/11/13/links-from-gdi-intro-to-wordpress-class/</loc>
+<lastmod>2016-11-13T12:25:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tools/2016/10/12/signing-a-pdf-with-preview/</loc>
+<lastmod>2016-10-12T11:55:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/testing/2016/10/10/testing-blur-events-in-cucumber-slash-capybara/</loc>
+<lastmod>2016-10-10T16:18:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/git/2016/10/08/how-to-set-up-your-own-private-remote-git-repository/</loc>
+<lastmod>2016-10-08T00:22:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/links/2016/09/26/madebymike-svg-has-more-potential/</loc>
+<lastmod>2016-09-26T18:46:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/devops/2016/09/25/my-nginx-virtual-hosting-configuration/</loc>
+<lastmod>2016-09-25T13:29:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/css/2016/09/14/building-resizeable-components-with-relative-css/</loc>
+<lastmod>2016-09-14T22:58:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/day-in-the-life/2016/09/13/when-your-tools-environment-computer-and-everything-you-know-fails-you/</loc>
+<lastmod>2016-09-13T22:23:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/links/www/2016/08/17/the-average-web-page-data-from-analyzing-8-million-websites/</loc>
+<lastmod>2016-08-17T14:09:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/learning/beginner/2016/08/07/beginner-learning-section-in-pages/</loc>
+<lastmod>2016-08-07T09:15:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/css/2016/07/26/css-centering-lists/</loc>
+<lastmod>2016-07-26T00:00:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/learning/2016/07/23/the-traits-of-a-proficient-programmer-gregory-brown/</loc>
+<lastmod>2016-07-23T23:15:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/react-native/2016/07/09/learning-react-native/</loc>
+<lastmod>2016-07-09T01:18:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/2016/07/09/rails-action-mailer-asset-host/</loc>
+<lastmod>2016-07-09T01:16:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/2016/06/23/rails-dot-mn-presentationon-rails-routing/</loc>
+<lastmod>2016-06-23T07:25:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/sysadmin/osx/2016/06/23/fix-osx-file-open-dialog-missing-sidebar-items/</loc>
+<lastmod>2016-06-23T07:13:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/productivity/2016/06/23/how-to-harness-the-machines-being-productive-with-task-runners/</loc>
+<lastmod>2016-06-23T06:50:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/css/2016/06/16/147-colors-grid-css-color-names/</loc>
+<lastmod>2016-06-16T08:21:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/html/css/learning/book/link/2016/06/16/html-and-css-design-and-build-websites/</loc>
+<lastmod>2016-06-16T08:16:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/correspondence/2016/05/30/the-manuscripts-of-edsger-w-dijkstra/</loc>
+<lastmod>2016-05-30T08:18:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/management/2016/05/30/the-quiet-crisis-unfolding-in-software-development/</loc>
+<lastmod>2016-05-30T07:51:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2016/05/30/your-software-is-never-perfect/</loc>
+<lastmod>2016-05-30T07:41:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/osx/2016/05/28/tip-ejecting-a-volume-from-the-command-line-on-osx/</loc>
+<lastmod>2016-05-28T06:39:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/learning/testing/2016/05/24/learn-by-learning-to-test-first/</loc>
+<lastmod>2016-05-24T07:55:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/wordpress/2016/05/23/wordcamp-mpls-diving-back-into-wordpress/</loc>
+<lastmod>2016-05-23T04:10:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/javascript/reactjs/2016/05/13/a-set-of-reactjs-demos/</loc>
+<lastmod>2016-05-13T13:02:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/emacs/2016/04/13/using-web-mode-for-javascript-in-emacs/</loc>
+<lastmod>2016-04-13T08:16:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/ruby/2016/03/14/new-hash-operators-in-ruby-2-dot-3/</loc>
+<lastmod>2016-03-14T23:27:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/rails/2016/02/18/my-way-of-implementing-service-objects-in-rails/</loc>
+<lastmod>2016-02-18T20:57:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/jekyll/workflow/2016/01/13/jekyll-guard-livereload/</loc>
+<lastmod>2016-01-13T00:00:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/deployment/2016/01/12/using-git-to-deploy-static-sites/</loc>
+<lastmod>2016-01-12T20:42:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/rails/2015/12/15/self-referential-models-categories/</loc>
+<lastmod>2015-12-15T19:37:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/learning/2015/12/03/link-4-reasons-why-you-shouldnt-learn-to-code-from-codecademy/</loc>
+<lastmod>2015-12-03T00:14:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/programming/2015/12/01/tweet-by-at-c089-hidden-costs-of-poor-programming/</loc>
+<lastmod>2015-12-01T07:27:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/testing/2015/11/13/link-getting-testy/</loc>
+<lastmod>2015-11-13T08:44:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/deployment/2015/10/30/klabnik-waxes-tweet-on-continuous-delivery/</loc>
+<lastmod>2015-10-30T09:45:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/web-publishing/2015/10/16/registrar-domain-name-service-web-hosting-service/</loc>
+<lastmod>2015-10-16T04:20:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/programming/2015/10/12/link-learn-enough-command-line-to-be-dangerous-by-michael-hartl/</loc>
+<lastmod>2015-10-12T06:40:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/programming/2015/09/02/link-the-worst-mistake-in-computer-science/</loc>
+<lastmod>2015-09-02T10:07:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/programming/2015/08/28/ledgards-programming-proverbs/</loc>
+<lastmod>2015-08-28T21:17:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/rails/2015/08/13/rails-immutable-records-and-attributes/</loc>
+<lastmod>2015-08-13T05:58:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/links/rails/jquery/2015/07/31/link-jquery-ui-autocomplete-with-ruby-on-rails/</loc>
+<lastmod>2015-07-31T07:00:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/links/rails/2015/07/31/link-handling-csv-views-in-rails/</loc>
+<lastmod>2015-07-31T06:50:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/learning/2015/07/27/where-do-i-go-next-code-kata/</loc>
+<lastmod>2015-07-27T00:46:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/links/2015/07/12/todays-reading/</loc>
+<lastmod>2015-07-12T11:59:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/links/2015/07/11/todays-reading/</loc>
+<lastmod>2015-07-11T08:26:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/ruby/2015/07/03/link-list-of-little-known-ruby-tricks/</loc>
+<lastmod>2015-07-03T21:29:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/learning/2015/07/03/what-are-the-fundamentals-of-software-engineering/</loc>
+<lastmod>2015-07-03T14:01:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/elixir/2015/06/30/first-thing-i-learned-about-working-with-elixir/</loc>
+<lastmod>2015-06-30T13:16:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/docker/2015/06/28/interesting-uses-of-docker/</loc>
+<lastmod>2015-06-28T18:34:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/git/links/2015/06/25/why-write-good-commit-messages-futurelearn-blog/</loc>
+<lastmod>2015-06-25T14:54:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/databases/links/2015/06/25/keep-your-data-in-your-database-pat-shaughnessy/</loc>
+<lastmod>2015-06-25T14:36:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/rails/links/2015/06/25/how-to-preload-rails-scopes-justin-weiss/</loc>
+<lastmod>2015-06-25T14:11:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/misc/2015/06/22/todays-reading/</loc>
+<lastmod>2015-06-22T22:38:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/misc/2015/06/20/todays-readings-and-stuff/</loc>
+<lastmod>2015-06-20T21:21:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/rails/2015/06/16/how-to-translate-nested-polymorphic-attributes-in-activemodel-errors-messages/</loc>
+<lastmod>2015-06-16T20:56:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/jekyll/2015/06/14/user-editing-for-jekyll-sites/</loc>
+<lastmod>2015-06-14T09:45:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/misc/2015/06/13/todays-reading/</loc>
+<lastmod>2015-06-13T06:34:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/testing/2015/06/06/just-say-no-to-more-end-to-end-tests-google-dev-blog/</loc>
+<lastmod>2015-06-06T15:46:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/jekyll/2015/05/30/new-site-jekyll-tips/</loc>
+<lastmod>2015-05-30T20:53:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tex/beamer/2015/05/30/til-beamer-installation-and-missing-fonts/</loc>
+<lastmod>2015-05-30T06:01:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/misc/2015/05/28/todays-reading/</loc>
+<lastmod>2015-05-28T07:10:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tbp/2015/05/26/tiny-best-practices/</loc>
+<lastmod>2015-05-26T10:44:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/rails/tbp/2015/05/26/tbp-bistate-booleans-in-rails/</loc>
+<lastmod>2015-05-26T10:32:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/emacs/org-mode/2015/05/25/using-emacss-org-mode-and-editing-yaml-frontmatter-in-jekyll-posts/</loc>
+<lastmod>2015-05-25T10:20:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/ruby/snippet/2015/05/22/snippet-getting-the-end-of-the-month-in-ruby/</loc>
+<lastmod>2015-05-22T06:45:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/vagrant/2015/05/09/multiple-vagrant-rails-development-box-setup-times/</loc>
+<lastmod>2015-05-09T21:12:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/thoughts/2015/05/02/love-letter/</loc>
+<lastmod>2015-05-02T09:12:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/learning/2015/04/29/the-x-y-problem/</loc>
+<lastmod>2015-04-29T08:53:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/ruby/2015/04/15/til-kernel-number-gets-is-different-from-io-number-gets/</loc>
+<lastmod>2015-04-15T21:33:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/devops/2015/04/09/installing-phantomjs-on-ubuntu-linux/</loc>
+<lastmod>2015-04-09T06:13:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/javascript/2015/04/04/you-dont-know-javascript-class/</loc>
+<lastmod>2015-04-04T01:02:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/angularjs/2015/03/27/learning-ui-router-and-passing-values-in-$stateparams/</loc>
+<lastmod>2015-03-27T00:37:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/jekyll/2015/03/08/a-new-release-of-jekyllpress/</loc>
+<lastmod>2015-03-08T21:14:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/jekyll/2015/03/08/link-sharing-rails-views-with-jekyll/</loc>
+<lastmod>2015-03-08T15:45:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/html/2015/03/05/link-how-to-use-the-html5-sectioning-elements/</loc>
+<lastmod>2015-03-05T21:34:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/rails/2015/03/03/rails-question-getting-x-where-there-are-no-y/</loc>
+<lastmod>2015-03-03T05:38:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/javascript/2015/02/13/reactjs-course-with-frontend-masters/</loc>
+<lastmod>2015-02-13T22:56:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/ruby/2015/02/13/tenderlove-weird-stuff-with-hashes/</loc>
+<lastmod>2015-02-13T21:55:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/ruby/2015/02/03/first-vs-take/</loc>
+<lastmod>2015-02-03T03:37:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/rails/2015/01/29/link-stop-writing-rails-controllers/</loc>
+<lastmod>2015-01-29T21:07:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2015/01/28/using-packer-and-vagrant-to-build-virtual-machines/</loc>
+<lastmod>2015-01-28T00:07:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2015/01/24/emacs-org-mode/</loc>
+<lastmod>2015-01-24T20:24:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2015/01/20/rails-4-dot-2-config-for/</loc>
+<lastmod>2015-01-20T07:30:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2015/01/20/validation-contexts/</loc>
+<lastmod>2015-01-20T06:27:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2014/12/22/repost-rspec-3-and-deprecated-and-return-blocks/</loc>
+<lastmod>2014-12-22T22:43:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2014/11/02/how-to-converting-instance-variables-to-yaml-in-ruby/</loc>
+<lastmod>2014-11-02T23:51:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2014/11/02/documenting-regular-expressions/</loc>
+<lastmod>2014-11-02T15:35:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2014/11/02/dealing-with-mixed-encodings-in-a-file/</loc>
+<lastmod>2014-11-02T15:12:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2014/10/22/link-when-women-stopped-coding/</loc>
+<lastmod>2014-10-22T01:11:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2014/10/22/link-the-best-coding-language-for-you-to-learn/</loc>
+<lastmod>2014-10-22T00:57:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/technology/2014/10/03/howto-quick-steps-to-install-emacs-24-without-x-on-ubuntu/</loc>
+<lastmod>2014-10-03T09:31:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2014/09/27/converting-blog-to-pure-jekyll/</loc>
+<lastmod>2014-09-27T14:29:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2014/07/28/a-new-jekyllpress-gem/</loc>
+<lastmod>2014-07-28T00:29:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2014/07/27/chris-pines-learn-to-program-on-unshelved-comic/</loc>
+<lastmod>2014-07-27T07:09:56-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2014/07/12/career-advice/</loc>
+<lastmod>2014-07-12T13:56:33-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2014/07/05/a-place-to-get-started-in-web-design/</loc>
+<lastmod>2014-07-05T10:57:18-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2014/05/11/learning-resources-for-software-development-and-pr/</loc>
+<lastmod>2014-05-11T22:52:50-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2014/04/24/turning-off-ipv6-in-os-slash-x-maverics-10-dot-9/</loc>
+<lastmod>2014-04-24T09:56:56-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2014/03/08/playing-around-with-thor-generators/</loc>
+<lastmod>2014-03-08T15:06:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2014/02/04/dieter-rams-10-principles-for-good-design-readymag/</loc>
+<lastmod>2014-02-04T11:48:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2014/01/24/my-nerd-story-what-you-say-to-young-girls-matters-linux-dot-com/</loc>
+<lastmod>2014-01-24T04:31:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2014/01/15/this-is-why-gandi-dot-net-is-my-registrar-of-choice/</loc>
+<lastmod>2014-01-15T20:00:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2014/01/06/from-static-to-dynamic-typing-a-change-in-beliefs/</loc>
+<lastmod>2014-01-06T02:33:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/12/23/ux-what-does-flat-design-really-mean-link/</loc>
+<lastmod>2013-12-23T23:53:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/12/23/how-to-add-travis-ci-capability-to-a-github-repo/</loc>
+<lastmod>2013-12-23T16:39:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/12/22/cool-things-web-sequence-diagramer/</loc>
+<lastmod>2013-12-22T18:29:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/12/20/this-is-why-i-dont-like-sites-like-codeacademy/</loc>
+<lastmod>2013-12-20T02:28:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/12/04/possible-bug-ie8-wont-show-table-atargets-is-null-or-not-an-object-datatables-forums/</loc>
+<lastmod>2013-12-04T12:31:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/11/27/mvc-is-dead-its-time-to-move-on/</loc>
+<lastmod>2013-11-27T13:55:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/11/17/devops-for-developers-video-series/</loc>
+<lastmod>2013-11-17T21:25:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/11/13/fascinating-article-pushing-the-boundaries-on-css-design/</loc>
+<lastmod>2013-11-13T18:54:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/11/13/creating-non-rectangular-layouts-with-css-shapes/</loc>
+<lastmod>2013-11-13T18:52:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/11/11/hashrocket-blog-sql-window-functions-and-you/</loc>
+<lastmod>2013-11-11T06:13:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/technology/2013/11/03/good-collection-of-backbone-dot-js-topics/</loc>
+<lastmod>2013-11-03T06:55:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/11/01/a-guide-to-ruby-collections-archives-sitepoint/</loc>
+<lastmod>2013-11-01T13:43:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/10/30/apache-slash-php-5-dot-x-remote-code-execution-exploit/</loc>
+<lastmod>2013-10-30T19:58:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/10/24/pdf-rendering-with-phantomjs-big-elephants/</loc>
+<lastmod>2013-10-24T23:40:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/technology/2013/10/24/bootstrap-follies-solving-a-repsonsive-positioning-problem/</loc>
+<lastmod>2013-10-24T09:23:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/10/22/adding-a-file-display-list-to-a-multi-file-upload-html-control/</loc>
+<lastmod>2013-10-22T11:08:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/10/22/multi-file-uploads-and-multiple-selects/</loc>
+<lastmod>2013-10-22T10:45:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/10/20/free-free-100-s-of-free-programming-books/</loc>
+<lastmod>2013-10-20T23:33:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/10/15/ruby-cant-get-page-data-from-jekyll-plugin-stack-overflow/</loc>
+<lastmod>2013-10-15T10:54:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/10/08/devops-toolbox-introduction/</loc>
+<lastmod>2013-10-08T22:17:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/technology/2013/10/05/generate-a-full-rails-app-with-a-composer/</loc>
+<lastmod>2013-10-05T08:15:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/git/2013/10/05/delete-a-remote-git-branch/</loc>
+<lastmod>2013-10-05T08:03:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/10/04/6-ways-to-remove-pain-from-feature-testing-in-ruby-on-rails/</loc>
+<lastmod>2013-10-04T20:07:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/09/29/index-scorched/</loc>
+<lastmod>2013-09-29T14:00:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/09/28/jekyll-making-posts-sticky/</loc>
+<lastmod>2013-09-28T17:13:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/09/24/adding-real-time-to-rails-with-socket-dot-io-node-dot-js-and-backbone-dot-js-with-demo-liam-kaufman/</loc>
+<lastmod>2013-09-24T23:18:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/09/24/adding-real-time-to-a-restful-rails-app-liam-kaufman/</loc>
+<lastmod>2013-09-24T23:09:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/09/20/activerecord-enhanced-query-objects/</loc>
+<lastmod>2013-09-20T18:09:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/09/20/the-predicate-module-pattern/</loc>
+<lastmod>2013-09-20T18:03:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/09/20/essential-tools-for-starting-a-rails-app-in-2013-pete-keen/</loc>
+<lastmod>2013-09-20T17:54:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/09/17/json-how-to-send-raw-post-data-in-a-rails-functional-test-stack-overflow/</loc>
+<lastmod>2013-09-17T14:09:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/09/14/the-laws-of-software-design/</loc>
+<lastmod>2013-09-14T01:37:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/09/11/why-you-should-stop-pirating-googles-geo-apis-pete-wardens-blog/</loc>
+<lastmod>2013-09-11T22:49:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/09/09/cool-thing-today-showterm-dot-io/</loc>
+<lastmod>2013-09-09T15:10:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/09/08/running-headless-selenium-with-chrome/</loc>
+<lastmod>2013-09-08T13:48:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/09/07/red-burns-list/</loc>
+<lastmod>2013-09-07T11:37:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/09/04/must-have-gems-for-development-machine-in-ruby-on-rails-codebeerstartups/</loc>
+<lastmod>2013-09-04T11:06:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/09/04/implementing-multi-table-full-text-search-with-postgres-in-rails-hashdog-blog/</loc>
+<lastmod>2013-09-04T10:27:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/09/03/mass-inserting-data-in-rails-without-killing-your-performance-coffeepowered/</loc>
+<lastmod>2013-09-03T10:22:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/09/01/rspec-custom-formatters-displaying-test-durations/</loc>
+<lastmod>2013-09-01T13:23:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/08/31/nginx-takes-the-slippery-road-away-from-open-source/</loc>
+<lastmod>2013-08-31T06:59:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/08/29/getting-keywords-from-a-web-page-via-nokogiri/</loc>
+<lastmod>2013-08-29T20:15:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/08/29/deploying-rails-app-using-nginx/</loc>
+<lastmod>2013-08-29T12:49:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/08/29/deploying-a-rails-app-using-nginx-unicorn-postgres-and-capistrano-to-digital-ocean/</loc>
+<lastmod>2013-08-29T00:00:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/08/29/a-simple-content-management-system-in-sinatra-part-1/</loc>
+<lastmod>2013-08-29T00:00:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/technology/2013/08/28/how-to-reset-your-time-capsule-to-factory-settings-without-losing-your-data/</loc>
+<lastmod>2013-08-28T09:42:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/08/26/jekyllizing-my-cookbook/</loc>
+<lastmod>2013-08-26T00:40:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/08/25/css-tricks-drop-caps/</loc>
+<lastmod>2013-08-25T19:44:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/08/11/bootstrap-follies-vertically-and-horizontally-centered-form/</loc>
+<lastmod>2013-08-11T09:59:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/08/08/shout-out-for-codeship-dot-io-adding-transcripts-to-video-blogs/</loc>
+<lastmod>2013-08-08T18:59:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/08/02/programmers-creativity/</loc>
+<lastmod>2013-08-02T04:51:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/07/06/caption-hover-effects-in-css3/</loc>
+<lastmod>2013-07-06T12:14:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/05/15/roles-and-activities-in-software-development/</loc>
+<lastmod>2013-05-15T21:00:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/05/15/possible-topics-for-swaac/</loc>
+<lastmod>2013-05-15T13:20:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2013/02/25/unit-testing-backbone-dot-js-applications/</loc>
+<lastmod>2013-02-25T16:01:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2012/12/04/code-as-literature-software-dev-as-communication/</loc>
+<lastmod>2012-12-04T23:02:50-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2011/10/25/another-personal-hero-falls/</loc>
+<lastmod>2011-10-25T03:22:32-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/swaac/2011/10/12/so-passes-a-real-hero-of-the-computing-age/</loc>
+<lastmod>2011-10-12T23:00:49-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/404/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/pages/javascript-examples/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/pages/learning/beginner/conventions-used-in-this-section/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/pages/learning/beginner/how-do-i-get-to-the-command-line-on-a-mac/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/pages/learning/beginner/setting-up-your-mac-for-working-on-the-command-line/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/pages/links/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/pages/security-concerns/implementing-password-recovery/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/pages/security-concerns/strong-passwords/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/pages/security-concerns/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/pages/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/pages/about/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/pages/learning/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/pages/learning/beginner/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/pages/swaac-intro/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/pages/thor_scripting/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/pages/css-examples/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/pages/colophon/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/pages/css-examples/clearfix/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/swaac/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/technology/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/git/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/rails/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/ruby/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/javascript/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/html/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/jekyll/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/angularjs/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/devops/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/learning/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/thoughts/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/vagrant/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/snippet/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/emacs/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/org-mode/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/tbp/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/misc/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/tex/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/beamer/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/testing/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/links/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/databases/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/docker/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/elixir/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/jquery/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/programming/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/web-publishing/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/deployment/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/workflow/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/reactjs/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/wordpress/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/osx/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/management/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/correspondence/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/css/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/book/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/link/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/productivity/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/sysadmin/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/react-native/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/beginner/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/www/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/day-in-the-life/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/tools/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/class/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/dennis-ritchie/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/john-mccarthy/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/lisp/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/passing/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/communication/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/software/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/development/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/testing/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/unit-testing/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/backbone-js/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/javascript/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/node-js/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/test-em/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/mocha-js/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/sinon-js/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/chai-js/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/web-apps/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/tech/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/css3/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/ui/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/links/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/quotes/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/creativity/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/a11y/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/praise/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/css/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/design/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/bootstrap/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/howtos/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/drop-caps/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/jekyll/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/apple/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/time-capsule/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/admin/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/tutorials/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/sinatra/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/cms/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/content-management-systems/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/web-app/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/simple/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/software-development/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/devops/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/rails/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/nginx/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/postgres/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/postgresql/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/unicorn/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/digital-ocean/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/ubuntu/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/capistrano/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/deployment/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/ruby/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/nokogiri/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/scraping/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/opensource/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/rspec/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/mass-insertion/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/performance/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/activerecord/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/tools/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/gems/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/productivity/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/usability/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/red-burns/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/headless/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/selenium/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/web-development/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/coding/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/demos/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/show-and-tell/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/open-software/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/gis/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/google/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/apis/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/data-science-toolkit/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/books/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/max-kanat-alexander/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/code-simplicity/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/json/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/predicates/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/coding-practice/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/enhanced-query-objects/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/scopes/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/poros/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/socket.io/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/real-time/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/blogging/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/framework/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/web/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/controller/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/minimal/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/remote/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/branch/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/remove/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/sysadmin/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/issues/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/stackoverflow/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/answers/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/programming/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/free/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/code/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/multi-file-uploads/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/user-feedback/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/user-experience/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/ux/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/file-uploads/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/display/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/twitter-bootstrap/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/pdf/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/phantomjs/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/security/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/internet/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/apache/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/php/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/collections/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/enumerable/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/enumerator/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/hashes/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/arrays/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/sets/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/ranges/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/sql/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/web-design/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/user-interface/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/videos/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/design-patterns/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/mvc/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/move/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/errors/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/IE/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/education/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/learning/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/codeacademy/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/cool-things/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/wikis/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/gollum/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/web-sequence-diagrams/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/continuous-integration/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/UX/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/duck-typing/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/gandi/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/web-hosting/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/gender-roles/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/women-in-tech/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/dieter-rams/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/vitsoe/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/automation/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/thor/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/fun-with-programming/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/osx/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/networking/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/ipv6/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/beginners/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/classes/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/frontend-masters/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/careers/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/advice/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/strategies/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/comics/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/jekyllpress/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/emacs/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/installation/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/think-like-a-programmer/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/problem-solving/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/design-of-solutions/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/roger-huang/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/gender-bias/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/politics/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/npr/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/steve-henn/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/character-sets/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/encoding/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/regexp/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/documentation/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/instance-variables/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/rspec3/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/validation/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/justin-weiss/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/practicing-rails/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/configuration/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/org-mode/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/vagrant/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/packer/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/dev-env/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/codeship/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/controllers/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/data-driven-controllers/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/thin-controllers/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/rethinking-rails/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/enumerators/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/lazy/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/lazy-enumerators/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/avdi/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/rubytapas/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/hash/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/dup/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/freeze/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/reactjs/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/js-frameworks/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/questions/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/examples/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/sectioning/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/html5/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/binding/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/rake/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/ui-router/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/stateparams/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/class/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/kyle-simpson/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/karma/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/virtual-machines/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/gets/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/ARGV/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/TIL/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/asking/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/how-to-ask/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/getting-unstuck/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/dates/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/snippets/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/yaml/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/frontmatter/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/babel/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/tiny-best-practices/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/tbp/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/booleans/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/bistate/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/tristate/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/troubleshooting/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/missing-fonts/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/tips/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/end-to-end/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/user-editing/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/polymorphic/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/nested/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/attributes/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/translation/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/docker/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/associations/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/databases/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/git/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/commit/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/messages/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/teamwork/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/UTF-8/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/emoji/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/containers/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/jessica-frazelle/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/desktop/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/elixir/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/new-lang/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/first-thing/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/software-engineering/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/concepts/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/point-of-view/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/swaac/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/reddit/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/tricks/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/nfs/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/practice/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/kata/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/exercises/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/views/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/handlers/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/csv/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/jquery/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/autocomplete/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/immutability/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/proverbs/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/null/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/tutorial/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/link/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/command-line/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/publishing/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/web-publishing/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/registrar/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/dns/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/domain-name-service/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/web-hosting-service/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/providers/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/glossary/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/definitions/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/GDI/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/front-end-series/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/klabnik/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/continuous-delivery/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/release-cycles/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/TDD/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/randy-coulman/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/twitter/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/code-academy/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/fails/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/self-referencing-models/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/workflow/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/guard/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/livereload/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/service-objects/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/plain%20old%20ruby%20objects/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/new-2.3/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/operators/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/web-mode/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/sam-slotsky/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/relearning/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/themes/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/custom-themes/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/wordcamp/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/tdd/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/eject/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/diskutil/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/improvement/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/mindfulness/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/teams/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/management/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/humane/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/dijkstra/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/ewd/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/archive/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/html/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/book/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/colours/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/colour-names/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/task-runners/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/grunt/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/gulp/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/webpack/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/npm-scripts/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/fix/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/sidebar/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/file/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/open/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/dialog/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/action-mailer/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/asset-host/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/react/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/react-native/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/learning-notes/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/proficiency/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/gregory-brown/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/oreilly/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/centering/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/problems/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/beginner/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/web-site-analysis/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/html-content/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/analysis/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/charts/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/graphs/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/catalin-rosu/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/css-tricks/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/relative/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/virtualhosts/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/static-site/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/svg/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/webdev/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/image/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/server/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/private/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/howto/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/cucumber/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/steps/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/capybara/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/blur/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/focus/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/using/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/send_keys/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/signing/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/preview/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/mac/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/macos/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/wordpress/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/gdi/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/frontendmasters/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/jemyoung/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/plugins/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/homebrew/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/pages/css-examples/clearfix/clearfix-example.html</loc>
+<lastmod>2016-07-26T20:29:53-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/pages/css-examples/clearfix/no-clearfix-example.html</loc>
+<lastmod>2016-07-26T20:30:01-05:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/pages/javascript-examples/astronauts/index.html</loc>
+<lastmod>2016-05-13T09:38:27-05:00</lastmod>
+</url>
 </urlset>

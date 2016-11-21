@@ -12,7 +12,7 @@
     <meta name="description" content="The development blog of tamouse">
 
     <link rel="stylesheet" href="" />
-    <link rel="canonical" href="/swaac/2014/12/22/repost-rspec-3-and-deprecated-and-return-blocks/">
+    <link rel="canonical" href="http://swaac.tamouse.org/swaac/2014/12/22/repost-rspec-3-and-deprecated-and-return-blocks/">
     <link href="/favicon.png" rel="icon">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
 </head>
@@ -67,7 +67,7 @@ Dec 22, 2014
 <article>
 <p>Over at the <a href="http://owowthathurts.blogspot.com/2014/08/rspec-3-and-deprecated-andreturn-blocks.html">owowthathurts blog</a>, a nice little tidbit of information on a difference between RSpec version 2 and version 3:</p>
 
-<h1 id="rspec-3-and-deprecated-andreturn-blocks">RSpec 3 and Deprecated .and_return Blocks</h1>
+<h1 id="rspec-3-and-deprecated-and_return-blocks">RSpec 3 and Deprecated .and_return Blocks</h1>
 
 <p>A deprecation warning I received after upgrading RSpec:</p>
 
@@ -78,7 +78,7 @@ an implementation block without `and_return` instead
 
 <p>An example of code it’s complaining about:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="vi">@mock_thing</span><span class="p">.</span><span class="nf">should_receive</span><span class="p">(</span><span class="ss">:something</span><span class="p">).</span><span class="nf">and_return</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="vi">@mock_thing</span><span class="p">.</span><span class="nf">should_receive</span><span class="p">(</span><span class="ss">:something</span><span class="p">).</span><span class="nf">and_return</span> <span class="k">do</span>
   <span class="n">double</span><span class="p">(</span><span class="s2">"SomeKindOfRelationship"</span><span class="p">).</span><span class="nf">tap</span> <span class="k">do</span> <span class="o">|</span> <span class="n">mock_assoc</span> <span class="o">|</span>
     <span class="n">mock_assoc</span><span class="p">.</span><span class="nf">should_receive</span><span class="p">(</span><span class="ss">:where</span><span class="p">).</span><span class="nf">and_return</span><span class="p">([</span> <span class="vi">@mock_relationship</span> <span class="p">])</span>
   <span class="k">end</span>
@@ -88,7 +88,7 @@ an implementation block without `and_return` instead
 
 <p>To fix, just remove the <code class="highlighter-rouge">.and_return</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="vi">@mock_thing</span><span class="p">.</span><span class="nf">should_receive</span><span class="p">(</span><span class="ss">:something</span><span class="p">)</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="vi">@mock_thing</span><span class="p">.</span><span class="nf">should_receive</span><span class="p">(</span><span class="ss">:something</span><span class="p">)</span> <span class="k">do</span>
   <span class="n">double</span><span class="p">(</span><span class="s2">"SomeKindOfRelationship"</span><span class="p">).</span><span class="nf">tap</span> <span class="k">do</span> <span class="o">|</span> <span class="n">mock_assoc</span> <span class="o">|</span>
     <span class="n">mock_assoc</span><span class="p">.</span><span class="nf">should_receive</span><span class="p">(</span><span class="ss">:where</span><span class="p">).</span><span class="nf">and_return</span><span class="p">([</span> <span class="vi">@mock_relationship</span><span class="p">])</span>
   <span class="k">end</span>

@@ -12,7 +12,7 @@
     <meta name="description" content="The development blog of tamouse">
 
     <link rel="stylesheet" href="" />
-    <link rel="canonical" href="/pages/thor_scripting/">
+    <link rel="canonical" href="http://swaac.tamouse.org/pages/thor_scripting/">
     <link href="/favicon.png" rel="icon">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
 </head>
@@ -69,7 +69,7 @@
 
 <p>To get <code class="highlighter-rouge">thor</code> to emulate this, you use the <code class="highlighter-rouge">map</code> method:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyScript</span> <span class="o">&lt;</span> <span class="no">Thor</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyScript</span> <span class="o">&lt;</span> <span class="no">Thor</span>
   <span class="no">VERSION</span> <span class="o">=</span> <span class="s2">"0.1.0"</span>
   <span class="kp">include</span> <span class="no">Thor</span><span class="o">::</span><span class="no">Actions</span>
   <span class="n">map</span> <span class="s2">"-V"</span> <span class="o">=&gt;</span> <span class="ss">:version</span>
@@ -104,7 +104,7 @@ MyScript version: 0.1.0
 
 <p>which creates an executable in <code class="highlighter-rouge">bin/jekyllpress</code> that just requires <code class="highlighter-rouge">lib/jekyllpress.rb</code> and that’s it. I put my thor application inside the <code class="highlighter-rouge">Jekyllpress</code> module like so:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Jekyllpress</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Jekyllpress</span>
   <span class="k">class</span> <span class="nc">App</span> <span class="o">&lt;</span> <span class="no">Thor</span>
     <span class="c1">#...</span>
   <span class="k">end</span>
@@ -114,7 +114,7 @@ MyScript version: 0.1.0
 
 <p>and added the autoinvocation into the <code class="highlighter-rouge">bin</code> script:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">#... initializing thingies</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="c1">#... initializing thingies</span>
 <span class="nb">require</span> <span class="s1">'jekyllpress'</span>
 <span class="no">Jekyllpress</span><span class="o">::</span><span class="no">App</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="no">ARGV</span><span class="p">)</span>
 </code></pre>
@@ -124,7 +124,7 @@ MyScript version: 0.1.0
 
 <p>Now, a typical spec will be:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">it</span> <span class="s2">"returns a version string"</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="n">it</span> <span class="s2">"returns a version string"</span> <span class="k">do</span>
   <span class="n">result</span> <span class="o">=</span> <span class="no">Jekyllpress</span><span class="o">::</span><span class="no">App</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="sx">%w[version]</span><span class="p">)</span>
   <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="kp">include</span><span class="p">(</span><span class="no">Jekyllpress</span><span class="o">::</span><span class="no">VERSION</span><span class="p">)</span>
 <span class="k">end</span>
@@ -135,7 +135,7 @@ MyScript version: 0.1.0
 
 <p>Have it do both: do the printing or whatever, but return the value(s) you want to test for:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">version</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">version</span>
   <span class="n">say</span> <span class="s2">"Jekyllpress version: </span><span class="si">#{</span><span class="no">Jekyllpress</span><span class="o">::</span><span class="no">VERSION</span><span class="si">}</span><span class="s2">"</span>
   <span class="no">Jekyllpress</span><span class="o">::</span><span class="no">VERSION</span>
 <span class="k">end</span>

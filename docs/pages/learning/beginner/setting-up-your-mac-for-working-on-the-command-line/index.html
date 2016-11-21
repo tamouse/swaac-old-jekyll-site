@@ -12,7 +12,7 @@
     <meta name="description" content="The development blog of tamouse">
 
     <link rel="stylesheet" href="" />
-    <link rel="canonical" href="/pages/learning/beginner/setting-up-your-mac-for-working-on-the-command-line/">
+    <link rel="canonical" href="http://swaac.tamouse.org/pages/learning/beginner/setting-up-your-mac-for-working-on-the-command-line/">
     <link href="/favicon.png" rel="icon">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
 </head>
@@ -74,19 +74,19 @@ which is seriously the best introduction to this whole thing.</p>
   <li><a href="#youll-need-to-know" id="markdown-toc-youll-need-to-know">You’ll need to know</a></li>
   <li><a href="#gathering-current-information" id="markdown-toc-gathering-current-information">Gathering Current Information</a></li>
   <li><a href="#if-you-dont-have-any-of-the-three-files" id="markdown-toc-if-you-dont-have-any-of-the-three-files">If you don’t have any of the three files</a>    <ul>
-      <li><a href="#what-are-the-bashprofile-and-profile-file-about" id="markdown-toc-what-are-the-bashprofile-and-profile-file-about">What are the <code class="highlighter-rouge">.bash_profile</code> and <code class="highlighter-rouge">.profile</code> file about?</a></li>
-      <li><a href="#the-profile-file" id="markdown-toc-the-profile-file">The <code class="highlighter-rouge">.profile</code> file</a></li>
+      <li><a href="#what-are-the--and--file-about" id="markdown-toc-what-are-the--and--file-about">What are the <code class="highlighter-rouge">.bash_profile</code> and <code class="highlighter-rouge">.profile</code> file about?</a></li>
+      <li><a href="#the--file" id="markdown-toc-the--file">The <code class="highlighter-rouge">.profile</code> file</a></li>
     </ul>
   </li>
-  <li><a href="#if-you-have-bashprofile-but-none-of-the-others" id="markdown-toc-if-you-have-bashprofile-but-none-of-the-others">If you have <code class="highlighter-rouge">.bash_profile</code>, but none of the others</a></li>
-  <li><a href="#if-you-have-profile-but-none-of-the-others" id="markdown-toc-if-you-have-profile-but-none-of-the-others">If you have <code class="highlighter-rouge">.profile</code>, but none of the others</a></li>
-  <li><a href="#if-you-do-not-have-a-bashrc-file" id="markdown-toc-if-you-do-not-have-a-bashrc-file">If you do NOT have a <code class="highlighter-rouge">.bashrc</code> file</a>    <ul>
-      <li><a href="#what-is-the-bashrc-file-all-about" id="markdown-toc-what-is-the-bashrc-file-all-about">What is the <code class="highlighter-rouge">.bashrc</code> file all about?</a></li>
-      <li><a href="#creating-the-bashrc-file" id="markdown-toc-creating-the-bashrc-file">Creating the <code class="highlighter-rouge">.bashrc</code> file</a></li>
+  <li><a href="#if-you-have--but-none-of-the-others" id="markdown-toc-if-you-have--but-none-of-the-others">If you have <code class="highlighter-rouge">.bash_profile</code>, but none of the others</a></li>
+  <li><a href="#if-you-have--but-none-of-the-others-1" id="markdown-toc-if-you-have--but-none-of-the-others-1">If you have <code class="highlighter-rouge">.profile</code>, but none of the others</a></li>
+  <li><a href="#if-you-do-not-have-a--file" id="markdown-toc-if-you-do-not-have-a--file">If you do NOT have a <code class="highlighter-rouge">.bashrc</code> file</a>    <ul>
+      <li><a href="#what-is-the--file-all-about" id="markdown-toc-what-is-the--file-all-about">What is the <code class="highlighter-rouge">.bashrc</code> file all about?</a></li>
+      <li><a href="#creating-the--file" id="markdown-toc-creating-the--file">Creating the <code class="highlighter-rouge">.bashrc</code> file</a></li>
     </ul>
   </li>
-  <li><a href="#if-you-have-bashrc-but-neither-bashprofile-or-profile" id="markdown-toc-if-you-have-bashrc-but-neither-bashprofile-or-profile">If you have <code class="highlighter-rouge">.bashrc</code> but neither <code class="highlighter-rouge">.bash_profile</code> or <code class="highlighter-rouge">.profile</code></a></li>
-  <li><a href="#if-you-have-bashrc-and-one-or-both-of-bashprofile-and-profile" id="markdown-toc-if-you-have-bashrc-and-one-or-both-of-bashprofile-and-profile">If you have <code class="highlighter-rouge">.bashrc</code>, and one or both of <code class="highlighter-rouge">.bash_profile</code> and <code class="highlighter-rouge">.profile</code></a></li>
+  <li><a href="#if-you-have--but-neither--or-" id="markdown-toc-if-you-have--but-neither--or-">If you have <code class="highlighter-rouge">.bashrc</code> but neither <code class="highlighter-rouge">.bash_profile</code> or <code class="highlighter-rouge">.profile</code></a></li>
+  <li><a href="#if-you-have--and-one-or-both-of--and-" id="markdown-toc-if-you-have--and-one-or-both-of--and-">If you have <code class="highlighter-rouge">.bashrc</code>, and one or both of <code class="highlighter-rouge">.bash_profile</code> and <code class="highlighter-rouge">.profile</code></a></li>
 </ul>
 
 <h2 id="intro">Intro</h2>
@@ -181,7 +181,7 @@ each case.</p>
 <p>In this section, we’ll talk about when none of those files exist
 yet. This is easiest to deal with starting off.</p>
 
-<h3 id="what-are-the-bashprofile-and-profile-file-about">What are the <code class="highlighter-rouge">.bash_profile</code> and <code class="highlighter-rouge">.profile</code> file about?</h3>
+<h3 id="what-are-the--and--file-about">What are the <code class="highlighter-rouge">.bash_profile</code> and <code class="highlighter-rouge">.profile</code> file about?</h3>
 
 <p>On Unix- and Linux-based systems, the command line is also referred to
 as “The Shell”. By default, Mac’s use the program “bash” as the
@@ -227,7 +227,7 @@ want to manage there.</p>
   </li>
 </ol>
 
-<h3 id="the-profile-file">The <code class="highlighter-rouge">.profile</code> file</h3>
+<h3 id="the--file">The <code class="highlighter-rouge">.profile</code> file</h3>
 
 <p>As noted, this file contains initialisation codes. Here’s where you
 can set environment variables that are used throughout your command
@@ -280,7 +280,7 @@ $ echo $PATH</p>
 
 <p class="terminal-output">usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/noob/.gem/ruby/2.0.0/bin</p>
 
-<h2 id="if-you-have-bashprofile-but-none-of-the-others">If you have <code class="highlighter-rouge">.bash_profile</code>, but none of the others</h2>
+<h2 id="if-you-have--but-none-of-the-others">If you have <code class="highlighter-rouge">.bash_profile</code>, but none of the others</h2>
 
 <p>If you already have one, the easiest is to add the following line at
 the bottom of the file:</p>
@@ -297,7 +297,7 @@ the bottom of the file:</p>
 <code class="highlighter-rouge">.profile</code>. Follow the example in the previous section to append
 something to your <code class="highlighter-rouge">PATH</code> environment variable.</p>
 
-<h2 id="if-you-have-profile-but-none-of-the-others">If you have <code class="highlighter-rouge">.profile</code>, but none of the others</h2>
+<h2 id="if-you-have--but-none-of-the-others-1">If you have <code class="highlighter-rouge">.profile</code>, but none of the others</h2>
 
 <p>Create a <code class="highlighter-rouge">.bash_profile</code> in your home directory with the following
 contents:</p>
@@ -307,11 +307,11 @@ contents:</p>
 
 <p>That’s all, really.</p>
 
-<h2 id="if-you-do-not-have-a-bashrc-file">If you do NOT have a <code class="highlighter-rouge">.bashrc</code> file</h2>
+<h2 id="if-you-do-not-have-a--file">If you do NOT have a <code class="highlighter-rouge">.bashrc</code> file</h2>
 
 <p>This is the default starting point for a new user.</p>
 
-<h3 id="what-is-the-bashrc-file-all-about">What is the <code class="highlighter-rouge">.bashrc</code> file all about?</h3>
+<h3 id="what-is-the--file-all-about">What is the <code class="highlighter-rouge">.bashrc</code> file all about?</h3>
 
 <p>The <code class="highlighter-rouge">.bashrc</code> file in your home directory will be executed whenever an
 <em>interactive</em> shell gets invoked. Calling <code class="highlighter-rouge">bash</code> from the command line
@@ -385,7 +385,7 @@ following before the first command line prompt:</p>
 if you wish, or leave them in as tracers while you’re working with
 them.</p>
 
-<h3 id="creating-the-bashrc-file">Creating the <code class="highlighter-rouge">.bashrc</code> file</h3>
+<h3 id="creating-the--file">Creating the <code class="highlighter-rouge">.bashrc</code> file</h3>
 
 <p>This file initialized <em>each</em> interactive shell, including setting some
 environment variables used by <code class="highlighter-rouge">bash</code>, aliases, and other settings.</p>
@@ -406,7 +406,7 @@ okay since there really wasn’t anything in it.</p>
 
 <p>Close the Terminal window and open a new one.</p>
 
-<h2 id="if-you-have-bashrc-but-neither-bashprofile-or-profile">If you have <code class="highlighter-rouge">.bashrc</code> but neither <code class="highlighter-rouge">.bash_profile</code> or <code class="highlighter-rouge">.profile</code></h2>
+<h2 id="if-you-have--but-neither--or-">If you have <code class="highlighter-rouge">.bashrc</code> but neither <code class="highlighter-rouge">.bash_profile</code> or <code class="highlighter-rouge">.profile</code></h2>
 
 <p>In this case, you want to add running the <code class="highlighter-rouge">.bashrc</code> file for <em>login</em>
 shells so those settings are available.</p>
@@ -420,7 +420,7 @@ shells so those settings are available.</p>
 
 <p class="terminal-command">$ chmod +x .bashrc</p>
 
-<h2 id="if-you-have-bashrc-and-one-or-both-of-bashprofile-and-profile">If you have <code class="highlighter-rouge">.bashrc</code>, and one or both of <code class="highlighter-rouge">.bash_profile</code> and <code class="highlighter-rouge">.profile</code></h2>
+<h2 id="if-you-have--and-one-or-both-of--and-">If you have <code class="highlighter-rouge">.bashrc</code>, and one or both of <code class="highlighter-rouge">.bash_profile</code> and <code class="highlighter-rouge">.profile</code></h2>
 
 <p>If you only have one of <code class="highlighter-rouge">.bash_profile</code> or <code class="highlighter-rouge">.profile</code> see the
 appropriate section above.</p>

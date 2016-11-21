@@ -12,7 +12,7 @@
     <meta name="description" content="The development blog of tamouse">
 
     <link rel="stylesheet" href="" />
-    <link rel="canonical" href="/swaac/2013/09/01/rspec-custom-formatters-displaying-test-durations/">
+    <link rel="canonical" href="http://swaac.tamouse.org/swaac/2013/09/01/rspec-custom-formatters-displaying-test-durations/">
     <link href="/favicon.png" rel="icon">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
 </head>
@@ -99,7 +99,7 @@ formatter, and added the duration from
 <code class="highlighter-rouge">example.execution_results[:run_time]</code> to the output. (I did add a bit
 of formatting, but that’s trivial.)</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'rspec/core/formatters/documentation_formatter'</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'rspec/core/formatters/documentation_formatter'</span>
 
 <span class="k">class</span> <span class="nc">StopwatchFormatter</span> <span class="o">&lt;</span> <span class="no">RSpec</span><span class="o">::</span><span class="no">Core</span><span class="o">::</span><span class="no">Formatters</span><span class="o">::</span><span class="no">DocumentationFormatter</span>
 
@@ -170,7 +170,7 @@ the class name as the formatter:</p>
 <p>and <code class="highlighter-rouge">bundle install</code> as usual. You can specify to use the stopwatch
 formatter in a few ways:</p>
 
-<h3 id="rake-specopts"><code class="highlighter-rouge">rake</code> <code class="highlighter-rouge">SPEC_OPTS</code></h3>
+<h3 id="-"><code class="highlighter-rouge">rake</code> <code class="highlighter-rouge">SPEC_OPTS</code></h3>
 
 <p>If you use rake, and run rspec from within it, you can simply add the
 <code class="highlighter-rouge">SPEC_OPTS</code> variable to your run:</p>
@@ -179,7 +179,7 @@ formatter in a few ways:</p>
 </code></pre>
 </div>
 
-<h3 id="rspec"><code class="highlighter-rouge">.rspec</code></h3>
+<h3><code class="highlighter-rouge">.rspec</code></h3>
 
 <p>A more convenient method is to put the formatter inside the <code class="highlighter-rouge">.rspec</code>
 file:</p>
@@ -196,7 +196,7 @@ file:</p>
 
 <p>(assuming <code class="highlighter-rouge">spec</code> is one of you default tasks.)</p>
 
-<h3 id="specspechelper"><code class="highlighter-rouge">spec/spec_helper</code></h3>
+<h3 id="-1"><code class="highlighter-rouge">spec/spec_helper</code></h3>
 
 <p>If you want a more permanent solution, you can configure the formatter
 inside the <code class="highlighter-rouge">spec/spec_helper.rb</code> file:</p>

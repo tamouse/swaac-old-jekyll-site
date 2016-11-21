@@ -12,7 +12,7 @@
     <meta name="description" content="The development blog of tamouse">
 
     <link rel="stylesheet" href="" />
-    <link rel="canonical" href="/rails/2016/02/18/my-way-of-implementing-service-objects-in-rails/">
+    <link rel="canonical" href="http://swaac.tamouse.org/rails/2016/02/18/my-way-of-implementing-service-objects-in-rails/">
     <link href="/favicon.png" rel="icon">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
 </head>
@@ -81,11 +81,11 @@ easier to test, maintain, and extend.</p>
 4.2.5 which I’m currently using. If you’re using earlier (or even
 later) versions, you may need to adjust things accordingly.</p>
 
-<h2 id="create-a-class-for-the-service-under-appservices">Create a class for the service under <code class="highlighter-rouge">app/services</code></h2>
+<h2 id="create-a-class-for-the-service-under-">Create a class for the service under <code class="highlighter-rouge">app/services</code></h2>
 
 <p>Example: <code class="highlighter-rouge">app/services/build_new_product.rb</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BuildNewProduct</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BuildNewProduct</span>
   <span class="c1"># ...</span>
 <span class="k">end</span>
 </code></pre>
@@ -95,7 +95,7 @@ later) versions, you may need to adjust things accordingly.</p>
 
 <p>In the above example the main method would be called <code class="highlighter-rouge">build</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BuildNewProduct</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BuildNewProduct</span>
   <span class="k">def</span> <span class="nf">build</span>
     <span class="c1"># ...</span>
   <span class="k">end</span>
@@ -103,13 +103,13 @@ later) versions, you may need to adjust things accordingly.</p>
 </code></pre>
 </div>
 
-<h2 id="use-the-initialize-method-to-set-up-the-operation">Use the <code class="highlighter-rouge">initialize</code> method to set up the operation</h2>
+<h2 id="use-the--method-to-set-up-the-operation">Use the <code class="highlighter-rouge">initialize</code> method to set up the operation</h2>
 
 <p>In the case above, a new product would be build based on the
 combining information from a warehouse product and information from a
 third-party product description service.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BuildNewProduct</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BuildNewProduct</span>
   <span class="n">attr_attribute</span> <span class="ss">:warehouse_product</span><span class="p">,</span> <span class="ss">:product_specifications</span><span class="p">,</span> <span class="ss">:product</span>
 
   <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">warehouse_product</span><span class="p">,</span> <span class="n">product_specifications</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{})</span>
@@ -137,7 +137,7 @@ third-party product description service.</p>
 
 <p>The invocation is simply:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">product</span> <span class="o">=</span> <span class="no">BuildNewProduct</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">warehouse_product</span><span class="p">,</span> <span class="n">product_specifications</span><span class="p">).</span><span class="nf">build</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="n">product</span> <span class="o">=</span> <span class="no">BuildNewProduct</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">warehouse_product</span><span class="p">,</span> <span class="n">product_specifications</span><span class="p">).</span><span class="nf">build</span>
 </code></pre>
 </div>
 
@@ -151,7 +151,7 @@ I’m using it. (Yes, I’m contriving the example a bit.)</p>
 
 <p>In this example, it would be trivial to add two more calls:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  <span class="k">def</span> <span class="nf">create</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code>  <span class="k">def</span> <span class="nf">create</span>
     <span class="n">build</span><span class="p">.</span><span class="nf">save</span>
   <span class="k">end</span>
 
@@ -204,7 +204,7 @@ unnecessary, let’s just see what it might be like.</p>
 
 <h2 id="injecting-class-of-build-object">Injecting class of build object</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">warehouse_product</span><span class="p">,</span> <span class="n">product_specifications</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{})</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">warehouse_product</span><span class="p">,</span> <span class="n">product_specifications</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{})</span>
     <span class="nb">self</span><span class="p">.</span><span class="nf">warehouse_product</span> <span class="o">=</span> <span class="n">warehouse_product</span>
     <span class="nb">self</span><span class="p">.</span><span class="nf">product_specifications</span> <span class="o">=</span> <span class="n">product_specifications</span>
 	<span class="n">product_klass</span> <span class="o">=</span> <span class="n">options</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="ss">:product_klass</span><span class="p">)</span> <span class="p">{</span> <span class="no">Product</span> <span class="p">}</span>
@@ -215,7 +215,7 @@ unnecessary, let’s just see what it might be like.</p>
 
 <p>and I could substitute another product class as:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="no">BuildNewProduct</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">gprod</span><span class="p">,</span> <span class="n">eprod</span><span class="p">,</span> <span class="ss">product_klass: </span><span class="no">MyProduct</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="no">BuildNewProduct</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">gprod</span><span class="p">,</span> <span class="n">eprod</span><span class="p">,</span> <span class="ss">product_klass: </span><span class="no">MyProduct</span><span class="p">)</span>
 </code></pre>
 </div>
 
@@ -249,7 +249,7 @@ development.</p>
 <p>Here is a somewhat redacted skeleton of one of the runners that
 fetches product specification information from a third party.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Etl</span><span class="o">::</span><span class="no">Runner</span><span class="o">::</span><span class="no">ProductSpecificationFetch</span> <span class="o">&lt;</span> <span class="no">Etl</span><span class="o">::</span><span class="no">Runner</span><span class="o">::</span><span class="no">Base</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Etl</span><span class="o">::</span><span class="no">Runner</span><span class="o">::</span><span class="no">ProductSpecificationFetch</span> <span class="o">&lt;</span> <span class="no">Etl</span><span class="o">::</span><span class="no">Runner</span><span class="o">::</span><span class="no">Base</span>
   <span class="no">DEFAULT_APP_ID</span> <span class="o">=</span> <span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">secrets</span><span class="p">.</span><span class="nf">etl_default_app_id</span>
 
   <span class="kp">attr_accessor</span> <span class="ss">:datafilename</span><span class="p">,</span> <span class="ss">:mfr_datafilename</span><span class="p">,</span> <span class="ss">:product_spec_client</span><span class="p">,</span> <span class="ss">:app_id</span>
@@ -287,7 +287,7 @@ implement the client that talks to third party, and different means of
 obtaining the two output files for this service object. This is one I
 used that saved the responses from the service into a file.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">require</span> <span class="s2">"product_specification_client"</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="nb">require</span> <span class="s2">"product_specification_client"</span>
 <span class="k">class</span> <span class="nc">SavingProductSpecificationClient</span> <span class="o">&lt;</span> <span class="no">ProductSpecificationClient</span>
 
   <span class="kp">attr_accessor</span> <span class="ss">:save_dir</span>

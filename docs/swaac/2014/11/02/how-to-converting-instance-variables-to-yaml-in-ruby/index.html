@@ -12,7 +12,7 @@
     <meta name="description" content="The development blog of tamouse">
 
     <link rel="stylesheet" href="" />
-    <link rel="canonical" href="/swaac/2014/11/02/how-to-converting-instance-variables-to-yaml-in-ruby/">
+    <link rel="canonical" href="http://swaac.tamouse.org/swaac/2014/11/02/how-to-converting-instance-variables-to-yaml-in-ruby/">
     <link href="/favicon.png" rel="icon">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
 </head>
@@ -74,7 +74,7 @@ On a recent post in ruby-talk, the question was asked how to convert something t
 
 <p><code class="highlighter-rouge">desired_output.yaml</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nn">---</span>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="nn">---</span>
 <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">device-1</span>
   <span class="s">parameters</span><span class="pi">:</span>
     <span class="s">app_folder</span><span class="pi">:</span> <span class="s">deploy_project</span>
@@ -89,7 +89,7 @@ On a recent post in ruby-talk, the question was asked how to convert something t
 
 <p>If one were to take that and feed it back into Ruby via YAML.load, one gets the following structure:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">[{</span><span class="s2">"name"</span><span class="o">=&gt;</span><span class="s2">"device-1"</span><span class="p">,</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="p">[{</span><span class="s2">"name"</span><span class="o">=&gt;</span><span class="s2">"device-1"</span><span class="p">,</span>
   <span class="s2">"parameters"</span><span class="o">=&gt;</span>
    <span class="p">{</span><span class="s2">"app_folder"</span><span class="o">=&gt;</span><span class="s2">"deploy_project"</span><span class="p">,</span>
     <span class="s2">"app_id"</span><span class="o">=&gt;</span><span class="s2">"1"</span><span class="p">,</span>
@@ -109,7 +109,7 @@ On a recent post in ruby-talk, the question was asked how to convert something t
 
 <p><code class="highlighter-rouge">classes.rb</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># Classes to convert to yaml</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="c1"># Classes to convert to yaml</span>
 
 <span class="k">class</span> <span class="nc">Deploy</span>
   <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:parameters</span><span class="p">,</span> <span class="ss">:classes</span>
@@ -192,7 +192,7 @@ from /opt/rubies/ruby-2.1.2/lib/ruby/2.1.0/psych/class_loader.rb:53:in `path2cla
 
 <p><code class="highlighter-rouge">instance_valude_extension.rb</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">module</span> <span class="nn">InstanceValuesExtension</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="k">module</span> <span class="nn">InstanceValuesExtension</span>
 
   <span class="k">module</span> <span class="nn">InstanceMethods</span>
     <span class="k">def</span> <span class="nf">instance_values</span>
@@ -222,7 +222,7 @@ from /opt/rubies/ruby-2.1.2/lib/ruby/2.1.0/psych/class_loader.rb:53:in `path2cla
 
 <p><code class="highlighter-rouge">example.rb</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="vg">$:</span><span class="p">.</span><span class="nf">unshift</span><span class="p">(</span><span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s2">"../"</span><span class="p">,</span> <span class="kp">__FILE__</span><span class="p">))</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="vg">$:</span><span class="p">.</span><span class="nf">unshift</span><span class="p">(</span><span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s2">"../"</span><span class="p">,</span> <span class="kp">__FILE__</span><span class="p">))</span>
 
 <span class="nb">require</span> <span class="s1">'yaml'</span>
 <span class="nb">require</span> <span class="s1">'classes.rb'</span>
@@ -253,7 +253,7 @@ from /opt/rubies/ruby-2.1.2/lib/ruby/2.1.0/psych/class_loader.rb:53:in `path2cla
 
 <p><code class="highlighter-rouge">actual_output.yaml</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nn">---</span>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="nn">---</span>
 <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">device-1</span>
   <span class="s">parameters</span><span class="pi">:</span>
     <span class="s">app_folder</span><span class="pi">:</span> <span class="s">deploy_project</span>

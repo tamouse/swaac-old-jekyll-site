@@ -12,7 +12,7 @@
     <meta name="description" content="The development blog of tamouse">
 
     <link rel="stylesheet" href="" />
-    <link rel="canonical" href="/testing/2016/10/10/testing-blur-events-in-cucumber-slash-capybara/">
+    <link rel="canonical" href="http://swaac.tamouse.org/testing/2016/10/10/testing-blur-events-in-cucumber-slash-capybara/">
     <link href="/favicon.png" rel="icon">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
 </head>
@@ -93,7 +93,7 @@ happen via executing a JS script, but by simply <strong>SENDING A TAB</strong>.<
 
 <p>Here’s the step:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="no">When</span><span class="p">(</span><span class="sr">/^I unfocus field (.*?)$/</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">field_name</span><span class="o">|</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="no">When</span><span class="p">(</span><span class="sr">/^I unfocus field (.*?)$/</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">field_name</span><span class="o">|</span>
   <span class="n">field</span> <span class="o">=</span> <span class="n">page</span><span class="p">.</span><span class="nf">find_field</span><span class="p">(</span><span class="n">field_name</span><span class="p">)</span>
   <span class="n">field</span><span class="p">.</span><span class="nf">native</span><span class="p">.</span><span class="nf">send_keys</span> <span class="ss">:tab</span>
 <span class="k">end</span>

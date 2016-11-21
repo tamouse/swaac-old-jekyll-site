@@ -12,7 +12,7 @@
     <meta name="description" content="The development blog of tamouse">
 
     <link rel="stylesheet" href="" />
-    <link rel="canonical" href="/rails/2015/06/16/how-to-translate-nested-polymorphic-attributes-in-activemodel-errors-messages/">
+    <link rel="canonical" href="http://swaac.tamouse.org/rails/2015/06/16/how-to-translate-nested-polymorphic-attributes-in-activemodel-errors-messages/">
     <link href="/favicon.png" rel="icon">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
 </head>
@@ -91,7 +91,7 @@ when used in errors for the parent model.</p>
 
 <p>Setting new names for attributes in the config/locales/en.yml file as:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">en</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">en</span><span class="pi">:</span>
   <span class="s">activerecord</span><span class="pi">:</span>
     <span class="s">attributes</span><span class="pi">:</span>
       <span class="s">address</span><span class="pi">:</span>
@@ -156,7 +156,7 @@ a regular nested table?</p>
 
 <p>Using the relationship names in the locale file:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">en</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">en</span><span class="pi">:</span>
   <span class="s">activerecord</span><span class="pi">:</span>
     <span class="s">attributes</span><span class="pi">:</span>
       <span class="s">address</span><span class="pi">:</span>
@@ -223,7 +223,7 @@ base.</del></p>
 
 <p><em>Update:</em> And then, when I think about YAML, it’s easy to DRY it up:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">en</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">en</span><span class="pi">:</span>
   <span class="s">activerecord</span><span class="pi">:</span>
     <span class="s">attributes</span><span class="pi">:</span>
       <span class="s">address</span><span class="pi">:</span> <span class="nl">&amp;address</span>

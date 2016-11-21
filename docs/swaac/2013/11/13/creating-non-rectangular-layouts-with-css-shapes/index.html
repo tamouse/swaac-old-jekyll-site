@@ -12,7 +12,7 @@
     <meta name="description" content="The development blog of tamouse">
 
     <link rel="stylesheet" href="" />
-    <link rel="canonical" href="/swaac/2013/11/13/creating-non-rectangular-layouts-with-css-shapes/">
+    <link rel="canonical" href="http://swaac.tamouse.org/swaac/2013/11/13/creating-non-rectangular-layouts-with-css-shapes/">
     <link href="/favicon.png" rel="icon">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
 </head>
@@ -84,7 +84,7 @@ Nov 13, 2013
 
   <p><strong>The CSS technologies we’ll be covering in this article are on the cutting edge and won’t work in all browsers. If you want to see the working live demos you need to make sure you’re viewing them in a browser that supports these technologies. You <em>don’t need</em> a supporting browser to understand the features and demos, though. I’ve included screenshots of the demos so you can see how the final result looks like</strong>.</p>
 
-  <p>At the time of writing of this article, only Chrome Canary <a href="https://src.chromium.org/viewvc/blink?revision=159989&amp;view=revision">supports the ~~prefixed version~~ unprefixed version of CSS shapes</a>, but still behind a flag. Make sure you <a href="http://html.adobe.com/webplatform/enable/">enable CSS Shapes features</a> to be able to see working demos.</p>
+  <p>At the time of writing of this article, only Chrome Canary <a href="https://src.chromium.org/viewvc/blink?revision=159989&amp;view=revision">supports the <del>prefixed version</del> unprefixed version of CSS shapes</a>, but still behind a flag. Make sure you <a href="http://html.adobe.com/webplatform/enable/">enable CSS Shapes features</a> to be able to see working demos.</p>
 
   <p>You can click on a demo’s screenshot to view the live demo.</p>
 
@@ -169,11 +169,11 @@ Nov 13, 2013
 
   <p><strong>You can view the live demo for each example by clicking on the demo’s screenshot.</strong></p>
 
-  <h3 id="example-1-floating-text-around-a-custom-shape-with-shape-outside">Example 1: Floating text around a custom shape with <code class="highlighter-rouge">shape-outside</code></h3>
+  <h3 id="example-1-floating-text-around-a-custom-shape-with-">Example 1: Floating text around a custom shape with <code class="highlighter-rouge">shape-outside</code></h3>
 
   <p>We’ll start with a simple example. In this example we’re going to define a custom shape and have content flow on its side. The end result will look like the image below:</p>
 
-  <p>[](demo-1/index.html)</p>
+  <p><a href="demo-1/index.html"></a></p>
 
   <p><img src="demo-1/images/demo-screenshot.png" alt="Screenshot of Demo #1" /></p>
 
@@ -219,7 +219,7 @@ Nov 13, 2013
 
   <p>Now that the coordinate system is ready, we’re going to draw the shape, to define the float and exclusion areas of the element. There are two ways to go about declaring a shape for this demo:</p>
 
-  <h4 id="using-polygon">Using <code class="highlighter-rouge">polygon()</code></h4>
+  <h4 id="using-">Using <code class="highlighter-rouge">polygon()</code></h4>
 
   <p>For the first method, we’ll be using the polygon() function. This function takes in a set of points that form the polygon, each point defined by x and y coordinates. We’re going to define a very simple polygonal shape, with 4 vertices, as shown in the image below (blue and orange discs):</p>
 
@@ -297,11 +297,11 @@ Nov 13, 2013
 
   <p>Another situation where you might want to use an image URI instead of a shape function is when you have multiple float or exclusion areas inside an element, in that case using this method is necessary because you can’t, for now, declare multiple shapes on an element, but if the image contains multiple areas, the browser will extract these areas from the image and use them. Pretty neat, right? :) we’ll see an example of this in the last demo.</p>
 
-  <h3 id="exmaple-2-wrappingflowing-text-inside-a-custom-shape-with-shape-inside">Exmaple 2: wrapping/flowing text inside a custom shape with <code class="highlighter-rouge">shape-inside</code></h3>
+  <h3 id="exmaple-2-wrappingflowing-text-inside-a-custom-shape-with-">Exmaple 2: wrapping/flowing text inside a custom shape with <code class="highlighter-rouge">shape-inside</code></h3>
 
   <p>For the second example we’ll create a simple demo where the end result will look like this:</p>
 
-  <p>[](demo-2/index.html)</p>
+  <p><a href="demo-2/index.html"></a></p>
 
   <p><img src="demo-2/images/demo-screenshot.png" alt="Screenshot of demo #2" /></p>
 
@@ -323,7 +323,7 @@ Nov 13, 2013
 
   <p>As you can see from the demo screenshot above, the text is wrapped inside a circular shape at the top. So, we know that we’re going to have to declare a circle on our container. Now, like in the previous example, there are two ways we can do that..</p>
 
-  <h4 id="using-circle">Using <code class="highlighter-rouge">circle()</code></h4>
+  <h4 id="using--1">Using <code class="highlighter-rouge">circle()</code></h4>
 
   <p>The circle() function takes in three arguments: cx, cy, and radius; where cx and cy are the coordinates of the center of the circle, and the radius is, well, the value of the radius of the circle which determines the area it will cover.</p>
 
@@ -381,11 +381,11 @@ Nov 13, 2013
 
 <blockquote>
 
-  <h3 id="example-3--wrappingflowing-text-inside-a-custom-shape-with-shape-inside">Example 3 : wrapping/flowing text inside a custom shape with <code class="highlighter-rouge">shape-inside</code></h3>
+  <h3 id="example-3--wrappingflowing-text-inside-a-custom-shape-with-">Example 3 : wrapping/flowing text inside a custom shape with <code class="highlighter-rouge">shape-inside</code></h3>
 
   <p>In this example we’re also going to declare a polygonal shape on a container and have its content flow inside this shape. The end result will look like the image below:</p>
 
-  <p>[](demo-3/index.html)</p>
+  <p><a href="demo-3/index.html"></a></p>
 
   <p><img src="demo-3/images/demo-screenshot.png" alt="Screenshot of Demo #3" /></p>
 
@@ -443,11 +443,11 @@ Nov 13, 2013
 
 <blockquote>
 
-  <h3 id="example-4--multiple-float-areas-with-shape-inside">Example 4 : Multiple float areas with <code class="highlighter-rouge">shape-inside</code></h3>
+  <h3 id="example-4--multiple-float-areas-with-">Example 4 : Multiple float areas with <code class="highlighter-rouge">shape-inside</code></h3>
 
   <p>In this example we’re going to create multiple float areas inside an element to wrap content inside. The result of this demo is shown in the following image:</p>
 
-  <p>[](demo-4/index.html)</p>
+  <p><a href="demo-4/index.html"></a></p>
 
   <p><img src="demo-4/images/demo-screenshot.png" alt="Screenshot of Demo #3" /></p>
 
@@ -511,7 +511,7 @@ Nov 13, 2013
 
   <p>Once future CSS Shapes features are implemented, and wrapping content on both sides of a shape is possible, creating print-like digital magazine designs becomes very much possible when combining Shapes and Exclusions with Regions and Flexbox.</p>
 
-  <p>[](http://www.behance.net/gallery/Travel-Magazine/2159303)</p>
+  <p><a href="http://www.behance.net/gallery/Travel-Magazine/2159303"></a></p>
 
   <p><img src="images/multicolumn-shapes.png" alt="Multi-column layouts with shapes" /></p>
 
@@ -554,13 +554,13 @@ Nov 13, 2013
   <p><a href="http://adpacks.com">via Ad Packs</a></p>
 
   <ul>
-    <li>[](http://twitter.com/SaraSoueidan)</li>
-    <li>[](http://codepen.io/SaraSoueidan)</li>
-    <li>[](http://github.com/SaraSoueidan)</li>
-    <li>[](http://pinterest.com/SaraSoueidan)</li>
-    <li>[](http://dribbble.com/SaraSoueidan)</li>
+    <li><a href="http://twitter.com/SaraSoueidan"></a></li>
+    <li><a href="http://codepen.io/SaraSoueidan"></a></li>
+    <li><a href="http://github.com/SaraSoueidan"></a></li>
+    <li><a href="http://pinterest.com/SaraSoueidan"></a></li>
+    <li><a href="http://dribbble.com/SaraSoueidan"></a></li>
     <li>
-      <p>[](http://lb.linkedin.com/pub/sara-soueidan/60/542/b67)</p>
+      <p><a href="http://lb.linkedin.com/pub/sara-soueidan/60/542/b67"></a></p>
     </li>
     <li><a href="http://sarasoueidan.com/about.html">About Me</a></li>
     <li><a href="http://sarasoueidan.com/gallery.html">Art Gallery</a></li>

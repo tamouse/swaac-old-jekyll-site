@@ -12,7 +12,7 @@
     <meta name="description" content="The development blog of tamouse">
 
     <link rel="stylesheet" href="" />
-    <link rel="canonical" href="/swaac/2013/09/17/json-how-to-send-raw-post-data-in-a-rails-functional-test-stack-overflow/">
+    <link rel="canonical" href="http://swaac.tamouse.org/swaac/2013/09/17/json-how-to-send-raw-post-data-in-a-rails-functional-test-stack-overflow/">
     <link href="/favicon.png" rel="icon">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
 </head>
@@ -86,7 +86,7 @@ end
   </div>
 
   <p>but this gives me a
-<code class="highlighter-rouge">NoMethodError: undefined method </code>symbolize_keys’ for #<string:0x00000102cb6080>`</string:0x00000102cb6080></p>
+<code class="highlighter-rouge">NoMethodError: undefined method </code>symbolize_keys’ for #<String:0x00000102cb6080>`</String:0x00000102cb6080></p>
 
   <p>What is the correct way to send raw post data in
 ActionController::TestCase?</p>
@@ -99,7 +99,7 @@ ActionController::TestCase?</p>
 </code></pre>
   </div>
 
-  <h2 id="answers">7 Answers</h2>
+  <h2 id="7-answers">7 Answers</h2>
 
   <p>I ran across the same issue today and found a solution.</p>
 

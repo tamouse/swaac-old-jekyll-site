@@ -12,7 +12,7 @@
     <meta name="description" content="The development blog of tamouse">
 
     <link rel="stylesheet" href="" />
-    <link rel="canonical" href="/2016/07/09/rails-action-mailer-asset-host/">
+    <link rel="canonical" href="http://swaac.tamouse.org/2016/07/09/rails-action-mailer-asset-host/">
     <link href="/favicon.png" rel="icon">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
 </head>
@@ -73,7 +73,7 @@ complete URL to the images which were in <code class="highlighter-rouge">app/ass
 
 <p>The particular setting that worked in <code class="highlighter-rouge">:development</code> was:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  <span class="n">config</span><span class="p">.</span><span class="nf">action_mailer</span><span class="p">.</span><span class="nf">asset_host</span> <span class="o">=</span> <span class="s2">"http://localhost:3000"</span>
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code>  <span class="n">config</span><span class="p">.</span><span class="nf">action_mailer</span><span class="p">.</span><span class="nf">asset_host</span> <span class="o">=</span> <span class="s2">"http://localhost:3000"</span>
 </code></pre>
 </div>
 
