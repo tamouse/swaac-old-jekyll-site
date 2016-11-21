@@ -1,0 +1,161 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Testing blur() events in Cucumber/Capybara</title>
+    <meta name="description" content="The development blog of tamouse">
+
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css" media="screen" />
+    <link rel="canonical" href="http://swaac.tamouse.org/testing/2016/10/10/testing-blur-events-in-cucumber-slash-capybara/">
+    <link href="/favicon.png" rel="icon">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Software as a Craft</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/">Home</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/learning">Learning</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/about">About</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/swaac-intro">SWaaC Intro</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages">Pages</a></li>
+        <li class="divider"></li>
+        <li><a href="/tags">Tags</a></li>
+        <li class="divider"></li>
+	<li><a href="/categories">Categories</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>
+</nav>
+
+
+    <main class="container-fluid">
+      <header class="page-header">
+<h1>Testing blur() events in Cucumber/Capybara</h1>
+Oct 10, 2016
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/categories/testing">testing</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/tags/testing">testing</a></li> <li role="presentation"><a href="/tags/cucumber">cucumber</a></li> <li role="presentation"><a href="/tags/steps">steps</a></li> <li role="presentation"><a href="/tags/capybara">capybara</a></li> <li role="presentation"><a href="/tags/blur">blur</a></li> <li role="presentation"><a href="/tags/focus">focus</a></li> <li role="presentation"><a href="/tags/using">using</a></li> <li role="presentation"><a href="/tags/send_keys">send_keys</a></li> 
+</header>
+
+<article>
+<p>After banging my head on this problem for a long time, chasing blog
+posts, stackoverflow, lots of opinions, bug reports, and so on, I
+finally asked my workmates, and together we arrived at a method that
+works.</p>
+
+<h2 id="the-problem">The Problem</h2>
+
+<p>There is apparently a bug, although it’s marked as INVALID in
+bugzilla, that prevents <code class="highlighter-rouge">focus()</code> and <code class="highlighter-rouge">blur()</code> events from being
+executed directly when the test browser is not focused.</p>
+
+<p>The links I chased:</p>
+
+<ul>
+  <li>https://github.com/mattheworiordan/jquery-focus-selenium-webkit-fix</li>
+  <li>https://github.com/mattheworiordan/jquery-focus-selenium-webkit-fix/blob/master/app/assets/javascripts/jquery.focus.test-fix.js</li>
+  <li>https://makandracards.com/makandra/12661-how-to-solve-selenium-focus-issues</li>
+</ul>
+
+<p>And many many more…</p>
+
+<h2 id="what-worked">What worked</h2>
+
+<p>The most obviously glaring thing to do is <strong>NOT</strong> make this event
+happen via executing a JS script, but by simply <strong>SENDING A TAB</strong>.</p>
+
+<p>Here’s the step:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="no">When</span><span class="p">(</span><span class="sr">/^I unfocus field (.*?)$/</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">field_name</span><span class="o">|</span>
+  <span class="n">field</span> <span class="o">=</span> <span class="n">page</span><span class="p">.</span><span class="nf">find_field</span><span class="p">(</span><span class="n">field_name</span><span class="p">)</span>
+  <span class="n">field</span><span class="p">.</span><span class="nf">native</span><span class="p">.</span><span class="nf">send_keys</span> <span class="ss">:tab</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>That did the trick, and now we all have an uncle Bob.</p>
+
+<p>Thanks Nic and JD</p>
+
+</article>
+<hr>
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </main>
+
+    <hr />
+<footer class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-footer" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.tamouse.org">&copy; 2016 Tamara Temple</a>
+    </div> <!-- /.navbat-header -->
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+        <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+        <li><a href="/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+        <li><a href="/pages/colophon/">Colophon</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>  <!-- /.container-fluid -->
+</footer>
+
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/js/vendor/bootstrap.js"></script>
+<script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/post_index.js"></script>
+
+    
+
+  </body>
+</html>

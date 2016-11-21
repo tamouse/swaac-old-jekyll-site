@@ -1,0 +1,273 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Possible bug: IE8 won't show table: "'aTargets' is null or not an object" - DataTables forums</title>
+    <meta name="description" content="The development blog of tamouse">
+
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css" media="screen" />
+    <link rel="canonical" href="http://swaac.tamouse.org/swaac/2013/12/04/possible-bug-ie8-wont-show-table-atargets-is-null-or-not-an-object-datatables-forums/">
+    <link href="/favicon.png" rel="icon">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Software as a Craft</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/">Home</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/learning">Learning</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/about">About</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/swaac-intro">SWaaC Intro</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages">Pages</a></li>
+        <li class="divider"></li>
+        <li><a href="/tags">Tags</a></li>
+        <li class="divider"></li>
+	<li><a href="/categories">Categories</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>
+</nav>
+
+
+    <main class="container-fluid">
+      <header class="page-header">
+<h1>Possible bug: IE8 won't show table: "'aTargets' is null or not an object" - DataTables forums</h1>
+Dec 4, 2013
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/categories/swaac">swaac</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/tags/javascript">javascript</a></li> <li role="presentation"><a href="/tags/errors">errors</a></li> <li role="presentation"><a href="/tags/IE">IE</a></li> 
+</header>
+
+<article>
+<p>A repost of <a href="http://datatables.net/forums/discussion/comment/38391">http://datatables.net/forums/discussion/comment/38391</a> from <a href="http://datatables.net">DataTables</a>.</p>
+
+<blockquote>
+  <p>Possible bug: IE8 won’t show table: “‘aTargets’ is null or not an object”</p>
+
+  <ul>
+    <li><a href="/forums/profile/26442/GrantB" title="GrantB"><img src="https://secure.gravatar.com/avatar.php?gravatar_id=a7e05f5df16cb68c49d913edfabf9065&amp;default=http%3A%2F%2Fdatatables.net%2Fforums%2Fplugins%2FGravatar%2Fdefault.gif&amp;size=40" alt="GrantB" /></a><a href="/forums/profile/26442/GrantB">GrantB</a> <a href="/forums/discussion/11436/possible-bug-ie8-wont-show-table-atargets-is-null-or-not-an-object/p1">August 2012</a></li>
+  </ul>
+
+  <p>I’ve got a datatable that works in Opera/FF/Chrome, but not in IE8. I’m running 1.9.3.</p>
+
+  <p>In IE8, it shows this error:</p>
+
+</blockquote>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">&gt;     </span>Webpage error details
+<span class="gp">&gt; </span>
+<span class="gp">&gt;     </span>User Agent: Mozilla/4.0 <span class="o">(</span>compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.4506.2152<span class="o">)</span>
+<span class="gp">&gt;     </span>Timestamp: Tue, 21 Aug 2012 20:16:07 UTC
+<span class="gp">&gt; </span>
+<span class="gp">&gt;     </span>Message: <span class="s1">'aTargets'</span> is null or not an object
+<span class="gp">&gt;     </span>Line: 19
+<span class="gp">&gt;     </span>Char: 4817
+<span class="gp">&gt;     </span>Code: 0
+<span class="gp">&gt;     </span>URI: http://MYDOMAIN/assets/application-3b0e185edc6cf38f7bdac3207f7b8585.js
+<span class="gp">&gt;     </span></code></pre></figure>
+
+<blockquote>
+
+  <p>In the min.js code, it corresponds to this bit:</p>
+
+</blockquote>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="o">&gt;</span>     <span class="kd">function</span> <span class="nx">ua</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">t</span><span class="p">,</span><span class="nx">n</span><span class="p">,</span><span class="nx">r</span><span class="p">){</span><span class="kd">var</span> <span class="nx">s</span><span class="p">,</span><span class="nx">u</span><span class="p">,</span><span class="nx">a</span><span class="p">,</span><span class="nx">f</span><span class="p">,</span><span class="nx">l</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span><span class="k">for</span><span class="p">(</span><span class="nx">s</span><span class="o">=</span><span class="nx">t</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="mi">0</span><span class="o">&lt;=</span><span class="nx">s</span><span class="p">;</span><span class="nx">s</span><span class="o">--</span><span class="p">){</span><span class="kd">var</span> <span class="nx">c</span><span class="o">=</span><span class="nx">t</span><span class="p">[</span><span class="nx">s</span><span class="p">].</span><span class="nx">aTargets</span><span class="p">;</span><span class="nx">i</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span><span class="o">||</span><span class="nx">E</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s2">"aTargets must be an array of targets, not a "</span><span class="o">+</span><span class="k">typeof</span> <span class="nx">c</span><span class="p">),</span><span class="nx">u</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="err">"</span>
+<span class="o">&gt;</span>     </code></pre></figure>
+
+<blockquote>
+
+  <p>which I believe corresponds to line 385 in the current d62ac0 release.</p>
+
+  <p>I’ve defined my columns with “aoColumnDefs”, and each column has an “aTargets” defined for it.</p>
+
+  <p>Is this something anyone has run into before? I’m assuming that Datatables should be supporting IE8.</p>
+
+  <p>The debugger output is here:<br />
+<a href="http://debug.datatables.net/acabak">http://debug.datatables.net/acabak</a></p>
+
+  <ul>
+    <li><a href="/forums/profile/26442/GrantB" title="GrantB"><img src="https://secure.gravatar.com/avatar.php?gravatar_id=a7e05f5df16cb68c49d913edfabf9065&amp;default=http%3A%2F%2Fdatatables.net%2Fforums%2Fplugins%2FGravatar%2Fdefault.gif&amp;size=40" alt="GrantB" /></a><a href="/forums/profile/26442/GrantB">GrantB</a> <a href="/forums/discussion/comment/38391#Comment_38391">August 2012</a></li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p>And here’s my full aoColumnDefs, because if it’s my fault, I’m guessing it would be in here:</p>
+
+</blockquote>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="o">&gt;</span>     <span class="nx">$</span><span class="p">(</span><span class="s2">"#trades_tbl"</span><span class="p">).</span><span class="nx">dataTable</span><span class="p">({</span>
+<span class="o">&gt;</span>         <span class="s2">"sAjaxSource"</span> <span class="p">:</span> <span class="s2">"/trades/search.datatables"</span><span class="p">,</span>
+<span class="o">&gt;</span>     <span class="c1">//    "aaSorting" : [[0,'asc']], // sorting on initialization</span>
+<span class="o">&gt;</span>         <span class="s2">"bServerSide"</span>  <span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="o">&gt;</span>         <span class="s2">"fnServerData"</span> <span class="p">:</span> <span class="nx">simpleDatatables</span><span class="p">,</span>
+<span class="o">&gt;</span>         <span class="s2">"bFilter"</span> <span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span>         <span class="s2">"sDom"</span> <span class="p">:</span> <span class="s2">"lfriptip"</span><span class="p">,</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span>         <span class="c1">// pagination</span>
+<span class="o">&gt;</span>         <span class="s2">"aLengthMenu"</span> <span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">1000</span><span class="p">],</span>
+<span class="o">&gt;</span>         <span class="s2">"bPaginate"</span> <span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="o">&gt;</span>         <span class="s2">"bLengthChange"</span> <span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// lets user choose number of records from menu</span>
+<span class="o">&gt;</span>         <span class="s2">"sPaginationType"</span> <span class="p">:</span> <span class="s2">"input"</span><span class="p">,</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span>         <span class="s2">"aoColumnDefs"</span><span class="p">:</span> <span class="p">[</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"id"</span><span class="p">],</span> <span class="s2">"bVisible"</span><span class="p">:</span><span class="kc">false</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"tddt"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"tddt"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"bors"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"bors"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"quanty"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"quanty"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"exch"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"exch"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"fcondt"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"fcondt"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"desc"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"desc"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"porc"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"porc"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"trntp"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"trntp"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"fprice"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"fprice"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"cmns"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"cmns"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"strik"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"strik"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"excf"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"excf"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"exsf"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"exsf"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"nfa"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"nfa"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"altcur"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"altcur"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"regcod"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"regcod"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"acctno"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"acctno"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"trncde"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"trncde"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"price"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"price"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"nitd"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"nitd"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"pandl"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"pandl"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"cnyear"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"cnyear"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"month"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"month"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"fprmpt"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"fprmpt"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"futcod"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"futcod"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"foro"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"foro"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"slspsn"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"slspsn"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"crncod"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"crncod"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"stlpr"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"stlpr"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"txty"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"txty"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"txcd"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"txcd"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"brokr"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"brokr"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"txno"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"txno"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"cmsty"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"cmsty"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"futmcd"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"futmcd"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"orgzcd"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"orgzcd"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"feerec"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"feerec"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"fbkr"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"fbkr"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"feeamt"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"feeamt"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"feectc"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"feectc"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"feehf"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"feehf"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"sdbk"</span><span class="p">],</span> <span class="s2">"sName"</span><span class="p">:</span><span class="s2">"sdbk"</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"edit"</span><span class="p">,</span><span class="s2">"destroy"</span><span class="p">],</span> <span class="s2">"bSortable"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span> <span class="s2">"bSearchable"</span><span class="p">:</span><span class="kc">false</span> <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"edit"</span><span class="p">],</span> <span class="s2">"sDefaultContent"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span>
+<span class="o">&gt;</span>             <span class="s2">"fnRender"</span> <span class="p">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+<span class="o">&gt;</span>               <span class="k">return</span> <span class="s1">'&lt;a href="/trades/'</span> <span class="o">+</span> <span class="nx">o</span><span class="p">.</span><span class="nx">aData</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">'/edit" id="editTrade'</span> <span class="o">+</span> <span class="nx">o</span><span class="p">.</span><span class="nx">aData</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">'"&gt;Edit&lt;/a&gt;'</span>
+<span class="o">&gt;</span>             <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">{</span> <span class="s2">"aTargets"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"destroy"</span><span class="p">],</span> <span class="s2">"sDefaultContent"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span>
+<span class="o">&gt;</span>             <span class="s2">"fnRender"</span> <span class="p">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+<span class="o">&gt;</span>               <span class="k">return</span> <span class="s1">'&lt;a href="/trades/'</span> <span class="o">+</span> <span class="nx">o</span><span class="p">.</span><span class="nx">aData</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">'" data-confirm="Are you sure?" data-method="delete" id="destroyTrade'</span> <span class="o">+</span> <span class="nx">o</span><span class="p">.</span><span class="nx">aData</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">'" rel="nofollow"&gt;Destroy&lt;/a&gt;'</span>
+<span class="o">&gt;</span>             <span class="p">},</span>
+<span class="o">&gt;</span>           <span class="p">},</span>
+<span class="o">&gt;</span>         <span class="p">],</span>
+<span class="o">&gt;</span>       <span class="p">});</span>
+<span class="o">&gt;</span>     </code></pre></figure>
+
+<blockquote>
+
+  <ul>
+    <li><a href="/forums/profile/1/allan" title="allan"><img src="https://secure.gravatar.com/avatar.php?gravatar_id=5e2528412f84f2db0280e04c7ed120a5&amp;default=http%3A%2F%2Fdatatables.net%2Fforums%2Fplugins%2FGravatar%2Fdefault.gif&amp;size=40" alt="allan" /></a><a href="/forums/profile/1/allan">allan</a> <a href="/forums/discussion/comment/38392#Comment_38392">August 2012</a></li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p>you’ve got trailing commas at the end of the aoColumnDefs array and the init object. IE does not behave the same way as other browsers with the trailing comma - here is it inserted an undefined element at the end of the array, while older IE versions will throw an error.</p>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li><a href="/forums/profile/26442/GrantB" title="GrantB"><img src="https://secure.gravatar.com/avatar.php?gravatar_id=a7e05f5df16cb68c49d913edfabf9065&amp;default=http%3A%2F%2Fdatatables.net%2Fforums%2Fplugins%2FGravatar%2Fdefault.gif&amp;size=40" alt="GrantB" /></a><a href="/forums/profile/26442/GrantB">GrantB</a> <a href="/forums/discussion/comment/38430#Comment_38430">August 2012</a></li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p>Argh! Thanks, Allan, you nailed it!</p>
+
+  <p>This discussion has been closed.</p>
+</blockquote>
+
+</article>
+<hr>
+<p><a href="http://datatables.net/forums/discussion/comment/38391">Source</a></p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </main>
+
+    <hr />
+<footer class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-footer" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.tamouse.org">&copy; 2016 Tamara Temple</a>
+    </div> <!-- /.navbat-header -->
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+        <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+        <li><a href="/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+        <li><a href="/pages/colophon/">Colophon</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>  <!-- /.container-fluid -->
+</footer>
+
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/js/vendor/bootstrap.js"></script>
+<script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/post_index.js"></script>
+
+    
+
+  </body>
+</html>

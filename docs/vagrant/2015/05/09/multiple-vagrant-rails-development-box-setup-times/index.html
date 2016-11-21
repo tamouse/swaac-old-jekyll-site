@@ -1,0 +1,584 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Multiple vagrant rails development box setup times</title>
+    <meta name="description" content="The development blog of tamouse">
+
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css" media="screen" />
+    <link rel="canonical" href="http://swaac.tamouse.org/vagrant/2015/05/09/multiple-vagrant-rails-development-box-setup-times/">
+    <link href="/favicon.png" rel="icon">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Software as a Craft</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/">Home</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/learning">Learning</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/about">About</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/swaac-intro">SWaaC Intro</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages">Pages</a></li>
+        <li class="divider"></li>
+        <li><a href="/tags">Tags</a></li>
+        <li class="divider"></li>
+	<li><a href="/categories">Categories</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>
+</nav>
+
+
+    <main class="container-fluid">
+      <header class="page-header">
+<h1>Multiple vagrant rails development box setup times</h1>
+May 9, 2015
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/categories/vagrant">vagrant</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/tags/rails">rails</a></li> <li role="presentation"><a href="/tags/development">development</a></li> 
+</header>
+
+<article>
+<p>I’ve recently been looking at the
+<a href="http://http://www.rails.mn/installation/">Rails.MN Installation</a>
+setup, and our recommendation to use a Vagrant setup. This seems to
+work for most people. <a href="https://github.com/jhsu802701">Jason Hsu</a> put
+together a really nice set of videos to pair along with his Vagrant
+setup. I had also been working on a kit to get Ubuntu Trusty
+provisioned with Ansible working for some work-related projects.</p>
+
+<p>With the new version of Debian Jessie out, I also wanted to see what
+it took to get that up and running.</p>
+
+<p>The results rather suprised me, in the end. While they are all pretty
+comparable given download, provisioning, and creating a minimal rails
+application, the last combination of using Jessie and Ansible got a
+very surprising result in getting the rails app up in under a
+minute. The only thing I saw differently was using IO.js instead of
+installing the nodejs package from apt-get.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#building-different-vagrant-boxes" id="markdown-toc-building-different-vagrant-boxes">Building different vagrant boxes</a></li>
+  <li><a href="#vagrantfiles" id="markdown-toc-vagrantfiles">Vagrantfiles</a></li>
+  <li><a href="#downloading-times" id="markdown-toc-downloading-times">Downloading Times</a>    <ul>
+      <li><a href="#debian-jessie-8" id="markdown-toc-debian-jessie-8">Debian Jessie 8</a></li>
+      <li><a href="#jason-hsu-debian-wheezy--rvm" id="markdown-toc-jason-hsu-debian-wheezy--rvm">Jason Hsu Debian Wheezy + RVM</a></li>
+      <li><a href="#ubuntu-trusty" id="markdown-toc-ubuntu-trusty">Ubuntu Trusty</a></li>
+    </ul>
+  </li>
+  <li><a href="#provisioning" id="markdown-toc-provisioning">Provisioning</a>    <ul>
+      <li><a href="#debian-jessie-8-1" id="markdown-toc-debian-jessie-8-1">Debian Jessie 8</a>        <ul>
+          <li><a href="#vagrant-up" id="markdown-toc-vagrant-up">Vagrant up</a></li>
+          <li><a href="#manual-provisioning" id="markdown-toc-manual-provisioning">Manual Provisioning</a>            <ul>
+              <li><a href="#system-stuff" id="markdown-toc-system-stuff">System stuff</a></li>
+              <li><a href="#rvm-ruby-rails-fun" id="markdown-toc-rvm-ruby-rails-fun">RVM, Ruby, Rails, fun</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#jason-hsu-debian-wheezy--rvm-1" id="markdown-toc-jason-hsu-debian-wheezy--rvm-1">Jason Hsu Debian Wheezy + RVM</a></li>
+      <li><a href="#jason-hsu-debian-wheezy--rvm----redo" id="markdown-toc-jason-hsu-debian-wheezy--rvm----redo">Jason Hsu Debian Wheezy + RVM – REDO</a></li>
+      <li><a href="#ubuntu-trusty-with-ansible" id="markdown-toc-ubuntu-trusty-with-ansible">Ubuntu Trusty with Ansible</a></li>
+      <li><a href="#debian-jessie-8-with-ansible" id="markdown-toc-debian-jessie-8-with-ansible">Debian Jessie 8 with Ansible</a></li>
+    </ul>
+  </li>
+  <li><a href="#new-rails-app" id="markdown-toc-new-rails-app">New Rails App</a>    <ul>
+      <li><a href="#debian-jessie-8-2" id="markdown-toc-debian-jessie-8-2">Debian Jessie 8</a></li>
+      <li><a href="#jason-hsu-debian-wheezy--rvm-2" id="markdown-toc-jason-hsu-debian-wheezy--rvm-2">Jason Hsu Debian Wheezy + RVM</a></li>
+      <li><a href="#jason-hsu-debian-wheezy--rvm----redo-1" id="markdown-toc-jason-hsu-debian-wheezy--rvm----redo-1">Jason Hsu Debian Wheezy + RVM – REDO</a></li>
+      <li><a href="#ubuntu-trusty-with-ansible-1" id="markdown-toc-ubuntu-trusty-with-ansible-1">Ubuntu Trusty with Ansible</a></li>
+      <li><a href="#debian-jessie-8-with-ansible-1" id="markdown-toc-debian-jessie-8-with-ansible-1">Debian Jessie 8 with Ansible</a></li>
+    </ul>
+  </li>
+  <li><a href="#conclusions" id="markdown-toc-conclusions">Conclusions</a></li>
+  <li><a href="#going-forward" id="markdown-toc-going-forward">Going Forward</a></li>
+</ul>
+
+<h2 id="building-different-vagrant-boxes">Building different vagrant boxes</h2>
+
+<ul>
+  <li>Debian Jessie 8 with manual provisioning</li>
+  <li>Jason Hsu’s Debian Wheezy + RVM <a href="https://github.com/jhsu802701/vagrant_debian_wheezy_rvm">https://github.com/jhsu802701/vagrant_debian_wheezy_rvm</a></li>
+  <li>Ubuntu 14.04 + Ansible provisioning <a href="https://github.com/tamouse/vagrant-ubu14.04-emacs24-ruby-2.2.0-development">https://github.com/tamouse/vagrant-ubu14.04-emacs24-ruby-2.2.0-development</a></li>
+  <li>Debian Jessie 8 + Ansible provisioning (same as above with some
+tweaks for jessie 8: Postgresql 9.4 instead of 9.3)</li>
+</ul>
+
+<h2 id="vagrantfiles">Vagrantfiles</h2>
+
+<p>All the <code class="highlighter-rouge">Vagrantfiles</code> were similar, normalizing the following values:</p>
+
+<ul>
+  <li>RAM: 2048MB</li>
+  <li>CPUs: 2 cores</li>
+  <li>VRAM: 12MB</li>
+</ul>
+
+<h2 id="downloading-times">Downloading Times</h2>
+
+<p>I’m downloading the three source boxes and creating them on my
+system.</p>
+
+<h3 id="debian-jessie-8">Debian Jessie 8</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ vagrant box add deb8 https://github.com/holms/vagrant-jessie-box/releases/download/Jessie-v0.1/Debian-jessie-amd64-netboot.box
+==&gt; box: Adding box 'deb8' (v0) for provider:
+    box: Downloading: https://github.com/holms/vagrant-jessie-box/releases/download/Jessie-v0.1/Debian-jessie-amd64-netboot.box
+==&gt; box: Successfully added box 'deb8' (v0) for 'virtualbox'!
+</code></pre>
+</div>
+
+<p>Elapsed time: approximately 12 minutes.</p>
+
+<p>One thing to note: this box uses the UK Debian mirror. Changing the
+<code class="highlighter-rouge">/etc/apt/sources.list</code> file to use a closer mirror can make a huge
+difference in the provisioning times (though not always).</p>
+
+<h3 id="jason-hsu-debian-wheezy--rvm">Jason Hsu Debian Wheezy + RVM</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ vagrant box add deb7hsu 'http://downloads.sourceforge.net/project/vagrant-debian-wheezy-rvm/debian-wheezy-rvm-2015_03_07.box?r=&amp;ts=1425788198&amp;use_mirror=master'
+==&gt; box: Adding box 'deb7hsu' (v0) for provider:
+    box: Downloading: http://downloads.sourceforge.net/project/vagrant-debian-wheezy-rvm/debian-wheezy-rvm-2015_03_07.box?r=&amp;ts=1425788198&amp;use_mirror=master
+==&gt; box: Successfully added box 'deb7hsu' (v0) for 'virtualbox'!
+</code></pre>
+</div>
+
+<p>Elapsed time: approximately 22 minutes.</p>
+
+<h3 id="ubuntu-trusty">Ubuntu Trusty</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ vagrant box add ubu1404daily 'https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box'
+==&gt; box: Adding box 'ubu1404daily' (v0) for provider:
+    box: Downloading: https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box
+==&gt; box: Successfully added box 'ubu1404daily' (v0) for 'virtualbox'!
+</code></pre>
+</div>
+
+<p>Elapsed time: approximately 16 minutes.</p>
+
+<h2 id="provisioning">Provisioning</h2>
+
+<h3 id="debian-jessie-8-1">Debian Jessie 8</h3>
+
+<h4 id="vagrant-up">Vagrant up</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>real	0m31.201s
+user	0m3.744s
+sys	0m1.748s
+</code></pre>
+</div>
+
+<h4 id="manual-provisioning">Manual Provisioning</h4>
+
+<h5 id="system-stuff">System stuff</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get update
+sudo apt-get install -yqq build-essential
+sudo apt-get install -yqq git curl python-psycopg2 postgresql-9.4 postgresql-client libpq-dev sqlite3 libsqlite3-dev libyaml-dev libgdbm-dev libreadline-dev libncurses5-dev libxml2-dev libxslt-dev imagemagick libmagickwand-dev libmagickcore-dev xvfb nodejs
+sudo su - postgres -c 'createuser -s vagrant'
+createdb vagrant
+</code></pre>
+</div>
+
+<h5 id="rvm-ruby-rails-fun">RVM, Ruby, Rails, fun</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>/usr/bin/curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+/usr/bin/curl -sSL https://get.rvm.io | bash -s stable
+source /home/vagrant/.rvm/scripts/rvm
+echo 'gem: --no-document' &gt;&gt; /home/vagrant/.gemrc
+rvm install 2.2.1
+rvm @global do gem install bundler
+rvm @global do gem install pry
+rvm @global do gem install pry-byebug
+rvm @global do gem install rails
+</code></pre>
+</div>
+
+<ul>
+  <li>started at: 2015-05-09@04:30:12</li>
+  <li>ended at: 2015-05-09@05:07:23</li>
+</ul>
+
+<p>Elapsed time: approximately 35 minutes clock time.</p>
+
+<p>This took so long <em>primarily</em> because of manual mistakes; typos,
+incorrect package names, misfires, and so on.
+The commands above represent the final versions <em>that worked</em>.
+If this was all in a
+couple scripts, it would likely have taken less time. Good reason not
+to do things manually!</p>
+
+<h3 id="jason-hsu-debian-wheezy--rvm-1">Jason Hsu Debian Wheezy + RVM</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>vagrant up
+real	1m14.191s
+user	0m4.777s
+sys	0m2.763s
+</code></pre>
+</div>
+
+<p>This is all that should be needed.</p>
+
+<p>Elapsed time: about 2 minutes.</p>
+
+<h3 id="jason-hsu-debian-wheezy--rvm----redo">Jason Hsu Debian Wheezy + RVM – REDO</h3>
+
+<p>Since I need to make changes in the Postgres setup to make a standard
+<code class="highlighter-rouge">rails new</code> work, I’m redoing this provisioning step to make the
+changes manually here.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ time vagrant up
+real	1m11.181s
+user	0m4.436s
+sys	0m2.269s
+</code></pre>
+</div>
+
+<p>Fxing Postgres permissions, establishing <code class="highlighter-rouge">vagrant</code> user for Postgres:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ time vagrant ssh
+vagrant@vagrant-rvm:~$ sudo -i
+root@vagrant-rvm:~# vi /etc/postgresql/9.1/main/pg_hba.conf
+root@vagrant-rvm:~# service postgresql restart
+[ ok ] Restarting PostgreSQL 9.1 database server: main.
+root@vagrant-rvm:~# su - postgres
+postgres@vagrant-rvm:~$ createuser -s vagrant
+postgres@vagrant-rvm:~$ exit
+logout
+root@vagrant-rvm:~# exit
+logout
+vagrant@vagrant-rvm:~$ createdb vagrant
+vagrant@vagrant-rvm:~$ psql
+psql (9.1.15)
+Type "help" for help.
+vagrant=# \q
+vagrant@vagrant-rvm:~$ exit
+logout
+Connection to 127.0.0.1 closed.
+real	1m13.240s
+user	0m1.314s
+sys	0m0.397s
+</code></pre>
+</div>
+
+<p>Elapsed time: appoximately 3 minutes (for both steps).</p>
+
+<h3 id="ubuntu-trusty-with-ansible">Ubuntu Trusty with Ansible</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>vagrant up --provision
+real	11m32.594s
+user	0m5.733s
+sys	0m3.362s
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>rvm @global do gem install rails
+real	1m27.209s
+user	0m29.696s
+sys	0m25.426s
+</code></pre>
+</div>
+
+<p>Also had to do a couple housekeepting things with <code class="highlighter-rouge">nvm</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>nvm use iojs
+nvm alias default iojs
+</code></pre>
+</div>
+
+<p>I didn’t bother timing those.</p>
+
+<p>Elapsed time: approximately 12 minutes.</p>
+
+<h3 id="debian-jessie-8-with-ansible">Debian Jessie 8 with Ansible</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>vagrant up --provision
+real	9m32.044s
+user	0m5.751s
+sys	0m3.076s
+</code></pre>
+</div>
+
+<p>In this case, I added the rails gem installation and nvm housekeeping
+to the provisioning package.</p>
+
+<p>Elapsed time: approximately 10 minutes.</p>
+
+<h2 id="new-rails-app">New Rails App</h2>
+
+<h3 id="debian-jessie-8-2">Debian Jessie 8</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ time (rails new myApp -d postgresql --skip-spring --skip-turbolinks &amp;&amp; cd myApp &amp;&amp; bin/rake db:create &amp;&amp; bin/rails g scaffold Post title body:text published:boolean &amp;&amp; bin/rake db:migrate)
+real	0m56.383s
+user	0m14.604s
+sys	0m1.540s
+</code></pre>
+</div>
+
+<p>Elapsed time: approximately 1 minute.</p>
+
+<h3 id="jason-hsu-debian-wheezy--rvm-2">Jason Hsu Debian Wheezy + RVM</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>rails new myApp -d postgresql --skip-spring --skip-turbolinks
+real	1m4.808s
+user	0m12.629s
+sys	0m2.036s
+</code></pre>
+</div>
+
+<p>Cannot just run <code class="highlighter-rouge">rake db:create</code>.</p>
+
+<p>Must now spend time to make simple use of vagrant user in postgresql
+automatically.</p>
+
+<p>Required setting <code class="highlighter-rouge">/etc/postgresql/9.1/main/pg_hba.conf</code> to allow peer
+connection on all local users.</p>
+
+<p>Now, these work:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>rake db:create
+rails generate scaffold Post title body:text published:boolean
+rake db:migrate
+rails server -b 0.0.0.0
+</code></pre>
+</div>
+
+<p><em>However</em>, could not connect from host machine to VM. Needed to
+provide a <code class="highlighter-rouge">private_network</code> ip address that would work. Utilized the
+<code class="highlighter-rouge">resolv</code> stdlib package and set up local host <code class="highlighter-rouge">/etc/hosts</code> file.</p>
+
+<p>Connecting to <code class="highlighter-rouge">http://jhsu.local:3000</code> works as expected now, and can
+manipulate posts at <code class="highlighter-rouge">http://jhsu.local:3000/posts</code> just fine.</p>
+
+<p>Started at: 2015-05-09@05:22:51
+Ended at: 2015-05-09@05:47:03</p>
+
+<p>Total elapsed time to make things work: approximately 25 minutes.</p>
+
+<p>However, this is an unfair comparison since most of that 25 minutes
+was really spent trying to figure things out to make them work in the
+way I’m used to. Once I had that all figured out, I redid the
+provisioning and new app steps.</p>
+
+<h3 id="jason-hsu-debian-wheezy--rvm----redo-1">Jason Hsu Debian Wheezy + RVM – REDO</h3>
+
+<p>After fixing the postgres configuration in the provisioning step,
+building the new rails app ran so much faster:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ time (rails new myApp -d postgresql --skip-spring --skip-turbolinks &amp;&amp; cd myApp &amp;&amp; bin/rake db:create &amp;&amp; bin/rails g scaffold Post title body:text published:boolean &amp;&amp; bin/rake db:migrate)
+real	1m28.536s
+user	0m15.681s
+sys	0m4.680s
+</code></pre>
+</div>
+
+<p>Elapsed time: approximately 1.5 minutes</p>
+
+<h3 id="ubuntu-trusty-with-ansible-1">Ubuntu Trusty with Ansible</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ time (rails new myApp -d postgresql --skip-spring --skip-turbolinks &amp;&amp; cd myApp &amp;&amp; bin/rake db:create &amp;&amp; bin/rails g scaffold Post title body:text published:boolean &amp;&amp; bin/rake db:migrate)
+real	0m54.673s
+user	0m15.867s
+sys	0m4.743s
+</code></pre>
+</div>
+
+<p>Elapsed time: approximately 1 minute</p>
+
+<h3 id="debian-jessie-8-with-ansible-1">Debian Jessie 8 with Ansible</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ time rails new myApp -d postgresql --skip-spring --skip-turbolinks
+real	0m37.400s
+user	0m11.376s
+sys	0m1.204s
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ time bin/rake db:create
+real	0m1.823s
+user	0m0.964s
+sys	0m0.160s
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ time bin/rails g scaffold Post title body:text published:boolean
+real	0m3.965s
+user	0m2.100s
+sys	0m0.872s
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ time bin/rake db:migrate
+real	0m3.212s
+user	0m1.864s
+sys	0m0.592s
+</code></pre>
+</div>
+
+<p>Wow that was fast.</p>
+
+<p>Trying that again from scratch.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ time (rails new myApp -d postgresql --skip-spring --skip-turbolinks &amp;&amp; cd myApp &amp;&amp; bin/rake db:create &amp;&amp; bin/rails g scaffold Post title body:text published:boolean &amp;&amp; bin/rake db:migrate)
+real	0m15.154s
+user	0m6.088s
+sys	0m2.088s
+</code></pre>
+</div>
+
+<p>Elapsed time: approximately 15 seconds.</p>
+
+<p><strong>FIFTEEN SECONDS</strong></p>
+
+<h1 class="no_toc" id="fifteen-seconds-">FIFTEEN SECONDS ?!?!?</h1>
+
+<hr />
+
+<h1 id="conclusions">Conclusions</h1>
+
+<p>From scratch to a running Rails app, times are in approximate minutes:</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th style="text-align: left">package</th>
+      <th style="text-align: right">download</th>
+      <th style="text-align: right">provision</th>
+      <th style="text-align: right">create app</th>
+      <th style="text-align: right">total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">debian jessie 8 + manual</td>
+      <td style="text-align: right">12</td>
+      <td style="text-align: right">35</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">48</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Jason Hsu debian wheezy 7 + rvm</td>
+      <td style="text-align: right">22</td>
+      <td style="text-align: right">2</td>
+      <td style="text-align: right">25</td>
+      <td style="text-align: right">49</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Jason Hsu debian wheezy 7 + rvm – REDO</td>
+      <td style="text-align: right">22</td>
+      <td style="text-align: right">3</td>
+      <td style="text-align: right">2</td>
+      <td style="text-align: right">27</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">ubuntu trusty + ansible</td>
+      <td style="text-align: right">16</td>
+      <td style="text-align: right">12</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">29</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">debian jessie 8 + ansible</td>
+      <td style="text-align: right">12</td>
+      <td style="text-align: right">10</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">23</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Your mileage will vary, of course, but if you are going the vagrant
+route, plan on about a half-hour to be fully up and running with a
+development-ready rails kit. Using a pre-built package such as Jason’s
+is a great idea, provided you also understand the underlying
+assumptions that package is making. This is true also of using things
+like my starter kit, as well.</p>
+
+<h1 id="going-forward">Going Forward</h1>
+
+<p>Whatever means you choose to arrive at your development box, you
+should take steps to preserve it as well. Repackage the VM and save
+the box file somewhere you can retrieve it, with all your personal
+customizations and so on. I’ll write a future blog post on that.</p>
+
+</article>
+<hr>
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </main>
+
+    <hr />
+<footer class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-footer" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.tamouse.org">&copy; 2016 Tamara Temple</a>
+    </div> <!-- /.navbat-header -->
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+        <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+        <li><a href="/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+        <li><a href="/pages/colophon/">Colophon</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>  <!-- /.container-fluid -->
+</footer>
+
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/js/vendor/bootstrap.js"></script>
+<script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/post_index.js"></script>
+
+    
+
+  </body>
+</html>

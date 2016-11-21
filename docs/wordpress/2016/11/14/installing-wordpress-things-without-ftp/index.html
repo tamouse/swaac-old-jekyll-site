@@ -1,0 +1,166 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Installing WordPress Things Without FTP</title>
+    <meta name="description" content="The development blog of tamouse">
+
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css" media="screen" />
+    <link rel="canonical" href="http://swaac.tamouse.org/wordpress/2016/11/14/installing-wordpress-things-without-ftp/">
+    <link href="/favicon.png" rel="icon">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Software as a Craft</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/">Home</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/learning">Learning</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/about">About</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/swaac-intro">SWaaC Intro</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages">Pages</a></li>
+        <li class="divider"></li>
+        <li><a href="/tags">Tags</a></li>
+        <li class="divider"></li>
+	<li><a href="/categories">Categories</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>
+</nav>
+
+
+    <main class="container-fluid">
+      <header class="page-header">
+<h1>Installing WordPress Things Without FTP</h1>
+Nov 14, 2016
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/categories/wordpress">wordpress</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/tags/installation">installation</a></li> <li role="presentation"><a href="/tags/plugins">plugins</a></li> <li role="presentation"><a href="/tags/themes">themes</a></li> 
+</header>
+
+<article>
+<p>Recently having set up a couple of WordPress sandbox areas, which
+would not have any FTP access points for upgrading and installing WP
+themes and plugins, I ran across this feature where the WP install can
+“reach out” and pull in the items it needs, rather than telling the WP
+repository to push the items to the site.</p>
+
+<p>In the <a href="https://codex.wordpress.org/Editing_wp-config.php#WordPress_Upgrade_Constants" title="WordPress Upgrade Constants" target="_blank">codex</a>
+there is a section on “WordPress Upgrade Constants”, and in particular
+it describes <code class="highlighter-rouge">FS_METHOD</code> which turns the nature of installing upgrades
+around.</p>
+
+<p>By adding the following line to the <code class="highlighter-rouge">wp-config.php</code> file, you can
+enable this behaviour:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php">define('FS_METHOD', 'direct');</code></pre></figure>
+
+<p>Putting that at the end of the file turns on this ability, which was a
+revelation for working on these sandbox sites.</p>
+
+<p>This is what the page has to say:</p>
+
+<blockquote>
+  <p>FS_METHOD forces the filesystem method. It should only be “direct”, “ssh2”, “ftpext”, or “ftpsockets”. Generally, you should only change this if you are experiencing update problems. If you change it and it doesn’t help, change it back/remove it. Under most circumstances, setting it to ‘ftpsockets’ will work if the automatically chosen method does not. Note that your selection here has serious security implications. If you are not familiar with them, you should seek help before making a change.</p>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>(Primary Preference) “direct” forces it to use Direct File I/O requests from within PHP. It is the option chosen by default.</li>
+    <li>(Secondary Preference) “ssh2” is to force the usage of the SSH PHP Extension if installed</li>
+    <li>(3rd Preference) “ftpext” is to force the usage of the FTP PHP Extension for FTP Access, and finally</li>
+    <li>(4th Preference) “ftpsockets” utilises the PHP Sockets Class for FTP Access.</li>
+  </ul>
+</blockquote>
+
+<p>I chose to use <code class="highlighter-rouge">direct</code> for the sandboxes.</p>
+
+<p>Take the warning about security implications seriously. You don’t want
+any production servers to be able to update if someone gains access.</p>
+
+<p>I’ve handled production upgrades by moving the updated software up to
+the production machine myself <em>after</em> testing the upgrades. There is
+<em>no</em> FTP (secure or otherwise) on my production installations. BTDT
+got burned badly.</p>
+
+</article>
+<hr>
+<p><a href="https://codex.wordpress.org/Editing_wp-config.php#WordPress_Upgrade_Constants">Source</a></p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </main>
+
+    <hr />
+<footer class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-footer" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.tamouse.org">&copy; 2016 Tamara Temple</a>
+    </div> <!-- /.navbat-header -->
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+        <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+        <li><a href="/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+        <li><a href="/pages/colophon/">Colophon</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>  <!-- /.container-fluid -->
+</footer>
+
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/js/vendor/bootstrap.js"></script>
+<script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/post_index.js"></script>
+
+    
+
+  </body>
+</html>

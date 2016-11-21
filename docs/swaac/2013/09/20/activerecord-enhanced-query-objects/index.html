@@ -1,0 +1,252 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>ActiveRecord: Enhanced Query Objects</title>
+    <meta name="description" content="The development blog of tamouse">
+
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css" media="screen" />
+    <link rel="canonical" href="http://swaac.tamouse.org/swaac/2013/09/20/activerecord-enhanced-query-objects/">
+    <link href="/favicon.png" rel="icon">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Software as a Craft</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/">Home</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/learning">Learning</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/about">About</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/swaac-intro">SWaaC Intro</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages">Pages</a></li>
+        <li class="divider"></li>
+        <li><a href="/tags">Tags</a></li>
+        <li class="divider"></li>
+	<li><a href="/categories">Categories</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>
+</nav>
+
+
+    <main class="container-fluid">
+      <header class="page-header">
+<h1>ActiveRecord: Enhanced Query Objects</h1>
+Sep 20, 2013
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/categories/swaac">swaac</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/tags/rails">rails</a></li> <li role="presentation"><a href="/tags/enhanced-query-objects">enhanced-query-objects</a></li> <li role="presentation"><a href="/tags/scopes">scopes</a></li> <li role="presentation"><a href="/tags/activerecord">activerecord</a></li> <li role="presentation"><a href="/tags/poros">poros</a></li> 
+</header>
+
+<article>
+<p>A repost of <a href="http://hasghari.github.io/2013/09/15/active-record-enhanced-query-objects.html?utm_source=rubyweekly&amp;utm_medium=email">http://hasghari.github.io/2013/09/15/active-record-enhanced-query-objects.html?utm_source=rubyweekly&amp;utm_medium=email</a>.</p>
+
+<blockquote>
+  <h2 id="activerecord-enhanced-query-objects">ActiveRecord: Enhanced Query Objects</h2>
+
+  <p>15 Sep 2013</p>
+
+  <p>Your ActiveRecord models are usually the first place in your application
+where the unwieldy code begs for refactoring.</p>
+
+  <p>In an excellent post by Bryan Helmkamp on the Code Climate Blog, he
+outlined <a href="http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/">7 Patterns to Refactor Fat ActiveRecord
+Models</a>.
+One of the patterns from this blog post that I want to focus on is
+<strong>Extract Query Objects</strong>.</p>
+
+  <p>We have been using this pattern for a while but I missed the convenience
+of chainable and reusable scopes. Here’s an example:</p>
+
+  <div class="highlighter-rouge"><pre class="highlight"><code> 1 class Product &lt; ActiveRecord::Base
+ 2   has_many :reviews
+ 3 end
+ 4 
+ 5 class PopularProductQuery
+ 6   def initialize(relation = Product.scoped)
+ 7     @relation = relation
+ 8   end
+ 9 
+10   def popular(time)
+11     @relation.joins(:reviews).where(reviews: { created_at: time..Time.now,
+12                                                available: true })
+13   end
+14 
+15   def with_recent_activity(time)
+16     @relation.joins(:reviews).where(reviews: { created_at: time..Time.now })
+17   end
+18 
+19   def with_available_reviews
+20     @relation.joins(:reviews).where(reviews: { available: true })
+21   end
+22 end
+</code></pre>
+  </div>
+
+  <p>The query object above defines three utility methods to return records
+of <code class="highlighter-rouge">Product</code> with certain properties. However, you will notice that
+<code class="highlighter-rouge">PopularProductQuery#popular</code> is combining the logic of
+<code class="highlighter-rouge">#with_recent_activity</code> and <code class="highlighter-rouge">#with_available_reviews</code>. The trivial
+solution to keeping this DRY is defining scopes on the <code class="highlighter-rouge">Product</code> model:</p>
+
+  <div class="highlighter-rouge"><pre class="highlight"><code> 1 class Product &lt; ActiveRecord::Base
+ 2   has_many :reviews
+ 3 
+ 4   scope :popular, -&gt;(time) {
+ 5     with_recent_activity(time).with_available_reviews
+ 6   }
+ 7 
+ 8   scope :with_recent_activity, -&gt;(time) {
+ 9     joins(:reviews).where(reviews: { created_at: time..Time.now })
+10   }
+11 
+12   scope :with_available_reviews, -&gt;(time) {
+13     joins(:reviews).where(reviews: { available: true })
+14   }
+15 end
+</code></pre>
+  </div>
+
+  <p>Ideally we would like to define these scopes on our query objects to
+prevent our models from growing “fat” over time. If these scopes were so
+common that they would be used across many different contexts in our
+application, we would probably want to keep them on the model but for
+the purpose of this post, let’s assume that these are very specific
+scopes that we would like to isolate to the query object.</p>
+
+  <p>An existing but rarely advertised feature of ActiveRecord is that you
+have the ability to extend any <code class="highlighter-rouge">ActiveRecord::Relation</code> object with your
+custom scopes:</p>
+
+  <div class="highlighter-rouge"><pre class="highlight"><code> 1 class PopularProductQuery
+ 2   def initialize(relation = Product.scoped)
+ 3     @relation = relation.extending(Scopes)
+ 4   end
+ 5 
+ 6   def popular(time)
+ 7     @relation.with_recent_activity(time).with_available_reviews
+ 8   end
+ 9 
+10   module Scopes
+11     def with_recent_activity(time)
+12       joins(:reviews).where(reviews: { created_at: time..Time.now })
+13     end
+14 
+15     def with_available_reviews
+16       joins(:reviews).where(reviews: { available: true })
+17     end
+18   end
+19 end
+</code></pre>
+  </div>
+
+  <p>Here we are taking advantage of the
+<code class="highlighter-rouge">ActiveRecord::QueryMethods#extending</code> method to add custom scopes to
+our query object without polluting the model space. In other words,
+<code class="highlighter-rouge">Product.with_available_reviews</code> is <strong>not</strong> valid. To put it all
+together, you would use the enhanced query object like so:</p>
+
+  <div class="highlighter-rouge"><pre class="highlight"><code>PopularProductQuery.new.popular(2.weeks.ago)
+</code></pre>
+  </div>
+
+  <p>I’ve come to really like this pattern to adhere to the Single
+Responsibility Principle and keep my models manageable.</p>
+
+  <p>\</p>
+
+  <p>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+Disqus.</a></p>
+
+  <p><a href="http://disqus.com">comments powered by Disqus</a></p>
+
+  <p>Hamed Asghari\
+ Ruby, JavaScript and Go enthusiast\
+ hasghari@gmail.com</p>
+
+  <p><a href="https://github.com/hasghari">github.com/hasghari</a>\
+ <a href="https://twitter.com/phyrengr">twitter.com/phyrengr</a>\</p>
+
+</blockquote>
+
+</article>
+<hr>
+<p><a href="http://hasghari.github.io/2013/09/15/active-record-enhanced-query-objects.html?utm_source=rubyweekly&utm_medium=email">Source</a></p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </main>
+
+    <hr />
+<footer class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-footer" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.tamouse.org">&copy; 2016 Tamara Temple</a>
+    </div> <!-- /.navbat-header -->
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+        <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+        <li><a href="/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+        <li><a href="/pages/colophon/">Colophon</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>  <!-- /.container-fluid -->
+</footer>
+
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/js/vendor/bootstrap.js"></script>
+<script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/post_index.js"></script>
+
+    
+
+  </body>
+</html>

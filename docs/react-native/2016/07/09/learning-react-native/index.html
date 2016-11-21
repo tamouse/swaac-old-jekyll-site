@@ -1,0 +1,241 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Learning ReactNative</title>
+    <meta name="description" content="The development blog of tamouse">
+
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css" media="screen" />
+    <link rel="canonical" href="http://swaac.tamouse.org/react-native/2016/07/09/learning-react-native/">
+    <link href="/favicon.png" rel="icon">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Software as a Craft</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/">Home</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/learning">Learning</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/about">About</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/swaac-intro">SWaaC Intro</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages">Pages</a></li>
+        <li class="divider"></li>
+        <li><a href="/tags">Tags</a></li>
+        <li class="divider"></li>
+	<li><a href="/categories">Categories</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>
+</nav>
+
+
+    <main class="container-fluid">
+      <header class="page-header">
+<h1>Learning ReactNative</h1>
+Jul 9, 2016
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/categories/react-native">react-native</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/tags/learning">learning</a></li> <li role="presentation"><a href="/tags/react">react</a></li> <li role="presentation"><a href="/tags/react-native">react-native</a></li> <li role="presentation"><a href="/tags/learning-notes">learning-notes</a></li> 
+</header>
+
+<article>
+<p>Notes and reflections on learning <a href="https://facebook.github.io/react-native/">ReactNative</a>, from a workshop by <a href="https://github.com/hendrixer">Scott Moss</a> at <a href="https://frontendmasters.com/">FrontendMasters</a>.</p>
+
+<h2 id="what-is-reactnative">What is ReactNative?</h2>
+
+<p>A version of <a href="https://facebook.github.io/react/">React</a> that builds native applications on [iOS] and [Android].</p>
+
+<h2 id="create-a-new-app">Create a new app</h2>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>react-native init &lt;ProjectName&gt;</code></pre></figure>
+
+<p>Afterwards, the instructions are pretty simple:</p>
+
+<blockquote>
+  <p>To run your app on iOS:</p>
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd </span>your_app
+react-native run-ios</code></pre></figure>
+
+<blockquote>
+  <p>- or -</p>
+</blockquote>
+
+<blockquote>
+  <p>Open your_app/ios/my_react_native_todo_app.xcodeproj in Xcode
+Hit the Run button</p>
+</blockquote>
+
+<blockquote>
+  <p>To run your app on Android:
+Have an Android emulator running (quickest way to get started), or a device connected</p>
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd </span>your_app
+react-native run-android</code></pre></figure>
+
+<h2 id="a-few-chores">A few chores</h2>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git init
+<span class="nb">echo</span> <span class="s1">'description of your app'</span> | tee README.md &gt; .git/description
+hub create -d <span class="s2">"</span><span class="k">$(</span>cat README.md<span class="k">)</span><span class="s2">"</span>
+npm init <span class="c"># fill in missing info</span></code></pre></figure>
+
+<h2 id="watchman">Watchman</h2>
+
+<p><a href="https://facebook.github.io/watchman/" title="Facebook's Watchman Tool">Watchman</a> is a utility that is used by <a href="https://facebook.github.io/react-native/">ReactNative</a> in development
+mode to notify the system to rebuild when a file changes. I don’t
+particularly like it, and it seems problematic. It’s also a resource
+hog. For instance, I can’t run Spotify at the same time I’m working
+(sux).</p>
+
+<p>Make to shut down the watchman server when switching projects.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">watchman shutdown-server</code></pre></figure>
+
+<h2 id="json-server">Json-Server</h2>
+
+<p>In order to have a nice server store, I’m using the <a href="https://www.npmjs.com/package/json-server" title="Serves JSON files through REST routes.">json-server</a>
+module. It provides a nice RESTful server endpoint for the data you
+want to serve up.</p>
+
+<h3 id="initialize-the-data-file">Initialize the data file</h3>
+
+<p>Create the <code class="highlighter-rouge">db.json</code> file with the following content:</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"todos"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>Make sure the key is in quotes – it’s <strong>JSON</strong> not JavaScript.</p>
+
+<p><strong>Caveat:</strong> if you decide to pre-populate the database, make <strong>sure</strong>
+that you have an <code class="highlighter-rouge">id</code> field for each record.</p>
+
+<h2 id="redux">Redux</h2>
+
+<p><a href="http://redux.js.org/">Redux</a> is the predictable state container for JavaScript. React has
+been associated strongly the Redux, although it’s not the only option
+on the block (see <a href="http://reactivex.io/" title="An API for async programming with observable streams">RxJs</a> too).</p>
+
+<h3 id="fetch"><code class="highlighter-rouge">.fetch()</code></h3>
+
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalFetch/fetch" title="GlobalFetch.fetch @ MDN"><code class="highlighter-rouge">.fetch()</code></a> function is the new, modern replacement for
+doing AJAX-y things with XmlHttpRequest. It’s a cleaner interface and
+built right in. Using <a href="https://www.npmjs.com/package/isomorphic-fetch" title="Isomorphic WHATWG Fetch API, for Node &amp; Browserify">isomorphic-fetch</a> lets you use it browser or
+server side to perform <a href="http://redux.js.org/docs/advanced/AsyncActions.html" title="Async Actions">async actions</a>. It’s a bit odd for a name,
+though, since you can use any of the HTTP verbs with it, not just GET.</p>
+
+<p><strong>NOTE:</strong> remember that <code class="highlighter-rouge">.json()</code> on the <code class="highlighter-rouge">Response</code> object is a
+<em>function</em>.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8</pre></td><td class="code"><pre><span class="kr">export</span> <span class="kd">function</span> <span class="nx">fetchTodos</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">dispatch</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">dispatch</span><span class="p">(</span><span class="nx">requestTodos</span><span class="p">())</span>
+    <span class="k">return</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">ENDPOINT</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">json</span> <span class="o">=&gt;</span> <span class="nx">dispatch</span><span class="p">(</span><span class="nx">receivedTodos</span><span class="p">(</span><span class="nx">json</span><span class="p">)))</span>
+  <span class="p">}</span>
+<span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<h2 id="testing">Testing</h2>
+
+<p>I’m testing with <a href="http://mochajs.org/" title="Mocha JS testing framework">Mocha</a> and <a href="http://chaijs.com/" title="Chai Assertion Library">Chai</a> modules</p>
+
+<p><del>Because I’m using <code class="highlighter-rouge">babel</code> in the tests, I also needed to install
+<code class="highlighter-rouge">bable-preset-react</code> to get the <code class="highlighter-rouge">run-ios</code> to work.</del></p>
+
+<p>In fact, using Mocha like this causes <code class="highlighter-rouge">react-native</code> to have
+conniptions, so I’m taking out the <code class="highlighter-rouge">.babelrc</code> file until I can figure
+out how to have both tests and native. :(</p>
+
+</article>
+<hr>
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </main>
+
+    <hr />
+<footer class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-footer" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.tamouse.org">&copy; 2016 Tamara Temple</a>
+    </div> <!-- /.navbat-header -->
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+        <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+        <li><a href="/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+        <li><a href="/pages/colophon/">Colophon</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>  <!-- /.container-fluid -->
+</footer>
+
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/js/vendor/bootstrap.js"></script>
+<script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/post_index.js"></script>
+
+    
+
+  </body>
+</html>

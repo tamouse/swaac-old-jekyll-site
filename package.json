@@ -19,6 +19,7 @@
   },
   "scripts": {
     "start": "gulp",
-    "publish": "gulp dist && (cd _dist && git add --all && git commit -m publish && git push -fu origin HEAD)"
+    "build": "gulp dist",
+    "publish": "gulp dist && git add --all && git commit -m publish && git push -fu origin HEAD"
   }
 }

@@ -1,0 +1,141 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>New Hash Operators in Ruby 2.3</title>
+    <meta name="description" content="The development blog of tamouse">
+
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css" media="screen" />
+    <link rel="canonical" href="http://swaac.tamouse.org/ruby/2016/03/14/new-hash-operators-in-ruby-2-dot-3/">
+    <link href="/favicon.png" rel="icon">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Software as a Craft</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/">Home</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/learning">Learning</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/about">About</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/swaac-intro">SWaaC Intro</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages">Pages</a></li>
+        <li class="divider"></li>
+        <li><a href="/tags">Tags</a></li>
+        <li class="divider"></li>
+	<li><a href="/categories">Categories</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>
+</nav>
+
+
+    <main class="container-fluid">
+      <header class="page-header">
+<h1>New Hash Operators in Ruby 2.3</h1>
+Mar 14, 2016
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/categories/ruby">ruby</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/tags/hashes">hashes</a></li> <li role="presentation"><a href="/tags/new-2.3">new-2.3</a></li> <li role="presentation"><a href="/tags/operators">operators</a></li> 
+</header>
+
+<article>
+<p>There are some new Hash operators in Ruby 2.3:</p>
+
+<p>Subset operators:</p>
+
+<ul>
+  <li><a href="http://ruby-doc.org/core-2.3.0/Hash.html#method-i-3C"><code class="highlighter-rouge">&lt;</code></a> - hash is a subset of other</li>
+  <li><a href="http://ruby-doc.org/core-2.3.0/Hash.html#method-i-3C-3D"><code class="highlighter-rouge">&lt;=</code></a> - hash is a subset or equal to other</li>
+  <li><a href="http://ruby-doc.org/core-2.3.0/Hash.html#method-i-3E"><code class="highlighter-rouge">&gt;</code></a> - other is a subset of hash</li>
+  <li><a href="http://ruby-doc.org/core-2.3.0/Hash.html#method-i-3E-3D"><code class="highlighter-rouge">&gt;=</code></a> - other is a subset or equal to hash</li>
+</ul>
+
+<p>Others:</p>
+
+<ul>
+  <li><a href="http://ruby-doc.org/core-2.3.0/Hash.html#method-i-dig"><code class="highlighter-rouge">dig</code></a> - “Extracts the nested value specified by the sequence of <em>idx</em> objects by calling <code class="highlighter-rouge">dig</code> at each step, returning <code class="highlighter-rouge">nil</code> if any intermediate step is <code class="highlighter-rouge">nil</code>.”</li>
+  <li><a href="http://ruby-doc.org/core-2.3.0/Hash.html#method-i-fetch_values"><code class="highlighter-rouge">fetch_values</code></a> - “Returns an array containing the values associated with the given keys but also raises <code class="highlighter-rouge">KeyError</code> when one of keys can’t be found. Also see <code class="highlighter-rouge">Hash#values_at</code> and <code class="highlighter-rouge">Hash#fetch</code>.”</li>
+  <li><a href="http://ruby-doc.org/core-2.3.0/Hash.html#method-i-to_proc"><code class="highlighter-rouge">to_proc</code></a> - this isn’t documented, it seems</li>
+</ul>
+
+</article>
+<hr>
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </main>
+
+    <hr />
+<footer class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-footer" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.tamouse.org">&copy; 2016 Tamara Temple</a>
+    </div> <!-- /.navbat-header -->
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+        <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+        <li><a href="/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+        <li><a href="/pages/colophon/">Colophon</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>  <!-- /.container-fluid -->
+</footer>
+
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/js/vendor/bootstrap.js"></script>
+<script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/post_index.js"></script>
+
+    
+
+  </body>
+</html>

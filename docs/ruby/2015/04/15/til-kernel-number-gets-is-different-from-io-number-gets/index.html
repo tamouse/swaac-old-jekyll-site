@@ -1,0 +1,229 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>TIL: Kernel#gets is different from IO#gets</title>
+    <meta name="description" content="The development blog of tamouse">
+
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css" media="screen" />
+    <link rel="canonical" href="http://swaac.tamouse.org/ruby/2015/04/15/til-kernel-number-gets-is-different-from-io-number-gets/">
+    <link href="/favicon.png" rel="icon">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Software as a Craft</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/">Home</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/learning">Learning</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/about">About</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/swaac-intro">SWaaC Intro</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages">Pages</a></li>
+        <li class="divider"></li>
+        <li><a href="/tags">Tags</a></li>
+        <li class="divider"></li>
+	<li><a href="/categories">Categories</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>
+</nav>
+
+
+    <main class="container-fluid">
+      <header class="page-header">
+<h1>TIL: Kernel#gets is different from IO#gets</h1>
+Apr 15, 2015
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/categories/ruby">ruby</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/tags/gets">gets</a></li> <li role="presentation"><a href="/tags/ARGV">ARGV</a></li> <li role="presentation"><a href="/tags/learning">learning</a></li> <li role="presentation"><a href="/tags/TIL">TIL</a></li> 
+</header>
+
+<article>
+<p><em>Today I Learned</em>: <code class="highlighter-rouge">Kernel#gets</code> does more than <code class="highlighter-rouge">IO#gets</code> does, it is
+not simply a shorthand way of reading from <code class="highlighter-rouge">STDIN</code>.</p>
+
+<p>This was from a question on <code class="highlighter-rouge">irc://freenode.net/#ruby</code>.</p>
+
+<p><code class="highlighter-rouge">Kernel#gets</code> reads more than just stdin. It uses <code class="highlighter-rouge">ARGV*</code> unless it’s
+empty, in which case it uses <code class="highlighter-rouge">STDIN</code>.</p>
+
+<h3 id="from-the-ruby-docs">From the ruby docs:</h3>
+
+<p>At <code class="highlighter-rouge">Kernel#gets</code> <a href="http://ruby-doc.org/core-2.2.1/Kernel.html#method-i-gets"><small>(link)</small></a>:</p>
+
+<blockquote>
+  <p>Returns (and assigns to <code class="highlighter-rouge">$_</code>) the next line from the list of files in
+<code class="highlighter-rouge">ARGV</code> (or <code class="highlighter-rouge">$*</code>), or from standard input if no files are present on the
+command line.</p>
+</blockquote>
+
+<p>This will read from stdin:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ ruby gets_loop.rb
+</code></pre>
+</div>
+
+<p>This looks for the files “these”, “are”, “some”, and “words” and read
+from them sequentially:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ ruby gets_loop.rb these are some words
+</code></pre>
+</div>
+
+<h3 id="examples">Examples</h3>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">puts</span> <span class="s2">"just a loop. ^C to exit"</span>
+
+<span class="kp">loop</span> <span class="k">do</span>
+  <span class="nb">print</span> <span class="s2">"&gt; "</span>
+
+  <span class="c1"># This will read from ARGF a line at a time</span>
+  <span class="n">command</span> <span class="o">=</span> <span class="nb">gets</span><span class="p">.</span><span class="nf">chomp</span>
+
+  <span class="c1"># To make it read *only* from stdin when there are command line</span>
+  <span class="c1"># arguments, you have to use STDIN explicitly:</span>
+  <span class="c1"># command = STDIN.gets.chomp</span>
+
+  <span class="nb">puts</span> <span class="s2">"Command: &gt;&gt;</span><span class="si">#{</span><span class="n">command</span><span class="p">.</span><span class="nf">inspect</span><span class="si">}</span><span class="s2">&lt;&lt;"</span>
+<span class="k">end</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">$ ruby gets_loop.rb
+just a loop. ^C to exit
+&gt; hello, world
+Command: &gt;&gt;"hello, world"&lt;&lt;
+&gt; ^Cgets_loop.rb:23:in `gets': Interrupt
+	from gets_loop.rb:23:in `gets'
+	from gets_loop.rb:23:in `block in &lt;main&gt;'
+	from gets_loop.rb:19:in `loop'
+	from gets_loop.rb:19:in `&lt;main&gt;'
+
+
+
+$ ruby gets_loop.rb these are some words
+just a loop. ^C to exit
+&gt; gets_loop.rb:23:in `gets': No such file or directory @ rb_sysopen - these (Errno::ENOENT)
+	from gets_loop.rb:23:in `gets'
+	from gets_loop.rb:23:in `block in &lt;main&gt;'
+	from gets_loop.rb:19:in `loop'
+	from gets_loop.rb:19:in `&lt;main&gt;'</code></pre></figure>
+
+<p>Let’s change it to <code class="highlighter-rouge">STDIN.gets</code>:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">puts</span> <span class="s2">"just a loop. ^C to exit"</span>
+
+<span class="kp">loop</span> <span class="k">do</span>
+  <span class="nb">print</span> <span class="s2">"&gt; "</span>
+
+  <span class="c1"># This will read from ARGF a line at a time</span>
+  <span class="c1"># command = gets.chomp</span>
+
+  <span class="c1"># To make it read *only* from stdin when there are command line</span>
+  <span class="c1"># arguments, you have to use STDIN explicitly:</span>
+  <span class="n">command</span> <span class="o">=</span> <span class="no">STDIN</span><span class="p">.</span><span class="nf">gets</span><span class="p">.</span><span class="nf">chomp</span>
+
+  <span class="nb">puts</span> <span class="s2">"Command: &gt;&gt;</span><span class="si">#{</span><span class="n">command</span><span class="p">.</span><span class="nf">inspect</span><span class="si">}</span><span class="s2">&lt;&lt;"</span>
+<span class="k">end</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">$ ruby gets_loop.rb
+just a loop. ^C to exit
+&gt; hello, world
+Command: &gt;&gt;"hello, world"&lt;&lt;
+&gt; ^Cgets_loop.rb:27:in `gets': Interrupt
+	from gets_loop.rb:27:in `block in &lt;main&gt;'
+	from gets_loop.rb:19:in `loop'
+	from gets_loop.rb:19:in `&lt;main&gt;'
+
+
+$ ruby gets_loop.rb these are some words
+just a loop. ^C to exit
+&gt; hello again, you world you
+Command: &gt;&gt;"hello again, you world you"&lt;&lt;
+&gt; ^Cgets_loop.rb:27:in `gets': Interrupt
+	from gets_loop.rb:27:in `block in &lt;main&gt;'
+	from gets_loop.rb:19:in `loop'
+	from gets_loop.rb:19:in `&lt;main&gt;'</code></pre></figure>
+
+<p>You can see it now works the same way with and without command line
+arguments.</p>
+
+</article>
+<hr>
+<p><a href="http://ruby-doc.org/core-2.2.1/Kernel.html#method-i-gets">Source</a></p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </main>
+
+    <hr />
+<footer class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-footer" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.tamouse.org">&copy; 2016 Tamara Temple</a>
+    </div> <!-- /.navbat-header -->
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+        <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+        <li><a href="/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+        <li><a href="/pages/colophon/">Colophon</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>  <!-- /.container-fluid -->
+</footer>
+
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/js/vendor/bootstrap.js"></script>
+<script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/post_index.js"></script>
+
+    
+
+  </body>
+</html>

@@ -1,0 +1,391 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>ReactJS course with Frontend Masters</title>
+    <meta name="description" content="The development blog of tamouse">
+
+    <link rel="stylesheet" href="/assets/css/main.css" type="text/css" media="screen" />
+    <link rel="canonical" href="http://swaac.tamouse.org/javascript/2015/02/13/reactjs-course-with-frontend-masters/">
+    <link href="/favicon.png" rel="icon">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Software as a Craft</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/">Home</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/learning">Learning</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/about">About</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages/swaac-intro">SWaaC Intro</a></li>
+        <li class="divider"></li>
+        <li><a href="/pages">Pages</a></li>
+        <li class="divider"></li>
+        <li><a href="/tags">Tags</a></li>
+        <li class="divider"></li>
+	<li><a href="/categories">Categories</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>
+</nav>
+
+
+    <main class="container-fluid">
+      <header class="page-header">
+<h1>ReactJS course with Frontend Masters</h1>
+Feb 13, 2015
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/categories/javascript">javascript</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/tags/reactjs">reactjs</a></li> <li role="presentation"><a href="/tags/js-frameworks">js-frameworks</a></li> <li role="presentation"><a href="/tags/frontend-masters">frontend-masters</a></li> 
+</header>
+
+<article>
+<p>I attended a course today on <a href="http://reactjs.com">ReactJS</a> given by
+<a href="http://twitter.com/ryanflorence">Ryan Florence</a> and put on by
+<a href="http://frontendmasters.com">Frontend Masters</a>. I loved the course,
+which was a pretty high-level look at various aspects of ReactJS.</p>
+
+<p>I live-tweeted during the class and took some <a href="#notes">notes</a>.</p>
+
+<blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/hashtag/ReactJS?src=hash">#ReactJS</a> <a href="https://twitter.com/FrontendMasters">@FrontendMasters</a> ES6 lends concise syntax</p>&mdash; Tamara Temple (@tamouse) <a href="https://twitter.com/tamouse/status/566256102975623168">February 13, 2015</a></blockquote>
+<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/hashtag/ReactJS?src=hash">#ReactJS</a> <a href="https://twitter.com/FrontendMasters">@FrontendMasters</a> components are just functions</p>&mdash; Tamara Temple (@tamouse) <a href="https://twitter.com/tamouse/status/566270909883744257">February 13, 2015</a></blockquote>
+
+<blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/hashtag/ReactJS?src=hash">#ReactJS</a> <a href="https://twitter.com/FrontendMasters">@FrontendMasters</a> properties -&gt; static typing? Sort of...</p>&mdash; Tamara Temple (@tamouse) <a href="https://twitter.com/tamouse/status/566279816869969920">February 13, 2015</a></blockquote>
+
+<blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/hashtag/ReactJS?src=hash">#ReactJS</a> <a href="https://twitter.com/FrontendMasters">@FrontendMasters</a> only have to worry about the state of the DOM Right Now, not over time</p>&mdash; Tamara Temple (@tamouse) <a href="https://twitter.com/tamouse/status/566288662590001152">February 13, 2015</a></blockquote>
+
+<blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/hashtag/ReactJS?src=hash">#ReactJS</a> <a href="https://twitter.com/FrontendMasters">@FrontendMasters</a> WOOT! got an exercise to work within the time allotted!</p>&mdash; Tamara Temple (@tamouse) <a href="https://twitter.com/tamouse/status/566295359110905857">February 13, 2015</a></blockquote>
+
+<blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/hashtag/ReactJS?src=hash">#ReactJS</a> <a href="https://twitter.com/FrontendMasters">@FrontendMasters</a> consider: ReactJS is a *functional* programming paradigm (though it&#39;s using objects)</p>&mdash; Tamara Temple (@tamouse) <a href="https://twitter.com/tamouse/status/566321394015670272">February 13, 2015</a></blockquote>
+
+<blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/hashtag/ReactJS?src=hash">#ReactJS</a> <a href="https://twitter.com/FrontendMasters">@FrontendMasters</a> a huge benefit of flux is code organization and downstream understandability.</p>&mdash; Tamara Temple (@tamouse) <a href="https://twitter.com/tamouse/status/566329610724319233">February 13, 2015</a></blockquote>
+
+<blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/hashtag/ReactJS?src=hash">#ReactJS</a> <a href="https://twitter.com/FrontendMasters">@FrontendMasters</a> flux... needs a *lot* of study.</p>&mdash; Tamara Temple (@tamouse) <a href="https://twitter.com/tamouse/status/566337920580087808">February 13, 2015</a></blockquote>
+
+<blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/hashtag/ReactJS?src=hash">#ReactJS</a> <a href="https://twitter.com/FrontendMasters">@FrontendMasters</a> okay, flux is really an acquired taste.</p>&mdash; Tamara Temple (@tamouse) <a href="https://twitter.com/tamouse/status/566338102164066304">February 13, 2015</a></blockquote>
+
+<blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/hashtag/ReactJS?src=hash">#ReactJS</a> <a href="https://twitter.com/FrontendMasters">@FrontendMasters</a> <a href="https://t.co/qbbxdCfUmr">https://t.co/qbbxdCfUmr</a> -- because <a href="https://twitter.com/ryanflorence">@ryanflorence</a> missed the ember router</p>&mdash; Tamara Temple (@tamouse) <a href="https://twitter.com/tamouse/status/566350023751774208">February 13, 2015</a></blockquote>
+
+<blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/hashtag/ReactJS?src=hash">#ReactJS</a> <a href="https://twitter.com/FrontendMasters">@FrontendMasters</a> flux is a pattern, not a framework.</p>&mdash; Tamara Temple (@tamouse) <a href="https://twitter.com/tamouse/status/566366502413422592">February 13, 2015</a></blockquote>
+
+<p><a name="notes"></a></p>
+
+<h2 id="notes">Notes</h2>
+
+<p>This is just a raw paste of the notes.org file. Rough stuff, might not
+make any sense.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>* build an app
+
+** loaded: true
+
+   flag to determine if the data is loaded, or if your app needs to
+   think about things for a while, it doesn't look like your app is
+   hung up. (Could show a spinner, etc.)
+
+** React.DOM
+
+   React creates raw DOM, which you can call directly.
+   [[https://www.dropbox.com/s/dwj1z1qoevyru3h/Screen%2520Shot%25202015-02-13%2520at%25209.30.14%2520AM.png?dl%3D0][https://www.dropbox.com/s/dwj1z1qoevyru3h/Screen%20Shot%202015-02-13%20at%209.30.14%20AM.png?dl=0]]
+
+   These are equivalent:
+   https://www.dropbox.com/s/dwj1z1qoevyru3h/Screen%20Shot%202015-02-13%20at%209.30.14%20AM.png?dl=0
+
+   Most people who think of ReactJS as a platform are using the DOM
+   functions. Otherwise, and probably easier, is to use JSX
+   transpiler.
+
+
+** JSX
+
+** Calling a React App
+   https://www.dropbox.com/s/pw3hnirak5jorfq/Screen%20Shot%202015-02-13%20at%209.34.56%20AM.png?dl=0
+
+
+* props
+
+  `getDefaultProps` is only called *once* -- can't do
+  calculations. They are default properties for *every* instance.
+
+* events and state
+
+** events
+
+  There are events in ReactJS
+
+  https://www.dropbox.com/s/3hyx5gclcrlz54i/Screen%20Shot%202015-02-13%20at%2011.16.01%20AM.png?dl=0
+
+  #+begin_src html
+    &lt;button onClick={alertStuff.bind(this,'hi')}&gt;hi&lt;/button&gt;
+  #+end_src
+
+  In a React app, you have access to the normal set of javascript DOM
+  events, simply by writing them as you would in HTML (camelCase).
+
+  #+begin_src javascript
+    var App = React.createClass({
+      render () {
+        return (
+            &lt;div&gt;&lt;button onClick={someThing.bind(this.'hi')}&gt;hi&lt;/button&gt;&lt;/div&gt;
+        )
+      }
+    })
+  #+end_src
+
+*** BUT...
+
+    You have to use DOM properties, not html attributes
+
+    #+begin_src javascript
+      return (
+          &lt;div className="content"&gt;
+          blah blah
+          &lt;/div&gt;
+      );
+    #+end_src
+
+** State
+
+   Only have to think about state RIGHT NOW. Don't have worry about it
+   over time. 
+
+   Some interesting toggle thing.
+
+   #+begin_src javascript
+     var ContentToggle = React.createClass({
+
+       // built-in - called at the beginning of instance.
+       getInitialState: function() {
+         return {
+           showDetails: false
+         };
+       },
+
+       // toggles the state of showing the details
+       toggle: function() {
+         this.setState({
+           showDetails: !this.state.showDetails
+         }, this.maybeFocus);
+       },
+
+       // ...
+
+       // this uses the toggle
+       handleKeyboard: function(event) {
+         if (event.key === 'Enter' || event.key === ' ')
+           this.toggle();
+       },
+
+     })  
+   #+end_src
+
+
+   Centralizes state. 
+
+   something about performant rendering -- i didn't get
+   this... [2015-02-13 Fri 11:35]
+
+* props vs. state
+
+** idiom: state moves up
+
+   Some apps / frameworks move it all the way to the top, so all state
+   is held at the very highest level.
+
+   see http://circleci.com - using Om, a clojurescript framework that
+   also includes reactjs.
+
+
+** CONSIDER: ReactJS is a *functional* programming paradigm.
+   It uses objects/prototypes, etc. But program design and
+   construction follows much more of a functional paradigm.
+
+* flux
+
+  http://facebook.github.io/flux/docs/overview.html
+
+  Not necessarily so great for the initial dev, but great for devs a
+  month in looking at it. So: it's organizational.
+
+  Flux is a pattern, not a framework.
+
+* relay - FB's new store solution
+
+* react-router
+
+  not part of react itself, built by @rpflorence.
+
+  https://github.com/rackt/react-router
+
+  The cool thing here is the nested routing in RouteHandler.
+
+* converting an existing app
+
+  Can be done piece-meal, don't have to go all in.
+
+  Two-way data binding you have to really think about to change, but
+  once you're there, it's nice.
+
+  Start from the bottom, and climb up.
+  - do all the leaves.
+  - go up a level. do all the sibs.
+
+** jQuery
+
+   A bit of weirdness with jQ: it removes the element from the DOM.
+
+   With ReactJS, you have to do funky things.
+
+   see
+   https://github.com/ryanflorence/react-training/blob/gh-pages/code/Dialog/app.js
+
+
+* what's next
+
+** new JS class syntax.
+
+  Old syntax:
+
+  #+begin_src javascript
+    var React = require('react');
+
+    var App = React.createClass({
+      render () {
+        return (
+            &lt;div&gt;
+            &lt;h1&gt;Hello, world&lt;/h1&gt;
+          &lt;/div&gt;
+        );
+      }
+    });
+
+    React.render(&lt;App/&gt;, document-body, () =&gt; {});
+
+  #+end_src
+
+  Class syntax:
+
+  #+begin_src javascript
+    var React = require('react');
+
+    class App extends React.createComponent {
+      render () {
+        return (
+            &lt;div&gt;
+            &lt;h1&gt;Hello, world&lt;/h1&gt;
+          &lt;/div&gt;
+        );
+      }
+    };
+
+    React.render(&lt;App/&gt;, document-body, () =&gt; {});
+
+  #+end_src
+
+
+** react native - mobile development
+
+   renders to native UI on the phone instead of to DOM
+
+
+* server-side rendering
+
+  github: rackt/react-router-mega-demo
+
+* hints
+
+** making a space
+
+   Normally, jsx eliminates spaces between tags, unlike standard
+   html. If you *want* a space, using something like `{' '}`:
+
+   #+begin_src javascript
+       &lt;a href="#foo"&gt;Foo&lt;/a&gt; {' '}
+       &lt;a href="#bar"&gt;Bar&lt;/a&gt;
+   #+end_src
+</code></pre>
+</div>
+
+
+</article>
+<hr>
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </main>
+
+    <hr />
+<footer class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-footer" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.tamouse.org">&copy; 2016 Tamara Temple</a>
+    </div> <!-- /.navbat-header -->
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+        <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+        <li><a href="/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+        <li><a href="/pages/colophon/">Colophon</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>  <!-- /.container-fluid -->
+</footer>
+
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/js/vendor/bootstrap.js"></script>
+<script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/post_index.js"></script>
+
+    
+
+  </body>
+</html>
