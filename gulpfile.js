@@ -12,7 +12,6 @@ var config = {
     sassPath: "./_sass",
     bowerDir: "./bower_components",
     assetDir: "./assets",
-    outputDir: "./_site",
     distDir: "./docs"
 }
 
@@ -44,8 +43,7 @@ gulp.task('jekyll-rebuild', ['jekyll-build'], function () {
 gulp.task('icons', function() {
   return gulp.src(
     config.bowerDir + "/fontawesome/fonts/**.*")
-         .pipe(gulp.dest(config.assetDir + "/fonts"))
-         .pipe(gulp.dest(config.outputDir + "/assets/fonts"));
+         .pipe(gulp.dest(config.assetDir + "/fonts"));
 });
 
 gulp.task('css', function() {
@@ -58,11 +56,9 @@ gulp.task('css', function() {
     ],
     compass: true
   })
-         .pipe(minifyCss())
-         .pipe(gulp.dest(config.assetDir + "/css"))
-         .pipe(gulp.dest(config.outputDir + "/assets/css"))
-.pipe(browserSync.stream());
-
+    .pipe(minifyCss())
+    .pipe(gulp.dest(config.assetDir + "/css"))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('build', ['bower', 'icons', 'css' ,'jekyll-build']);
