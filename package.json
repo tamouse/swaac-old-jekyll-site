@@ -20,6 +20,7 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp dist",
-    "deploy": "gulp dist && git add --all && git commit -m publish && git push -f deploy master"
+    "deploy": "gulp dist && git add --all && git commit -m publish && git push -f deploy master",
+    "publish": "npm run deploy"
   }
 }

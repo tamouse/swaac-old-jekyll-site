@@ -5,9 +5,87 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 21 Nov 2016 08:52:54 -0600</pubDate>
-    <lastBuildDate>Mon, 21 Nov 2016 08:52:54 -0600</lastBuildDate>
+    <pubDate>Sat, 26 Nov 2016 14:22:22 -0600</pubDate>
+    <lastBuildDate>Sat, 26 Nov 2016 14:22:22 -0600</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>TIL: target=&quot;_blank&quot; with no rel=&quot;noopener&quot;</title>
+        <description>&lt;p&gt;In yesterdays CSS-Tricks
+column
+&lt;a href=&quot;https://css-tricks.com/random-interesting-facts-htmlsvg-usage/&quot;&gt;Random Interesting Facts on HTMLSVG usage  CSS-Tricks&lt;/a&gt;,
+Catalin Rosu explains something I’d never heard before, and it can be
+pretty important:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;target=_blank w/ or w/o rel=noopener&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;43,924,869 of the anchors we analyzed are using target=”_blank” without a rel=”noopener” conjunction. In this case, if rel=”noopener” is missing, you are leaving your users open to a phishing attack and it’s considered a security vulnerability.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;table&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;Anchor/Link&lt;/th&gt;
+        &lt;th&gt;Count&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;[target=_blank]&lt;/td&gt;
+        &lt;td&gt;43,924,869&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;[rel=noopener]&lt;/td&gt;
+        &lt;td&gt;40,756&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;[target=_blank][rel=noopener]&lt;/td&gt;
+        &lt;td&gt;35,604&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;MDN:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;When using target you should consider adding rel=”noopener noreferrer” to avoid exploitation of the window.opener API.&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://dev.to/ben/the-targetblank-vulnerability-by-example&quot;&gt;Ben Halpern&lt;/a&gt; and
+&lt;a href=&quot;https://mathiasbynens.github.io/rel-noopener/&quot;&gt;Mathias Bynens&lt;/a&gt; also
+wrote some good articles on this matter and the common advice is:
+don’t use target=_blank, unless you have good reasons.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I may need to rethink how I often I use &lt;code class=&quot;highlighter-rouge&quot;&gt;target=&quot;_blank&quot;&lt;/code&gt;. Lately I’ve
+been creating slide presentations using &lt;code class=&quot;highlighter-rouge&quot;&gt;reveal.js&lt;/code&gt; and I include
+links in the slide show; I think it’s easier for students if I open up
+a new tab rather than interrupting the flow of the slide show.&lt;/p&gt;
+
+&lt;p&gt;I think for those, I’ll go ahead an add the recommended &lt;code class=&quot;highlighter-rouge&quot;&gt;rel=&quot;noopener
+noreferrer&quot;&lt;/code&gt;. But elsewhere, I’ll consider curtailing my use of
+&lt;code class=&quot;highlighter-rouge&quot;&gt;target=&quot;_blank&quot;&lt;/code&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 26 Nov 2016 14:05:00 -0600</pubDate>
+        <link>http://swaac.tamouse.org/html/2016/11/26/til-target-equals-blank-with-no-rel-equals-noopener/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/html/2016/11/26/til-target-equals-blank-with-no-rel-equals-noopener/</guid>
+        
+        <category>security</category>
+        
+        
+        <category>html</category>
+        
+      </item>
     
       <item>
         <title>installing emacs on Mac with homebrew</title>
@@ -731,25 +809,6 @@ found at &lt;a href=&quot;/deployment/2016/01/12/using-git-to-deploy-static-site
         
         
         <category>devops</category>
-        
-      </item>
-    
-      <item>
-        <title>Link: Building Resizeable Components with Relative CSS</title>
-        <description>&lt;p&gt;Ahmad Shadeed provides a &lt;em&gt;deep&lt;/em&gt;, &lt;em&gt;long&lt;/em&gt;, and &lt;em&gt;excellent&lt;/em&gt; guest article on CSS Tricks.&lt;/p&gt;
-
-&lt;p&gt;An excellent read, quite complete.&lt;/p&gt;
-</description>
-        <pubDate>Wed, 14 Sep 2016 22:58:00 -0500</pubDate>
-        <link>http://swaac.tamouse.org/css/2016/09/14/building-resizeable-components-with-relative-css/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/css/2016/09/14/building-resizeable-components-with-relative-css/</guid>
-        
-        <category>css</category>
-        
-        <category>relative</category>
-        
-        
-        <category>css</category>
         
       </item>
     
