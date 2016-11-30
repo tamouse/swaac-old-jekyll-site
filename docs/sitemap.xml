@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://swaac.tamouse.org/github/2016/11/30/ask-me-anything/</loc>
+<lastmod>2016-11-30T07:59:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/typography/2016/11/30/tool-font-style-matcher/</loc>
+<lastmod>2016-11-30T07:09:00-06:00</lastmod>
+</url>
+<url>
 <loc>http://swaac.tamouse.org/html/2016/11/26/til-target-equals-blank-with-no-rel-equals-noopener/</loc>
 <lastmod>2016-11-26T14:05:00-06:00</lastmod>
 </url>
@@ -864,6 +872,12 @@
 </url>
 <url>
 <loc>http://swaac.tamouse.org/categories/class/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/typography/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/github/</loc>
 </url>
 <url>
 <loc>http://swaac.tamouse.org/tags/dennis-ritchie/</loc>
@@ -1986,6 +2000,24 @@
 </url>
 <url>
 <loc>http://swaac.tamouse.org/tags/homebrew/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/FOUT/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/fonts/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/webfonts/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/ama/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/ask-me-anything/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/github/</loc>
 </url>
 <url>
 <loc>http://swaac.tamouse.org/pages/css-examples/clearfix/clearfix-example.html</loc>

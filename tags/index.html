@@ -4,18 +4,19 @@ title: "Tags"
 navbar: true
 ---
 
-<div class="container">
-  <div class="page-header">
-    <h2>{{ page.title }}</h2>
-  </div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="page-header">
+      <h2>{{ page.title }}</h2>
+    </div>
 
-  {% capture tags %}{% for tag in site.tags %}
-  {{tag|first}}
-  {% endfor %}{% endcapture %}
-  {% assign tags = tags | split:' ' | sort %}
-  {% for tag in tags %}
+    {% capture tags %}{% for tag in site.tags %}
+    {{tag|first}}
+    {% endfor %}{% endcapture %}
+    {% assign tags = tags | split:' ' | sort %}
+    {% for tag in tags %}
     <a href="{{ site.baseurl }}/tags/{{ tag }}/index.html">{{ tag }}</a>
     &bullet;
-  {% endfor %}
-
+    {% endfor %}
+  </div>
 </div>
