@@ -5,9 +5,61 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 30 Nov 2016 08:07:07 -0600</pubDate>
-    <lastBuildDate>Wed, 30 Nov 2016 08:07:07 -0600</lastBuildDate>
+    <pubDate>Sat, 03 Dec 2016 10:04:24 -0600</pubDate>
+    <lastBuildDate>Sat, 03 Dec 2016 10:04:24 -0600</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>Todo app using just React with POJS - no JSX or ES6</title>
+        <description>&lt;p&gt;I just moderated the &lt;a href=&quot;https://frontendmasters.com&quot;&gt;Frontend Masters&lt;/a&gt;
+class “Complete Introduction to React” taught
+by &lt;a href=&quot;https://twitter.com/holtbt&quot;&gt;Brian Holt&lt;/a&gt; of Netflix and Reddit
+fame.&lt;/p&gt;
+
+&lt;p&gt;It was a great course, but as moderator I was doing a lot of things to
+keep the chat room flowing and didn’t get to pay much attention to the
+detail Brian was presenting, and definitely didn’t have time in class
+to try out stuff.&lt;/p&gt;
+
+&lt;p&gt;So I thought I’d just give the first bit of Brian’s presentation a go,
+where we just worked with React as a plain JS library, nothing fancy,
+no JSX transpiling, etc.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/tamouse/todo-react-nojsx&quot;&gt;This&lt;/a&gt; is the result, the canonical single page Todo
+application.&lt;/p&gt;
+
+&lt;p&gt;It was pretty easy, and pretty fun. I kept only to
+the &lt;a href=&quot;https://facebook.github.io/react/docs/&quot;&gt;React docs&lt;/a&gt;, especially&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://facebook.github.io/react/docs/react-without-es6.html&quot;&gt;React Without ES6 - React&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://facebook.github.io/react/docs/react-without-jsx.html&quot;&gt;React Without JSX - React&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I’m pleased with the experiement.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 03 Dec 2016 09:56:00 -0600</pubDate>
+        <link>http://swaac.tamouse.org/javascript/react/2016/12/03/todo-app-using-just-react-with-pojs-no-jsx-or-es6/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/javascript/react/2016/12/03/todo-app-using-just-react-with-pojs-no-jsx-or-es6/</guid>
+        
+        <category>javascript</category>
+        
+        <category>react</category>
+        
+        <category>learning</category>
+        
+        <category>todoapp</category>
+        
+        <category>frontend-masters</category>
+        
+        <category>brian-holt</category>
+        
+        
+        <category>javascript</category>
+        
+        <category>react</category>
+        
+      </item>
     
       <item>
         <title>Ask Me Anything</title>
@@ -565,125 +617,6 @@ happen via executing a JS script, but by simply &lt;strong&gt;SENDING A TAB&lt;/
         
         
         <category>testing</category>
-        
-      </item>
-    
-      <item>
-        <title>How to set up your own private git repository on a remote server</title>
-        <description>&lt;p&gt;This is an old article from my ancient wiki. I thought it was good to
-bring forward. Some of the git SaaS providers allow you to create
-private repositories, which are probably a better idea for
-collaboration, but this is a useful alternative when you don’t want to
-go the SaaS route.&lt;/p&gt;
-
-&lt;h2 id=&quot;have-a-local-repo&quot;&gt;Have a local repo&lt;/h2&gt;
-
-&lt;p&gt;Let’s just create a simple local repo to work with.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git init my_project
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;my_project
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'My Project'&lt;/span&gt; &amp;gt; README.md
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git add .
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git commit -m &lt;span class=&quot;s1&quot;&gt;'initial'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Great, now let’s get on with the remote stuff.&lt;/p&gt;
-
-&lt;h2 id=&quot;set-up-the-server&quot;&gt;Set up the server&lt;/h2&gt;
-
-&lt;p&gt;First, if you haven’t done so already, add your public key to the
-server:&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;(Don’t do this if you’ve already uploaded your public ssh key!)&lt;/em&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;ssh myuser@server.com &lt;span class=&quot;s1&quot;&gt;'mkdir -p .ssh'&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;cat .ssh/id_rsa.pub | ssh myuser@server.com &lt;span class=&quot;s1&quot;&gt;'cat &amp;gt;&amp;gt; .ssh/authorized_keys'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;This will let you use git push without having to supply your password
-every time.&lt;/p&gt;
-
-&lt;h2 id=&quot;add-your-repositories&quot;&gt;Add your repositories&lt;/h2&gt;
-
-&lt;p&gt;Login to the server:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;ssh myuser@server.com
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Create a directory to keep all your remote repos in one place&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;mkdir Repos
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;Repos
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Now we can create our remote repository:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git init --bare my_project.git
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Note that I’ve chosen to mirror the local project directory name. This
-is a pretty good practice, less confusion, less decision making. In
-addition, I’ve appended &lt;code class=&quot;highlighter-rouge&quot;&gt;.git&lt;/code&gt; to the remote repo directory name,
-which helps inform those things that care that this is a git
-repository.&lt;/p&gt;
-
-&lt;p&gt;If you have a look in the directory just created, it looks just like
-the &lt;code class=&quot;highlighter-rouge&quot;&gt;.git&lt;/code&gt; directory in your local project. Hence the extension.&lt;/p&gt;
-
-&lt;p&gt;With all that done, you can log out of the server.&lt;/p&gt;
-
-&lt;h2 id=&quot;configure-your-development-machine&quot;&gt;Configure your development machine&lt;/h2&gt;
-
-&lt;p&gt;To use the remote repository, we have to add it to the remotes
-available in the local repository.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git remote add origin myuser@server.com:Repos/my_project.git
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git push origin master
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;You’ll probably also want to make sure you add a default merge and
-remote:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git config branch.master.remote origin
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git config branch.master.merge refs/heads/master
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;And that’s it!&lt;/p&gt;
-
-&lt;h2 id=&quot;resources&quot;&gt;Resources&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;https://git-scm.com/docs/git-init&quot;&gt;git &lt;code class=&quot;highlighter-rouge&quot;&gt;init&lt;/code&gt; command&lt;/a&gt; to find out
-about the &lt;code class=&quot;highlighter-rouge&quot;&gt;--bare&lt;/code&gt; option.&lt;/li&gt;
-&lt;/ol&gt;
-</description>
-        <pubDate>Sat, 08 Oct 2016 00:22:00 -0500</pubDate>
-        <link>http://swaac.tamouse.org/git/2016/10/08/how-to-set-up-your-own-private-remote-git-repository/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/git/2016/10/08/how-to-set-up-your-own-private-remote-git-repository/</guid>
-        
-        <category>git</category>
-        
-        <category>remote</category>
-        
-        <category>server</category>
-        
-        <category>private</category>
-        
-        <category>howto</category>
-        
-        <category>tutorial</category>
-        
-        <category>tools</category>
-        
-        
-        <category>git</category>
         
       </item>
     
