@@ -5,9 +5,135 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 03 Dec 2016 10:04:24 -0600</pubDate>
-    <lastBuildDate>Sat, 03 Dec 2016 10:04:24 -0600</lastBuildDate>
+    <pubDate>Sun, 04 Dec 2016 15:32:43 -0600</pubDate>
+    <lastBuildDate>Sun, 04 Dec 2016 15:32:43 -0600</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>flexbox website with fixed headers and footer</title>
+        <description>&lt;p&gt;I was playing around with some React stuff and came upon a basic
+layout issue. I wanted to have the standard header + footer + main +
+sidebar sort of layout, but I wanted to do it flexbox. I also wanted
+the header and footer to be fixed to the top and bottom, respectively,
+and for the main content to be able to scroll inside it.&lt;/p&gt;
+
+&lt;p&gt;The results can be seen at &lt;a href=&quot;https://github.com/tamouse/sample-flex-website-layout&quot;&gt;this repo&lt;/a&gt;, and a demo
+	at &lt;a href=&quot;https://tamouse.github.io/sample-flex-website-layout/&quot;&gt;Flex Standard Layout (demo)&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;page-boundaries-header-and-footer&quot;&gt;Page Boundaries: Header and Footer&lt;/h2&gt;
+
+&lt;p&gt;Making the header and footer fixed to top and bottom is fairly easy.
+The following attributes generally work well:&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.fixed-top&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.fixed-bottom&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aboslute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;40px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.fixed-top&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.fixed-bottom&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;bottom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;full-height-columns&quot;&gt;Full-height columns&lt;/h2&gt;
+
+&lt;p&gt;Getting columns of equal height is a bit tricksier, and I resorted to
+what seems like a hack.&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.fixed-middle&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;40px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;bottom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;40px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;overflow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;hidden&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.fixed-middle&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.column&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;overflow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;wheres-the-flex&quot;&gt;Where’s the flex?&lt;/h2&gt;
+
+&lt;p&gt;This isn’t very flexy yet, so I added in some goodness for that:&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.fixed-middle&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;py&quot;&gt;dislplay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.fixed-middle&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.col&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Much better, but then the sidebars and central main content area are
+all the same width. I want the content area to dominate.&lt;/p&gt;
+
+&lt;p&gt;I arranged the main content part to come before the sidebars, like so:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fixed-middle&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;main&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main-content&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;role=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- main content --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/main&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;aside&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;left-side&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- left side bar content --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/aside&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;aside&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;right-side&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- right sidebar content --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/aside&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;After removing &lt;code class=&quot;highlighter-rouge&quot;&gt;.fixed-middle .col&lt;/code&gt; CSS definition, I put in:&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.fixed-middle&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.main-content&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;nl&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+   &lt;span class=&quot;nl&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.fixed-middle&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.left-side&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;nl&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+   &lt;span class=&quot;nl&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.fixed-middle&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.right-side&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;nl&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+   &lt;span class=&quot;nl&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This tells flexbox to let the main content area grow to 5 times the
+size of the sidebars, but make sure the left side bar’s content comes
+first in the row.&lt;/p&gt;
+
+&lt;h2 id=&quot;header-and-footer-redux&quot;&gt;Header and Footer Redux&lt;/h2&gt;
+
+&lt;p&gt;I wanted to extend this even further, so the case where you may have
+multiple “widgets” in the header or footer, and so redid the same idea
+for the those, but keeping the flex to 1.&lt;/p&gt;
+
+&lt;p&gt;If I ended up with a 2/3 widget and 1/3 widget, I could mark them with
+appropriate classes and set the flex accordingly.&lt;/p&gt;
+
+&lt;h2 id=&quot;sample-repo-and-demo&quot;&gt;Sample Repo and Demo&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/tamouse/sample-flex-website-layout&quot;&gt;sample repo on Github&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://tamouse.github.io/sample-flex-website-layout/&quot;&gt;demonstration&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sun, 04 Dec 2016 14:31:00 -0600</pubDate>
+        <link>http://swaac.tamouse.org/css/2016/12/04/flexbox-website-with-fixed-headers-and-footer/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/css/2016/12/04/flexbox-website-with-fixed-headers-and-footer/</guid>
+        
+        <category>css</category>
+        
+        <category>flexbox</category>
+        
+        
+        <category>css</category>
+        
+      </item>
     
       <item>
         <title>Todo app using just React with POJS - no JSX or ES6</title>
@@ -551,72 +677,6 @@ learned. Never too young. :)&lt;/p&gt;
         
         
         <category>tools</category>
-        
-      </item>
-    
-      <item>
-        <title>Testing blur() events in Cucumber/Capybara</title>
-        <description>&lt;p&gt;After banging my head on this problem for a long time, chasing blog
-posts, stackoverflow, lots of opinions, bug reports, and so on, I
-finally asked my workmates, and together we arrived at a method that
-works.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-problem&quot;&gt;The Problem&lt;/h2&gt;
-
-&lt;p&gt;There is apparently a bug, although it’s marked as INVALID in
-bugzilla, that prevents &lt;code class=&quot;highlighter-rouge&quot;&gt;focus()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;blur()&lt;/code&gt; events from being
-executed directly when the test browser is not focused.&lt;/p&gt;
-
-&lt;p&gt;The links I chased:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;https://github.com/mattheworiordan/jquery-focus-selenium-webkit-fix&lt;/li&gt;
-  &lt;li&gt;https://github.com/mattheworiordan/jquery-focus-selenium-webkit-fix/blob/master/app/assets/javascripts/jquery.focus.test-fix.js&lt;/li&gt;
-  &lt;li&gt;https://makandracards.com/makandra/12661-how-to-solve-selenium-focus-issues&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;And many many more…&lt;/p&gt;
-
-&lt;h2 id=&quot;what-worked&quot;&gt;What worked&lt;/h2&gt;
-
-&lt;p&gt;The most obviously glaring thing to do is &lt;strong&gt;NOT&lt;/strong&gt; make this event
-happen via executing a JS script, but by simply &lt;strong&gt;SENDING A TAB&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Here’s the step:&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;When&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/^I unfocus field (.*?)$/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;field_name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find_field&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;field_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;native&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;send_keys&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:tab&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;That did the trick, and now we all have an uncle Bob.&lt;/p&gt;
-
-&lt;p&gt;Thanks Nic and JD&lt;/p&gt;
-</description>
-        <pubDate>Mon, 10 Oct 2016 16:18:00 -0500</pubDate>
-        <link>http://swaac.tamouse.org/testing/2016/10/10/testing-blur-events-in-cucumber-slash-capybara/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/testing/2016/10/10/testing-blur-events-in-cucumber-slash-capybara/</guid>
-        
-        <category>testing</category>
-        
-        <category>cucumber</category>
-        
-        <category>steps</category>
-        
-        <category>capybara</category>
-        
-        <category>blur</category>
-        
-        <category>focus</category>
-        
-        <category>using</category>
-        
-        <category>send_keys</category>
-        
-        
-        <category>testing</category>
         
       </item>
     
