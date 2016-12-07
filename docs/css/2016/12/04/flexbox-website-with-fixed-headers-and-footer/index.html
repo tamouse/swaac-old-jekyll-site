@@ -71,6 +71,8 @@ sidebar sort of layout, but I wanted to do it flexbox. I also wanted
 the header and footer to be fixed to the top and bottom, respectively,
 and for the main content to be able to scroll inside it.</p>
 
+<p><strong>UPDATE!!</strong> Now with more responsive!</p>
+
 <p>The results can be seen at <a href="https://github.com/tamouse/sample-flex-website-layout">this repo</a>, and a demo
 	at <a href="https://tamouse.github.io/sample-flex-website-layout/">Flex Standard Layout (demo)</a>.</p>
 
@@ -175,6 +177,17 @@ appropriate classes and set the flex accordingly.</p>
   <li><a href="https://github.com/tamouse/sample-flex-website-layout">sample repo on Github</a></li>
   <li><a href="https://tamouse.github.io/sample-flex-website-layout/">demonstration</a></li>
 </ul>
+
+<h2 id="making-it-responsive">Making it responsive</h2>
+
+<p>This turned out to be really easy, and all I needed to do is wrap the
+flexbox and absolute positioning in a media query.</p>
+
+<p>I had put the page header after the main content, but that didn’t look
+as good, so I moved that to the top.</p>
+
+<p>The image was misbehaving as well, so I introduced an
+<code class="highlighter-rouge">.img-responsive</code> class that limited the width to 100%.</p>
 
 </article>
 <hr>

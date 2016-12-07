@@ -18,6 +18,8 @@ sidebar sort of layout, but I wanted to do it flexbox. I also wanted
 the header and footer to be fixed to the top and bottom, respectively,
 and for the main content to be able to scroll inside it.
 
+**UPDATE!!** Now with more responsive!
+
 The results can be seen at [this repo]({{ page.source }}), and a demo
 	at [{{ page.demo.text }}]({{ page.demo.url }} {{ page.demo.tooltip }}).
 
@@ -121,3 +123,14 @@ appropriate classes and set the flex accordingly.
 
 * [sample repo on Github]({{ page.source }})
 * [demonstration]({{ page.demo.url }})
+
+## Making it responsive
+
+This turned out to be really easy, and all I needed to do is wrap the
+flexbox and absolute positioning in a media query.
+
+I had put the page header after the main content, but that didn't look
+as good, so I moved that to the top.
+
+The image was misbehaving as well, so I introduced an
+`.img-responsive` class that limited the width to 100%.

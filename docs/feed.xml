@@ -5,8 +5,8 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 04 Dec 2016 15:32:43 -0600</pubDate>
-    <lastBuildDate>Sun, 04 Dec 2016 15:32:43 -0600</lastBuildDate>
+    <pubDate>Tue, 06 Dec 2016 19:20:01 -0600</pubDate>
+    <lastBuildDate>Tue, 06 Dec 2016 19:20:01 -0600</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -16,6 +16,8 @@ layout issue. I wanted to have the standard header + footer + main +
 sidebar sort of layout, but I wanted to do it flexbox. I also wanted
 the header and footer to be fixed to the top and bottom, respectively,
 and for the main content to be able to scroll inside it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;UPDATE!!&lt;/strong&gt; Now with more responsive!&lt;/p&gt;
 
 &lt;p&gt;The results can be seen at &lt;a href=&quot;https://github.com/tamouse/sample-flex-website-layout&quot;&gt;this repo&lt;/a&gt;, and a demo
 	at &lt;a href=&quot;https://tamouse.github.io/sample-flex-website-layout/&quot;&gt;Flex Standard Layout (demo)&lt;/a&gt;.&lt;/p&gt;
@@ -121,6 +123,17 @@ appropriate classes and set the flex accordingly.&lt;/p&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/tamouse/sample-flex-website-layout&quot;&gt;sample repo on Github&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://tamouse.github.io/sample-flex-website-layout/&quot;&gt;demonstration&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h2 id=&quot;making-it-responsive&quot;&gt;Making it responsive&lt;/h2&gt;
+
+&lt;p&gt;This turned out to be really easy, and all I needed to do is wrap the
+flexbox and absolute positioning in a media query.&lt;/p&gt;
+
+&lt;p&gt;I had put the page header after the main content, but that didn’t look
+as good, so I moved that to the top.&lt;/p&gt;
+
+&lt;p&gt;The image was misbehaving as well, so I introduced an
+&lt;code class=&quot;highlighter-rouge&quot;&gt;.img-responsive&lt;/code&gt; class that limited the width to 100%.&lt;/p&gt;
 </description>
         <pubDate>Sun, 04 Dec 2016 14:31:00 -0600</pubDate>
         <link>http://swaac.tamouse.org/css/2016/12/04/flexbox-website-with-fixed-headers-and-footer/</link>
