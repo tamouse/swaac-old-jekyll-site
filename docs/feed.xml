@@ -5,9 +5,161 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 06 Dec 2016 19:20:01 -0600</pubDate>
-    <lastBuildDate>Tue, 06 Dec 2016 19:20:01 -0600</lastBuildDate>
+    <pubDate>Wed, 21 Dec 2016 00:20:19 -0600</pubDate>
+    <lastBuildDate>Wed, 21 Dec 2016 00:20:19 -0600</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>Changing the &quot;Return To Shop&quot; link and text in an empty WooCommerce cart</title>
+        <description>&lt;p&gt;Tonight’s learning opportunity provided by the lovely Elise who brings
+fun things to research (after some hair pulling and teeth gnashing).&lt;/p&gt;
+
+&lt;p&gt;In WooCommerce, if you’re cart is empty, it displays a link “Return To
+Shop” which if clicked takes you back to the Shop page.&lt;/p&gt;
+
+&lt;p&gt;In this case, though, Elise wanted it to go to a different URL, and
+didn’t want it to say “Return To Shop”.&lt;/p&gt;
+
+&lt;p&gt;We looked high and low in the plugin, delving through the source and
+the html output to try and figure out where this was getting called.&lt;/p&gt;
+
+&lt;p&gt;Elise had to leave before we solved it, but later slacked me this
+link:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://nicola.blog/2015/07/20/change-the-return-to-shop-button-url-in-the-cart-page/&quot;&gt;Change the Return to shop button URL in the cart page&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Meanwhile, I’d grep’d the source tree of the WooCommerce plugin I’d
+installed in my sandbaox, and found the following in
+&lt;code class=&quot;highlighter-rouge&quot;&gt;wp-content/plugins/woocommerce/templates/cart/cart-empty.php&lt;/code&gt;, line
+36:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;/**
+ * Empty cart page
+ *
+ * This template can be overridden by copying it to yourtheme/woocommerce/cart/cart-empty.php.
+ *
+ * HOWEVER, on occasion WooCommerce will need to update template files and you
+ * (the theme developer) will need to copy the new files to your theme to
+ * maintain compatibility. We try to do this as little as possible, but it does
+ * happen. When this occurs the version of the template file will be bumped and
+ * the readme will list any important changes.
+ *
+ * @see 	    https://docs.woocommerce.com/document/template-structure/
+ * @author  WooThemes
+ * @package WooCommerce/Templates
+ * @version 2.0.0
+ */&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;defined&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ABSPATH'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Exit if accessed directly
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;wc_print_notices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;cart-empty&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;_e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Your cart is currently empty.'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'woocommerce'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;do_action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'woocommerce_cart_is_empty'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;wc_get_page_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'shop'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;return-to-shop&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;button wc-backward&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;esc_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;apply_filters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'woocommerce_return_to_shop_redirect'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;wc_get_page_permalink&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'shop'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+			&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;_e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Return To Shop'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'woocommerce'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This showed the link creating, the variable
+&lt;code class=&quot;highlighter-rouge&quot;&gt;woocommerce_return_to_shop_redirect&lt;/code&gt; filter, and the text being
+applied to the anchor tag.&lt;/p&gt;
+
+&lt;p&gt;The comments in the file would have led us to copy the above template
+and change the text, but that felt wrong, so I went looking for how to
+change the localization text that matches ‘Return To Shop’ in the
+woocommerce &lt;code class=&quot;highlighter-rouge&quot;&gt;.pot&lt;/code&gt; files.&lt;/p&gt;
+
+&lt;p&gt;I was directed to the following page:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.woocommerce.com/document/woocommerce-localization/&quot;&gt;Translating WooCommerce (Localization)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;down to the last section on the page:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.woocommerce.com/document/woocommerce-localization/#section-6&quot;&gt;Translating Text without a localization file&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;which in turn led me to the “Say What?” plugin at:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://wordpress.org/plugins/say-what/&quot;&gt;Say what? WordPress Plugin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now with both of these solutions in hand, Elise is able to change both
+the url and the label of the button in the cart.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 20 Dec 2016 23:58:00 -0600</pubDate>
+        <link>http://swaac.tamouse.org/wordpress/2016/12/20/changing-the-return-to-shop-link-and-text-in-an-empty-woocommerce-cart/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/wordpress/2016/12/20/changing-the-return-to-shop-link-and-text-in-an-empty-woocommerce-cart/</guid>
+        
+        <category>wordpress</category>
+        
+        <category>woocommerce</category>
+        
+        <category>customization</category>
+        
+        <category>say-what</category>
+        
+        
+        <category>wordpress</category>
+        
+      </item>
     
       <item>
         <title>flexbox website with fixed headers and footer</title>
@@ -643,53 +795,6 @@ WP noob&lt;/p&gt;
         
         
         <category>wordpress</category>
-        
-      </item>
-    
-      <item>
-        <title>Signing a PDF with Preview</title>
-        <description>&lt;p&gt;Here’s something I learned the other day: you can capture a graphical signature with Preview on macos to sign a PDF document.&lt;/p&gt;
-
-&lt;p&gt;In the &lt;code class=&quot;highlighter-rouge&quot;&gt;Tools -&amp;gt; Annote -&amp;gt; Signatures&lt;/code&gt; menu, you’ll find a menu
-item &lt;code class=&quot;highlighter-rouge&quot;&gt;Manage Signatures&lt;/code&gt; plus any signature you may have already added
-to Preview.&lt;/p&gt;
-
-&lt;p&gt;If you click it, you get the opportunity to create a new signature.&lt;/p&gt;
-
-&lt;p&gt;Now, here comes the really cool part:&lt;/p&gt;
-
-&lt;p&gt;You can enter a signature using a pointing device of your choice,
-&lt;strong&gt;OR&lt;/strong&gt; you can take a picture of a signature with the web camera!&lt;/p&gt;
-
-&lt;p&gt;I don’t know about you, but I have an awfully hard time getting a
-decent looking signature with any pointing device: mouse, trackpad,
-track pointer, track ball, even a graphics tablet and stylus
-combination. Nothing feels right for me like pen on paper.&lt;/p&gt;
-
-&lt;p&gt;Making a pen-and-paper signature now can be transfered into a PDF
-directly, and this means no printing, signing, and scanning back in.&lt;/p&gt;
-
-&lt;p&gt;This has probably existed for ages, but it’s something I just
-learned. Never too young. :)&lt;/p&gt;
-</description>
-        <pubDate>Wed, 12 Oct 2016 11:55:00 -0500</pubDate>
-        <link>http://swaac.tamouse.org/tools/2016/10/12/signing-a-pdf-with-preview/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/tools/2016/10/12/signing-a-pdf-with-preview/</guid>
-        
-        <category>tools</category>
-        
-        <category>signing</category>
-        
-        <category>pdf</category>
-        
-        <category>preview</category>
-        
-        <category>mac</category>
-        
-        <category>macos</category>
-        
-        
-        <category>tools</category>
         
       </item>
     
