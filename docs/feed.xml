@@ -5,9 +5,174 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 21 Dec 2016 00:20:19 -0600</pubDate>
-    <lastBuildDate>Wed, 21 Dec 2016 00:20:19 -0600</lastBuildDate>
+    <pubDate>Mon, 26 Dec 2016 12:16:35 -0600</pubDate>
+    <lastBuildDate>Mon, 26 Dec 2016 12:16:35 -0600</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>JS App Config Pattern</title>
+        <description>&lt;p&gt;Nothing really new here, just writing down this pattern I’ve noticed
+in various JavaScript apps (notably &lt;a href=&quot;http://expressjs.com/&quot; title=&quot;Fast, unopinionated, minimalist web framework for Node.js&quot;&gt;Express&lt;/a&gt; apps). First seen in &lt;a href=&quot;https://twitter.com/scotups&quot; title=&quot;Scott Moss on Twitter&quot;&gt;Scott
+Moss’s&lt;/a&gt; &lt;a href=&quot;https://frontendmasters.com/courses/api-design-nodejs/&quot; title=&quot;Learn API design in Node.js using Express class&quot;&gt;‘API Design’ course&lt;/a&gt; at
+&lt;a href=&quot;https://frontendmasters.com&quot; title=&quot;Frontend Masters: Learn JavaScript, React, Angular and more,..deeply&quot;&gt;FrontendMasters&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;concept&quot;&gt;Concept&lt;/h2&gt;
+
+&lt;p&gt;The basic concept is to collect all application configuration in one
+place so you don’t have to litter it all over the application. Use a
+“standard” JS component idea, as one does with Angular and React to put
+it all into a single location.&lt;/p&gt;
+
+&lt;h2 id=&quot;use-case&quot;&gt;Use Case&lt;/h2&gt;
+
+&lt;p&gt;My use case will be a rather generic Express API application. Using a
+service- or resource-oriented structure, I have an folder structures
+like so:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  app/
+    posts/
+      index.js
+      postModel.js
+      postsController.js
+      postsRoutes.js
+    users/
+      index.js
+      userModel.js
+      usersContoller.js
+      usersRoutes.js
+    index.js
+  config/
+    development.js
+    index.js
+    production.js
+    test.js
+  public/
+    images/
+    javascripts/
+    stylesheets/
+    index.html
+  index.js
+  package.json
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I’m taking advantage of the convention of using an &lt;code class=&quot;highlighter-rouge&quot;&gt;index.js&lt;/code&gt; at the root
+of the components (and app) to make requiring the module as simple as
+providing the directory name.&lt;/p&gt;
+
+&lt;h2 id=&quot;creating-the-configuration-module&quot;&gt;Creating the configuration module&lt;/h2&gt;
+
+&lt;p&gt;In &lt;code class=&quot;highlighter-rouge&quot;&gt;./config/index.js&lt;/code&gt;, I have the following:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;baseConfig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;NODE_ENV&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'development'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;jwtSecret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;JWT_SECRET&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;envConfig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'./'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;baseConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;assign&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({},&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;baseConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;envConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;A &lt;strong&gt;HUGE&lt;/strong&gt; caveat, of course, is to &lt;strong&gt;NEVER&lt;/strong&gt; save secrets and
+credentials in git (or Github, Gitlab, BitBucket, etc.) since they
+will be there forever, even if you later remove them.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Always use environment variables to configure secret values.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;creating-the-environment-configurations&quot;&gt;Creating the environment configurations&lt;/h2&gt;
+
+&lt;p&gt;The environment configurations would be the same as the environment
+names with ‘.js’ added, so:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;development.js&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;testing.js&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;production.js&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Each of these can be empty, but the files need to exist.&lt;/p&gt;
+
+&lt;p&gt;As an example, I always want logging during development, but not
+during production or testing.&lt;/p&gt;
+
+&lt;p&gt;In &lt;code class=&quot;highlighter-rouge&quot;&gt;./config/development.js&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This would be merged during the &lt;code class=&quot;highlighter-rouge&quot;&gt;Object.assign&lt;/code&gt; step in
+&lt;code class=&quot;highlighter-rouge&quot;&gt;./config/index.js&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;deep-merging&quot;&gt;Deep merging&lt;/h2&gt;
+
+&lt;p&gt;The main limitation to the above is if the configuration has a deeper
+structure. The above works great when everything is in the top level
+of the configuration object, but as soon as you go deeper (objects
+within objects, etc), you need to do a deep merge.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://lodash.com&quot; title=&quot;A modern JavaScript utility library delivering modularity, performance &amp;amp; extras.&quot;&gt;Lodash&lt;/a&gt; library has a few different methods that can be used
+here. The one I like to use is &lt;code class=&quot;highlighter-rouge&quot;&gt;_.merge&lt;/code&gt; since it works like
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Object.assign&lt;/code&gt; in merging the members from left to
+right. (See &lt;a href=&quot;http://stackoverflow.com/questions/19965844/lodash-difference-between-extend-assign-and-merge#19966511&quot; title=&quot;explanation of extend, assign, and merge in lodash&quot;&gt;stackoverflow&lt;/a&gt; for a more thorough explanation
+and comparison.)&lt;/p&gt;
+
+&lt;h2 id=&quot;using-the-configuration&quot;&gt;Using the configuration&lt;/h2&gt;
+
+&lt;p&gt;Now, with my per-environment configuration set, I use it in my
+application. In &lt;code class=&quot;highlighter-rouge&quot;&gt;./index.js&lt;/code&gt; (the root of the app), I put:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'./config'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Deeper down, in a server component, for example, I need to use the
+appropriate path lift to find it. Getting the configuration into the
+posts controller:&lt;/p&gt;
+
+&lt;p&gt;File &lt;code class=&quot;highlighter-rouge&quot;&gt;./app/posts/postsController.js&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'../../../config'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// might need more '../' to get to the right level&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;When you need a configuration value, it’s right there on the &lt;code class=&quot;highlighter-rouge&quot;&gt;config&lt;/code&gt;
+object:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;env&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'development'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+   &lt;span class=&quot;c1&quot;&gt;// ... do something you only do in development&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Mon, 26 Dec 2016 09:06:00 -0600</pubDate>
+        <link>http://swaac.tamouse.org/javascript/2016/12/26/js-app-config-pattern/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/javascript/2016/12/26/js-app-config-pattern/</guid>
+        
+        <category>javascript</category>
+        
+        <category>application</category>
+        
+        <category>configuration</category>
+        
+        <category>config</category>
+        
+        <category>patterns</category>
+        
+        <category>webdev</category>
+        
+        
+        <category>javascript</category>
+        
+      </item>
     
       <item>
         <title>Changing the &quot;Return To Shop&quot; link and text in an empty WooCommerce cart</title>
@@ -714,87 +879,6 @@ something randome and never tells you what it is.)
         
         
         <category>class</category>
-        
-      </item>
-    
-      <item>
-        <title>Links from GDI Intro to WordPress Class</title>
-        <description>&lt;p&gt;I was teaching a WordPress class this past Saturday (12 Nov 2016) that
-was a huge amount of fun.&lt;/p&gt;
-
-&lt;p&gt;At the end of the class, my co-teacher started dumping out links, and
-I tried to capture them. No guarantees I got them all!&lt;/p&gt;
-
-&lt;h2 id=&quot;good-links-for-learning-wordpress&quot;&gt;Good links for learning WordPress&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://docs.google.com/presentation/d/196G0XINo_NKzi39lAld5Y4FccUN_sOiV5MmhhFBcNT4/edit&quot; title=&quot;class slides&quot; target=&quot;_blank&quot;&gt;class slides&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://cloud.digitalocean.com/droplets&quot; target=&quot;_blank&quot;&gt;Digital Ocean Droplets&lt;/a&gt; when you want to run your own server&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://getflywheel.com/&quot; target=&quot;_blank&quot;&gt;Flywheel Hosting&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://serverpress.com/get-desktopserver/&quot; target=&quot;_blank&quot;&gt;Desktop Server&lt;/a&gt; for easier migrating from development to production&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://codex.wordpress.org/&quot; title=&quot;The codex&quot; target=&quot;_blank&quot;&gt;The WordPress Codex&lt;/a&gt; the ultimate guide to WordPress&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://developer.wordpress.org/files/2014/10/template-hierarchy.png&quot; target=&quot;_blank&quot;&gt;Template Hierarchy Diagram&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://codex.wordpress.org/Child_Themes&quot; target=&quot;_blank&quot;&gt;Child Themes&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://wptavern.com/&quot; target=&quot;_blank&quot;&gt;WordPress Tavern&lt;/a&gt; for news and info on your
-quest to learn WordPress&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;http://torquemag.io/&quot; target=&quot;_blank&quot;&gt;Torque Mag&lt;/a&gt; news about WordPress development&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;http://chrislema.com/blog/&quot; target=&quot;_blank&quot;&gt;Chris Lema’s blog&lt;/a&gt; really good source
-of information&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://wp.zacgordon.com/&quot; target=&quot;_blank&quot;&gt;Zac Gordon’s Blog&lt;/a&gt; about learning WordPress&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://www.wp101.com/wordpress-tutorials/&quot; target=&quot;_blank&quot;&gt;WordPress Tutorials&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://bobwp.com/&quot; target=&quot;_blank&quot;&gt;BobWP’s blog&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;http://www.wpbeginner.com/&quot; target=&quot;_blank&quot;&gt;WordPress Beginner&lt;/a&gt; resources for the
-WP noob&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://www.wp-bff.com/&quot; target=&quot;_blank&quot;&gt;WP BFF&lt;/a&gt; home of the &lt;a href=&quot;http://www.wordpressally.com/5daychallenge&quot; target=&quot;_blank&quot;&gt;5-day Website Challenge&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://digwp.com/book/&quot; target=&quot;_blank&quot;&gt;Digital WordPress Book&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Sun, 13 Nov 2016 12:25:00 -0600</pubDate>
-        <link>http://swaac.tamouse.org/wordpress/2016/11/13/links-from-gdi-intro-to-wordpress-class/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/wordpress/2016/11/13/links-from-gdi-intro-to-wordpress-class/</guid>
-        
-        <category>links</category>
-        
-        <category>wordpress</category>
-        
-        <category>class</category>
-        
-        <category>gdi</category>
-        
-        
-        <category>wordpress</category>
         
       </item>
     

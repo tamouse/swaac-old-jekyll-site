@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://swaac.tamouse.org/javascript/2016/12/26/js-app-config-pattern/</loc>
+<lastmod>2016-12-26T09:06:00-06:00</lastmod>
+</url>
+<url>
 <loc>http://swaac.tamouse.org/wordpress/2016/12/20/changing-the-return-to-shop-link-and-text-in-an-empty-woocommerce-cart/</loc>
 <lastmod>2016-12-20T23:58:00-06:00</lastmod>
 </url>
@@ -2051,6 +2055,15 @@
 </url>
 <url>
 <loc>http://swaac.tamouse.org/tags/say-what/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/application/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/config/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/patterns/</loc>
 </url>
 <url>
 <loc>http://swaac.tamouse.org/pages/css-examples/clearfix/clearfix-example.html</loc>
