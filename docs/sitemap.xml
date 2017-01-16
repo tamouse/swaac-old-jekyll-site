@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://swaac.tamouse.org/javascript/2017/01/16/til-call-done-to-fire-async-mocha-tests/</loc>
+<lastmod>2017-01-16T02:03:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/node.js/2017/01/16/my-first-proxy-slash-adapter-for-an-express-dot-js-app/</loc>
+<lastmod>2017-01-16T01:32:00-06:00</lastmod>
+</url>
+<url>
 <loc>http://swaac.tamouse.org/javascript/2016/12/26/js-app-config-pattern/</loc>
 <lastmod>2016-12-26T09:06:00-06:00</lastmod>
 </url>
@@ -897,6 +905,9 @@
 </url>
 <url>
 <loc>http://swaac.tamouse.org/categories/react/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/node.js/</loc>
 </url>
 <url>
 <loc>http://swaac.tamouse.org/tags/dennis-ritchie/</loc>
@@ -2064,6 +2075,21 @@
 </url>
 <url>
 <loc>http://swaac.tamouse.org/tags/patterns/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/node.js/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/express.js/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/using-apis-from-javascript/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/mocha/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/async/</loc>
 </url>
 <url>
 <loc>http://swaac.tamouse.org/pages/css-examples/clearfix/clearfix-example.html</loc>
