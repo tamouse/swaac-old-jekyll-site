@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://swaac.tamouse.org/python/2017/01/24/til-providing-defaults-for-envvars/</loc>
+<lastmod>2017-01-24T16:14:00-06:00</lastmod>
+</url>
+<url>
 <loc>http://swaac.tamouse.org/javascript/2017/01/16/til-call-done-to-fire-async-mocha-tests/</loc>
 <lastmod>2017-01-16T02:03:00-06:00</lastmod>
 </url>
@@ -908,6 +912,9 @@
 </url>
 <url>
 <loc>http://swaac.tamouse.org/categories/node.js/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/python/</loc>
 </url>
 <url>
 <loc>http://swaac.tamouse.org/tags/dennis-ritchie/</loc>
@@ -2090,6 +2097,12 @@
 </url>
 <url>
 <loc>http://swaac.tamouse.org/tags/async/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/envvars/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/defaults/</loc>
 </url>
 <url>
 <loc>http://swaac.tamouse.org/pages/css-examples/clearfix/clearfix-example.html</loc>

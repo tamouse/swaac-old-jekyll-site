@@ -5,9 +5,63 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 16 Jan 2017 02:26:13 -0600</pubDate>
-    <lastBuildDate>Mon, 16 Jan 2017 02:26:13 -0600</lastBuildDate>
+    <pubDate>Tue, 24 Jan 2017 16:37:19 -0600</pubDate>
+    <lastBuildDate>Tue, 24 Jan 2017 16:37:19 -0600</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>TIL: Providing Defaults For EnvVars</title>
+        <description>&lt;p&gt;&lt;strong&gt;Today I Learned:&lt;/strong&gt; that you can set a default for a missing
+Environment Variable &lt;strong&gt;and&lt;/strong&gt; that an empty string is not the best
+default.&lt;/p&gt;
+
+&lt;p&gt;I’d been blissfully performing the following sort of passage when
+dealing with envvars:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;environ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'FOO'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;foo_setting&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;envrion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'FOO'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;foo_setting&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This is pretty wrong-headed in a few ways, including the fact that
+some things expect a setting to be &lt;code class=&quot;highlighter-rouge&quot;&gt;None&lt;/code&gt; instead to ensure they work
+correctly. In particular, we were using this sort of thing to set the
+profile name for &lt;code class=&quot;highlighter-rouge&quot;&gt;boto3&lt;/code&gt;. If the profile name is &lt;code class=&quot;highlighter-rouge&quot;&gt;None&lt;/code&gt;, it doesn’t
+try to connect, but if it’s the empty string &lt;code class=&quot;highlighter-rouge&quot;&gt;''&lt;/code&gt; it uses that for the
+profile name, which of course will never work.&lt;/p&gt;
+
+&lt;p&gt;So the proper construction is:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;foo_setting&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;environ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'FOO'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;saving us from an extraneous retrieval and test for a value.&lt;/p&gt;
+
+&lt;p&gt;See more information
+here:
+&lt;a href=&quot;https://docs.python.org/3/library/stdtypes.html#dict.get&quot;&gt;dict.get()&lt;/a&gt;
+in the Standard Type documentation.&lt;/p&gt;
+
+&lt;p&gt;I should note that I only got there from finding
+this:
+&lt;a href=&quot;https://bugs.python.org/issue28242&quot;&gt;Issue 28242 os.environ.get documentation missing - Python tracker&lt;/a&gt;
+via googling for “python3 os.environ get”, so it’s not exactly obvious
+to the newcomer, like me. And this &lt;em&gt;after&lt;/em&gt; the lead on the team fixed
+my oh so broken code. Yay for code reviews!&lt;/p&gt;
+</description>
+        <pubDate>Tue, 24 Jan 2017 16:14:00 -0600</pubDate>
+        <link>http://swaac.tamouse.org/python/2017/01/24/til-providing-defaults-for-envvars/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/python/2017/01/24/til-providing-defaults-for-envvars/</guid>
+        
+        <category>envvars</category>
+        
+        <category>defaults</category>
+        
+        <category>TIL</category>
+        
+        
+        <category>python</category>
+        
+      </item>
     
       <item>
         <title>TIL: Call done() to fire async mocha tests</title>
@@ -907,33 +961,6 @@ noreferrer&quot;&lt;/code&gt;. But elsewhere, I’ll consider curtailing my use 
         
         
         <category>html</category>
-        
-      </item>
-    
-      <item>
-        <title>installing emacs on Mac with homebrew</title>
-        <description>&lt;p&gt;Here’s the latest that seems to work for me:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew cask install emacs
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;This installed version 25.1.1 on 14 Nov 2016.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 14 Nov 2016 10:09:00 -0600</pubDate>
-        <link>http://swaac.tamouse.org/emacs/2016/11/14/installing-emacs-on-mac-with-homebrew/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/emacs/2016/11/14/installing-emacs-on-mac-with-homebrew/</guid>
-        
-        <category>mac</category>
-        
-        <category>osx</category>
-        
-        <category>emacs</category>
-        
-        <category>homebrew</category>
-        
-        
-        <category>emacs</category>
         
       </item>
     
