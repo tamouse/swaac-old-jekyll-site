@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://swaac.tamouse.org/css/2017/02/07/links-flexbox-tutorials-and-posts/</loc>
+<lastmod>2017-02-07T20:02:00-06:00</lastmod>
+</url>
+<url>
 <loc>http://swaac.tamouse.org/python/2017/01/24/til-providing-defaults-for-envvars/</loc>
 <lastmod>2017-01-24T16:14:00-06:00</lastmod>
 </url>

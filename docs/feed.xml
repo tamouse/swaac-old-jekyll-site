@@ -5,9 +5,39 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 24 Jan 2017 16:37:19 -0600</pubDate>
-    <lastBuildDate>Tue, 24 Jan 2017 16:37:19 -0600</lastBuildDate>
+    <pubDate>Tue, 07 Feb 2017 20:13:01 -0600</pubDate>
+    <lastBuildDate>Tue, 07 Feb 2017 20:13:01 -0600</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>Links: Flexbox tutorials and posts</title>
+        <description>&lt;p&gt;Collecting several links on learning Flexbox:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://css-tricks.com/snippets/css/a-guide-to-flexbox/&quot;&gt;A Complete Guide to Flexbox  CSS-Tricks&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://css-tricks.com/designing-a-product-page-layout-with-flexbox/&quot;&gt;Designing A Product Page Layout with Flexbox  CSS-Tricks&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.freecodecamp.com/understanding-flexbox-everything-you-need-to-know-b4013d4dc9af#.dqbu8so8a&quot;&gt;Understanding Flexbox Everything you need to know&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://flexboxfroggy.com/&quot;&gt;Flexbox Froggy - A game for learning CSS flexbox&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://swaac.tamouse.org/css/2016/12/04/flexbox-website-with-fixed-headers-and-footer/&quot;&gt;flexbox website with fixed headers and footer&lt;/a&gt; (personal
+project)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 07 Feb 2017 20:02:00 -0600</pubDate>
+        <link>http://swaac.tamouse.org/css/2017/02/07/links-flexbox-tutorials-and-posts/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/css/2017/02/07/links-flexbox-tutorials-and-posts/</guid>
+        
+        <category>css</category>
+        
+        <category>flexbox</category>
+        
+        <category>links</category>
+        
+        
+        <category>css</category>
+        
+      </item>
     
       <item>
         <title>TIL: Providing Defaults For EnvVars</title>
@@ -883,84 +913,6 @@ interestingly, &lt;em&gt;what you can do about it&lt;/em&gt;.&lt;/p&gt;
         
         
         <category>typography</category>
-        
-      </item>
-    
-      <item>
-        <title>TIL: target=&quot;_blank&quot; with no rel=&quot;noopener&quot;</title>
-        <description>&lt;p&gt;In yesterdays CSS-Tricks
-column
-&lt;a href=&quot;https://css-tricks.com/random-interesting-facts-htmlsvg-usage/&quot;&gt;Random Interesting Facts on HTMLSVG usage  CSS-Tricks&lt;/a&gt;,
-Catalin Rosu explains something I’d never heard before, and it can be
-pretty important:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;target=_blank w/ or w/o rel=noopener&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;43,924,869 of the anchors we analyzed are using target=”_blank” without a rel=”noopener” conjunction. In this case, if rel=”noopener” is missing, you are leaving your users open to a phishing attack and it’s considered a security vulnerability.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;table&gt;
-    &lt;thead&gt;
-      &lt;tr&gt;
-        &lt;th&gt;Anchor/Link&lt;/th&gt;
-        &lt;th&gt;Count&lt;/th&gt;
-      &lt;/tr&gt;
-    &lt;/thead&gt;
-    &lt;tbody&gt;
-      &lt;tr&gt;
-        &lt;td&gt;[target=_blank]&lt;/td&gt;
-        &lt;td&gt;43,924,869&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-        &lt;td&gt;[rel=noopener]&lt;/td&gt;
-        &lt;td&gt;40,756&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-        &lt;td&gt;[target=_blank][rel=noopener]&lt;/td&gt;
-        &lt;td&gt;35,604&lt;/td&gt;
-      &lt;/tr&gt;
-    &lt;/tbody&gt;
-  &lt;/table&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;MDN:&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;blockquote&gt;
-    &lt;p&gt;When using target you should consider adding rel=”noopener noreferrer” to avoid exploitation of the window.opener API.&lt;/p&gt;
-  &lt;/blockquote&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://dev.to/ben/the-targetblank-vulnerability-by-example&quot;&gt;Ben Halpern&lt;/a&gt; and
-&lt;a href=&quot;https://mathiasbynens.github.io/rel-noopener/&quot;&gt;Mathias Bynens&lt;/a&gt; also
-wrote some good articles on this matter and the common advice is:
-don’t use target=_blank, unless you have good reasons.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;I may need to rethink how I often I use &lt;code class=&quot;highlighter-rouge&quot;&gt;target=&quot;_blank&quot;&lt;/code&gt;. Lately I’ve
-been creating slide presentations using &lt;code class=&quot;highlighter-rouge&quot;&gt;reveal.js&lt;/code&gt; and I include
-links in the slide show; I think it’s easier for students if I open up
-a new tab rather than interrupting the flow of the slide show.&lt;/p&gt;
-
-&lt;p&gt;I think for those, I’ll go ahead an add the recommended &lt;code class=&quot;highlighter-rouge&quot;&gt;rel=&quot;noopener
-noreferrer&quot;&lt;/code&gt;. But elsewhere, I’ll consider curtailing my use of
-&lt;code class=&quot;highlighter-rouge&quot;&gt;target=&quot;_blank&quot;&lt;/code&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sat, 26 Nov 2016 14:05:00 -0600</pubDate>
-        <link>http://swaac.tamouse.org/html/2016/11/26/til-target-equals-blank-with-no-rel-equals-noopener/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/html/2016/11/26/til-target-equals-blank-with-no-rel-equals-noopener/</guid>
-        
-        <category>security</category>
-        
-        
-        <category>html</category>
         
       </item>
     
