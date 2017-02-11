@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://swaac.tamouse.org/devops/2017/02/11/gitlab-database-outage-post-mortem/</loc>
+<lastmod>2017-02-11T01:54:00-06:00</lastmod>
+</url>
+<url>
 <loc>http://swaac.tamouse.org/css/2017/02/07/links-flexbox-tutorials-and-posts/</loc>
 <lastmod>2017-02-07T20:02:00-06:00</lastmod>
 </url>
@@ -2107,6 +2111,15 @@
 </url>
 <url>
 <loc>http://swaac.tamouse.org/tags/defaults/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/gitlab/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/database-outage/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/post-mortem/</loc>
 </url>
 <url>
 <loc>http://swaac.tamouse.org/pages/css-examples/clearfix/clearfix-example.html</loc>
