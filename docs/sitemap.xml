@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://swaac.tamouse.org/wordpress/2017/02/11/how-i-set-up-my-local-wordpress-development-environment-using-vagrant-and-ansible/</loc>
+<lastmod>2017-02-11T22:17:00-06:00</lastmod>
+</url>
+<url>
 <loc>http://swaac.tamouse.org/devops/2017/02/11/gitlab-database-outage-post-mortem/</loc>
 <lastmod>2017-02-11T01:54:00-06:00</lastmod>
 </url>
@@ -2120,6 +2124,15 @@
 </url>
 <url>
 <loc>http://swaac.tamouse.org/tags/post-mortem/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/ansible/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/local/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/sandbox/</loc>
 </url>
 <url>
 <loc>http://swaac.tamouse.org/pages/css-examples/clearfix/clearfix-example.html</loc>

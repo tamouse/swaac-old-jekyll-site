@@ -5,9 +5,667 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 11 Feb 2017 02:03:50 -0600</pubDate>
-    <lastBuildDate>Sat, 11 Feb 2017 02:03:50 -0600</lastBuildDate>
+    <pubDate>Sun, 12 Feb 2017 01:36:19 -0600</pubDate>
+    <lastBuildDate>Sun, 12 Feb 2017 01:36:19 -0600</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>How I Set Up my Local WordPress Development Environment Using Vagrant and Ansible</title>
+        <description>&lt;p&gt;As part of my volunteering with &lt;a href=&quot;https://gdiminneapolis.com&quot; title=&quot;Girl, Develop it! Minneapolis Chapter&quot;&gt;GDI Minneapolis&lt;/a&gt;, I’ve been
+getting back into WordPress development (child themes, custom themes,
+etc.), while TAing, teaching, and helping develop some classes. One of
+the key things we want to show students is how to develop their sites
+safely and learn the trade of software development in the WordPress
+environment.&lt;/p&gt;
+
+&lt;p&gt;There are several ways one can do this. There are some really
+&lt;em&gt;excellent&lt;/em&gt; tools out there now that make this a snap for people not
+versed in setting things up themselves.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://local.getflywheel.com&quot; title=&quot;Local by Flywheel: Local WordPress development made simple&quot;&gt;Local by Flywheel&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://serverpress.com/get-desktopserver/&quot; title=&quot;Get DesktopServer and save time!&quot;&gt;DesktopServer from ServerPress&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There are also traditional ways of installing &lt;a href=&quot;https://www.mamp.info/en/&quot; title=&quot;My Apache, MySQL, and PHP&quot;&gt;MAMP&lt;/a&gt; on MacOSx, or using
+a &lt;a href=&quot;https://www.turnkeylinux.org/wordpress&quot; title=&quot;Turnkey Linux WordPress Appliance&quot;&gt;Turnkey Linux WordPress Appliance&lt;/a&gt;, and so many other ways.&lt;/p&gt;
+
+&lt;p&gt;This is how I set up my local environment using two tools I use
+heavily in other areas of web development:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.vagrantup.com/&quot; title=&quot;Development environments made easy&quot;&gt;Vagrant&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.ansible.com/&quot; title=&quot;Automation for everyone&quot;&gt;Ansible&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;First off, this is going to be less of a tutorial and more a
+description of what I’m doing. I’m definitely not holding this out as
+a definitive way to set up your local WordPress development
+environment, but &lt;em&gt;my&lt;/em&gt; way that works for me. If you’re brand new to
+all this, and don’t want to learn all about systems and devops, then I
+recommend using one of the first two options above. (I’ve played a bit
+with &lt;a href=&quot;https://local.getflywheel.com&quot; title=&quot;Local by Flywheel: Local WordPress development made simple&quot;&gt;Local&lt;/a&gt;, and find it amazingly intuitive and
+simple, so that’s my latest recommendation.)&lt;/p&gt;
+
+&lt;p&gt;Secondly, the sandbox setup is available on GitHub
+at
+&lt;a href=&quot;https://github.com/tamouse/sandbox.wp.local&quot;&gt;github.com/tamouse/sandbox.wp.local&lt;/a&gt; so
+feel free to fork it, and do what you want with it. I’ll happily take
+PRs if you find bugs, too.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;starting-point&quot;&gt;Starting Point&lt;/h2&gt;
+
+&lt;p&gt;My working system:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Macbook Pro 13”&lt;/li&gt;
+  &lt;li&gt;8 GiB RAM&lt;/li&gt;
+  &lt;li&gt;4 CPU Cores&lt;/li&gt;
+  &lt;li&gt;about 50 GiB free disk space (I didn’t need anywhere near this, it’s
+just what was there when I started.)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h2&gt;
+
+&lt;h3 id=&quot;available-software&quot;&gt;Available Software&lt;/h3&gt;
+
+&lt;p&gt;This is stuff I already had on my system because of other development
+I do.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HomeBrew&lt;/li&gt;
+  &lt;li&gt;VirtualBox&lt;/li&gt;
+  &lt;li&gt;Vagrant&lt;/li&gt;
+  &lt;li&gt;Ansible&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;steps-to-get-things-set-up&quot;&gt;Steps to Get Things Set Up&lt;/h2&gt;
+
+&lt;h3 id=&quot;create-a-project-folder-and-initialize-it&quot;&gt;Create a project folder and initialize it&lt;/h3&gt;
+
+&lt;p&gt;I always start my projects the same way:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkdir -p ~/Projects/wordpress-stuff/sandbox.wp.local
+cd ~/Projects/wordpress-stuff/sandbox.wp.local
+git init
+echo 'Local WordPress Development Sandbox running in Vagrant with Ansible Provisioning' | tee README.md &amp;gt; .git/description
+hub create -d &quot;$(cat .git/description)&quot;
+git add -Av
+git commit -m 'initial commit'
+git push -u origin master
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;(Truth be told, this is one of my bash functions, so it really looked
+like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;new_proj sandbox.wp.local 'Local WordPress Development Sandbox running in Vagrant with Ansible Provisioning' 'initial commit'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;)&lt;/p&gt;
+
+&lt;h3 id=&quot;run-&quot;&gt;Run &lt;code class=&quot;highlighter-rouge&quot;&gt;vagrant init&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;I typically use one of the later Ubuntu server variants; mostly I’ve
+been using ‘trusty’:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vagrant init &lt;span class=&quot;s1&quot;&gt;'ubuntu/trusty64'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This writes out a default &lt;code class=&quot;highlighter-rouge&quot;&gt;Vagrantfile&lt;/code&gt; (which is written in Ruby).&lt;/p&gt;
+
+&lt;h3 id=&quot;modify--for-my-needs&quot;&gt;Modify &lt;code class=&quot;highlighter-rouge&quot;&gt;Vagrantfile&lt;/code&gt; for my needs&lt;/h3&gt;
+
+&lt;p&gt;I modify the file so it looks like so:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;no&quot;&gt;BOX_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;sandbox.wp.local&quot;&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;DEFAULT_IP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;192.168.33.35&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;resolv&quot;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;my_ip&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@my_ip&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Resolv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Hosts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;getaddress&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;BOX_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;DEFAULT_IP&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;rescue&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@my_ip&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;DEFAULT_IP&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;Vagrant&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ssh&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;forward_agent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;vm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;define&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:sandbox_wp&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;vm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;box&lt;/span&gt;      &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;ubuntu/trusty64&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;vm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;network&lt;/span&gt;  &lt;span class=&quot;s2&quot;&gt;&quot;private_network&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;ip: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;my_ip&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;vm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;network&lt;/span&gt;  &lt;span class=&quot;s2&quot;&gt;&quot;forwarded_port&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;guest: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;80&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;host: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8088&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;vm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;hostname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;BOX_NAME&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;sb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;vm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;provider&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;virtualbox&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;# Display the VirtualBox GUI when booting the machine&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;# vb.gui = true&lt;/span&gt;
+
+      &lt;span class=&quot;c1&quot;&gt;# Customize the amount of memory on the VM:&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;vb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;customize&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;modifyvm&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;--memory&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;2048&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;vb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;customize&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;modifyvm&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;--vram&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;18&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;vb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;customize&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;modifyvm&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;--cpus&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;vb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;customize&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;modifyvm&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;--natdnshostresolver1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;on&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;vm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;provision&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:ansible&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;playbook&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ansible/sandbox.yml'&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# a.verbose  = 'vvvv'&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Some explanation about the various settings:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;BOX_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;sandbox.wp.local&quot;&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;DEFAULT_IP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;192.168.33.35&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;These define two constants that get used later in the &lt;code class=&quot;highlighter-rouge&quot;&gt;Vagrantfile&lt;/code&gt;. I
+edited my machine’s &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/hosts&lt;/code&gt; file, which maps IP addresses to
+hostnames locally. The line I added to &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/hosts&lt;/code&gt; looks like so:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;192.168.33.35	sandbox.wp.local sandbox
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This lets me type ‘http://sandbox/’ or ‘http://sandbox.wp.local’ in
+the browser address bar to access the web server that will be running
+in the Vagrant Virtual Machine (aka “VM”).&lt;/p&gt;
+
+&lt;p&gt;(Note: when I used &lt;a href=&quot;https://local.getflywheel.com&quot; title=&quot;Local by Flywheel: Local WordPress development made simple&quot;&gt;Local&lt;/a&gt;, it did something similar.)&lt;/p&gt;
+
+&lt;p&gt;Then I’m bringing in ruby’s &lt;code class=&quot;highlighter-rouge&quot;&gt;resolv&lt;/code&gt; standard library, which gives the
+ability to use that mapping given in the &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/hosts&lt;/code&gt; file; the
+&lt;code class=&quot;highlighter-rouge&quot;&gt;DEFAULT_IP&lt;/code&gt; constant provides a fallback in case it can’t find
+&lt;code class=&quot;highlighter-rouge&quot;&gt;BOX_NAME&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/hosts&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;my_ip&lt;/code&gt; method defined sets and returns the IP address to be used
+for my WordPress sandbox.&lt;/p&gt;
+
+&lt;p&gt;With all that handled, vagrant can begin it’s configuration. Most
+everything from here out can be found in vagrant’s documentation, if
+you want.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ssh&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;forward_agent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I set this to true so when I’m logged into the vagrant box, it will
+use my ssh keys from my development machine; this is especially
+helpful when using git commands that talk to GitHub, etc.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;sb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;vm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;network&lt;/span&gt;  &lt;span class=&quot;s2&quot;&gt;&quot;private_network&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;ip: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;my_ip&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Here is where that calculation for figuring out what IP address to use
+that matches the name ‘sandbox.wp.local’ I set up is made.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;sb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;vm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;hostname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;BOX_NAME&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This sets the VM host name, so it will match ‘sandbox.wp.local’ when
+I’m logged in.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;      &lt;span class=&quot;n&quot;&gt;vb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;customize&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;modifyvm&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;--memory&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;2048&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This reserves 2GiB of RAM for the VM.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;      &lt;span class=&quot;n&quot;&gt;vb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;customize&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;modifyvm&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;--vram&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;18&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This reserves 18MB of RAM for the video buffer.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;      &lt;span class=&quot;n&quot;&gt;vb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;customize&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;modifyvm&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;--cpus&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This allows up to 2 CPU Cores to be used by the VM.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;      &lt;span class=&quot;n&quot;&gt;vb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;customize&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;modifyvm&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;--natdnshostresolver1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;on&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This does some magic to use the host machine’s DNS resolver to find
+IP address, which pulls in the magic of mapping ‘sandbox.wp.local’.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;vm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;provision&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:ansible&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Tells vagrant I’m using Ansible provisioning.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;playbook&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ansible/sandbox.yml'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Specifies the Ansible ‘playbook’&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;c1&quot;&gt;# a.verbose  = 'vvvv'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Leaving this commented out, but usually it’s uncommented for me to be
+able to debug things during provisioning.&lt;/p&gt;
+
+&lt;h3 id=&quot;make-a-git-savepoint&quot;&gt;Make a git savepoint&lt;/h3&gt;
+
+&lt;p&gt;Committing the current changes at this point to create a “save point”
+to get back to if I end up mucking things up.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git add -Av &amp;amp;&amp;amp; git commit -m 'Vagrantfile updated' &amp;amp;&amp;amp; git push
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;(And this is also a bash function:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gacp &lt;span class=&quot;s1&quot;&gt;'Vagrantfile updated'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;)&lt;/p&gt;
+
+&lt;p&gt;At this point, I decided I would make a branch to work on Ansible
+stuff, too:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout -b ansible-playbook
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;create-the-anisble-playbook&quot;&gt;Create the Anisble Playbook&lt;/h3&gt;
+
+&lt;p&gt;Ansible playbooks are build as YAML files, which is just a way of
+specifying structured data. It’s akin to JSON and XML.&lt;/p&gt;
+
+&lt;p&gt;I made the ansible playbook in the &lt;code class=&quot;highlighter-rouge&quot;&gt;ansible&lt;/code&gt; subdirectory, the
+structure is:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ansible/
+  group_vars/
+    all.yml
+  roles/
+    external/
+	  .keep
+	internal/
+	  cleanup/
+	    tasks/
+		  main.yml
+	  common/
+	    tasks/
+		  install.yml
+		  main.yml
+	requirements.yml
+  sandbox.yml
+  sudo_roles.yml
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;top-level-playbook&quot;&gt;Top level playbook&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/tamouse/sandbox.wp.local/blob/master/ansible/sandbox.yml&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sandbox.yml&lt;/code&gt;&lt;/a&gt; is
+the top-level playbook that sets the whole provisioning activity
+off. It is simple and just contains:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;sudo_roles.yml&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;sudo-roles-playbook&quot;&gt;Sudo Roles Playbook&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/tamouse/sandbox.wp.local/blob/master/ansible/sudo_roles.yml&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo_roles.yml&lt;/code&gt;&lt;/a&gt; is
+the playbook that runs all the roles that need to be performs as the
+superuser. In this project, that’s all of them. My playbook goes in
+the following order:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;internal/common&lt;/li&gt;
+  &lt;li&gt;external/calebwoods.brightbox_ruby&lt;/li&gt;
+  &lt;li&gt;external/geerlingguy.nodejs&lt;/li&gt;
+  &lt;li&gt;external/geerlingguy.apache&lt;/li&gt;
+  &lt;li&gt;external/geerlingguy.mysql&lt;/li&gt;
+  &lt;li&gt;external/geerlingguy.php&lt;/li&gt;
+  &lt;li&gt;external/darthwade.wordpress&lt;/li&gt;
+  &lt;li&gt;external/darthwade.wordpress-apache&lt;/li&gt;
+  &lt;li&gt;internal/cleanup&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;defining-external-requirements&quot;&gt;Defining External Requirements&lt;/h3&gt;
+
+&lt;p&gt;In building this up, my starting point was to figure out what
+pre-built roles I could use to install the software and
+configurations I would need. These filled out
+&lt;a href=&quot;https://github.com/tamouse/sandbox.wp.local/blob/master/ansible/roles/requirements.yml&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;roles/requirements.yml&lt;/code&gt;&lt;/a&gt;. I’m using these roles:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://galaxy.ansible.com/geerlingguy/nodejs/&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;geerlingguy.nodejs&lt;/code&gt;&lt;/a&gt; - installs the latest stable version of Node.js&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://galaxy.ansible.com/geerlingguy/apache/&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;geerlingguy.apache&lt;/code&gt;&lt;/a&gt; - the Apache 2.x web server&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://galaxy.ansible.com/geerlingguy/mysql/&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;geerlingguy.mysql&lt;/code&gt;&lt;/a&gt; - MySQL database management system, 5.x&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://galaxy.ansible.com/geerlingguy/php/&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;geerlingguy.php&lt;/code&gt;&lt;/a&gt; - PHP language, 5.x&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://galaxy.ansible.com/darthwade/wordpress/&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;darthwade.wordpress&lt;/code&gt;&lt;/a&gt; - WordPress installation&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://galaxy.ansible.com/darthwade/wordpress-apache/&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;darthwade.wordpress-apache&lt;/code&gt;&lt;/a&gt; - Apache requirements for WordPress&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://galaxy.ansible.com/calebwoods/brightbox_ruby/&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;calebwoods.brightbox_ruby&lt;/code&gt;&lt;/a&gt; - Ruby 2.x because I like working in
+Ruby, too&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Each of these requires some configuration. The configuration settings
+are defined
+in
+&lt;a href=&quot;https://github.com/tamouse/sandbox.wp.local/blob/master/ansible/group_vars/all.yml&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;group_vars/all.yml&lt;/code&gt;&lt;/a&gt;. I
+set things up as follows:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;enable apache &lt;code class=&quot;highlighter-rouge&quot;&gt;rewrite_mod&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;MySQL root password&lt;/li&gt;
+  &lt;li&gt;MySQL WordPress database and user &lt;code class=&quot;highlighter-rouge&quot;&gt;vagrant&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Ruby version 2.2 and 2.3&lt;/li&gt;
+  &lt;li&gt;Node.js version 6, npm user &lt;code class=&quot;highlighter-rouge&quot;&gt;vagrant&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Various PHP options and modules:&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;php5&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;php5-cli&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;php5-common&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;php5-curl&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;php5-dev&lt;/code&gt;,
+&lt;code class=&quot;highlighter-rouge&quot;&gt;php5-gd&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;php5-mysql&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;memory limit: 128MiB&lt;/li&gt;
+      &lt;li&gt;execution time: 90s&lt;/li&gt;
+      &lt;li&gt;max file upload size: 256MiB&lt;/li&gt;
+      &lt;li&gt;disable apcu&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;WordPress Configurations&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;version 4.0&lt;/li&gt;
+      &lt;li&gt;install directory &lt;code class=&quot;highlighter-rouge&quot;&gt;/var/www/sandbox_wp&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;db user: &lt;code class=&quot;highlighter-rouge&quot;&gt;vagrant&lt;/code&gt; (match above)&lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;db host: &lt;code class=&quot;highlighter-rouge&quot;&gt;localhost&lt;/code&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;hostname: &lt;code class=&quot;highlighter-rouge&quot;&gt;sandbox.wp.local&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;alias: ‘sandbox’&lt;/li&gt;
+      &lt;li&gt;admin email: “admin@example.com” (because I’m not sending any
+emails)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;internal-requirements&quot;&gt;Internal Requirements&lt;/h3&gt;
+
+&lt;p&gt;These are things I installed and configured myself without relying on
+pre-defined roles.&lt;/p&gt;
+
+&lt;p&gt;Because the &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo_roles.yml&lt;/code&gt; file calls &lt;code class=&quot;highlighter-rouge&quot;&gt;internal/common&lt;/code&gt;,
+&lt;code class=&quot;highlighter-rouge&quot;&gt;roles/internal/common/tasks/main.yml&lt;/code&gt; gets run automatically during
+provisioning. It calls
+in
+&lt;a href=&quot;https://github.com/tamouse/sandbox.wp.local/blob/master/ansible/roles/internal/common/tasks/install.yml&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;roles/internal/common/tasks/install.yml&lt;/code&gt;&lt;/a&gt; which
+I’m using to install necessary software packages.&lt;/p&gt;
+
+&lt;p&gt;After updating the APT caches, I installed:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;build-essential&lt;/li&gt;
+  &lt;li&gt;ntp&lt;/li&gt;
+  &lt;li&gt;git&lt;/li&gt;
+  &lt;li&gt;vim&lt;/li&gt;
+  &lt;li&gt;emacs24&lt;/li&gt;
+  &lt;li&gt;unzip&lt;/li&gt;
+  &lt;li&gt;imagemagick&lt;/li&gt;
+  &lt;li&gt;libmagick-dev&lt;/li&gt;
+  &lt;li&gt;libxml2&lt;/li&gt;
+  &lt;li&gt;libxml2-dev&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;WordPress definitely doesn’t need all of these, but my development
+tools and workflow generally do, and that’s what this is all about.&lt;/p&gt;
+
+&lt;h3 id=&quot;final-configuration-and-cleanup&quot;&gt;Final configuration and cleanup&lt;/h3&gt;
+
+&lt;p&gt;After installing all the internal and external roles, I still had some
+things I wanted to configure and clean up. These went
+into
+&lt;a href=&quot;https://github.com/tamouse/sandbox.wp.local/blob/master/ansible/roles/internal/cleanup/tasks/main.yml&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;roles/internal/cleanup/tasks/main.yml&lt;/code&gt;&lt;/a&gt; and
+included:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;enabling the VHosts module for Apache2&lt;/li&gt;
+  &lt;li&gt;disable the default and vhosts sites&lt;/li&gt;
+  &lt;li&gt;reset user and group ownership of the WordPress site to &lt;code class=&quot;highlighter-rouge&quot;&gt;www-data&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;use the &lt;code class=&quot;highlighter-rouge&quot;&gt;direct&lt;/code&gt; method for &lt;code class=&quot;highlighter-rouge&quot;&gt;FS_METHOD&lt;/code&gt; which lets the WordPress
+installation directly update from the codex without using FTP.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;another-git-save-point&quot;&gt;Another Git Save Point&lt;/h3&gt;
+
+&lt;p&gt;Yep. This is how I roll.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gacp &lt;span class=&quot;s1&quot;&gt;'Ansible Playbook Created'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;gathering-the-external-requirements&quot;&gt;Gathering the External Requirements&lt;/h3&gt;
+
+&lt;p&gt;Specifying the external requirements is not enough, I needed to tell
+ansible to fetch them.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ansible-galaxy install -r ansible/roles/requirements.yml --force --ignore-errors
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;bringing-up-the-vm-and-first-provisioning&quot;&gt;Bringing up the VM and first provisioning&lt;/h3&gt;
+
+&lt;p&gt;Now I was ready to pull together all the prior stuff and build the
+box.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vagrant up
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The first time you run &lt;code class=&quot;highlighter-rouge&quot;&gt;up&lt;/code&gt; vagrant will start running the
+provisioning after the box comes up. After this first time, however,
+when you run the &lt;code class=&quot;highlighter-rouge&quot;&gt;up&lt;/code&gt; command, vagrant doesn’t try to
+reprovision.&lt;/p&gt;
+
+&lt;p&gt;So, you know, the first time you try something, you mistype something,
+or you forget a configuration value, and so on. I know I did. I don’t
+recall the specifics, but it doesn’t really matter, trial and error,
+get things working, figure stuff out, and eventually I ended up with a
+clean provisioning.&lt;/p&gt;
+
+&lt;p&gt;You don’t need to keep running the &lt;code class=&quot;highlighter-rouge&quot;&gt;up&lt;/code&gt; command, you run the
+&lt;code class=&quot;highlighter-rouge&quot;&gt;provision&lt;/code&gt; command instead while the box stays up. Since the point of
+ansible is to provide an “idempotent” (i.e. same result each time
+it’s run) solution, it will check if it’s successfully run a step and
+skip over it. So my provisioning actually looked something like:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vagrant up
+&lt;span class=&quot;c&quot;&gt;# something broke, fix it&lt;/span&gt;
+vagrant provision
+&lt;span class=&quot;c&quot;&gt;# something broke, fix it&lt;/span&gt;
+vagrant provision
+&lt;span class=&quot;c&quot;&gt;# something broke, fix it&lt;/span&gt;
+vagrant provision
+&lt;span class=&quot;c&quot;&gt;# something broke, fix it&lt;/span&gt;
+vagrant provision
+&lt;span class=&quot;c&quot;&gt;# and so on&lt;/span&gt;
+vagrant provision
+&lt;span class=&quot;c&quot;&gt;# yay it finally worked!&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;and-another-save-point-and-merge-back-to-master&quot;&gt;And another save point, and merge back to master&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gacp 'Anisble provisioning works! Yay!`
+git checkout master # aliased to: gco master
+git merge ansible-playbook
+gacp 'Merging ansible-playbook to master'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Whew!&lt;/p&gt;
+
+&lt;h3 id=&quot;set-up-wordpress-installation&quot;&gt;Set up WordPress Installation&lt;/h3&gt;
+
+&lt;p&gt;I was now ready to give the WordPress five-minute installation a go. I
+fired up my browser at &lt;code class=&quot;highlighter-rouge&quot;&gt;http://sandbox.wp.local&lt;/code&gt; and there was the
+installation page, just as I’d hoped.&lt;/p&gt;
+
+&lt;p&gt;After running through that, playing with appearance, plugins, making a
+couple posts and pages, I was feeling good.&lt;/p&gt;
+
+&lt;p&gt;I tried installing some themes and plugins from the WordPress codex,
+and they installed nicely. Updated the WordPress installation itself,
+and everything was great.&lt;/p&gt;
+
+&lt;h2 id=&quot;creating-a-development-environment&quot;&gt;Creating a development environment&lt;/h2&gt;
+
+&lt;p&gt;This is really the whole point of this exercise: I wanted a sandbox
+that would let me develop child and custom themes, plugins, other
+custom things as I wanted, using my local machine to edit things, and
+apply my favourite tools including Sass, gulp, ruby, and so on.&lt;/p&gt;
+
+&lt;p&gt;With the WordPress install running in &lt;code class=&quot;highlighter-rouge&quot;&gt;/var/www/sandbox_wp&lt;/code&gt; under
+&lt;code class=&quot;highlighter-rouge&quot;&gt;www-data&lt;/code&gt;, I still needed a way to be able to edit files locally and
+have them show up under the WordPress site.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;wp-content&lt;/code&gt; folder is used for a few things, but most important
+to this task, I wanted to be able to have themes and plugins available
+for local editing.&lt;/p&gt;
+
+&lt;p&gt;Logging into the VM, I created a folder &lt;code class=&quot;highlighter-rouge&quot;&gt;/vagrant/dev&lt;/code&gt;, which would
+show up on the local machine in the project root as just &lt;code class=&quot;highlighter-rouge&quot;&gt;dev/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkdir /vagrant/dev
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then I recursively copied the contents of
+&lt;code class=&quot;highlighter-rouge&quot;&gt;/var/www/sandbox_wp/wp-content/themes&lt;/code&gt; and
+&lt;code class=&quot;highlighter-rouge&quot;&gt;/var/www/sandbox_wp/wp-content/plugins&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;/vagrant/dev/&lt;/code&gt;, which
+created two folders &lt;code class=&quot;highlighter-rouge&quot;&gt;/vagrant/dev/themes&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;/vagrant/dev/plugins&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cp -r /var/www/sandbox_wp/wp-content/themes /vagrant/dev
+cp -r /var/www/sandbox_wp/wp-content/plugins /vagrant/dev
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;creating-a-little-demo-custom-theme&quot;&gt;Creating a little demo custom theme&lt;/h3&gt;
+
+&lt;p&gt;To test things out, I created a custom theme under &lt;code class=&quot;highlighter-rouge&quot;&gt;dev/&lt;/code&gt; on the local
+machine, and filled with some bare-bones content:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkdir -p dev/themes/demo
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The
+&lt;a href=&quot;https://github.com/tamouse/sandbox.wp.local/tree/master/dev/themes/demo&quot;&gt;demo content&lt;/a&gt; was
+pretty complicated to set up, and I’m not going into it here. Easier
+would have been just making a child theme to try stuff out.&lt;/p&gt;
+
+&lt;h3 id=&quot;telling-wordpress-about-the-custom-theme&quot;&gt;Telling WordPress about the Custom Theme&lt;/h3&gt;
+
+&lt;p&gt;Back over on the VM, I needed to tell the WordPress installation about
+this new custom theme:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /var/www/sandbox_wp/wp-content/themes
+sudo ln -s /vagrant/dev/themes/demo .
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Popping back over to the browser, and pulling up the Appearances -&amp;gt;
+Themes menu, lo and behold, the custom theme now showed up.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-development-workflow&quot;&gt;The development workflow&lt;/h2&gt;
+
+&lt;p&gt;I now could edit files comfortably in my local editor of choice,
+saving files, and view the results by refreshing the browser pointing
+at the WordPress site running in the VM.&lt;/p&gt;
+
+&lt;h2 id=&quot;final-thoughts&quot;&gt;Final Thoughts&lt;/h2&gt;
+
+&lt;p&gt;I created this set up initially during &lt;a href=&quot;https://2016.minneapolis.wordcamp.org/&quot; title=&quot;WordCamp MSP 2016&quot;&gt;WordCamp MSP 2016&lt;/a&gt;
+for the fundamentals day so I could have a local hacking spot without
+trying to roll up a remote server or build up a local server that I
+may not want to keep around.&lt;/p&gt;
+
+&lt;p&gt;(This is why the demo custom theme is as complex as it is.)&lt;/p&gt;
+
+&lt;p&gt;One of the excellent things about using Vagrant and Ansible is the
+ease of which you can spin something up again if you want to. However,
+for future WordPress development work, I will probably be going
+with &lt;a href=&quot;https://local.getflywheel.com&quot; title=&quot;Local by Flywheel: Local WordPress development made simple&quot;&gt;Local&lt;/a&gt; because it is &lt;em&gt;such&lt;/em&gt; a slick product, and
+that’s what I’m recommending to my WordPress students.&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 11 Feb 2017 22:17:00 -0600</pubDate>
+        <link>http://swaac.tamouse.org/wordpress/2017/02/11/how-i-set-up-my-local-wordpress-development-environment-using-vagrant-and-ansible/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/wordpress/2017/02/11/how-i-set-up-my-local-wordpress-development-environment-using-vagrant-and-ansible/</guid>
+        
+        <category>wordpress</category>
+        
+        <category>vagrant</category>
+        
+        <category>ansible</category>
+        
+        <category>local</category>
+        
+        <category>sandbox</category>
+        
+        
+        <category>wordpress</category>
+        
+      </item>
     
       <item>
         <title>Gitlab Database Outage Post-Mortem</title>
@@ -898,33 +1556,6 @@ the &lt;a href=&quot;https://facebook.github.io/react/docs/&quot;&gt;React docs&
         <category>javascript</category>
         
         <category>react</category>
-        
-      </item>
-    
-      <item>
-        <title>Ask Me Anything</title>
-        <description>&lt;p&gt;I started a new thing: an “Ask Me Anything” github repo where you can
-ask me any question as an issue, I’ll try to answer it.&lt;/p&gt;
-
-&lt;p&gt;I got the idea from
-reading &lt;a href=&quot;https://github.com/notwaldorf&quot;&gt;@notwaldorf&lt;/a&gt;’s site about the
-&lt;a href=&quot;https://github.com/notwaldorf/font-style-matcher&quot;&gt;font-style-matcher&lt;/a&gt;
-tool she wrote (which you should also check out).&lt;/p&gt;
-
-&lt;p&gt;If you have questions, &lt;a href=&quot;https://github.com/tamouse/ama/issues/new&quot;&gt;ask me!&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Wed, 30 Nov 2016 07:59:00 -0600</pubDate>
-        <link>http://swaac.tamouse.org/github/2016/11/30/ask-me-anything/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/github/2016/11/30/ask-me-anything/</guid>
-        
-        <category>ama</category>
-        
-        <category>ask-me-anything</category>
-        
-        <category>github</category>
-        
-        
-        <category>github</category>
         
       </item>
     
