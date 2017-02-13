@@ -1,9 +1,14 @@
 ---
 layout: post
-title: "TIL: Beamer installation and missing fonts"
+title: "TIL: Beamer installation and missing TeX fonts"
 date: 2015-05-30 06:01
-categories: ["tex", "beamer"]
-tags: ["troubleshooting", "missing-fonts"]
+categories: ["org-mode"]
+tags:
+  - org-mode
+  - beamer
+  - tex
+  - fonts
+  - presentations
 ---
 I have recently been playing much with emac's `org-mode` and one of
 the neat things is creating a presentation and exporting it to

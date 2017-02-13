@@ -1,17 +1,15 @@
 ---
-layout: default
+layout: page
 title: "Categories"
 ---
-
-<h2 class="page-header">{{ page.title }}</h2>
-
-
 
 {% capture categories %}{% for cat in site.categories %}
 {{cat|first}}
 {% endfor %}{% endcapture %}
 {% assign categories = categories | split:' ' | sort %}
-{% for cat in categories %}
-<a href="{{ site.baseurl }}/categories/{{ cat }}/index.html">{{ cat }}</a>
-&bullet;
-{% endfor %}
+
+<ul>
+  {% for cat in categories %}
+  <li><a href="{{ site.baseurl }}/categories/{{ cat }}/index.html">{{ cat }}</a></li>
+  {% endfor %}
+</ul>

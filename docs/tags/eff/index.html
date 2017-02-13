@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>TIL: Beamer installation and missing fonts</title>
+    <title>Tag: eff</title>
     <meta name="description" content="The development blog of tamouse">
 
     <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="canonical" href="http://swaac.tamouse.org/tex/beamer/2015/05/30/til-beamer-installation-and-missing-fonts/">
+    <link rel="canonical" href="http://swaac.tamouse.org/tags/eff/">
     <link href="/favicon.png" rel="icon">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
 </head>
@@ -35,13 +35,11 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/">Home</a></li>
-        <li class="divider"></li>
         <li><a href="/pages/learning">Learning</a></li>
         <li class="divider"></li>
         <li><a href="/pages/about">About</a></li>
         <li class="divider"></li>
-        <li><a href="/pages/swaac-intro">SWaaC Intro</a></li>
+        <li><a href="/pages/all_posts">Posts</a></li>
         <li class="divider"></li>
         <li><a href="/pages">Pages</a></li>
         <li class="divider"></li>
@@ -55,71 +53,38 @@
 
 
     <main class="container-fluid">
-      <header class="page-header">
-<h1>TIL: Beamer installation and missing fonts</h1>
-May 30, 2015
+      <h1 class="page-header">eff</h1>
 
+<div id="posts-index" class="container-fluid restrain-x">
+  
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="hidden-sm hidden-xs"><a href="/security/2017/02/12/baratunde-thurston-explains-web-encryption/">Baratunde Thurston Explains Web Encryption</a></h2>
+      <h3 class="hidden-md hidden-lg"><a href="/security/2017/02/12/baratunde-thurston-explains-web-encryption/">Baratunde Thurston Explains Web Encryption</a></h3>
+      <span style="display:none;">2017-02-12 08:06:00 -0600</span>
+      <small class="nowrap">Feb 12, 2017</small>
+       &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/categories/security">security</a></li></ul>
+       &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/tags/security">security</a></li> <li role="presentation"><a href="/tags/eff">eff</a></li> <li role="presentation"><a href="/tags/encryption">encryption</a></li> <li role="presentation"><a href="/tags/https">https</a></li> <li role="presentation"><a href="/tags/baratunde-thurston">baratunde-thurston</a></li> 
 
- &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/categories/tex">tex</a></li><li role="presentation"><a href="/categories/beamer">beamer</a></li></ul>
- &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/tags/troubleshooting">troubleshooting</a></li> <li role="presentation"><a href="/tags/missing-fonts">missing-fonts</a></li> 
-</header>
+	<p><p>The Electronic Freedom Foundation (<a href="https://www.eff.org" title="The Electronic Freedom Foundation">EFF</a>) is working
+to <a href="https://www.eff.org/encrypt-the-web">encrypt the web</a>, converting
+all web sites from HTTP to
+HTTPS. <a href="http://baratunde.com/">Baratunde Thurston</a> narrates the video
+explaining web encryption to the masses.</p>
 
-<article>
-<p>I have recently been playing much with emac’s <code class="highlighter-rouge">org-mode</code> and one of
-the neat things is creating a presentation and exporting it to
-[beamer], a TeX dialect made for creating presentations.</p>
+</p>
+    </div>
+  </div>
+  
 
-<p>I seemed to have all the pieces installed, so I thought, so I got to
-the step for testing the installation:</p>
-
-<blockquote>
-  <p>To test your installation, copy the file
-<code class="highlighter-rouge">generic-ornate-15min-45min.en.tex</code> from the directory
-<code class="highlighter-rouge">beamer/solutions/generic-talks</code>
-to some place where you usually create presentations. Then run the
-command <code class="highlighter-rouge">pdflatex</code> several times on the file and check whether the
-resulting pdf file looks correct. If so, you are all set.</p>
-</blockquote>
-
-<p>Well, I wasn’t all set, as it turns out I was missing a few
-fonts. After banging around trying to fix this, I used my awesome
-superpowers and searched for the error that was getting shown, and it
-led me to stackexchange’s TeX forum:</p>
-
-<p><a href="http://tex.stackexchange.com/questions/160176/usepackagescaledhelvet-fails-on-mac-with-basictex">http://tex.stackexchange.com/questions/160176/usepackagescaledhelvet-fails-on-mac-with-basictex</a></p>
-
-<p>Here, I learned about installing fonts. I ran the following as root:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>$ sudo tlmgr install collection-fontsrecommended
-</code></pre>
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>
+	<a href="/pages/all_posts/">Index of all posts</a>
+      </h2>
+    </div>
+  </div>
 </div>
-
-<p>and then tried the test again:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>$ pdflatex generic-ornate-15min-45min.en
-</code></pre>
-</div>
-
-<p>which produces a ton of output as TeX does and the result was a
-success!</p>
-
-</article>
-<hr>
-
-
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
-
-  /* * * DON'T EDIT BELOW THIS LINE * * */
-  (function() {
-  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
     </main>

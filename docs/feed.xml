@@ -5,9 +5,44 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 12 Feb 2017 01:36:19 -0600</pubDate>
-    <lastBuildDate>Sun, 12 Feb 2017 01:36:19 -0600</lastBuildDate>
+    <pubDate>Sun, 12 Feb 2017 21:07:26 -0600</pubDate>
+    <lastBuildDate>Sun, 12 Feb 2017 21:07:26 -0600</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>Baratunde Thurston Explains Web Encryption</title>
+        <description>&lt;p&gt;The Electronic Freedom Foundation (&lt;a href=&quot;https://www.eff.org&quot; title=&quot;The Electronic Freedom Foundation&quot;&gt;EFF&lt;/a&gt;) is working
+to &lt;a href=&quot;https://www.eff.org/encrypt-the-web&quot;&gt;encrypt the web&lt;/a&gt;, converting
+all web sites from HTTP to
+HTTPS. &lt;a href=&quot;http://baratunde.com/&quot;&gt;Baratunde Thurston&lt;/a&gt; narrates the video
+explaining web encryption to the masses.&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/PdnpNJZVUE0?rel=0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;You may notice my sites don’t use HTTPS. The only reason is I’ve not
+gotten around to implementing it yet.&lt;/p&gt;
+
+&lt;p&gt;I’ve used it on projects, and it’s pretty simple to set up. Look for a
+future post, probably.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 12 Feb 2017 08:06:00 -0600</pubDate>
+        <link>http://swaac.tamouse.org/security/2017/02/12/baratunde-thurston-explains-web-encryption/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/security/2017/02/12/baratunde-thurston-explains-web-encryption/</guid>
+        
+        <category>security</category>
+        
+        <category>eff</category>
+        
+        <category>encryption</category>
+        
+        <category>https</category>
+        
+        <category>baratunde-thurston</category>
+        
+        
+        <category>security</category>
+        
+      </item>
     
       <item>
         <title>How I Set Up my Local WordPress Development Environment Using Vagrant and Ansible</title>
@@ -1504,58 +1539,6 @@ as good, so I moved that to the top.&lt;/p&gt;
         
         
         <category>css</category>
-        
-      </item>
-    
-      <item>
-        <title>Todo app using just React with POJS - no JSX or ES6</title>
-        <description>&lt;p&gt;I just moderated the &lt;a href=&quot;https://frontendmasters.com&quot;&gt;Frontend Masters&lt;/a&gt;
-class “Complete Introduction to React” taught
-by &lt;a href=&quot;https://twitter.com/holtbt&quot;&gt;Brian Holt&lt;/a&gt; of Netflix and Reddit
-fame.&lt;/p&gt;
-
-&lt;p&gt;It was a great course, but as moderator I was doing a lot of things to
-keep the chat room flowing and didn’t get to pay much attention to the
-detail Brian was presenting, and definitely didn’t have time in class
-to try out stuff.&lt;/p&gt;
-
-&lt;p&gt;So I thought I’d just give the first bit of Brian’s presentation a go,
-where we just worked with React as a plain JS library, nothing fancy,
-no JSX transpiling, etc.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/tamouse/todo-react-nojsx&quot;&gt;This&lt;/a&gt; is the result, the canonical single page Todo
-application.&lt;/p&gt;
-
-&lt;p&gt;It was pretty easy, and pretty fun. I kept only to
-the &lt;a href=&quot;https://facebook.github.io/react/docs/&quot;&gt;React docs&lt;/a&gt;, especially&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://facebook.github.io/react/docs/react-without-es6.html&quot;&gt;React Without ES6 - React&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://facebook.github.io/react/docs/react-without-jsx.html&quot;&gt;React Without JSX - React&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I’m pleased with the experiement.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 03 Dec 2016 09:56:00 -0600</pubDate>
-        <link>http://swaac.tamouse.org/javascript/react/2016/12/03/todo-app-using-just-react-with-pojs-no-jsx-or-es6/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/javascript/react/2016/12/03/todo-app-using-just-react-with-pojs-no-jsx-or-es6/</guid>
-        
-        <category>javascript</category>
-        
-        <category>react</category>
-        
-        <category>learning</category>
-        
-        <category>todoapp</category>
-        
-        <category>frontend-masters</category>
-        
-        <category>brian-holt</category>
-        
-        
-        <category>javascript</category>
-        
-        <category>react</category>
         
       </item>
     
