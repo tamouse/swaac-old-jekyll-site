@@ -5,8 +5,8 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 06 Apr 2017 23:09:01 -0500</pubDate>
-    <lastBuildDate>Thu, 06 Apr 2017 23:09:01 -0500</lastBuildDate>
+    <pubDate>Thu, 06 Apr 2017 23:09:46 -0500</pubDate>
+    <lastBuildDate>Thu, 06 Apr 2017 23:09:46 -0500</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -14,7 +14,7 @@
         <description>&lt;p&gt;This came across my path this
 week: &lt;a href=&quot;https://robots.thoughtbot.com/authors/joel-quenneville&quot;&gt;Joël Quenneville&lt;/a&gt;’s
 article,
-&lt;a href=&quot;https://robots.thoughtbot.com/decorating-activerecord?utm_source=rubyweekly&amp;amp;utm_medium=email&quot;&gt;Decorating ActiveRecord&lt;/a&gt;,
+&lt;a href=&quot;https://robots.thoughtbot.com/decorating-activerecord&quot;&gt;Decorating ActiveRecord&lt;/a&gt;,
 which outlines some hazards when you go about decorating ActiveRecord
 models.&lt;/p&gt;
 

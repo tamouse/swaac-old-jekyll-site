@@ -11,7 +11,7 @@ source: https://robots.thoughtbot.com/decorating-activerecord
 This came across my path this
 week: [Joël Quenneville](https://robots.thoughtbot.com/authors/joel-quenneville)'s
 article,
-[Decorating ActiveRecord](https://robots.thoughtbot.com/decorating-activerecord?utm_source=rubyweekly&utm_medium=email),
+[Decorating ActiveRecord]({{ page.source }}),
 which outlines some hazards when you go about decorating ActiveRecord
 models.
 
