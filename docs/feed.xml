@@ -5,9 +5,71 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 12 Feb 2017 21:07:26 -0600</pubDate>
-    <lastBuildDate>Sun, 12 Feb 2017 21:07:26 -0600</lastBuildDate>
-    <generator>Jekyll v3.3.1</generator>
+    <pubDate>Thu, 06 Apr 2017 23:09:01 -0500</pubDate>
+    <lastBuildDate>Thu, 06 Apr 2017 23:09:01 -0500</lastBuildDate>
+    <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Link: Decorating ActiveRecord</title>
+        <description>&lt;p&gt;This came across my path this
+week: &lt;a href=&quot;https://robots.thoughtbot.com/authors/joel-quenneville&quot;&gt;Joël Quenneville&lt;/a&gt;’s
+article,
+&lt;a href=&quot;https://robots.thoughtbot.com/decorating-activerecord?utm_source=rubyweekly&amp;amp;utm_medium=email&quot;&gt;Decorating ActiveRecord&lt;/a&gt;,
+which outlines some hazards when you go about decorating ActiveRecord
+models.&lt;/p&gt;
+
+&lt;p&gt;Do read the article, it’s good.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Here’s the tl;dr for my memory:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If you’re decorating an ActiveRecord or ActiveModel object in Rails,
+you probably want to define the following to ensure the decorator
+works the way you expect instead of silently delegating to the
+underlying object:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Profile&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SimpleDelegator&lt;/span&gt;
+  &lt;span class=&quot;kp&quot;&gt;extend&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveModel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Naming&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;to_model&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Thu, 06 Apr 2017 23:01:00 -0500</pubDate>
+        <link>http://swaac.tamouse.org/rails/2017/04/06/link-decorating-activerecord/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/rails/2017/04/06/link-decorating-activerecord/</guid>
+        
+        <category>rails</category>
+        
+        <category>activerecord</category>
+        
+        <category>decorators</category>
+        
+        <category>links</category>
+        
+        <category>tl-dr</category>
+        
+        
+        <category>rails</category>
+        
+      </item>
     
       <item>
         <title>Baratunde Thurston Explains Web Encryption</title>
@@ -144,7 +206,7 @@ like this:&lt;/p&gt;
 
 &lt;p&gt;)&lt;/p&gt;
 
-&lt;h3 id=&quot;run-&quot;&gt;Run &lt;code class=&quot;highlighter-rouge&quot;&gt;vagrant init&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;run-vagrant-init&quot;&gt;Run &lt;code class=&quot;highlighter-rouge&quot;&gt;vagrant init&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;I typically use one of the later Ubuntu server variants; mostly I’ve
 been using ‘trusty’:&lt;/p&gt;
@@ -155,7 +217,7 @@ been using ‘trusty’:&lt;/p&gt;
 
 &lt;p&gt;This writes out a default &lt;code class=&quot;highlighter-rouge&quot;&gt;Vagrantfile&lt;/code&gt; (which is written in Ruby).&lt;/p&gt;
 
-&lt;h3 id=&quot;modify--for-my-needs&quot;&gt;Modify &lt;code class=&quot;highlighter-rouge&quot;&gt;Vagrantfile&lt;/code&gt; for my needs&lt;/h3&gt;
+&lt;h3 id=&quot;modify-vagrantfile-for-my-needs&quot;&gt;Modify &lt;code class=&quot;highlighter-rouge&quot;&gt;Vagrantfile&lt;/code&gt; for my needs&lt;/h3&gt;
 
 &lt;p&gt;I modify the file so it looks like so:&lt;/p&gt;
 
@@ -1045,7 +1107,7 @@ lot more in terms of verification:&lt;/p&gt;
 &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h2 id=&quot;til-calling--to-fire-async-mocha-tests&quot;&gt;TIL: calling &lt;code class=&quot;highlighter-rouge&quot;&gt;done&lt;/code&gt; to fire async mocha tests&lt;/h2&gt;
+&lt;h2 id=&quot;til-calling-done-to-fire-async-mocha-tests&quot;&gt;TIL: calling &lt;code class=&quot;highlighter-rouge&quot;&gt;done&lt;/code&gt; to fire async mocha tests&lt;/h2&gt;
 
 &lt;p&gt;This particular thing was driving me nuts: I was running the test over
 and over and could not figure out why it was just running to
@@ -1400,145 +1462,6 @@ the url and the label of the button in the cart.&lt;/p&gt;
         
         
         <category>wordpress</category>
-        
-      </item>
-    
-      <item>
-        <title>flexbox website with fixed headers and footer</title>
-        <description>&lt;p&gt;I was playing around with some React stuff and came upon a basic
-layout issue. I wanted to have the standard header + footer + main +
-sidebar sort of layout, but I wanted to do it flexbox. I also wanted
-the header and footer to be fixed to the top and bottom, respectively,
-and for the main content to be able to scroll inside it.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;UPDATE!!&lt;/strong&gt; Now with more responsive!&lt;/p&gt;
-
-&lt;p&gt;The results can be seen at &lt;a href=&quot;https://github.com/tamouse/sample-flex-website-layout&quot;&gt;this repo&lt;/a&gt;, and a demo
-	at &lt;a href=&quot;https://tamouse.github.io/sample-flex-website-layout/&quot;&gt;Flex Standard Layout (demo)&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;page-boundaries-header-and-footer&quot;&gt;Page Boundaries: Header and Footer&lt;/h2&gt;
-
-&lt;p&gt;Making the header and footer fixed to top and bottom is fairly easy.
-The following attributes generally work well:&lt;/p&gt;
-
-&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.fixed-top&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.fixed-bottom&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;aboslute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;40px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;.fixed-top&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;.fixed-bottom&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;bottom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;full-height-columns&quot;&gt;Full-height columns&lt;/h2&gt;
-
-&lt;p&gt;Getting columns of equal height is a bit tricksier, and I resorted to
-what seems like a hack.&lt;/p&gt;
-
-&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.fixed-middle&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;40px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;bottom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;40px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;overflow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;hidden&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;nc&quot;&gt;.fixed-middle&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.column&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;overflow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;wheres-the-flex&quot;&gt;Where’s the flex?&lt;/h2&gt;
-
-&lt;p&gt;This isn’t very flexy yet, so I added in some goodness for that:&lt;/p&gt;
-
-&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.fixed-middle&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;py&quot;&gt;dislplay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;.fixed-middle&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.col&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Much better, but then the sidebars and central main content area are
-all the same width. I want the content area to dominate.&lt;/p&gt;
-
-&lt;p&gt;I arranged the main content part to come before the sidebars, like so:&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fixed-middle&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;main&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main-content&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;role=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- main content --&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/main&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;aside&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;left-side&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- left side bar content --&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/aside&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;aside&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;right-side&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- right sidebar content --&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/aside&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;After removing &lt;code class=&quot;highlighter-rouge&quot;&gt;.fixed-middle .col&lt;/code&gt; CSS definition, I put in:&lt;/p&gt;
-
-&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;.fixed-middle&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.main-content&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-   &lt;span class=&quot;nl&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-   &lt;span class=&quot;nl&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;.fixed-middle&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.left-side&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-   &lt;span class=&quot;nl&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-   &lt;span class=&quot;nl&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;.fixed-middle&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.right-side&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-   &lt;span class=&quot;nl&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-   &lt;span class=&quot;nl&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;This tells flexbox to let the main content area grow to 5 times the
-size of the sidebars, but make sure the left side bar’s content comes
-first in the row.&lt;/p&gt;
-
-&lt;h2 id=&quot;header-and-footer-redux&quot;&gt;Header and Footer Redux&lt;/h2&gt;
-
-&lt;p&gt;I wanted to extend this even further, so the case where you may have
-multiple “widgets” in the header or footer, and so redid the same idea
-for the those, but keeping the flex to 1.&lt;/p&gt;
-
-&lt;p&gt;If I ended up with a 2/3 widget and 1/3 widget, I could mark them with
-appropriate classes and set the flex accordingly.&lt;/p&gt;
-
-&lt;h2 id=&quot;sample-repo-and-demo&quot;&gt;Sample Repo and Demo&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/tamouse/sample-flex-website-layout&quot;&gt;sample repo on Github&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://tamouse.github.io/sample-flex-website-layout/&quot;&gt;demonstration&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;making-it-responsive&quot;&gt;Making it responsive&lt;/h2&gt;
-
-&lt;p&gt;This turned out to be really easy, and all I needed to do is wrap the
-flexbox and absolute positioning in a media query.&lt;/p&gt;
-
-&lt;p&gt;I had put the page header after the main content, but that didn’t look
-as good, so I moved that to the top.&lt;/p&gt;
-
-&lt;p&gt;The image was misbehaving as well, so I introduced an
-&lt;code class=&quot;highlighter-rouge&quot;&gt;.img-responsive&lt;/code&gt; class that limited the width to 100%.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 04 Dec 2016 14:31:00 -0600</pubDate>
-        <link>http://swaac.tamouse.org/css/2016/12/04/flexbox-website-with-fixed-headers-and-footer/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/css/2016/12/04/flexbox-website-with-fixed-headers-and-footer/</guid>
-        
-        <category>css</category>
-        
-        <category>flexbox</category>
-        
-        
-        <category>css</category>
         
       </item>
     

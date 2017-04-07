@@ -76,7 +76,7 @@ this together.</p>
 
 <!--more-->
 
-<h2 id="configuring-">Configuring <code class="highlighter-rouge">.travis.yml</code></h2>
+<h2 id="configuring-travisyml">Configuring <code class="highlighter-rouge">.travis.yml</code></h2>
 
 <p>The first part of getting a repository ready to run under Travis is to
 create a <code class="highlighter-rouge">.travis.yml</code> file to tell Travis how to build and test your
@@ -224,7 +224,7 @@ user, <code class="highlighter-rouge">postgres</code> as specified by travis.</p
 </code></pre>
 </div>
 
-<h4 id="the--section">The <code class="highlighter-rouge">before_script</code> Section</h4>
+<h4 id="the-before_script-section">The <code class="highlighter-rouge">before_script</code> Section</h4>
 
 <p>Combining the previous two subsections, the resultant <code class="highlighter-rouge">before_script</code>
 section that runs all these is:</p>
@@ -267,7 +267,7 @@ group within the Gemfile. We need to tell Travis not to include it:</p>
 <p>which tells bundler to omit the <code class="highlighter-rouge">guard</code> section, and install things as
 if this were a deployment.</p>
 
-<h2 id="final--contents">Final <code class="highlighter-rouge">.travis.yml</code> Contents</h2>
+<h2 id="final-travisyml-contents">Final <code class="highlighter-rouge">.travis.yml</code> Contents</h2>
 
 <p>Putting the whole thing together:</p>
 

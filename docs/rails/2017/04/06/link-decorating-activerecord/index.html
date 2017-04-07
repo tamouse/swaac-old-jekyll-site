@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Love Letter?</title>
+    <title>Link: Decorating ActiveRecord</title>
     <meta name="description" content="The development blog of tamouse">
 
     <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="canonical" href="http://swaac.tamouse.org/thoughts/2015/05/02/love-letter/">
+    <link rel="canonical" href="http://swaac.tamouse.org/rails/2017/04/06/link-decorating-activerecord/">
     <link href="/favicon.png" rel="icon">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" type="text/css" media="screen" />
 </head>
@@ -54,68 +54,59 @@
 
     <main class="container-fluid">
       <header class="page-header">
-<h1>Love Letter?</h1>
-May 2, 2015
+<h1>Link: Decorating ActiveRecord</h1>
+Apr 6, 2017
 
 
- &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/categories/thoughts">thoughts</a></li></ul>
- &bullet; <ul class="link-list"><li>Tags: </li>
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/categories/rails">rails</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/tags/rails">rails</a></li> <li role="presentation"><a href="/tags/activerecord">activerecord</a></li> <li role="presentation"><a href="/tags/decorators">decorators</a></li> <li role="presentation"><a href="/tags/links">links</a></li> <li role="presentation"><a href="/tags/tl-dr">tl-dr</a></li> 
 </header>
 
 <article>
-<blockquote>
-<p>"Remember this: Code is a letter you write your future self.<br />
-Do you want it to be a love letter or a poison pen letter?"</p>
-<footer>me</footer>
-</blockquote>
+<p>This came across my path this
+week: <a href="https://robots.thoughtbot.com/authors/joel-quenneville">Joël Quenneville</a>’s
+article,
+<a href="https://robots.thoughtbot.com/decorating-activerecord?utm_source=rubyweekly&amp;utm_medium=email">Decorating ActiveRecord</a>,
+which outlines some hazards when you go about decorating ActiveRecord
+models.</p>
 
-<p>I posted this recently in the #ruby chatroom on
-<a href="http://irc.freenode.net">http://irc.freenode.net</a>. It’s most definitely <strong>not</strong> an original
-thought. Lots of others have expressed similar words and concepts.</p>
+<p>Do read the article, it’s good.</p>
 
-<p>I want to underline it here because I think it is rather essential to
-the whole concept of Software as a Craft that this blog is about.</p>
+<hr />
 
-<p>SWAAC for me started with this notion of future communication in a
-<a href="/swaac/2012/12/05/code-as-literature-software-dev-as-communication/">chat I had with someone else on IRC</a>.
-The notion of whom we are writing our code for is something a lot of
-programmers don’t quite get. We don’t write ruby, perl, java, C, etc,
-for the computer. We write it to communicate our intent to ourselves
-and other people reading our code. The computer doesn’t actually care
-a lick what our code means; it’s not a cognitive processor that can
-apply meaning, intent, implication, etc., onto our writing. Only
-humans can do that. The compiler/interpretter merely translates into
-things the computer can do things with. There is no DWIM<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> for a
-computer.</p>
-
-<p>So the question that prompted this remark was this:</p>
+<p>Here’s the tl;dr for my memory:</p>
 
 <blockquote>
-  <p>In a <code class="highlighter-rouge">begin - rescue - end</code> block, if the <code class="highlighter-rouge">rescue</code> is empty (i.e. does
-nothing), should I use an empty line (as <code class="highlighter-rouge">rescue</code>’s main body), just a
-‘;’ or no line at all (no line between <code class="highlighter-rouge">rescue</code> and <code class="highlighter-rouge">end</code>) ?</p>
+  <p>If you’re decorating an ActiveRecord or ActiveModel object in Rails,
+you probably want to define the following to ensure the decorator
+works the way you expect instead of silently delegating to the
+underlying object:</p>
 </blockquote>
-
-<p>With a response of:</p>
 
 <blockquote>
-  <p>If I really do nothing I put a comment to make clear it’s intentional.</p>
-</blockquote>
 
-<p>Which makes it clear <em>to your future self</em> as well as other people
-reading your code. This is the love letter that you will appreciate
-getting in the future.</p>
-<div class="footnotes">
-  <ol>
-    <li id="fn:1">
-      <p>DWIM: Do What I Mean(t)&nbsp;<a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7</pre></td><td class="code"><pre><span class="k">class</span> <span class="nc">Profile</span> <span class="o">&lt;</span> <span class="no">SimpleDelegator</span>
+  <span class="kp">extend</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">Naming</span>
+
+  <span class="k">def</span> <span class="nf">to_model</span>
+    <span class="nb">self</span>
+  <span class="k">end</span>
+<span class="k">end</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+
+</blockquote>
 
 </article>
 <hr>
-
+<p><a href="https://robots.thoughtbot.com/decorating-activerecord">Source</a></p>
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">

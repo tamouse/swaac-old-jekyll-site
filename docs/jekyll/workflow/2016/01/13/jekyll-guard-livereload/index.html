@@ -92,17 +92,17 @@ source code.</p>
 <ul id="markdown-toc">
   <li><a href="#starting-out" id="markdown-toc-starting-out">Starting out</a></li>
   <li><a href="#git-ized-it" id="markdown-toc-git-ized-it">Git-ized it</a></li>
-  <li><a href="#initialize-" id="markdown-toc-initialize-">Initialize <code class="highlighter-rouge">bundler</code></a></li>
-  <li><a href="#edit-the-" id="markdown-toc-edit-the-">Edit the <code class="highlighter-rouge">Gemfile</code></a></li>
+  <li><a href="#initialize-bundler" id="markdown-toc-initialize-bundler">Initialize <code class="highlighter-rouge">bundler</code></a></li>
+  <li><a href="#edit-the-gemfile" id="markdown-toc-edit-the-gemfile">Edit the <code class="highlighter-rouge">Gemfile</code></a></li>
   <li><a href="#bundle-it-up" id="markdown-toc-bundle-it-up">Bundle it up</a></li>
-  <li><a href="#created-the-" id="markdown-toc-created-the-">Created the <code class="highlighter-rouge">Guardfile</code></a></li>
+  <li><a href="#created-the-guardfile" id="markdown-toc-created-the-guardfile">Created the <code class="highlighter-rouge">Guardfile</code></a></li>
   <li><a href="#built-an-empty-jekyll-site" id="markdown-toc-built-an-empty-jekyll-site">Built an empty jekyll site</a></li>
-  <li><a href="#made-a--file" id="markdown-toc-made-a--file">Made a <code class="highlighter-rouge">_config.yml</code> file</a></li>
-  <li><a href="#and-fired-up-" id="markdown-toc-and-fired-up-">And fired up <code class="highlighter-rouge">guard</code></a></li>
+  <li><a href="#made-a-_configyml-file" id="markdown-toc-made-a-_configyml-file">Made a <code class="highlighter-rouge">_config.yml</code> file</a></li>
+  <li><a href="#and-fired-up-guard" id="markdown-toc-and-fired-up-guard">And fired up <code class="highlighter-rouge">guard</code></a></li>
   <li><a href="#browse-to-the-site" id="markdown-toc-browse-to-the-site">Browse to the site</a></li>
   <li><a href="#create-some-content" id="markdown-toc-create-some-content">Create some content</a>    <ul>
-      <li><a href="#in-" id="markdown-toc-in-">In <code class="highlighter-rouge">_layouts/default.html</code></a></li>
-      <li><a href="#in--1" id="markdown-toc-in--1">In <code class="highlighter-rouge">index.html</code></a></li>
+      <li><a href="#in-_layoutsdefaulthtml" id="markdown-toc-in-_layoutsdefaulthtml">In <code class="highlighter-rouge">_layouts/default.html</code></a></li>
+      <li><a href="#in-indexhtml" id="markdown-toc-in-indexhtml">In <code class="highlighter-rouge">index.html</code></a></li>
     </ul>
   </li>
   <li><a href="#watch-it-reload" id="markdown-toc-watch-it-reload">Watch it reload!</a></li>
@@ -127,13 +127,13 @@ $ git commit -m "initial"
 </code></pre>
 </div>
 
-<h2 id="initialize-">Initialize <code class="highlighter-rouge">bundler</code></h2>
+<h2 id="initialize-bundler">Initialize <code class="highlighter-rouge">bundler</code></h2>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>$ bundle init
 </code></pre>
 </div>
 
-<h2 id="edit-the-">Edit the <code class="highlighter-rouge">Gemfile</code></h2>
+<h2 id="edit-the-gemfile">Edit the <code class="highlighter-rouge">Gemfile</code></h2>
 
 <div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="n">source</span> <span class="s2">"https://rubygems.org"</span>
 <span class="n">gem</span> <span class="s2">"jekyll"</span>
@@ -151,7 +151,7 @@ $ git commit -m "initial"
 </code></pre>
 </div>
 
-<h2 id="created-the-">Created the <code class="highlighter-rouge">Guardfile</code></h2>
+<h2 id="created-the-guardfile">Created the <code class="highlighter-rouge">Guardfile</code></h2>
 
 <div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="n">guard</span> <span class="s1">'livereload'</span> <span class="k">do</span>
   <span class="n">watch</span> <span class="sr">/.*/</span>
@@ -170,7 +170,7 @@ $ git commit -m "initial"
 </code></pre>
 </div>
 
-<h2 id="made-a--file">Made a <code class="highlighter-rouge">_config.yml</code> file</h2>
+<h2 id="made-a-_configyml-file">Made a <code class="highlighter-rouge">_config.yml</code> file</h2>
 
 <div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">title</span><span class="pi">:</span> <span class="s">testing guard-livereload with jekyll</span>
 
@@ -182,7 +182,7 @@ $ git commit -m "initial"
 </code></pre>
 </div>
 
-<h2 id="and-fired-up-">And fired up <code class="highlighter-rouge">guard</code></h2>
+<h2 id="and-fired-up-guard">And fired up <code class="highlighter-rouge">guard</code></h2>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bundle <span class="nb">exec </span>guard
 Configuration file: _config.yml
@@ -225,7 +225,7 @@ listening. The output at your terminal will show:</p>
 
 <p>Let’s create some content and see what happens.</p>
 
-<h3 id="in-">In <code class="highlighter-rouge">_layouts/default.html</code></h3>
+<h3 id="in-_layoutsdefaulthtml">In <code class="highlighter-rouge">_layouts/default.html</code></h3>
 
 <div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
@@ -243,7 +243,7 @@ listening. The output at your terminal will show:</p>
 </code></pre>
 </div>
 
-<h3 id="in--1">In <code class="highlighter-rouge">index.html</code></h3>
+<h3 id="in-indexhtml">In <code class="highlighter-rouge">index.html</code></h3>
 
 <div class="language-html highlighter-rouge"><pre class="highlight"><code>---
 layout: default
