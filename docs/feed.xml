@@ -5,9 +5,79 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 02 May 2017 13:42:03 -0500</pubDate>
-    <lastBuildDate>Tue, 02 May 2017 13:42:03 -0500</lastBuildDate>
+    <pubDate>Tue, 02 May 2017 17:57:36 -0500</pubDate>
+    <lastBuildDate>Tue, 02 May 2017 17:57:36 -0500</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Playing with Grid and Flexbox</title>
+        <description>&lt;p&gt;So last month, March 2017, Grid CSS support dropped for almost all the
+major browsers. Grid is a pretty nice system for 2-dimensional layout
+while Flexbox remains a good system for 1-dimensional layout. A lot of
+folks have been
+asking &lt;a href=&quot;https://css-tricks.com/css-grid-replace-flexbox/&quot; title=&quot;No. Well, mostly no.&quot;&gt;if Grid replaces Flexbox but it does not&lt;/a&gt;. In
+fact, they can play really well together.&lt;/p&gt;
+
+&lt;h2 id=&quot;gridcss-holy-grail-layout&quot;&gt;GridCSS Holy Grail Layout&lt;/h2&gt;
+
+&lt;p&gt;The [holy grail] layout is a pretty common one, seen pretty much
+everywhere:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;header and footer&lt;/li&gt;
+  &lt;li&gt;middle content area with left and right sidebars&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Creating it in Grid was something I wanted to try to figure out as a
+way of learning. My attempt is over on CodePen.io:&lt;/p&gt;
+
+&lt;p data-height=&quot;265&quot; data-theme-id=&quot;0&quot; data-slug-hash=&quot;zwwwwZ&quot; data-default-tab=&quot;result&quot; data-user=&quot;tamouse&quot; data-embed-version=&quot;2&quot; data-pen-title=&quot;GridCSS holy grail&quot; class=&quot;codepen&quot;&gt;See the Pen &lt;a href=&quot;http://codepen.io/tamouse/pen/zwwwwZ/&quot;&gt;GridCSS holy grail&lt;/a&gt; by Tamara Temple (&lt;a href=&quot;http://codepen.io/tamouse&quot;&gt;@tamouse&lt;/a&gt;) on &lt;a href=&quot;http://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I’m still struggling with getting the height to stretch out if the
+content does not naturally fill the window.&lt;/p&gt;
+
+&lt;h2 id=&quot;flexbox-dashboard-with-grid-section&quot;&gt;Flexbox Dashboard with Grid Section&lt;/h2&gt;
+
+&lt;p&gt;This was more successful. I wanted a full-height left navigation panel
+and a masonry-style right panel that would let various guages and
+displays flow nicely.&lt;/p&gt;
+
+&lt;p data-height=&quot;265&quot; data-theme-id=&quot;0&quot; data-slug-hash=&quot;EmmXdr&quot; data-default-tab=&quot;result&quot; data-user=&quot;tamouse&quot; data-embed-version=&quot;2&quot; data-pen-title=&quot;Flexbox Dashboard with Grid Section&quot; class=&quot;codepen&quot;&gt;See the Pen &lt;a href=&quot;http://codepen.io/tamouse/pen/EmmXdr/&quot;&gt;Flexbox Dashboard with Grid Section&lt;/a&gt; by Tamara Temple (&lt;a href=&quot;http://codepen.io/tamouse&quot;&gt;@tamouse&lt;/a&gt;) on &lt;a href=&quot;http://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;It’s not really responsive, I’d like it if the left panel shrunk down
+when the viewport gets narrow enough, but I don’t think I can make
+that happen on codepen.&lt;/p&gt;
+
+&lt;h2 id=&quot;links&quot;&gt;Links&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://codepen.io/tamouse/pen/zwwwwZ&quot; title=&quot;GridCSS holy grail&quot;&gt;GridCSS Holy Grail&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://codepen.io/tamouse/pen/EmmXdr&quot; title=&quot;Flex Dashboard with Grid Section&quot;&gt;Flexbox Dashboard&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://css-tricks.com/css-grid-replace-flexbox/&quot; title=&quot;No. Well, mostly no.&quot;&gt;Grid vs. Flexbox&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=tjHOLtouElA&quot; title=&quot;Rachel Andrew Presentation: Start Using Grid Today&quot;&gt;Rachel Andrew’s Start using grid today (video)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://hackernoon.com/getting-started-with-css-grid-layout-8e00de547daf&quot; title=&quot;Hackernoon: Getting started with Grid Layout&quot;&gt;Getting started with CSS Grid&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://css-tricks.com/css-grid-one-layout-multiple-ways/&quot; title=&quot;One layout, Multiple Ways in CSS Grid&quot;&gt;One Layout, Multiple Ways&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script async=&quot;&quot; src=&quot;https://production-assets.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;
+
+</description>
+        <pubDate>Tue, 02 May 2017 17:00:00 -0500</pubDate>
+        <link>http://swaac.tamouse.org/css/2017/05/02/playing-with-grid-and-flexbox/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/css/2017/05/02/playing-with-grid-and-flexbox/</guid>
+        
+        <category>css</category>
+        
+        <category>grid</category>
+        
+        <category>flexbox</category>
+        
+        
+        <category>css</category>
+        
+      </item>
     
       <item>
         <title>Changing the Location for Screencaptures on macOS</title>
@@ -1019,60 +1089,6 @@ my oh so broken code. Yay for code reviews!&lt;/p&gt;
         
         
         <category>python</category>
-        
-      </item>
-    
-      <item>
-        <title>TIL: Call done() to fire async mocha tests</title>
-        <description>&lt;p&gt;Working on &lt;a href=&quot;/node.js/2017/01/16/my-first-proxy-slash-adapter-for-an-express-dot-js-app/&quot;&gt;my first express API call&lt;/a&gt;
-this weekend, I learned something important for testing.&lt;/p&gt;
-
-&lt;p&gt;I was running the test over and over and could not figure out why it
-was just running to completion instead of performing the call.&lt;/p&gt;
-
-&lt;p&gt;This was driving me nuts.&lt;/p&gt;
-
-&lt;p&gt;Mocha has an added bit where it passes in a callback to tell it when
-the asynchronous tests finish. This had completely eluded me, but one
-of the HackTheGap mentors told me about it, and everything started to
-work.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nx&quot;&gt;describe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tests'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'does an async thing'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;do_an_async_thing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;test_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;nx&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;be&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ok&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-      &lt;span class=&quot;nx&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Passing &lt;code class=&quot;highlighter-rouge&quot;&gt;done&lt;/code&gt; to the &lt;code class=&quot;highlighter-rouge&quot;&gt;it&lt;/code&gt; function callback is what sets things in
-motion. Mocha then knows there is some async piece to happen, and
-calling &lt;code class=&quot;highlighter-rouge&quot;&gt;done()&lt;/code&gt; at the end of the test case signals back to mocha
-that an async test has finished.&lt;/p&gt;
-
-&lt;p&gt;Very important!&lt;/p&gt;
-</description>
-        <pubDate>Mon, 16 Jan 2017 02:03:00 -0600</pubDate>
-        <link>http://swaac.tamouse.org/javascript/2017/01/16/til-call-done-to-fire-async-mocha-tests/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/javascript/2017/01/16/til-call-done-to-fire-async-mocha-tests/</guid>
-        
-        <category>mocha</category>
-        
-        <category>async</category>
-        
-        <category>testing</category>
-        
-        
-        <category>javascript</category>
         
       </item>
     
