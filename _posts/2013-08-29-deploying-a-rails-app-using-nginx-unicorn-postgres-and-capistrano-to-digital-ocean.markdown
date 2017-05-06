@@ -11,7 +11,11 @@ saved_link: http://tt.imageshare.s3.amazonaws.com/clippings/saved_pages/deployin
 ---
 {{ page.description }}
 
-## Summary
+**NOTE:** THIS TUTORIAL IS REALLY OUT OF DATE
+
+**LINK:** [{{page.source}}]({{page.source}})
+
+## review / summary
 
 The first part of the tutorial is all about setting up a deployment user and ruby / rails environment
 on a digital ocean droplet. This is good stuff, and should be useful regardless of whether you're

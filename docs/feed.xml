@@ -5,9 +5,118 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 02 May 2017 18:19:16 -0500</pubDate>
-    <lastBuildDate>Tue, 02 May 2017 18:19:16 -0500</lastBuildDate>
+    <pubDate>Sat, 06 May 2017 04:39:40 -0500</pubDate>
+    <lastBuildDate>Sat, 06 May 2017 04:39:40 -0500</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Notes on using ActionMailer in Rails</title>
+        <description>&lt;p&gt;(This article was originally posted on Sat Aug 24 10:39:09 2013 in
+wiki.tamaratemple.com. It deserves a new home.)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://guides.rubyonrails.org/action_mailer_basics.html&quot;&gt;ActionMailer&lt;/a&gt; allows
+a Rails application to send and receive emails in a fashion similar to
+a Rails controller. You can have multi-part bodies, templates,
+attachments, and so on. It isn’t quite a complete ecosystem, as you
+need to have a transport for sending and recieving mail, and you need
+to have a way of accurately testing your emails, so I’m going to write
+some notes to complete that view.&lt;/p&gt;
+
+&lt;h2 id=&quot;first-read-the-documentation&quot;&gt;First, read the documentation&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://guides.rubyonrails.org/&quot;&gt;The Rails Guides&lt;/a&gt; provide the
+basics for getting up and running using ActionMailer.&lt;/p&gt;
+
+&lt;p&gt;In addition,
+the
+&lt;a href=&quot;http://api.rubyonrails.org/classes/ActionMailer/Base.html&quot;&gt;api docs&lt;/a&gt;
+provides more details on the usage of the methods in ActionMailer.&lt;/p&gt;
+
+&lt;h2 id=&quot;testing-considerations&quot;&gt;Testing Considerations&lt;/h2&gt;
+
+&lt;p&gt;Since we are all good TDD/BDD-ers (we are, right?), I’m going to start
+with how you can set up your Rails environment for testing your
+mailers.&lt;/p&gt;
+
+&lt;p&gt;The Rails Guides provide a section
+on
+&lt;a href=&quot;http://guides.rubyonrails.org/testing.html#testing-your-mailers&quot;&gt;testing your mailers&lt;/a&gt;,
+which you should go off and read right now.&lt;/p&gt;
+
+&lt;h3 id=&quot;delivery-mode-test&quot;&gt;Delivery Mode &lt;code class=&quot;highlighter-rouge&quot;&gt;:test&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;The simplest setup for this, especially useful for unit and functional
+testing, is to set the delivery mode for action mailer to &lt;code class=&quot;highlighter-rouge&quot;&gt;:test&lt;/code&gt; in
+the &lt;code class=&quot;highlighter-rouge&quot;&gt;test&lt;/code&gt; environment.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;File:&lt;/strong&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;config/environments/test.rb&lt;/code&gt;:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;  &lt;span class=&quot;c1&quot;&gt;# Tell Action Mailer not to deliver emails to the real world.&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# The :test delivery method accumulates sent emails in the&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# ActionMailer::Base.deliveries array.&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;action_mailer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;delivery_method&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:test&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;In a new Rails app, this is the default setting, so you don’t really
+need to do anything in particular.&lt;/p&gt;
+
+&lt;h3 id=&quot;mailcatcher-for-round-trip-testing&quot;&gt;MailCatcher For Round-Trip Testing&lt;/h3&gt;
+
+&lt;p&gt;While it is often the case that you should not bother to test the
+underlying delivery mechanisms, sometimes you really want to see what
+your email is going to look like in the eyes of the
+receiver. &lt;a href=&quot;http://mailcatcher.me/&quot;&gt;MailCatcher&lt;/a&gt; to the
+rescue. MailCatcher is a nice utility that emulates an SMTP
+connection and provides a webmail view of the mails it catches. To use
+MailCatcher, after you’ve installed it according to the instructions,
+is to set up your environments files appropriately. In this case, I’m
+going to set it in the &lt;code class=&quot;highlighter-rouge&quot;&gt;development&lt;/code&gt; environment.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;File:&lt;/strong&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;config/environments/development.rb&lt;/code&gt;:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;action_mailer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;deliver_method&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:smtp&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;action_mailer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;smtp_settings&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;ss&quot;&gt;:address&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'localhost'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;ss&quot;&gt;:port&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1025&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;When you cause mails to be sent with your mailer, the mails can be
+seen by pointing your browser at &lt;a href=&quot;http://localhost:1080&quot;&gt;http://localhost:1080&lt;/a&gt; and it
+works like your typical web mail reader. (You can’t reply or forward,
+obviously.)&lt;/p&gt;
+
+&lt;h2 id=&quot;intercepting-emails-on-staging&quot;&gt;Intercepting Emails on Staging&lt;/h2&gt;
+
+&lt;p&gt;When getting ready to deploy a project update, generally a good
+practice is to deploy to a staging server that mirrors your production
+environment as closely as possible to see if there will be any errors
+during final deploy. One of the things frequently done in this is a
+run with a copy (or near copy) of production data.&lt;/p&gt;
+
+&lt;p&gt;However, you probably don’t want mail going out indiscrimantly from
+your staging environment to your users, so the thing you want to do
+here is intercept the emails. You can set up mailcatcher like above,
+but there are alternatives, such as catching all mail and switch the
+outbound addresses to something more benign.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://guides.rubyonrails.org/action_mailer_basics.html#intercepting-emails&quot;&gt;Someone thought this through already&lt;/a&gt;
+The example works perfectly for what I need to be able to do full
+systems testing on staging without worrying about sending bogus
+emails to users!&lt;/p&gt;
+</description>
+        <pubDate>Sat, 06 May 2017 03:54:00 -0500</pubDate>
+        <link>http://swaac.tamouse.org/rails/2017/05/06/notes-on-using-actionmailer-in-rails/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/rails/2017/05/06/notes-on-using-actionmailer-in-rails/</guid>
+        
+        <category>rails</category>
+        
+        <category>ruby</category>
+        
+        <category>actionmailer</category>
+        
+        
+        <category>rails</category>
+        
+      </item>
     
       <item>
         <title>Playing with Grid and Flexbox</title>
@@ -1035,60 +1144,6 @@ project)&lt;/li&gt;
         
         
         <category>css</category>
-        
-      </item>
-    
-      <item>
-        <title>TIL: Providing Defaults For EnvVars</title>
-        <description>&lt;p&gt;&lt;strong&gt;Today I Learned:&lt;/strong&gt; that you can set a default for a missing
-Environment Variable &lt;strong&gt;and&lt;/strong&gt; that an empty string is not the best
-default.&lt;/p&gt;
-
-&lt;p&gt;I’d been blissfully performing the following sort of passage when
-dealing with envvars:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;environ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'FOO'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;foo_setting&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;envrion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'FOO'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;foo_setting&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;This is pretty wrong-headed in a few ways, including the fact that
-some things expect a setting to be &lt;code class=&quot;highlighter-rouge&quot;&gt;None&lt;/code&gt; instead to ensure they work
-correctly. In particular, we were using this sort of thing to set the
-profile name for &lt;code class=&quot;highlighter-rouge&quot;&gt;boto3&lt;/code&gt;. If the profile name is &lt;code class=&quot;highlighter-rouge&quot;&gt;None&lt;/code&gt;, it doesn’t
-try to connect, but if it’s the empty string &lt;code class=&quot;highlighter-rouge&quot;&gt;''&lt;/code&gt; it uses that for the
-profile name, which of course will never work.&lt;/p&gt;
-
-&lt;p&gt;So the proper construction is:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;foo_setting&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;environ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'FOO'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;saving us from an extraneous retrieval and test for a value.&lt;/p&gt;
-
-&lt;p&gt;See more information
-here:
-&lt;a href=&quot;https://docs.python.org/3/library/stdtypes.html#dict.get&quot;&gt;dict.get()&lt;/a&gt;
-in the Standard Type documentation.&lt;/p&gt;
-
-&lt;p&gt;I should note that I only got there from finding
-this:
-&lt;a href=&quot;https://bugs.python.org/issue28242&quot;&gt;Issue 28242 os.environ.get documentation missing - Python tracker&lt;/a&gt;
-via googling for “python3 os.environ get”, so it’s not exactly obvious
-to the newcomer, like me. And this &lt;em&gt;after&lt;/em&gt; the lead on the team fixed
-my oh so broken code. Yay for code reviews!&lt;/p&gt;
-</description>
-        <pubDate>Tue, 24 Jan 2017 16:14:00 -0600</pubDate>
-        <link>http://swaac.tamouse.org/python/2017/01/24/til-providing-defaults-for-envvars/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/python/2017/01/24/til-providing-defaults-for-envvars/</guid>
-        
-        <category>envvars</category>
-        
-        <category>defaults</category>
-        
-        <category>TIL</category>
-        
-        
-        <category>python</category>
         
       </item>
     

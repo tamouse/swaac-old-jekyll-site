@@ -5,7 +5,10 @@ date: 2012-12-05 05:02:50
 categories: [swaac]
 tags: [communication]
 ---
-Kind of a random bit of monologue, but I thought it might be interesting to save and think about sometime in the future.
+
+Kind of a random bit of monologue from an IRC channel, but I thought
+it might be interesting to save and think about sometime in the
+future.
 
 
 
@@ -14,7 +17,7 @@ my very young dev coworker gave me an enourmous compliment today
 he's all of 25, shithot developer, but also still young and naive
 anyway, i had written a little script to do something we needed,
    and he said it was a masterwork and the best bit of code he's
-   seen from our gorup
+   seen from our group
 i was like "what? why?"
 he said "these are the best comments in code i've ever seen. and
    the code is neat and clean"
@@ -27,11 +30,11 @@ but i'm not great
 i say this because, in his way, he gave a very depressing,
    but accurate account of our software
 what's sort of funny about this, too, is that the majority
-   of the script is repurposed from something he wrote,
+   of the script was repurposed from something he wrote,
    that i tore out of the rakefile to make a stand-alone
    script
 what exactly did i do?
-wrapped a command-line parser around it, connected database
+wrapped it in a class, connected database
    records to it, and added some defensiveness to it
 and the comments i wrote were telling about the things i
    found while writing that and why i chose to do it the way
@@ -96,7 +99,7 @@ i think for many people that i've come across that are
 and i think that this slams against my privilege hard
 because i never went at this as a way to make money
 i *do* make money at it
-and i'm *ask* for money when i do things for someone
+and i *ask* for money when i do things for someone
 but it's not like i have to learn to do this so i can make money
 and that puts me in a position of privilege, surely
 
@@ -116,5 +119,7 @@ i think i've ended up at the beginning
 or beginned up and the end
 
 i *think* this is what has me so excited
-so *interested*
+so *interested* in continuing to learn,
+to work, and to teach, software development.
+
 ```
