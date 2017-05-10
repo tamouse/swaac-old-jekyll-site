@@ -3,56 +3,57 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
-  <head>
+    <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>FrontendMasters Course: DevOps for Frontend Devs</title>
     <meta name="description" content="The development blog of tamouse">
-
+    <script src="https://use.fontawesome.com/9e3a326427.js"></script>
     <link rel="stylesheet" href="/assets/css/main.css" />
     <link rel="canonical" href="http://swaac.tamouse.org/class/2016/11/13/frontendmasters-course-devops-for-frontend-devs/">
     <link href="/favicon.png" rel="icon">
 </head>
 
-  <body>
-    <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
 
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">Software as a Craft</a>
+        <div class="full-height">
+            <div class="grid">
+            <nav id="topnav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Software as a Craft</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li><a href="/pages/learning">Learning</a></li>
+                
+                <li><a href="/pages/all_posts">Posts</a></li>
+                
+                <li><a href="/pages">Pages</a></li>
+                
+                <li><a href="/tags">Tags</a></li>
+                
+                <li><a href="/categories">Categories</a></li>
+                
+            </ul>
+        </div><!--/.navbar-collapse -->
     </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/pages/learning">Learning</a></li>
-        <li class="divider"></li>
-        <li><a href="/pages/about">About</a></li>
-        <li class="divider"></li>
-        <li><a href="/pages/all_posts">Posts</a></li>
-        <li class="divider"></li>
-        <li><a href="/pages">Pages</a></li>
-        <li class="divider"></li>
-        <li><a href="/tags">Tags</a></li>
-        <li class="divider"></li>
-	<li><a href="/categories">Categories</a></li>
-      </ul>
-    </div><!--/.navbar-collapse -->
-  </div>
 </nav>
 
-
-    <main class="container-fluid">
-      <header class="page-header">
+            <main id="main-content" class="container-fluid">
+                <header class="page-header">
 <h1>FrontendMasters Course: DevOps for Frontend Devs</h1>
 Nov 13, 2016
 
@@ -73,8 +74,12 @@ basic droplet on <a href="https://digitalocean.com" target="_blank">Digital Ocea
 
 <h2 id="create-an-ssh-key-pair">create an ssh key pair</h2>
 
+<p>You can reuse one you already have, or create a new one. Make sure
+it’s on DigitalOcean and create the droplet with it.</p>
+
 <ul>
-  <li>you cna reuse one you already have, or create a new one</li>
+  <li>[ ] upload the PUBLIC key you created or are reusing to
+DigitalOcean.</li>
 </ul>
 
 <h2 id="create-a-new-server">create a new server</h2>
@@ -84,11 +89,20 @@ basic droplet on <a href="https://digitalocean.com" target="_blank">Digital Ocea
   <li>[ ] copy and save the new droplet’s IP address
     <ul>
       <li>[ ] add to /etc/hosts to make it easy</li>
+      <li>[ ] also create an entry for it in <code class="highlighter-rouge">~/.ssh/config</code></li>
     </ul>
   </li>
-  <li>[ ] upload the PUBLIC key you created or are reusing</li>
-  <li>[ ] log into the new droplet: <code class="highlighter-rouge">ssh -i $HOME/.ssh/id_rsa
-    root@$NEW_IP</code></li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">Host &lt;DROPLET NAME&gt;
+  User tamara
+  IdentityFile ~/.ssh/id_rsa
+  AddkeysToAgent yes
+  ForwardAgent yes
+  HostName &lt;DROPLET IP&gt;</code></pre></figure>
+
+<ul>
+  <li>[ ] log into the new droplet</li>
 </ul>
 
 <h2 id="on-the-new-server-as-root">on the new server, as root</h2>
@@ -101,22 +115,38 @@ something randome and never tells you what it is.)
     </ul>
   </li>
   <li>[ ] <code class="highlighter-rouge">apt-get update</code> to refresh DPKG indexes</li>
+  <li>[ ] <code class="highlighter-rouge">apt-get install -y build-essential git curl wget emacs zip unzip zlibc zlib1g-dev</code> My
+tools of choice</li>
   <li>[ ] <code class="highlighter-rouge">apt-get install -y htop</code> nice top() replacement</li>
+</ul>
+
+<h2 id="create-users-with-sudo">create users with sudo</h2>
+
+<ul>
   <li>[ ] add user <code class="highlighter-rouge">tamara</code>:
     <ul>
       <li>[ ] <code class="highlighter-rouge">adduser tamara</code></li>
       <li>[ ] <code class="highlighter-rouge">usermod -aG sudo tamara</code></li>
+      <li>[ ] <code class="highlighter-rouge">mkdir -p ~tamara/.ssh</code></li>
+      <li>[ ] <code class="highlighter-rouge">cp ~/.ssh/authorized_keys ~tamara/.ssh/</code></li>
+      <li>[ ] <code class="highlighter-rouge">chown -R tamara:tamara ~tamara/.ssh/</code></li>
     </ul>
   </li>
   <li>[ ] add new user <code class="highlighter-rouge">git</code>
     <ul>
       <li>[ ] <code class="highlighter-rouge">adduser git</code></li>
       <li>[ ] <code class="highlighter-rouge">usermod -aG sudo git</code></li>
+      <li>[ ] <code class="highlighter-rouge">mkdir -p ~git/.ssh</code></li>
+      <li>[ ] <code class="highlighter-rouge">cp ~/.ssh/authorized_keys ~git/.ssh/</code></li>
+      <li>[ ] <code class="highlighter-rouge">chown -R git:git ~git/.ssh</code></li>
     </ul>
   </li>
 </ul>
 
 <h2 id="back-on-the-home-machine">back on the home machine</h2>
+
+<p>If you copied the authorized keys file in the above steps, the
+following is not needed.</p>
 
 <ul>
   <li>[ ] move public key to users
@@ -139,16 +169,15 @@ something randome and never tells you what it is.)
     <ul>
       <li>[ ] <code class="highlighter-rouge">sudo vi /etc/ssh/sshd_config</code></li>
       <li>[ ] Set <code class="highlighter-rouge">PermitRootLogin: no</code></li>
-      <li>[ ] restart: <code class="highlighter-rouge">sudo service sshd restart</code>
-        <ul>
-          <li>ssh works too</li>
-        </ul>
-      </li>
+      <li>[ ] restart: <code class="highlighter-rouge">sudo service sshd restart</code></li>
     </ul>
   </li>
 </ul>
 
 <h2 id="get-a-domain-name">get a domain name</h2>
+
+<p>(optional, but kind of nice for easy referral
+from everywhere.)</p>
 
 <ul>
   <li>[ ] buy a domain name from some place</li>
@@ -165,9 +194,31 @@ something randome and never tells you what it is.)
 
 <ul>
   <li>[ ] install nginx</li>
-  <li>[ ] install nodejs and npm</li>
-  <li>[ ] symlink node -&gt; nodejs</li>
+  <li>[ ] install nodejs and npm: following instructions
+on
+<a href="https://github.com/nodesource/distributions#installation-instructions">nodesource/distributions</a></li>
 </ul>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+sudo apt-get install -y nodejs</code></pre></figure>
+
+<ul>
+  <li>
+    <p>[ ] <del>symlink node -&gt; nodejs<del> Not necessary with the above</del></del></p>
+  </li>
+  <li>
+    <p>[ ] install ruby
+using
+<a href="https://www.brightbox.com/docs/ruby/ubuntu/#adding-the-repository">Brightbox.Com</a>:</p>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install software-properties-common
+sudo apt-add-repository ppa:brightbox/ruby-ng
+sudo apt-get update
+sudo apt-get install ruby2.4
+sudo gem install bundler rake
+sudo gem install rails</code></pre></figure>
 
 <h2 id="setting-up-the-application">setting up the application</h2>
 
@@ -189,25 +240,24 @@ something randome and never tells you what it is.)
 <hr>
 <p><a href="URL">Source</a></p>
 
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+<!-- <div id="disqus_thread"></div> -->
+<!-- <script type="text/javascript"> -->
+<!--   /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */ -->
+<!--   var disqus_shortname = 'swaac'; // required: replace example with your forum shortname -->
 
-  /* * * DON'T EDIT BELOW THIS LINE * * */
-  (function() {
-  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<!--   /* * * DON'T EDIT BELOW THIS LINE * * */ -->
+<!--   (function() { -->
+<!--   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true; -->
+<!--   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; -->
+<!--   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); -->
+<!--   })(); -->
+<!-- </script> -->
+<!-- <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> -->
 
 
-    </main>
-
-    <hr />
-<footer class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+            </main>
+            <hr />
+<footer id="bottomnav" class="navbar navbar-default navbar-bottom" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-footer" aria-expanded="false" aria-controls="navbar">
@@ -229,12 +279,14 @@ something randome and never tells you what it is.)
   </div>  <!-- /.container-fluid -->
 </footer>
 
-    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+            </div>
+        </div>
+        <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="/js/vendor/bootstrap.js"></script>
 <script src="/js/main.js"></script>
 
-    
+        
 
-  </body>
+    </body>
 </html>

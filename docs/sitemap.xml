@@ -741,6 +741,10 @@
 <lastmod>2017-05-06T03:54:00-05:00</lastmod>
 </url>
 <url>
+<loc>http://swaac.tamouse.org/postgresql/2017/05/09/postgresql-timestamp-accuracy/</loc>
+<lastmod>2017-05-09T21:31:00-05:00</lastmod>
+</url>
+<url>
 <loc>http://swaac.tamouse.org/404/</loc>
 </url>
 <url>
@@ -955,6 +959,9 @@
 </url>
 <url>
 <loc>http://swaac.tamouse.org/categories/security/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/postgresql/</loc>
 </url>
 <url>
 <loc>http://swaac.tamouse.org/tags/dennis-ritchie/</loc>
@@ -2148,6 +2155,12 @@
 <loc>http://swaac.tamouse.org/tags/defaults/</loc>
 </url>
 <url>
+<loc>http://swaac.tamouse.org/tags/python/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/python3/</loc>
+</url>
+<url>
 <loc>http://swaac.tamouse.org/tags/gitlab/</loc>
 </url>
 <url>
@@ -2218,6 +2231,12 @@
 </url>
 <url>
 <loc>http://swaac.tamouse.org/tags/actionmailer/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/timestamps/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/test/</loc>
 </url>
 <url>
 <loc>http://swaac.tamouse.org/pages/css-examples/clearfix/clearfix-example.html</loc>

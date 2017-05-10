@@ -1,0 +1,212 @@
+// Local style variations
+// ------------------------------
+
+
+*[id]:before {
+    display: block;
+    content: " ";
+    margin-top: -($navbar-height+25); // Set the Appropriate Height
+    height: ($navbar-height+25); // Set the Appropriate Height
+    visibility: hidden;
+}
+
+li *[id]:before {
+    display: inherit;
+    content: '';
+    margin-top: 0;
+    height: 0;
+    visibility: hidden;
+}
+.page-header {
+    margin: 0 0 20px 0;
+}
+.navbar-bottom {
+    margin-bottom: 0;
+}
+
+.full-height {
+    /* use flexbox to push this to fill out the window */
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(3, auto);
+}
+
+#main-content {
+    max-height: 100%;
+    overflow: auto;
+    margin-top: $navbar-height + 20px;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.post-excerpt {
+    margin: 0 0 10px 0;
+    padding: 0;
+    height: 100px;
+    overflow-y: hidden;
+}
+
+blockquote { font-style: $blockquote-font-style ; }
+
+ul.link-list {
+    display: inline;
+    padding-left: 0px;
+    list-style: none;
+
+    li {
+        display: inline;
+        padding-right: 3px;
+    }
+}
+
+ul.footer-list {
+    list-style: none;
+}
+
+img { max-width: 100%; }
+
+.fancy-img {
+    max-width: 100%;
+    border: 1px solid black;
+    padding: 2px;
+    display: block;
+    margin: 2px auto;
+}
+
+footer.footer {
+    .well {
+        background-color: $body-bg;
+    }
+}
+
+hr.divider {
+    width: 85%;
+    height: 5px;
+    background: linear-gradient(to left, transparent, $gray, $gray, transparent);
+}
+hr.divider-primary {
+    background: linear-gradient(to left, transparent, $brand-primary, $brand-primary, transparent);
+}
+
+.call-out {
+    border: 1px dashed $gray;
+    padding: 12px 12px 12px 20%;
+    background-image: url(../../../images/finger-pointing-right7.png);
+    background-position-x: 5%;
+    background-position-y: 50%;
+    background-repeat: no-repeat;
+}
+
+@mixin terminal($bg: black, $fg: white) {
+    font-family: monospace;
+    color: $fg;
+    background-color: $bg;
+    padding: 10px;
+    overflow: auto;
+    white-space: pre;
+
+}
+
+.terminal-output {
+    @include terminal;
+}
+
+.file-contents {
+    @include terminal(darkslategray, yellow);
+}
+
+.terminal-command {
+    @include terminal;
+    &::first-letter {
+        color: yellow;
+    }
+}
+
+.restrain-x {
+    max-width: 100%;
+    overflow-x: scroll;
+}
+
+$offset-for-highlight: 60px;
+$max-width-for-highlight: $screen-xxs - $offset-for-highlight;
+.highlight {
+    max-width: $max-width-for-highlight;
+    overflow: scroll;
+    pre {
+        max-width: $max-width-for-highlight;
+        overflow: scroll;
+        code {
+            max-width: $max-width-for-highlight;
+            overflow: scroll;
+        }
+    }
+}
+@media screen and (min-width: $screen-xs) {
+    $max-width-for-highlight: $screen-xs - $offset-for-highlight;
+    .highlight {
+        max-width: $max-width-for-highlight;
+        pre {
+            max-width: $max-width-for-highlight;
+            code {
+                max-width: $max-width-for-highlight;
+            }
+        }
+    }
+}
+@media screen and (min-width: $screen-sm) {
+    $max-width-for-highlight: $screen-sm - $offset-for-highlight;
+    .highlight {
+        max-width: $max-width-for-highlight;
+        pre {
+            max-width: $max-width-for-highlight;
+            code {
+                max-width: $max-width-for-highlight;
+            }
+        }
+    }
+}
+@media screen and (min-width: $screen-md) {
+    $max-width-for-highlight: $screen-md - $offset-for-highlight;
+    .highlight {
+        max-width: $max-width-for-highlight;
+        pre {
+            max-width: $max-width-for-highlight;
+            code {
+                max-width: $max-width-for-highlight;
+            }
+        }
+    }
+}
+@media screen and (min-width: $screen-lg) {
+    $max-width-for-highlight: $screen-lg - $offset-for-highlight;
+    .highlight {
+        max-width: $max-width-for-highlight;
+        pre {
+            max-width: $max-width-for-highlight;
+            code {
+                max-width: $max-width-for-highlight;
+            }
+        }
+    }
+}
+
+
+@media screen and (min-width: $screen-md-min) {
+    main {
+	    max-width: 800px;
+    }
+}
+
+@media screen and (min-width: $screen-lg-min) {
+    main {
+	    max-width: 800px;
+    }
+}
