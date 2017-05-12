@@ -5,9 +5,34 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 10 May 2017 10:18:20 -0500</pubDate>
-    <lastBuildDate>Wed, 10 May 2017 10:18:20 -0500</lastBuildDate>
+    <pubDate>Thu, 11 May 2017 20:20:30 -0500</pubDate>
+    <lastBuildDate>Thu, 11 May 2017 20:20:30 -0500</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Sarah Mei: Five Factor Testing</title>
+        <description>&lt;p&gt;This is the post I wish I’d written about a thousand years ago. Like
+Sarah Mei, I seem to be continuously teaching people about why testing
+is necessary.&lt;/p&gt;
+
+&lt;p&gt;So here we go, read it now, bookmark it, and pass it along!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.devmynd.com/blog/five-factor-testing/&quot;&gt;Five Factor Testing&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 11 May 2017 20:16:00 -0500</pubDate>
+        <link>http://swaac.tamouse.org/testing/2017/05/11/sarah-mei-five-factor-testing/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/testing/2017/05/11/sarah-mei-five-factor-testing/</guid>
+        
+        <category>testing</category>
+        
+        <category>sarah-mei</category>
+        
+        <category>craft</category>
+        
+        
+        <category>testing</category>
+        
+      </item>
     
       <item>
         <title>Postgresql Timestamp Accuracy and Precision</title>
@@ -1248,50 +1273,6 @@ that’s what I’m recommending to my WordPress students.&lt;/p&gt;
         
         
         <category>wordpress</category>
-        
-      </item>
-    
-      <item>
-        <title>Gitlab Database Outage Post-Mortem</title>
-        <description>&lt;p&gt;Back at the end of January 2017, git SaaS
-provider &lt;a href=&quot;https://gitlab.com&quot;&gt;Gitlab&lt;/a&gt; reported a disaster of epic
-proportions:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;On January 31st 2017, we experienced a major service outage for one of our products, the online service GitLab.com. The outage was caused by an accidental removal of data from our primary database server.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;This incident caused the GitLab.com service to be unavailable for many hours. We also lost some production data that we were eventually unable to recover. Specifically, we lost modifications to database data such as projects, comments, user accounts, issues and snippets, that took place between 17:20 and 00:00 UTC on January 31. Our best estimate is that it affected roughly 5,000 projects, 5,000 comments and 700 new user accounts. Code repositories or wikis hosted on GitLab.com were unavailable during the outage, but were not affected by the data loss. GitLab Enterprise customers, GitHost customers, and self-hosted GitLab CE users were not affected by the outage, or the data loss.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;They had destroyed the database holding all their repository
-information, and then could not find any viable backups.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Today, 11 February 2017,&lt;/strong&gt; they released
-a &lt;a href=&quot;https://about.gitlab.com/2017/02/10/postmortem-of-database-outage-of-january-31/&quot;&gt;post-mortem&lt;/a&gt; of the situation,
-providing something few companies have &lt;em&gt;ever&lt;/em&gt; done: transparency and
-openness into a major devops disaster so that &lt;em&gt;everyone&lt;/em&gt; can learn.&lt;/p&gt;
-
-&lt;p&gt;They list several items in the Root Cause Analysis section, and
-provide a list of mitigation and recovery improvements now underway.&lt;/p&gt;
-
-&lt;h2 id=&quot;major-kudos-to-gitlab&quot;&gt;Major kudos to Gitlab!&lt;/h2&gt;
-</description>
-        <pubDate>Sat, 11 Feb 2017 01:54:00 -0600</pubDate>
-        <link>http://swaac.tamouse.org/devops/2017/02/11/gitlab-database-outage-post-mortem/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/devops/2017/02/11/gitlab-database-outage-post-mortem/</guid>
-        
-        <category>devops</category>
-        
-        <category>gitlab</category>
-        
-        <category>database-outage</category>
-        
-        <category>post-mortem</category>
-        
-        
-        <category>devops</category>
         
       </item>
     
