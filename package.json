@@ -15,7 +15,7 @@
   },
   "scripts": {
     "sass": "node-sass --output _site/assets/css --source-map true  styles/main.scss",
-    "sass:dist": "node-sass --output docs/assets/css --source-map true styles/main.scss",
+    "sass:dist": "node-sass --output jekyll/assets/css --source-map true styles/main.scss",
     "sass:watch": "watch 'npm run sass' styles/",
     "jekyll": "(cd jekyll && bundle exec jekyll build --incremental --destination ../_site/ --watch)",
     "jekyll:dist": "(cd jekyll && bundle exec jekyll build --config=_config.yml,_baseurl.yml)",
