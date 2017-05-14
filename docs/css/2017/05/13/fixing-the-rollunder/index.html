@@ -1,0 +1,176 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Fixing the Roll-under for Fixed-Top Layouts</title>
+    <meta name="description" content="The development blog of tamouse">
+    <script src="https://use.fontawesome.com/9e3a326427.js"></script>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="canonical" href="http://swaac.tamouse.org/css/2017/05/13/fixing-the-rollunder/">
+    <link href="/favicon.png" rel="icon">
+</head>
+
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
+
+        <div class="full-height">
+            <div class="grid">
+            <nav id="topnav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Software as a Craft</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li><a href="/pages/learning">Learning</a></li>
+                
+                <li><a href="/pages/all_posts">Posts</a></li>
+                
+                <li><a href="/pages">Pages</a></li>
+                
+                <li><a href="/tags">Tags</a></li>
+                
+                <li><a href="/categories">Categories</a></li>
+                
+            </ul>
+        </div><!--/.navbar-collapse -->
+    </div>
+</nav>
+
+            <main id="main-content" class="container-fluid">
+                <header class="page-header">
+<h1>Fixing the Roll-under for Fixed-Top Layouts</h1>
+May 13, 2017
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/categories/css">css</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/tags/css">css</a></li> <li role="presentation"><a href="/tags/layouts">layouts</a></li> <li role="presentation"><a href="/tags/fixed-top">fixed-top</a></li> <li role="presentation"><a href="/tags/hacks">hacks</a></li> <li role="presentation"><a href="/tags/css-hacks">css-hacks</a></li> 
+</header>
+
+<article>
+<p>A typical problem encountered when using something
+like <a href="https://getbootstrap.com">Bootstrap’s</a> fixed-top navbar is that
+clicking on an interior link often causes that link target to scroll
+underneath the navbar, hiding it from view.</p>
+
+<p>The fix for this is a bit of a hack, and sometimes you need to adjust
+things even further.</p>
+
+<h2 id="targeting-the-link-targets">Targeting the link targets</h2>
+
+<p>Sounds redundant, but what I mean is how I want to set some CSS to
+apply to all the interior link targets.</p>
+
+<p>The way Bootstrap purports to do this (but I haven’t seen it on
+versions I’ve been using) is a general selection targetting items with
+an <code class="highlighter-rouge">id</code> attribute.</p>
+
+<p>This works well using a package like <a href="http://jekyllrb.com">Jekyll</a>
+with the <a href="">Kramdown</a> markdown processor which adds an <code class="highlighter-rouge">id</code> attribute
+to every Markdown heading.</p>
+
+<p>(This is SCSS code which uses the <code class="highlighter-rouge">$navbar-height</code> variable defined by
+bootstrap. In plain old CSS you’d just use the number.)</p>
+
+<figure class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="o">*[</span><span class="nt">id</span><span class="o">]</span><span class="nd">:before</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
+    <span class="nl">content</span><span class="p">:</span> <span class="s2">" "</span><span class="p">;</span>
+    <span class="nl">margin-top</span><span class="p">:</span> <span class="nf">-</span><span class="p">(</span><span class="nv">$navbar-height</span><span class="o">+</span><span class="m">25</span><span class="p">);</span> <span class="c1">// Set the Appropriate Height
+</span>    <span class="nl">height</span><span class="p">:</span> <span class="p">(</span><span class="nv">$navbar-height</span><span class="o">+</span><span class="m">25</span><span class="p">);</span> <span class="c1">// Set the Appropriate Height
+</span>    <span class="nl">visibility</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>So whereever there’s a element with the <code class="highlighter-rouge">id</code> tag now, there’s an
+invisible CSS <code class="highlighter-rouge">:before</code> section that pushes the item down. It’s
+invisibility also means that it won’t cover any links or clickable
+items that might be just above the heading.</p>
+
+<p>One problem I did run into was using the table of contents generator
+in Kramdown:</p>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown"><span class="p">*</span> Content
+{:toc}</code></pre></figure>
+
+<p>This creates a list of interior page links, but also puts an <code class="highlighter-rouge">id</code>
+attribute on each link in the list item, so adding this reversed the
+effect of the prior “push down”, so that the list bullets aligned with
+the list items.</p>
+
+<figure class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="nt">li</span> <span class="o">*[</span><span class="nt">id</span><span class="o">]</span><span class="nd">:before</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="nb">inherit</span><span class="p">;</span>
+    <span class="nl">content</span><span class="p">:</span> <span class="s1">''</span><span class="p">;</span>
+    <span class="nl">margin-top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">visibility</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+
+</article>
+<hr>
+
+
+<!-- <div id="disqus_thread"></div> -->
+<!-- <script type="text/javascript"> -->
+<!--   /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */ -->
+<!--   var disqus_shortname = 'swaac'; // required: replace example with your forum shortname -->
+
+<!--   /* * * DON'T EDIT BELOW THIS LINE * * */ -->
+<!--   (function() { -->
+<!--   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true; -->
+<!--   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; -->
+<!--   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); -->
+<!--   })(); -->
+<!-- </script> -->
+<!-- <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> -->
+
+
+            </main>
+            <hr />
+<footer id="bottomnav" class="navbar navbar-default navbar-bottom" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-footer" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.tamouse.org">&copy; 2017 Tamara Temple</a>
+    </div> <!-- /.navbat-header -->
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+        <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+        <li><a href="/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+        <li><a href="/pages/colophon/">Colophon</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>  <!-- /.container-fluid -->
+</footer>
+
+            </div>
+        </div>
+        <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/js/vendor/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+        
+
+    </body>
+</html>
