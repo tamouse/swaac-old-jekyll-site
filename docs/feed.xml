@@ -5,9 +5,46 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 14 May 2017 01:58:25 -0500</pubDate>
-    <lastBuildDate>Sun, 14 May 2017 01:58:25 -0500</lastBuildDate>
+    <pubDate>Sun, 14 May 2017 18:58:32 -0500</pubDate>
+    <lastBuildDate>Sun, 14 May 2017 18:58:32 -0500</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Minimum needed for full height with standard header / main / footer</title>
+        <description>&lt;p&gt;I figured this out once, but lost it somewhere, so I’m recording here
+for sure: How to make a web page attain it’s full height, with a page
+header, page footer, and a main content section, so the footer will be
+on the bottom if the main content section is not tall enough.&lt;/p&gt;
+
+&lt;p&gt;This was based off
+a &lt;a href=&quot;https://css-tricks.com/&quot;&gt;CSS-Tricks&lt;/a&gt;
+article
+&lt;a href=&quot;http://codepen.io/tamouse/pen/LyrNBB&quot;&gt;Boxes That Fill Height (Or More) (and Don’t Squish)&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Trying some a bit new, am using an embedded gist:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/tamouse/ed0174615be56bc4309f5dff7537d03a.js&quot;&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;screenshot&quot;&gt;Screenshot&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://monosnap.com/file/Du9EXFqr6RGRBwP2eCM991d1Az1ehZ.png&quot; alt=&quot;Screen Capture&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 14 May 2017 17:43:00 -0500</pubDate>
+        <link>http://swaac.tamouse.org/css/2017/05/14/minimum-needed-for-full-height-with-standard-header-slash-main-slash-footer/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/css/2017/05/14/minimum-needed-for-full-height-with-standard-header-slash-main-slash-footer/</guid>
+        
+        <category>css-tricks</category>
+        
+        <category>css</category>
+        
+        <category>flexbox</category>
+        
+        <category>full-height</category>
+        
+        
+        <category>css</category>
+        
+      </item>
     
       <item>
         <title>ScrollStick: a JavaScript module to make scrolling headers sticky</title>
@@ -718,68 +755,6 @@ brackets”) like so:&lt;/p&gt;
         
         
         <category>jekyll</category>
-        
-      </item>
-    
-      <item>
-        <title>Link: Decorating ActiveRecord</title>
-        <description>&lt;p&gt;This came across my path this
-week: &lt;a href=&quot;https://robots.thoughtbot.com/authors/joel-quenneville&quot;&gt;Joël Quenneville&lt;/a&gt;’s
-article,
-&lt;a href=&quot;https://robots.thoughtbot.com/decorating-activerecord&quot;&gt;Decorating ActiveRecord&lt;/a&gt;,
-which outlines some hazards when you go about decorating ActiveRecord
-models.&lt;/p&gt;
-
-&lt;p&gt;Do read the article, it’s good.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Here’s the tl;dr for my memory:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;If you’re decorating an ActiveRecord or ActiveModel object in Rails,
-you probably want to define the following to ensure the decorator
-works the way you expect instead of silently delegating to the
-underlying object:&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Profile&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SimpleDelegator&lt;/span&gt;
-  &lt;span class=&quot;kp&quot;&gt;extend&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveModel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Naming&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;to_model&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-
-&lt;/blockquote&gt;
-</description>
-        <pubDate>Thu, 06 Apr 2017 23:01:00 -0500</pubDate>
-        <link>http://swaac.tamouse.org/rails/2017/04/06/link-decorating-activerecord/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/rails/2017/04/06/link-decorating-activerecord/</guid>
-        
-        <category>rails</category>
-        
-        <category>activerecord</category>
-        
-        <category>decorators</category>
-        
-        <category>links</category>
-        
-        <category>tl-dr</category>
-        
-        
-        <category>rails</category>
         
       </item>
     
