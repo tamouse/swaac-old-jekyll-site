@@ -5,9 +5,131 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 13 May 2017 21:03:28 -0500</pubDate>
-    <lastBuildDate>Sat, 13 May 2017 21:03:28 -0500</lastBuildDate>
+    <pubDate>Sun, 14 May 2017 01:58:25 -0500</pubDate>
+    <lastBuildDate>Sun, 14 May 2017 01:58:25 -0500</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>ScrollStick: a JavaScript module to make scrolling headers sticky</title>
+        <description>&lt;p&gt;I like the way sticky headers work on various web sites I’ve
+seen. There are some really interesting implementations where the
+header changes when it gets to the top of the page, which is fun.  I
+wrote up a JS module called &lt;code class=&quot;highlighter-rouge&quot;&gt;ScrollSticky&lt;/code&gt; which is out on my GitHub
+at &lt;a href=&quot;https://github.com/tamouse/scroll-stick&quot;&gt;https://github.com/tamouse/scroll-stick&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#things-i-had-to-figure-out&quot; id=&quot;markdown-toc-things-i-had-to-figure-out&quot;&gt;Things I had to figure out.&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#cloning-the-header&quot; id=&quot;markdown-toc-cloning-the-header&quot;&gt;cloning the header&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#adding-the-cloned-element-to-the-document&quot; id=&quot;markdown-toc-adding-the-cloned-element-to-the-document&quot;&gt;Adding the cloned element to the document&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#determining-the-headers-offset-in-the-document&quot; id=&quot;markdown-toc-determining-the-headers-offset-in-the-document&quot;&gt;determining the header’s offset in the document&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#performing-the-action-during-scrolling&quot; id=&quot;markdown-toc-performing-the-action-during-scrolling&quot;&gt;performing the action during scrolling&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#using-display-instead-of-visibility-property&quot; id=&quot;markdown-toc-using-display-instead-of-visibility-property&quot;&gt;using display instead of visibility property&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#demo&quot; id=&quot;markdown-toc-demo&quot;&gt;Demo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is a very simple implementation. The other examples I’ve looked
+at tend to all use jQuery, which is great, but I wanted one in plain
+old JavaScript. It’s not really any harder, but there’s a lot of stuff
+that jQuery makes simpler by having the methods defined.&lt;/p&gt;
+
+&lt;h2 id=&quot;things-i-had-to-figure-out&quot;&gt;Things I had to figure out.&lt;/h2&gt;
+
+&lt;h3 id=&quot;cloning-the-header&quot;&gt;cloning the header&lt;/h3&gt;
+
+&lt;p&gt;This was just a little harder than I thought it would be, and required
+a lot of playing around to figure out what to do. The result is in the
+&lt;code class=&quot;highlighter-rouge&quot;&gt;StickyScroll.cloneTarget&lt;/code&gt; function. Cloning the header was pretty
+easy, but then I needed to ensure the clone didn’t have the same &lt;code class=&quot;highlighter-rouge&quot;&gt;id&lt;/code&gt;
+attribute, and needed to acquire some style properties that might not
+be on the original. To make to actually stick to the top, the top has
+to be set to zero, positioning needed to be fixed.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cln&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tgt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cloneNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;cln&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;cln&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;cln&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;position&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fixed'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The cute part, when you set a block element’s position to fixed, it no
+longer takes up the same width (the width gets calculated to the
+content box). So I &lt;em&gt;also&lt;/em&gt; had to set the width property.&lt;/p&gt;
+
+&lt;p&gt;Figuring out the actual width took some digging and I found the
+&lt;code class=&quot;highlighter-rouge&quot;&gt;offsetWidth&lt;/code&gt; property, but to make it actually work for the style, I
+needed to specify the measurement, “px”.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;      &lt;span class=&quot;nx&quot;&gt;cln&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;width&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tgt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;offsetWidth&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;px&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;adding-the-cloned-element-to-the-document&quot;&gt;Adding the cloned element to the document&lt;/h3&gt;
+
+&lt;p&gt;I wanted the cloned element to come right after the header
+element. After a tour through stackoverflow, I found the answer
+at
+&lt;a href=&quot;http://stackoverflow.com/questions/7258185/javascript-append-child-after-element#7258301&quot;&gt;http://stackoverflow.com/questions/7258185/javascript-append-child-after-element#7258301&lt;/a&gt;
+which gave me the nice one-liner:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;      &lt;span class=&quot;nx&quot;&gt;tgt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parentNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;insertBefore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cln&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tgt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nextSibling&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;I made
+a &lt;a href=&quot;https://jsfiddle.net/tamouse/m74nx2e5/&quot;&gt;jsfiddle to try it out&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;determining-the-headers-offset-in-the-document&quot;&gt;determining the header’s offset in the document&lt;/h3&gt;
+
+&lt;p&gt;In jQuery, there’s a nice &lt;code class=&quot;highlighter-rouge&quot;&gt;.offset&lt;/code&gt; function that gives this, but in
+POJS, you have to do a bit more. The
+MDN
+&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect&quot;&gt;explains how to do this&lt;/a&gt;,
+but doesn’t offer code. The resulting code ended up easier than I
+thought it would be. (Answers from SO were varying.)&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;el&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;rect&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;el&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getBoundingClientRect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;rect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scrollY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;performing-the-action-during-scrolling&quot;&gt;performing the action during scrolling&lt;/h3&gt;
+
+&lt;p&gt;I had to play around a lot with this to get it right. I’m not sure all
+the different things I tried, but eventually figured it out.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scrollTop&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fromTop&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stickyEl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;display&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;targetEl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stickyEl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;display&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'none'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;using-display-instead-of-visibility-property&quot;&gt;using display instead of visibility property&lt;/h3&gt;
+
+&lt;p&gt;One thing I did not figure out, the jQuery versions used the
+&lt;code class=&quot;highlighter-rouge&quot;&gt;visibility&lt;/code&gt; CSS property for the sticky header, but what I found
+happening was the the “roll-under” fix I put it the CSS was not
+working as I’d want. The invisible sticky header clone would push the
+anchored element down too far. I ended up switching to use the
+&lt;code class=&quot;highlighter-rouge&quot;&gt;display&lt;/code&gt; property instead.&lt;/p&gt;
+
+&lt;h2 id=&quot;demo&quot;&gt;Demo&lt;/h2&gt;
+
+&lt;p&gt;Here’s the demo page:&lt;/p&gt;
+
+&lt;iframe src=&quot;https://tamouse.github.io/scroll-stick/&quot; width=&quot;100%&quot; height=&quot;300px&quot;&gt;&lt;/iframe&gt;
+</description>
+        <pubDate>Sun, 14 May 2017 01:37:00 -0500</pubDate>
+        <link>http://swaac.tamouse.org/javascript/2017/05/14/scrollstick-a-javascript-module-to-make-scrolling-headers-sticky/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/javascript/2017/05/14/scrollstick-a-javascript-module-to-make-scrolling-headers-sticky/</guid>
+        
+        <category>scripts</category>
+        
+        <category>javascript</category>
+        
+        <category>sticky-headers</category>
+        
+        <category>persistent-headers</category>
+        
+        
+        <category>javascript</category>
+        
+      </item>
     
       <item>
         <title>Fixing the Roll-under for Fixed-Top Layouts</title>
@@ -658,41 +780,6 @@ underlying object:&lt;/p&gt;
         
         
         <category>rails</category>
-        
-      </item>
-    
-      <item>
-        <title>Baratunde Thurston Explains Web Encryption</title>
-        <description>&lt;p&gt;The Electronic Freedom Foundation (&lt;a href=&quot;https://www.eff.org&quot; title=&quot;The Electronic Freedom Foundation&quot;&gt;EFF&lt;/a&gt;) is working
-to &lt;a href=&quot;https://www.eff.org/encrypt-the-web&quot;&gt;encrypt the web&lt;/a&gt;, converting
-all web sites from HTTP to
-HTTPS. &lt;a href=&quot;http://baratunde.com/&quot;&gt;Baratunde Thurston&lt;/a&gt; narrates the video
-explaining web encryption to the masses.&lt;/p&gt;
-
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/PdnpNJZVUE0?rel=0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-
-&lt;p&gt;You may notice my sites don’t use HTTPS. The only reason is I’ve not
-gotten around to implementing it yet.&lt;/p&gt;
-
-&lt;p&gt;I’ve used it on projects, and it’s pretty simple to set up. Look for a
-future post, probably.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 12 Feb 2017 08:06:00 -0600</pubDate>
-        <link>http://swaac.tamouse.org/security/2017/02/12/baratunde-thurston-explains-web-encryption/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/security/2017/02/12/baratunde-thurston-explains-web-encryption/</guid>
-        
-        <category>security</category>
-        
-        <category>eff</category>
-        
-        <category>encryption</category>
-        
-        <category>https</category>
-        
-        <category>baratunde-thurston</category>
-        
-        
-        <category>security</category>
         
       </item>
     
