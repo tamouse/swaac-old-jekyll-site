@@ -5,9 +5,35 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 14 May 2017 18:58:32 -0500</pubDate>
-    <lastBuildDate>Sun, 14 May 2017 18:58:32 -0500</lastBuildDate>
+    <pubDate>Sun, 14 May 2017 23:29:51 -0500</pubDate>
+    <lastBuildDate>Sun, 14 May 2017 23:29:51 -0500</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>List of awesome accessibility resources</title>
+        <description>&lt;p&gt;Great collection of resources available for implementing accessibility
+(a11y) over on github:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://brunopulis.com/awesome-a11y/&quot;&gt;List of awesome accessibility resources&lt;/a&gt; &lt;small&gt;(&lt;a href=&quot;https://github.com/brunopulis/aweasome-a11y&quot;&gt;Github repo&lt;/a&gt;)&lt;/small&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 14 May 2017 23:25:00 -0500</pubDate>
+        <link>http://swaac.tamouse.org/a11y/2017/05/14/list-of-awesome-a11y-links/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/a11y/2017/05/14/list-of-awesome-a11y-links/</guid>
+        
+        <category>ally</category>
+        
+        <category>links</category>
+        
+        <category>accessibility</category>
+        
+        <category>lists</category>
+        
+        <category>github</category>
+        
+        
+        <category>a11y</category>
+        
+      </item>
     
       <item>
         <title>Minimum needed for full height with standard header / main / footer</title>
@@ -710,51 +736,6 @@ command line to clean up my emacs mode line.&lt;/p&gt;
         
         
         <category>tools</category>
-        
-      </item>
-    
-      <item>
-        <title>Specifying target=_blank on an anchor in a markdown document</title>
-        <description>&lt;p&gt;Just a quick note so I don’t lose this:&lt;/p&gt;
-
-&lt;p&gt;In Jekyll’s default markdown processor, &lt;code class=&quot;highlighter-rouge&quot;&gt;kramdown&lt;/code&gt;, you can specify an
-attribute on a spanning or block element inside braces (“squirly
-brackets”) like so:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-markdown&quot; data-lang=&quot;markdown&quot;&gt;{:attr=&quot;value&quot;}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Thus, to get a link to open in a new tab:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-markdown&quot; data-lang=&quot;markdown&quot;&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;link text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;linkpath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;{:target=&quot;_blank&quot; rel=&quot;noopenner noreferrer&quot;}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Should generate:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;linkpath&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;target=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;_blank&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;link text&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Let’s just see what happens:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;/jekyll/2017/04/10/specifying-target-equals-blank-on-an-anchor-in-a-markdown-document/&quot; target=&quot;_blank&quot; rel=&quot;noopenner noreferrer&quot;&gt;This link&lt;/a&gt; should open in a new page.&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-        <pubDate>Mon, 10 Apr 2017 00:46:00 -0500</pubDate>
-        <link>http://swaac.tamouse.org/jekyll/2017/04/10/specifying-target-equals-blank-on-an-anchor-in-a-markdown-document/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/jekyll/2017/04/10/specifying-target-equals-blank-on-an-anchor-in-a-markdown-document/</guid>
-        
-        <category>markdown</category>
-        
-        <category>kramdown</category>
-        
-        <category>syntax</category>
-        
-        <category>target</category>
-        
-        <category>blank</category>
-        
-        <category>jekyll</category>
-        
-        
-        <category>jekyll</category>
         
       </item>
     
