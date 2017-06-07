@@ -765,6 +765,10 @@
 <lastmod>2017-05-14T23:25:00-05:00</lastmod>
 </url>
 <url>
+<loc>http://swaac.tamouse.org/devops/2017/06/06/stop-compiling-rubies/</loc>
+<lastmod>2017-06-06T21:35:00-05:00</lastmod>
+</url>
+<url>
 <loc>http://swaac.tamouse.org/404/</loc>
 </url>
 <url>
@@ -2299,6 +2303,12 @@
 </url>
 <url>
 <loc>http://swaac.tamouse.org/tags/lists/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/provisioning/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/brightbox/</loc>
 </url>
 <url>
 <loc>http://swaac.tamouse.org/pages/css-examples/clearfix/clearfix-example.html</loc>
