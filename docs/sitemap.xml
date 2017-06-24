@@ -497,6 +497,10 @@
 <lastmod>2015-09-02T10:07:00-05:00</lastmod>
 </url>
 <url>
+<loc>http://swaac.tamouse.org/css/2015/09/26/thirty-css-selectors-you-must-memorize/</loc>
+<lastmod>2015-09-26T11:30:00-05:00</lastmod>
+</url>
+<url>
 <loc>http://swaac.tamouse.org/programming/2015/10/12/link-learn-enough-command-line-to-be-dangerous-by-michael-hartl/</loc>
 <lastmod>2015-10-12T06:40:00-05:00</lastmod>
 </url>
@@ -910,6 +914,9 @@
 <loc>http://swaac.tamouse.org/categories/programming/</loc>
 </url>
 <url>
+<loc>http://swaac.tamouse.org/categories/css/</loc>
+</url>
+<url>
 <loc>http://swaac.tamouse.org/categories/web-publishing/</loc>
 </url>
 <url>
@@ -932,9 +939,6 @@
 </url>
 <url>
 <loc>http://swaac.tamouse.org/categories/correspondence/</loc>
-</url>
-<url>
-<loc>http://swaac.tamouse.org/categories/css/</loc>
 </url>
 <url>
 <loc>http://swaac.tamouse.org/categories/book/</loc>
@@ -1802,6 +1806,9 @@
 </url>
 <url>
 <loc>http://swaac.tamouse.org/tags/null/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/selectors/</loc>
 </url>
 <url>
 <loc>http://swaac.tamouse.org/tags/tutorial/</loc>
