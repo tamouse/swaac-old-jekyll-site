@@ -5,9 +5,262 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 24 Jun 2017 01:02:01 -0500</pubDate>
-    <lastBuildDate>Sat, 24 Jun 2017 01:02:01 -0500</lastBuildDate>
+    <pubDate>Mon, 03 Jul 2017 23:19:47 -0500</pubDate>
+    <lastBuildDate>Mon, 03 Jul 2017 23:19:47 -0500</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>TIL: GraphQL</title>
+        <description>&lt;p&gt;Although today was a workday, I spent it in blissful exploration on a
+technology we’re going to be using in our application: GraphQL.&lt;/p&gt;
+
+&lt;p&gt;The setup:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Rails application, running 4.2.8&lt;/li&gt;
+  &lt;li&gt;Webpack 2x, upgraded in existing the &lt;code class=&quot;highlighter-rouge&quot;&gt;webpack-rails&lt;/code&gt; environment&lt;/li&gt;
+  &lt;li&gt;React client without any sprockets support&lt;/li&gt;
+  &lt;li&gt;ApolloClient&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I set up a toy application based on the above constraints,
+at &lt;a href=&quot;https://github.com/tamouse/graphql_sample&quot;&gt;graphql_sample&lt;/a&gt; to
+practice and dig into learning how GraphQL works.&lt;/p&gt;
+
+&lt;h2 id=&quot;graphql&quot;&gt;GraphQL&lt;/h2&gt;
+
+&lt;p&gt;A little intro, although it’s best to head over to the
+main &lt;a href=&quot;https://graphql.org&quot;&gt;GraphQL&lt;/a&gt; website if you want to know more
+about it.&lt;/p&gt;
+
+&lt;p&gt;GraphQL is a new sort of query language for APIs that gives your
+client applications a very different experience of data than the
+familiar RESTful APIs. It’s centered around data objects in a way
+that’s both similar to JSON-API, but still quite different form that.&lt;/p&gt;
+
+&lt;p&gt;It’s a descriptive (declarative) language, where you define your
+data’s types, fields, functions, queries, and schemas.&lt;/p&gt;
+
+&lt;h3 id=&quot;types&quot;&gt;Types&lt;/h3&gt;
+
+&lt;p&gt;Let’s look at an example. Supposed you had a data model that looked
+something like this, from ActiveRecord in Rails:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;create_table&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:posts&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;null: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;null: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:published&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;null: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;default: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;datetime&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:published_at&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;timestamps&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;An example of a GraphQL type that describes a post looks like:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;type Post {
+  id: ID
+  title: String
+  body: String
+  published: Boolean
+  published_at: String
+  created_at: String
+  updated_at: String
+}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;queries&quot;&gt;Queries&lt;/h3&gt;
+
+&lt;p&gt;Based on that Post type, you can construct a Query that retrieves posts:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;type Query {
+  post: Post
+}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;(Indeed, queries are also types.)&lt;/p&gt;
+
+&lt;h3 id=&quot;schema&quot;&gt;Schema&lt;/h3&gt;
+
+&lt;p&gt;The schema is the top level part of the whole bit that brings the data
+types and query types together, and forms the API itself.&lt;/p&gt;
+
+&lt;h3 id=&quot;mutations&quot;&gt;Mutations&lt;/h3&gt;
+
+&lt;p&gt;Mutations are the flip-side of queries, where you can create, update,
+and remove data, i.e. “mutate” it. I didn’t get that far at all today.&lt;/p&gt;
+
+&lt;h2 id=&quot;apollo-client&quot;&gt;Apollo Client&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://dev.apollodata.com/&quot;&gt;Apollo client&lt;/a&gt; is a client that
+implements the GraphQL client-side of the API really well. They have
+dev kits for React, Angular, IOS, Android, and even Vanilla JS. Since
+my interest right now is in React, I delved into
+the &lt;a href=&quot;http://dev.apollodata.com/react/&quot;&gt;Apollo React Client&lt;/a&gt; (Note that
+this works with both web and native react.)&lt;/p&gt;
+
+&lt;p&gt;The morning was spent with the first two tutorials, building out the
+React Apollo client and an Express GraphQL server. They were great
+tutorials, and went smoothly.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dev-blog.apollodata.com/full-stack-react-graphql-tutorial-582ac8d24e3b&quot;&gt;Full Stack React + GraphQL Tutorial&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dev-blog.apollodata.com/react-graphql-tutorial-part-2-server-99d0528c7928&quot;&gt;React + GraphQL Tutorial - The Server&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;My version, based on the tutorial, is over
+at &lt;a href=&quot;https://github.com/tamouse/graphql-tutorial&quot;&gt;graphql-tutorial&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This was enough to get me chomping at the bit to do it in Rails.&lt;/p&gt;
+
+&lt;h2 id=&quot;rails-server&quot;&gt;Rails Server&lt;/h2&gt;
+
+&lt;p&gt;A while back, I did write a pretty simple GraphQL Rails API using both
+the &lt;code class=&quot;highlighter-rouge&quot;&gt;graphql-ruby&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;graphql-api&lt;/code&gt; gems. The latter makes the
+implementation pretty easy based on introspecting the apps models, but
+I wasn’t quite sure it’s ready for prime-time yet.&lt;/p&gt;
+
+&lt;p&gt;Today, I started over, creating a server app within the constraints
+listed above, and added the &lt;code class=&quot;highlighter-rouge&quot;&gt;webpack-rails&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;graphql&lt;/code&gt; gems. The
+interesting thing is that installing the &lt;code class=&quot;highlighter-rouge&quot;&gt;graphql&lt;/code&gt; in rails loaded up
+further gems, including a Graph&lt;em&gt;i&lt;/em&gt;QL interface that let’s you
+introspect the API while in development.&lt;/p&gt;
+
+&lt;p&gt;There was a lot of back-and-forth with &lt;code class=&quot;highlighter-rouge&quot;&gt;webpack-rails&lt;/code&gt;. In the end, I
+probably should have just configured the thing directly with webpack
+2x and all the needful.&lt;/p&gt;
+
+&lt;p&gt;I did try going the &lt;code class=&quot;highlighter-rouge&quot;&gt;create-react-app&lt;/code&gt; way at first, and ended up
+keeping a lot of it after ejecting the build, but finally relying on
+my own understands of webpack configuration and knowing the current
+way our application works to be the final arbiters.&lt;/p&gt;
+
+&lt;h2 id=&quot;graphql-ruby&quot;&gt;GraphQL-Ruby&lt;/h2&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://github.com/rmosolgo/graphql-ruby&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;graphql-ruby&lt;/code&gt;&lt;/a&gt; is
+pretty interesting, in that it sets up a route for the GraphQL API
+directly, &lt;code class=&quot;highlighter-rouge&quot;&gt;/graphql&lt;/code&gt;, which is somewhat of a default / convention. It
+mounts the GraphiQL engine on &lt;code class=&quot;highlighter-rouge&quot;&gt;/graphiql&lt;/code&gt; at the same time, which is a
+nice way to work, as you can progressively test out your types,
+queries, and schemas as you work.&lt;/p&gt;
+
+&lt;p&gt;The gem creates a new folder under &lt;code class=&quot;highlighter-rouge&quot;&gt;app/graphql/&lt;/code&gt; with a default
+schema and query type. Types are under the &lt;code class=&quot;highlighter-rouge&quot;&gt;app/graphql/types/&lt;/code&gt;
+directory, and so get name-spaced &lt;code class=&quot;highlighter-rouge&quot;&gt;Type::NameType&lt;/code&gt;. The DSL
+(domain-specific language) used to define things is quite similar to
+the GraphQL syntax, although of course fit to Ruby.&lt;/p&gt;
+
+&lt;p&gt;For example, the default query created looks like this:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Types&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;QueryType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;GraphQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ObjectType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;define&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Query&quot;&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# Add root-level fields here.&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# They will be entry points for queries on your schema.&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# TODO: remove me&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:testField&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;types&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;An example field added by the generator&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;resolve&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;s2&quot;&gt;&quot;Hello World!&quot;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;learning&quot;&gt;Learning&lt;/h2&gt;
+
+&lt;p&gt;Here’s where the real learning and experimenting started. Up to now,
+things have been pretty simple and straight-forward.&lt;/p&gt;
+
+&lt;p&gt;I created the Post model described above, populated it with a few
+entries.&lt;/p&gt;
+
+&lt;h3 id=&quot;posttype&quot;&gt;PostType&lt;/h3&gt;
+
+&lt;p&gt;I wrote the following as the data type for the Post model:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Types&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;PostType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;GraphQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ObjectType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;define&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Post&quot;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;A short post of content with a title, may be draft or published.&quot;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;types&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ID&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;internal ID&quot;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;types&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;title of the post&quot;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;types&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;the post content&quot;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:published&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;types&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Boolean&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;true if the post has been published&quot;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:published_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;types&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;the date the post was published&quot;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:created_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;types&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;date the post entry was created&quot;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:updated_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;types&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;date the post entry was last updated&quot;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;querytype&quot;&gt;QueryType&lt;/h3&gt;
+
+&lt;p&gt;Then modified the sample query to produce a query that would find a
+post by it’s ID:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Types&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;QueryType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;GraphQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ObjectType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;define&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Query&quot;&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# Add root-level fields here.&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# They will be entry points for queries on your schema.&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Types&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;PostType&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;argument&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;types&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ID&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;find a post by id&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;resolve&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find_by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;id: &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Without changing anything else, I was able to successfully query the
+API to get a post.&lt;/p&gt;
+
+&lt;h3 id=&quot;but-how-do-i-get-multiple-posts&quot;&gt;But, how do I get multiple Posts?&lt;/h3&gt;
+
+&lt;p&gt;Here’s where I spent the last two hours or so of the day, trying to
+figure out how this works. Clearly, it’s possible, and I think I have
+some ideas to go forward, but I was really stuck at this point.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/rmosolgo/graphql-ruby/issues/166&quot;&gt;This&lt;/a&gt; looks like
+it might provide some insight when I work on this next.&lt;/p&gt;
+
+&lt;p&gt;The concept is also explored in Jake Trent’s blog
+post:
+&lt;a href=&quot;https://jaketrent.com/post/return-array-graphql/&quot;&gt;return an array in graphql&lt;/a&gt;
+although I’ll still need to translate to &lt;code class=&quot;highlighter-rouge&quot;&gt;graphql-ruby&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;All-in-all, a productive, happy day learning something completely
+new. Frustrations go along with learning; as one of my teachers says
+“That banging your head on the desk, that’s called growth” (Hi,
+Scott!)&lt;/p&gt;
+</description>
+        <pubDate>Mon, 03 Jul 2017 22:14:00 -0500</pubDate>
+        <link>http://swaac.tamouse.org/webdev/2017/07/03/til-graphql/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/webdev/2017/07/03/til-graphql/</guid>
+        
+        <category>graphql</category>
+        
+        <category>apollo-client</category>
+        
+        <category>rails</category>
+        
+        <category>react</category>
+        
+        <category>webpack</category>
+        
+        
+        <category>webdev</category>
+        
+      </item>
     
       <item>
         <title>Stop Compiling Ruby For Provisioning!</title>
@@ -688,57 +941,6 @@ that happen on codepen.&lt;/p&gt;
         
         
         <category>css</category>
-        
-      </item>
-    
-      <item>
-        <title>Changing the Location for Screencaptures on macOS</title>
-        <description>&lt;p&gt;Something I had tucked away in notes on a different computer while I
-was working on my work computer, so I figured it was time to put up on
-the SWaaC blog.&lt;/p&gt;
-
-&lt;p&gt;By default on macOS, when you do a screen capture, it saves the
-file(s) in your Desktop directory. I’d like to put them someplace else
-as I really hate having cluttered up desktops.&lt;/p&gt;
-
-&lt;p&gt;The command to use from the Terminal is &lt;code class=&quot;highlighter-rouge&quot;&gt;defaults&lt;/code&gt; which is used to
-set various system parameters that aren’t available in Systems
-Preferences.&lt;/p&gt;
-
-&lt;p&gt;Here’s what I did:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;mkdir ~/Pictures/Screenshots
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;defaults write com.apple.screencapture location ~/Pictures/Screenshots
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;killall SystemUIServer&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;and to test took a screen capture with CMD-SHIFT-3.&lt;/p&gt;
-
-&lt;p&gt;I considered saving the screen captures to my Google Drive, but that
-might prove to be a problem at some point down the road.&lt;/p&gt;
-
-&lt;p&gt;Also, I’m using an app called &lt;a href=&quot;https://monosnap.com/welcome&quot;&gt;Monosnap&lt;/a&gt;
-which is freely available from the App Store for making annotated
-screen captures. I’m liking it a lot, it reminds me of Skitch for
-Evernote, without the Evernote overhead.&lt;/p&gt;
-</description>
-        <pubDate>Tue, 02 May 2017 13:28:00 -0500</pubDate>
-        <link>http://swaac.tamouse.org/osx/2017/05/02/changing-screencapture-location-on-macos/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/osx/2017/05/02/changing-screencapture-location-on-macos/</guid>
-        
-        <category>osx</category>
-        
-        <category>mac</category>
-        
-        <category>screencapture</category>
-        
-        <category>screenshot</category>
-        
-        <category>location</category>
-        
-        <category>defaults</category>
-        
-        
-        <category>osx</category>
         
       </item>
     
