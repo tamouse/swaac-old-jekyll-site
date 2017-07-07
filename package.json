@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "author": "Me",
   "license": "MIT",
-  "repository": "tamouse/drink_up_doctor",
+  "repository": "tamouse/swaac",
   "devDependencies": {
     "bootstrap-sass": "^3.3.7",
     "browser-sync": "^2.7.12",
@@ -17,12 +17,11 @@
     "sass": "node-sass --output _site/assets/css --source-map true  styles/main.scss",
     "sass:dist": "node-sass --output jekyll/assets/css --source-map true styles/main.scss",
     "sass:watch": "watch 'npm run sass' styles/",
-    "jekyll": "(cd jekyll && bundle exec jekyll build --incremental --destination ../_site/ --watch)",
-    "jekyll:dist": "(cd jekyll && bundle exec jekyll build --config=_config.yml,_baseurl.yml)",
-    "jekyll:watch": "watch 'npm run jekyll' jekyll/",
+    "jekyll": "bundle exec jekyll build --incremental --watch",
+    "jekyll:dist": "bundle exec jekyll build --config=_config.yml,_baseurl.yml",
+    "jekyll:watch": "watch 'npm run jekyll'",
     "sync:start":  "browser-sync start -s _site --files _site/**/*",
     "start": "concurrently 'npm run sync:start' 'npm run sass:watch' 'npm run jekyll'",
-    "dist": "npm run sass:dist && npm run jekyll:dist",
-    "postdist": "ruby -run -e httpd docs -p 3000"
+    "dist": "npm run sass:dist && npm run jekyll:dist"
   }
 }
