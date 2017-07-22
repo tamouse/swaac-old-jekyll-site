@@ -22,6 +22,8 @@
     "jekyll:watch": "watch 'npm run jekyll'",
     "sync:start":  "browser-sync start -s _site --files _site/**/*",
     "start": "concurrently 'npm run sync:start' 'npm run sass:watch' 'npm run jekyll'",
-    "dist": "npm run sass:dist && npm run jekyll:dist"
+    "dist": "npm run sass:dist && npm run jekyll:dist",
+    "build": "npm run dist",
+    "publish": "npm run dist"
   }
 }
