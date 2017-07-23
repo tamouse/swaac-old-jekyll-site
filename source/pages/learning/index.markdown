@@ -8,10 +8,6 @@ navbar: true
 Many people ask me "How do I learn to program?" and "What book(!)
 should I read to learn Rails?".
 
-**UPDATE:** I've created a section for the
-[Absolute Beginner]({{site.baseurl}}/pages/learning/beginner) as well,
-you might find it useful.
-
 These are legitimate questions, but they aren't necessarily the right
 questions to ask in order to begin the journey of becoming a software
 craftsperson.
@@ -24,7 +20,13 @@ Better questions, I feel, are:
 I've been finding things around the 'net that can greatly help people
 new to programming, new to web development, new to Rails, and so on.
 
+{% include toc  %}
+
 *******
+
+**UPDATE:** I've created a section for the
+[Absolute Beginner]({{site.baseurl}}/pages/learning/beginner) as well,
+you might find it useful.
 
 This is a quick, short list of things. I urge you to seek them out,
 and seek out others as well, and create your *own* list of learning
@@ -81,6 +83,17 @@ signing up to get e-mail from Justin, but it's always good stuff.
   was featured on the great webcomic
   [Unshelved](http://www.unshelved.com/2014-7-25).
 
+* [**The Pragmatic Programmer](https://pragprog.com/book/tpp/the-pragmatic-programmer)
+  by Andrew Hunt and David Thomas
+
+  This is the best modern treatise on the craft of programming. It
+  represents the best of experiences programmers have come to
+  appreciate during years of development. I read this book after years
+  of practice, and found everything in it to ring true. (The thought
+  "I could have written this!" came up frequently.) This book is
+  not about any specific language or technology, but spans the gamut
+  of software development. This is a must-have for practitioners.
+
 * [**A Pattern Language: Towns, Buildings, Construction**](https://www.goodreads.com/book/show/79766.A_Pattern_Language)
   by Christopher Alexander.
 
@@ -99,41 +112,25 @@ signing up to get e-mail from Justin, but it's always good stuff.
 * [**Beautiful Code**](http://shop.oreilly.com/product/9780596510046.do) by Andy Oram and Greg Wilson.
 
   A book with a purpose, that isn't a how to, so much as a how to
-  think. The forward speaks eloquently to my purpose with this blog
-  and web site:
+  think. It's a collection of essays by various software developers on
+  what they think makes code beautiful. In all, the following holds
+  true:
 
-> I got my first job as a programmer in the summer of 1982. Two weeks
-after I started, one of the system administrators loaned me Kernighan
-and Plauger’s The Elements of Programming Style (McGraw-Hill) and
-Wirth’s Algorithms + Data Structures = Programs (Prentice Hall). They
-were a revelation—for the first time, I saw that programs could be
-more than just instructions for computers. They could be as elegant as
-well-made kitchen cabinets, as graceful as a suspension bridge, or as
-eloquent as one of George Orwell’s essays.
+  1. First, make it correct.
+  2. Second, make it pretty.
+  3. Third, make it fast.
 
-> Time and again since that summer, I have heard people bemoan the
-fact that our profes- sion doesn’t teach students to see
-this. Architects are taught to look at buildings, and com- posers
-study one another’s scores, but programmers—they look at each other’s
-work only when there’s a bug to fix; even then, they try to look at as
-little as possible. We tell stu- dents to use sensible variable names,
-introduce them to some basic design patterns, and then wonder why so
-much of what they write is so ugly.
+  &nbsp;
 
-> This book is our attempt to fix this. In May 2006, I asked some
-well-known (and not so well-known) software designers to dissect and
-discuss the most beautiful piece of code they knew. As this book
-shows, they have found beauty in many different places. For some, it
-lives in the small details of elegantly crafted software. Others find
-beauty in the big picture—in how a program’s structure allows it to
-evolve gracefully over time, or in the techniques used to build it.
 
-> Wherever they find it, I am grateful to our contributors for taking
-time to give us a tour. I hope that you enjoy reading this book as
-much as Andy and I have enjoyed editing it, and that it inspires you
-to create something beautiful, too.
+* **Programming Proverbs** by Henry F. Ledgard
 
-> - Greg Wilson
+  This book, published in 1975, and a subsequent volume dedicated to
+  the Pascal language published in 1979, were essential to me back
+  when I was in university learning computer science. They're out of
+  print now, so I'm starting a blog series covering them.
+  [Programming Proverbs: Introduction]({{site.baseurl}}{% link _posts/2017-07-23-pp-introduction.markdown %})
+
 
 
 ## Object-Oriented Programming
@@ -354,7 +351,21 @@ and generate the most requests that come to me.
 
 # Podcasts
 
-I am not such a big fan of podcasts, but that has more to do with my personal learning style. Nevertheless, there are some great pocasts out there.
+I am not such a big fan of podcasts, but that has more to do with my
+personal learning style. Nevertheless, there are some great pocasts
+out there.
+
+* [**Greater Than Code**](http://www.greaterthancode.com/)
+  Also known as `>Code`, this is a podcast that's more about people
+  that practice software development and allied things, about
+  management of such people, and making all our lives better.
+
+* [**Frontend Happy Hour](http://frontendhappyhour.com/)
+  A handful of front end developers, including Brian Holt, Jem Young,
+  Ryan Burgess, Augustus Yuan, and Stacy London, joined by various
+  guests. It's a fun podcast, each week with a special word or phrase
+  that when uttered, everyone takes a drink.
+
 
 * [**CodeNewbies**](http://www.codenewbie.org/) -- started off as a
   twitter chat, and grew into a thing, CodeNewbies offers podcasts on
@@ -419,6 +430,16 @@ on Tuesdays at the
 [Canteen](https://www.yelp.com/biz/canteen-3255-minneapolis-2). Stop
 on by and have wonderful toast, coffee, and working with a bunch of
 wonderful folks learning web and other development.
+
+There's lots of other meetups in the Twin Cities I'm regularly trying
+to attend:
+
+* [Women Who Code Twin Cities](https://www.meetup.com/Women-Who-Code-Twin-Cities/)
+* [Ruby.MN](https://www.meetup.com/ruby-mn/)
+* [JavaScript.MN](https://www.meetup.com/JavaScriptMN/)
+* [React Minneapolis Meeetup](https://www.meetup.com/React-Minneapolis-Meetup/)
+* [Elixir MN](https://www.meetup.com/Elixir-MN/)
+* [MSP WP](https://www.meetup.com/Minneapolis-St-Paul-WordPress-User-Group/)
 
 # More Advanced
 

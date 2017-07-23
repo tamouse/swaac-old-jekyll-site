@@ -3,7 +3,9 @@ layout: page
 title: Useful Links
 ---
 
-(Better than browser bookmarks or pocket, or org-mode? Almost a wiki?)
+Just a few links. I don't know if this is a good collection anymore.
+
+{% include toc %}
 
 # Databases
 

@@ -5,9 +5,114 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 22 Jul 2017 02:37:05 -0500</pubDate>
-    <lastBuildDate>Sat, 22 Jul 2017 02:37:05 -0500</lastBuildDate>
+    <pubDate>Sun, 23 Jul 2017 13:43:07 -0500</pubDate>
+    <lastBuildDate>Sun, 23 Jul 2017 13:43:07 -0500</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>PP: Programming Proverbs, an Introduction</title>
+        <description>&lt;p&gt;Back in 1975, Henry F. Ledgard published a small book called
+“Programming Proverbs”, a book of 26 best practices for programming,
+using Algol 60 as the explanatory language. This was followed up with
+“Pascal with Style: Programming Proverbs”, which restated the
+practices using Pascal as the language, which was the one I found and
+read, since I was using Pascal at the time in University.&lt;/p&gt;
+
+&lt;p&gt;I read the book voraciously, small though it was. Ledgard’s proverbs
+were very apt, and I was pretty well interested in writing good
+quality code even back then, not really wanting to settle for good
+enough to pass the class.&lt;/p&gt;
+
+&lt;p&gt;Many years, decades even, have passed since that time, and I’ve found
+many new authors to read, and have gotten great guidance from
+them. And even so, that little book of proverbs has stuck in my head,
+forming a real foundation from which to approach the craft of software
+development.&lt;/p&gt;
+
+&lt;p&gt;I’m going to write a series of posts on these programming proverbs,
+with the title tag “PP”, and a tag of “proverbs” if you want to sort
+them out later.&lt;/p&gt;
+
+&lt;p&gt;In this introduction, I’m going to list the proverbs. Subsequent posts
+will go into more depth on them.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-proverbs&quot;&gt;The Proverbs&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Define the problem completely.&lt;/li&gt;
+  &lt;li&gt;Think first, program later.&lt;/li&gt;
+  &lt;li&gt;Use the top-down approach.&lt;/li&gt;
+  &lt;li&gt;Beware of other approaches.&lt;/li&gt;
+  &lt;li&gt;Construct the program in logical units.&lt;/li&gt;
+  &lt;li&gt;Use procedures.&lt;/li&gt;
+  &lt;li&gt;Avoid unnecessary GOTOs.&lt;/li&gt;
+  &lt;li&gt;Avoid side effects.&lt;/li&gt;
+  &lt;li&gt;Get the syntax right now, not later.&lt;/li&gt;
+  &lt;li&gt;Use good mnenonic names.&lt;/li&gt;
+  &lt;li&gt;Use intermediate variables properly.&lt;/li&gt;
+  &lt;li&gt;Leave loop variables alone.&lt;/li&gt;
+  &lt;li&gt;Do not recompute constants within a loop.&lt;/li&gt;
+  &lt;li&gt;Avoid implementation-dependent features.&lt;/li&gt;
+  &lt;li&gt;Avoid tricks.&lt;/li&gt;
+  &lt;li&gt;Build in debugging techniques.&lt;/li&gt;
+  &lt;li&gt;Never assume the computer assumes anything.&lt;/li&gt;
+  &lt;li&gt;Use comments.&lt;/li&gt;
+  &lt;li&gt;Prettyprint.&lt;/li&gt;
+  &lt;li&gt;Provide good documentation.&lt;/li&gt;
+  &lt;li&gt;Hand-check the programming before running it.&lt;/li&gt;
+  &lt;li&gt;Get the program correct before trying to produce good output.&lt;/li&gt;
+  &lt;li&gt;When the program is correct, produce good output.&lt;/li&gt;
+  &lt;li&gt;Reread the manual.&lt;/li&gt;
+  &lt;li&gt;Consider another language.&lt;/li&gt;
+  &lt;li&gt;Don’t be afraid to start over.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;updating-the-proverbs&quot;&gt;Updating the proverbs&lt;/h2&gt;
+
+&lt;p&gt;You many note some of those proverbs seem quite archaic in the world
+of software development we are in today. How many people &lt;em&gt;ever&lt;/em&gt; step
+through their code by hand before subjecting it to the compiler /
+interpretter / browser?&lt;/p&gt;
+
+&lt;p&gt;Also, with the rise of test-driven development, perhaps it’s more
+likely that your code will be running the moment you hit the “Save”
+key.&lt;/p&gt;
+
+&lt;p&gt;Before you dismiss these, consider not just the time and practice of
+the day (1975 is likely longer ago than most of my readers have been
+alive). Consider, really, the intent: there is a reason for all of
+these, and I’ll be bring those ideas up to date as I cover them.&lt;/p&gt;
+
+&lt;h2 id=&quot;acknowledgements&quot;&gt;Acknowledgements&lt;/h2&gt;
+
+&lt;p&gt;I owe a &lt;em&gt;great&lt;/em&gt; deal to Mr. Ledgard. I don’t know if he’s still with
+us, but as a teacher of a very young and enthusiastic computer science
+student back in the 1970’s, he meant a lot. As I write these, I know I
+would not be anywhere near the craftsperson I am with him.&lt;/p&gt;
+
+&lt;p&gt;As these works are no longer in print, I hope the spirit of sharing
+these proverbs for helping new software developers acquire the
+everyday skills of the craft will cause you to seek out these books,
+in order to possibly get them updated and republished.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 23 Jul 2017 12:24:00 -0500</pubDate>
+        <link>http://swaac.tamouse.org/programming/2017/07/23/pp-introduction/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/programming/2017/07/23/pp-introduction/</guid>
+        
+        <category>programming</category>
+        
+        <category>style</category>
+        
+        <category>proverbs</category>
+        
+        <category>craft</category>
+        
+        <category>improving</category>
+        
+        
+        <category>programming</category>
+        
+      </item>
     
       <item>
         <title>TIL: ApolloClient Authentication (graphql)</title>
@@ -709,31 +814,6 @@ the list items.&lt;/p&gt;
         
         
         <category>css</category>
-        
-      </item>
-    
-      <item>
-        <title>Sarah Mei: Five Factor Testing</title>
-        <description>&lt;p&gt;This is the post I wish I’d written about a thousand years ago. Like
-Sarah Mei, I seem to be continuously teaching people about why testing
-is necessary.&lt;/p&gt;
-
-&lt;p&gt;So here we go, read it now, bookmark it, and pass it along!&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.devmynd.com/blog/five-factor-testing/&quot;&gt;Five Factor Testing&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Thu, 11 May 2017 20:16:00 -0500</pubDate>
-        <link>http://swaac.tamouse.org/testing/2017/05/11/sarah-mei-five-factor-testing/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/testing/2017/05/11/sarah-mei-five-factor-testing/</guid>
-        
-        <category>testing</category>
-        
-        <category>sarah-mei</category>
-        
-        <category>craft</category>
-        
-        
-        <category>testing</category>
         
       </item>
     

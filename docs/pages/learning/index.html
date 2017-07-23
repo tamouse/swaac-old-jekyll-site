@@ -10,7 +10,6 @@
 
     <title>Resources for learning how to program, especially how to program in Ruby and Rails</title>
     <meta name="description" content="The development blog of tamouse">
-    <script src="https://use.fontawesome.com/9e3a326427.js"></script>
     <link rel="stylesheet" href="/assets/css/main.css" />
     <link rel="canonical" href="http://swaac.tamouse.org/pages/learning/">
     <link href="/favicon.png" rel="icon">
@@ -21,9 +20,7 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]-->
 
-        <div class="full-height">
-            <div class="grid">
-            <nav id="topnav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <nav id="topnav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -52,8 +49,8 @@
     </div>
 </nav>
 
-            <main id="main-content" class="container-fluid">
-                <header class="page-header">
+        <main id="main-content" class="container-fluid">
+            <header class="page-header">
 <h1>Resources for learning how to program, especially how to program in Ruby and Rails </h1>
 <p><em>Last updated: 2015-05-31 18:11</em></p>
 </header>
@@ -61,10 +58,6 @@
 <article>
 <p>Many people ask me “How do I learn to program?” and “What book(!)
 should I read to learn Rails?”.</p>
-
-<p><strong>UPDATE:</strong> I’ve created a section for the
-<a href="/pages/learning/beginner">Absolute Beginner</a> as well,
-you might find it useful.</p>
 
 <p>These are legitimate questions, but they aren’t necessarily the right
 questions to ask in order to begin the journey of becoming a software
@@ -80,7 +73,30 @@ craftsperson.</p>
 <p>I’ve been finding things around the ‘net that can greatly help people
 new to programming, new to web development, new to Rails, and so on.</p>
 
+<p><strong>Page Contents:</strong></p>
+
+<ul id="markdown-toc">
+  <li><a href="#books" id="markdown-toc-books">Books</a>    <ul>
+      <li><a href="#object-oriented-programming" id="markdown-toc-object-oriented-programming">Object-Oriented Programming</a></li>
+      <li><a href="#ruby-specific" id="markdown-toc-ruby-specific">Ruby-specific</a></li>
+      <li><a href="#rails-specific" id="markdown-toc-rails-specific">Rails-specific</a></li>
+      <li><a href="#javascript-specific" id="markdown-toc-javascript-specific">JavaScript-specific</a></li>
+      <li><a href="#html-and-css-specific" id="markdown-toc-html-and-css-specific">HTML and CSS Specific</a></li>
+    </ul>
+  </li>
+  <li><a href="#web-sites" id="markdown-toc-web-sites">Web sites</a></li>
+  <li><a href="#podcasts" id="markdown-toc-podcasts">Podcasts</a></li>
+  <li><a href="#teaching-organizations" id="markdown-toc-teaching-organizations">Teaching Organizations</a></li>
+  <li><a href="#bootcamps" id="markdown-toc-bootcamps">Bootcamps</a></li>
+  <li><a href="#conferences-and-meetups" id="markdown-toc-conferences-and-meetups">Conferences and Meetups</a></li>
+  <li><a href="#more-advanced" id="markdown-toc-more-advanced">More Advanced</a></li>
+</ul>
+
 <hr />
+
+<p><strong>UPDATE:</strong> I’ve created a section for the
+<a href="/pages/learning/beginner">Absolute Beginner</a> as well,
+you might find it useful.</p>
 
 <p>This is a quick, short list of things. I urge you to seek them out,
 and seek out others as well, and create your <em>own</em> list of learning
@@ -141,6 +157,18 @@ was featured on the great webcomic
 <a href="http://www.unshelved.com/2014-7-25">Unshelved</a>.</p>
   </li>
   <li>
+    <p><a href="https://pragprog.com/book/tpp/the-pragmatic-programmer">**The Pragmatic Programmer</a>
+by Andrew Hunt and David Thomas</p>
+
+    <p>This is the best modern treatise on the craft of programming. It
+represents the best of experiences programmers have come to
+appreciate during years of development. I read this book after years
+of practice, and found everything in it to ring true. (The thought
+“I could have written this!” came up frequently.) This book is
+not about any specific language or technology, but spans the gamut
+of software development. This is a must-have for practitioners.</p>
+  </li>
+  <li>
     <p><a href="https://www.goodreads.com/book/show/79766.A_Pattern_Language"><strong>A Pattern Language: Towns, Buildings, Construction</strong></a>
 by Christopher Alexander.</p>
 
@@ -160,55 +188,28 @@ architecture apply to software architecture as well.</p>
     <p><a href="http://shop.oreilly.com/product/9780596510046.do"><strong>Beautiful Code</strong></a> by Andy Oram and Greg Wilson.</p>
 
     <p>A book with a purpose, that isn’t a how to, so much as a how to
-think. The forward speaks eloquently to my purpose with this blog
-and web site:</p>
+think. It’s a collection of essays by various software developers on
+what they think makes code beautiful. In all, the following holds
+true:</p>
+
+    <ol>
+      <li>First, make it correct.</li>
+      <li>Second, make it pretty.</li>
+      <li>Third, make it fast.</li>
+    </ol>
+
+    <p> </p>
+  </li>
+  <li>
+    <p><strong>Programming Proverbs</strong> by Henry F. Ledgard</p>
+
+    <p>This book, published in 1975, and a subsequent volume dedicated to
+the Pascal language published in 1979, were essential to me back
+when I was in university learning computer science. They’re out of
+print now, so I’m starting a blog series covering them.
+<a href="/programming/2017/07/23/pp-introduction/">Programming Proverbs: Introduction</a></p>
   </li>
 </ul>
-
-<blockquote>
-  <p>I got my first job as a programmer in the summer of 1982. Two weeks
-after I started, one of the system administrators loaned me Kernighan
-and Plauger’s The Elements of Programming Style (McGraw-Hill) and
-Wirth’s Algorithms + Data Structures = Programs (Prentice Hall). They
-were a revelation—for the first time, I saw that programs could be
-more than just instructions for computers. They could be as elegant as
-well-made kitchen cabinets, as graceful as a suspension bridge, or as
-eloquent as one of George Orwell’s essays.</p>
-</blockquote>
-
-<blockquote>
-  <p>Time and again since that summer, I have heard people bemoan the
-fact that our profes- sion doesn’t teach students to see
-this. Architects are taught to look at buildings, and com- posers
-study one another’s scores, but programmers—they look at each other’s
-work only when there’s a bug to fix; even then, they try to look at as
-little as possible. We tell stu- dents to use sensible variable names,
-introduce them to some basic design patterns, and then wonder why so
-much of what they write is so ugly.</p>
-</blockquote>
-
-<blockquote>
-  <p>This book is our attempt to fix this. In May 2006, I asked some
-well-known (and not so well-known) software designers to dissect and
-discuss the most beautiful piece of code they knew. As this book
-shows, they have found beauty in many different places. For some, it
-lives in the small details of elegantly crafted software. Others find
-beauty in the big picture—in how a program’s structure allows it to
-evolve gracefully over time, or in the techniques used to build it.</p>
-</blockquote>
-
-<blockquote>
-  <p>Wherever they find it, I am grateful to our contributors for taking
-time to give us a tour. I hope that you enjoy reading this book as
-much as Andy and I have enjoyed editing it, and that it inspires you
-to create something beautiful, too.</p>
-</blockquote>
-
-<blockquote>
-  <ul>
-    <li>Greg Wilson</li>
-  </ul>
-</blockquote>
 
 <h2 id="object-oriented-programming">Object-Oriented Programming</h2>
 
@@ -469,17 +470,34 @@ which is a beneficial practice for all to know.</p>
 
 <h1 id="podcasts">Podcasts</h1>
 
-<p>I am not such a big fan of podcasts, but that has more to do with my personal learning style. Nevertheless, there are some great pocasts out there.</p>
+<p>I am not such a big fan of podcasts, but that has more to do with my
+personal learning style. Nevertheless, there are some great pocasts
+out there.</p>
 
 <ul>
-  <li><a href="http://www.codenewbie.org/"><strong>CodeNewbies</strong></a> – started off as a
+  <li>
+    <p><a href="http://www.greaterthancode.com/"><strong>Greater Than Code</strong></a>
+Also known as <code class="highlighter-rouge">&gt;Code</code>, this is a podcast that’s more about people
+that practice software development and allied things, about
+management of such people, and making all our lives better.</p>
+  </li>
+  <li>
+    <p><a href="http://frontendhappyhour.com/">**Frontend Happy Hour</a>
+A handful of front end developers, including Brian Holt, Jem Young,
+Ryan Burgess, Augustus Yuan, and Stacy London, joined by various
+guests. It’s a fun podcast, each week with a special word or phrase
+that when uttered, everyone takes a drink.</p>
+  </li>
+  <li>
+    <p><a href="http://www.codenewbie.org/"><strong>CodeNewbies</strong></a> – started off as a
 twitter chat, and grew into a thing, CodeNewbies offers podcasts on
 topics that range far and wide. Recent topics have included
 Scrum/Agile methods, maintaining your mental health while
 programming, interviews with folks who have created significant web
 sites (Gina Trapani of LifeHacker!!), mobile, databases, single-page
 apps, you name it. One of the best aspects I can see directly is
-that this is a <em>very</em> open, diverse collaboration.</li>
+that this is a <em>very</em> open, diverse collaboration.</p>
+  </li>
 </ul>
 
 <h1 id="teaching-organizations">Teaching Organizations</h1>
@@ -541,6 +559,18 @@ on Tuesdays at the
 on by and have wonderful toast, coffee, and working with a bunch of
 wonderful folks learning web and other development.</p>
 
+<p>There’s lots of other meetups in the Twin Cities I’m regularly trying
+to attend:</p>
+
+<ul>
+  <li><a href="https://www.meetup.com/Women-Who-Code-Twin-Cities/">Women Who Code Twin Cities</a></li>
+  <li><a href="https://www.meetup.com/ruby-mn/">Ruby.MN</a></li>
+  <li><a href="https://www.meetup.com/JavaScriptMN/">JavaScript.MN</a></li>
+  <li><a href="https://www.meetup.com/React-Minneapolis-Meetup/">React Minneapolis Meeetup</a></li>
+  <li><a href="https://www.meetup.com/Elixir-MN/">Elixir MN</a></li>
+  <li><a href="https://www.meetup.com/Minneapolis-St-Paul-WordPress-User-Group/">MSP WP</a></li>
+</ul>
+
 <h1 id="more-advanced">More Advanced</h1>
 
 <p>If you want to go deep and learn more about computer science, the book
@@ -556,24 +586,24 @@ you can work the examples in those languages, too.</p>
 
 </article>
 
-<!-- <div id="disqus_thread"></div> -->
-<!-- <script type="text/javascript"> -->
-<!--   /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */ -->
-<!--   var disqus_shortname = 'swaac'; // required: replace example with your forum shortname -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
 
-<!--   /* * * DON'T EDIT BELOW THIS LINE * * */ -->
-<!--   (function() { -->
-<!--   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true; -->
-<!--   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; -->
-<!--   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); -->
-<!--   })(); -->
-<!-- </script> -->
-<!-- <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> -->
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
-            </main>
-            <hr />
-<footer id="bottomnav" class="navbar navbar-default navbar-bottom" role="navigation">
+        </main>
+        <hr />
+<footer id="bottomnav" class="navbar navbar-default navbar-fixed-bottom" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-footer" aria-expanded="false" aria-controls="navbar">
@@ -595,11 +625,10 @@ you can work the examples in those languages, too.</p>
   </div>  <!-- /.container-fluid -->
 </footer>
 
-            </div>
-        </div>
         <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
 <script src="/js/main.js"></script>
 
         

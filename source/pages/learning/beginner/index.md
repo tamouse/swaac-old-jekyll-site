@@ -31,5 +31,6 @@ too late, and not too poorly.
 This section is also going to be very, very Unix, Linux, GNU, and Mac
 OSX focused, since that's all I really have familiarity with.
 
+* [Conventions]({{ site.baseurl}}/conventions-used-in-this-section)
 * [How do I get to the command line on a Mac?]({{ site.baseurl }}/pages/learning/beginner/how-do-i-get-to-the-command-line-on-a-mac)
 * [Setting up your Mac for working on the command line]({{ site.baseurl}}/pages/learning/beginner/setting-up-your-mac-for-working-on-the-command-line)
