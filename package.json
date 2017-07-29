@@ -20,7 +20,7 @@
     "jekyll": "bundle exec jekyll build --incremental --watch",
     "jekyll:dist": "bundle exec jekyll build --config=_config.yml,_baseurl.yml",
     "jekyll:watch": "watch 'npm run jekyll'",
-    "sync:start":  "browser-sync start -s _site --files _site/**/*",
+    "sync:start":  "browser-sync start -s _site --files _site/**/* --reload-delay 1000 --reload-debounce",
     "start": "concurrently 'npm run sync:start' 'npm run sass:watch' 'npm run jekyll'",
     "dist": "npm run sass:dist && npm run jekyll:dist",
     "build": "npm run dist",

@@ -25,3 +25,8 @@ defaults:
   author: Tamara Temple
 
 s3path: "https://s3.amazonaws.com/swaac.tamouse.org/"
+
+exclude:
+  - '#*'
+  - '.#*'
+  - '*~'
