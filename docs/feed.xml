@@ -5,9 +5,174 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 23 Jul 2017 13:43:07 -0500</pubDate>
-    <lastBuildDate>Sun, 23 Jul 2017 13:43:07 -0500</lastBuildDate>
+    <pubDate>Sat, 29 Jul 2017 10:10:46 -0500</pubDate>
+    <lastBuildDate>Sat, 29 Jul 2017 10:10:46 -0500</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>PP 1: Define the Problem Completely</title>
+        <description>&lt;p&gt;Continuing in the Programming Proverb series, by Henry F. Ledgard.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Contents:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#programming-proverb-1-define-the-problem-completely&quot; id=&quot;markdown-toc-programming-proverb-1-define-the-problem-completely&quot;&gt;Programming Proverb #1: Define the problem completely.&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#successive-iterations-on-problem-definition&quot; id=&quot;markdown-toc-successive-iterations-on-problem-definition&quot;&gt;Successive Iterations on Problem Definition&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#but-whats-complete-enough&quot; id=&quot;markdown-toc-but-whats-complete-enough&quot;&gt;But what’s complete enough?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#1-what-is-the-item-to-be-created&quot; id=&quot;markdown-toc-1-what-is-the-item-to-be-created&quot;&gt;1: What is the item to be created&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#2-what-will-the-item-be-used-for-and-who-will-use-it&quot; id=&quot;markdown-toc-2-what-will-the-item-be-used-for-and-who-will-use-it&quot;&gt;2: What will the item be used for (and who will use it)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#3-how-will-we-know-the-item-meets-the-needs-of-1-and-2&quot; id=&quot;markdown-toc-3-how-will-we-know-the-item-meets-the-needs-of-1-and-2&quot;&gt;3: How will we know the item meets the needs of 1 and 2&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#what-about-problems-we-dont-know-or-understand-completely&quot; id=&quot;markdown-toc-what-about-problems-we-dont-know-or-understand-completely&quot;&gt;What about problems we don’t know or understand completely?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;programming-proverb-1-define-the-problem-completely&quot;&gt;Programming Proverb #1: Define the problem completely.&lt;/h2&gt;
+
+&lt;p&gt;This seems obvious, but it happens so often that we, as programmers,
+begin to solve the problem sometimes even before it’s even
+requested. Getting specifications is also hard, because it involves
+talking about the desired result with people who don’t necessarily
+speak our language.&lt;/p&gt;
+
+&lt;p&gt;Problem-solving is fun, especially writing programs to do so. And yet,
+the landscape is littered with software that didn’t solve the problem
+it was intended for, or that cause new problems that didn’t exist
+before.&lt;/p&gt;
+
+&lt;h2 id=&quot;successive-iterations-on-problem-definition&quot;&gt;Successive Iterations on Problem Definition&lt;/h2&gt;
+
+&lt;p&gt;Getting the specifications down as completely as possible is one of
+those things that seems to fly in the face of agile programming, but
+in fact it doesn’t. Each epic, story, task, chore, should strive to
+get a complete enough statement of the problem to provide the
+developer and the tester the ability to successfully complete it.&lt;/p&gt;
+
+&lt;p&gt;Because we’ve learned that trying to get complete answers before we
+begin often leads to overdesign and overspending for little value at
+the end of the implementation, take an interative approach to problem
+definition, along with everything else. This proverb, as all the
+others we’ll see, isn’t intended to be taken by itself, all alone.&lt;/p&gt;
+
+&lt;h2 id=&quot;but-whats-complete-enough&quot;&gt;But what’s complete enough?&lt;/h2&gt;
+
+&lt;p&gt;People have different levels of understanding of problems; obvious
+enough. If you’re writing a story you’re going to implement, it’s
+likely that you’ll think you need a lot less information in the ticket
+than if you were planning on having someone else implement it. The
+fact is, though, that at the time we’re implementing the ticket, we’re
+almost certainly removed from the moment we wrote it, and if it’s
+someone else implementing, they may have never been in the
+conversation. So it does make sense to be as thorough as you can in
+stating the work to be done, and stating what success means for that
+particular item.&lt;/p&gt;
+
+&lt;p&gt;Complete enough needs to consist of answers to three questions:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;What is the feature to be created&lt;/li&gt;
+  &lt;li&gt;What will the feature be used for (and who will use it)&lt;/li&gt;
+  &lt;li&gt;How will we know the feature meets the needs of 1 and 2&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Unpacking each of those:&lt;/p&gt;
+
+&lt;h2 id=&quot;1-what-is-the-item-to-be-created&quot;&gt;1: What is the item to be created&lt;/h2&gt;
+
+&lt;p&gt;There are really an unlimited number of questions you could ask, but
+it’s important that you ask questions about the item.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;What should it do?&lt;/li&gt;
+  &lt;li&gt;What’s the desired outcome?&lt;/li&gt;
+  &lt;li&gt;What’s the range of input?&lt;/li&gt;
+  &lt;li&gt;Where will it live?&lt;/li&gt;
+  &lt;li&gt;Does it need anything else to work?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There are meta questions to ask as well:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;What information does the person implementing this need to know?&lt;/li&gt;
+  &lt;li&gt;When should this item be implemented?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;and so on.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-what-will-the-item-be-used-for-and-who-will-use-it&quot;&gt;2: What will the item be used for (and who will use it)&lt;/h2&gt;
+
+&lt;p&gt;It’s important to understand why this item is being created, and who
+cares about it. When you understand that, you have knowledge that
+informs, directs, and constrains the solution.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Who uses the item? It may be an end user, an admin, another coder
+(e.g. and API call), etc., the point is, there is &lt;em&gt;always&lt;/em&gt; someone
+who’s going to use it&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;When, how, what will they use it for?&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;3-how-will-we-know-the-item-meets-the-needs-of-1-and-2&quot;&gt;3: How will we know the item meets the needs of 1 and 2&lt;/h2&gt;
+
+&lt;p&gt;This is the Test-Driven and Behaviour-Driven Testing part of the
+problem definition. It’s the part where you validate the desired
+outcome in the implementation of the item.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;How are you going to know you’re done with the item?&lt;/li&gt;
+  &lt;li&gt;How can you show you are done with the item?&lt;/li&gt;
+  &lt;li&gt;How will you know you did not introduce new problems?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Gherkin, the language of Cucumber, gives both the writer, the
+implementer, and the verifier a common structure to work in, even if
+it isn’t directly used in writing a test.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-gherkin&quot; data-lang=&quot;gherkin&quot;&gt;&lt;span class=&quot;kd&quot;&gt;Feature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; Users are able to log in to their accounts
+
+  &lt;span class=&quot;kn&quot;&gt;Background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;nf&quot;&gt;Given&lt;/span&gt; I am a user with an account
+
+  &lt;span class=&quot;kn&quot;&gt;Scenario&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;nf&quot;&gt;When&lt;/span&gt; I visit the login page
+    &lt;span class=&quot;nf&quot;&gt;And&lt;/span&gt; I enter my username
+    &lt;span class=&quot;nf&quot;&gt;And&lt;/span&gt; I enter my password
+    &lt;span class=&quot;nf&quot;&gt;And&lt;/span&gt; I press the submit button
+    &lt;span class=&quot;nf&quot;&gt;Then&lt;/span&gt; I am directed to my profile page&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;what-about-problems-we-dont-know-or-understand-completely&quot;&gt;What about problems we don’t know or understand completely?&lt;/h2&gt;
+
+&lt;p&gt;This is really the most common case in software development. We don’t
+tend to write the same software over and over, we get new problems,
+new users, new knowledge domains, new, new, new. If it’s already been
+solved, we try to rework the existing solution.&lt;/p&gt;
+
+&lt;p&gt;So, because we don’t, or maybe even can’t understand a problem
+completely, how does this fit in the proverb?&lt;/p&gt;
+
+&lt;p&gt;Here is where iterative development, agile, spikes, and such things
+makes it possible to move forward with what we do know, and let the
+other parts reveal themselves. Is this the opposite of the proverb? In
+some ways of looking at it, yes, very much so. Even so, as we start
+out, each of the initial stories, features, items, we work on should
+be given enough scrutiny to make us successful in moving to the next
+step.&lt;/p&gt;
+
+&lt;p&gt;This proverb and the next go hand in hand. Problem definition requires
+thinking.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 29 Jul 2017 09:12:00 -0500</pubDate>
+        <link>http://swaac.tamouse.org/programming/2017/07/29/pp-1-define-the-problem-completely/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/programming/2017/07/29/pp-1-define-the-problem-completely/</guid>
+        
+        <category>programming proverbs problem-definition</category>
+        
+        
+        <category>programming</category>
+        
+      </item>
     
       <item>
         <title>PP: Programming Proverbs, an Introduction</title>
@@ -736,84 +901,6 @@ anchored element down too far. I ended up switching to use the
         
         
         <category>javascript</category>
-        
-      </item>
-    
-      <item>
-        <title>Fixing the Roll-under for Fixed-Top Layouts</title>
-        <description>&lt;p&gt;A typical problem encountered when using something
-like &lt;a href=&quot;https://getbootstrap.com&quot;&gt;Bootstrap’s&lt;/a&gt; fixed-top navbar is that
-clicking on an interior link often causes that link target to scroll
-underneath the navbar, hiding it from view.&lt;/p&gt;
-
-&lt;p&gt;The fix for this is a bit of a hack, and sometimes you need to adjust
-things even further.&lt;/p&gt;
-
-&lt;h2 id=&quot;targeting-the-link-targets&quot;&gt;Targeting the link targets&lt;/h2&gt;
-
-&lt;p&gt;Sounds redundant, but what I mean is how I want to set some CSS to
-apply to all the interior link targets.&lt;/p&gt;
-
-&lt;p&gt;The way Bootstrap purports to do this (but I haven’t seen it on
-versions I’ve been using) is a general selection targetting items with
-an &lt;code class=&quot;highlighter-rouge&quot;&gt;id&lt;/code&gt; attribute.&lt;/p&gt;
-
-&lt;p&gt;This works well using a package like &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt;
-with the &lt;a href=&quot;&quot;&gt;Kramdown&lt;/a&gt; markdown processor which adds an &lt;code class=&quot;highlighter-rouge&quot;&gt;id&lt;/code&gt; attribute
-to every Markdown heading.&lt;/p&gt;
-
-&lt;p&gt;(This is SCSS code which uses the &lt;code class=&quot;highlighter-rouge&quot;&gt;$navbar-height&lt;/code&gt; variable defined by
-bootstrap. In plain old CSS you’d just use the number.)&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-scss&quot; data-lang=&quot;scss&quot;&gt;&lt;span class=&quot;o&quot;&gt;*[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:before&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot; &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;margin-top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$navbar-height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Set the Appropriate Height
-&lt;/span&gt;    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$navbar-height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Set the Appropriate Height
-&lt;/span&gt;    &lt;span class=&quot;nl&quot;&gt;visibility&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;hidden&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;So whereever there’s a element with the &lt;code class=&quot;highlighter-rouge&quot;&gt;id&lt;/code&gt; tag now, there’s an
-invisible CSS &lt;code class=&quot;highlighter-rouge&quot;&gt;:before&lt;/code&gt; section that pushes the item down. It’s
-invisibility also means that it won’t cover any links or clickable
-items that might be just above the heading.&lt;/p&gt;
-
-&lt;p&gt;One problem I did run into was using the table of contents generator
-in Kramdown:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-markdown&quot; data-lang=&quot;markdown&quot;&gt;&lt;span class=&quot;p&quot;&gt;*&lt;/span&gt; Content
-{:toc}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;This creates a list of interior page links, but also puts an &lt;code class=&quot;highlighter-rouge&quot;&gt;id&lt;/code&gt;
-attribute on each link in the list item, so adding this reversed the
-effect of the prior “push down”, so that the list bullets aligned with
-the list items.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-scss&quot; data-lang=&quot;scss&quot;&gt;&lt;span class=&quot;nt&quot;&gt;li&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:before&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;inherit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;margin-top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;visibility&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;hidden&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-</description>
-        <pubDate>Sat, 13 May 2017 11:46:00 -0500</pubDate>
-        <link>http://swaac.tamouse.org/css/2017/05/13/fixing-the-rollunder/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/css/2017/05/13/fixing-the-rollunder/</guid>
-        
-        <category>css</category>
-        
-        <category>layouts</category>
-        
-        <category>fixed-top</category>
-        
-        <category>hacks</category>
-        
-        <category>css-hacks</category>
-        
-        
-        <category>css</category>
         
       </item>
     
