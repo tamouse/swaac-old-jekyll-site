@@ -3,7 +3,7 @@ layout: post
 title: "PP 1: Define the Problem Completely"
 date: 2017-07-29 09:12
 categories: [programming]
-tags: [programming proverbs problem-definition]
+tags: [programming, proverbs, problem-definition]
 ---
 
 Continuing in the Programming Proverb series, by Henry F. Ledgard.
