@@ -1,14 +1,8 @@
 _site/
 .sass-cache
-public/
-_deploy/
-_save-for-later/
 _saved_pages/
 tmp/
 _s3-images/
-_deploy/
-_dist/
-bower_components/
 node_modules/
 .jekyll-metadata
-assets/
+/source/assets/*
