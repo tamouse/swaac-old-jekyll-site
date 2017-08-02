@@ -69,7 +69,7 @@ test("This will fail with a shallow render", () => {
 
 
 
-## Links
+## References
 
 1. `<Link>` <https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/api/Link.md>
 2. `<MemoryRouter>` <https://reacttraining.com/react-router/core/api/MemoryRouter>
