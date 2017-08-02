@@ -1,0 +1,182 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>TIL: Using enzyme's shallow render with MemoryRouter doesn't work</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="canonical" href="http://swaac.tamouse.org/testing/2017/08/02/TIL-enzyme-shallow-render-with-memoryrouter-doesnt-work/">
+    <link href="/favicon.png" rel="icon">
+</head>
+
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
+
+        <nav id="topnav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Software as a Craft</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li><a href="/pages/learning">Learning</a></li>
+                
+                <li><a href="/pages/all_posts">Posts</a></li>
+                
+                <li><a href="/pages">Pages</a></li>
+                
+                <li><a href="/tags">Tags</a></li>
+                
+                <li><a href="/categories">Categories</a></li>
+                
+            </ul>
+        </div><!--/.navbar-collapse -->
+    </div>
+</nav>
+
+        <main id="main-content" class="container-fluid">
+            <header class="page-header">
+<h1>TIL: Using enzyme's shallow render with MemoryRouter doesn't work</h1>
+Aug 2, 2017
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/categories/testing">testing</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/tags/react">react</a></li> <li role="presentation"><a href="/tags/react-router">react-router</a></li> <li role="presentation"><a href="/tags/react-router-dom">react-router-dom</a></li> <li role="presentation"><a href="/tags/MemoryRouter">MemoryRouter</a></li> <li role="presentation"><a href="/tags/jest">jest</a></li> <li role="presentation"><a href="/tags/enzyme">enzyme</a></li> <li role="presentation"><a href="/tags/testing">testing</a></li> 
+</header>
+
+<article>
+<p>Today, I was writing some React code that used the <code class="highlighter-rouge">&lt;Link&gt;</code> component
+from <code class="highlighter-rouge">react-router-dom</code>, and writing the Jest tests to go along with
+that.</p>
+
+<p><code class="highlighter-rouge">&lt;Link&gt;</code> requires a router and a history component to be available to
+it, and the recommended tool for testing this is to use
+<code class="highlighter-rouge">&lt;MemoryRouter&gt;</code>.</p>
+
+<p>The <code class="highlighter-rouge">enzyme</code> testing package that works with Jest provides both deep
+and shallow renderers. Shallow rendering is good for doing snapshot
+testing on components where you don’t want to or haven’t yet finalized
+the underlying components.</p>
+
+<p>The MemoryRouter, however, provides a history object that generates a
+collection of objects with randomly generated keys, so when you
+shallow render your component under test, wrapped in the MemoryRouter,
+you can’t use the snapshot, because it changes every time.</p>
+
+<p>I got around this particular problem by deep rendering, using
+<code class="highlighter-rouge">enzyme</code>’s <code class="highlighter-rouge">render</code> function. The component under test was very
+simple, just a few <code class="highlighter-rouge">&lt;Link&gt;</code> components, and no other components I was
+developing underneath it.</p>
+
+<p>There will likely be cases coming up that cannot be addressed well
+with a deep render as a unit test, however, in which case I will have
+to rely more on writing many more expectations.</p>
+
+<h2 id="example">Example</h2>
+
+<pre><code class="language-jsx">import React from 'react'
+import {MemoryRouter} from 'react-router'
+import {Link} from 'react-router-dom'
+import {render, shallow} from 'enzyme'
+
+const MyComp = props =&gt; {
+  const {href, linkText, icon} = props
+  const iconClass = `fa fa-sm fa-${icon}`
+  return (&lt;div&gt;
+        &lt;h2&gt;Some header&lt;/h2&gt;
+        &lt;Link to={href}&gt;{linkText}&lt;i className={iconClass}/&gt;&lt;/Link&gt;
+      &lt;/div&gt;)
+}
+
+
+test("This will work with a deep render", () =&gt; {
+  const actual = render(&lt;MemoryRouter&gt;
+    &lt;MyComp href="http://example.com" linkText="An Example" icon="external-link"/&gt;
+  &lt;/MemoryRouter&gt;)
+  expect(actual).toMatchSnapshot()
+})
+
+test("This will fail with a shallow render", () =&gt; {
+  const actual = shallow(&lt;MemoryRouter&gt;
+    &lt;MyComp href="http://example.com" linkText="An Example" icon="external-link"/&gt;
+  &lt;/MemoryRouter&gt;)
+  expect(actual).toMatchSnapshot()
+})
+</code></pre>
+
+<h2 id="links">Links</h2>
+
+<ol>
+  <li><code class="highlighter-rouge">&lt;Link&gt;</code> <a href="https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/api/Link.md">https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/api/Link.md</a></li>
+  <li><code class="highlighter-rouge">&lt;MemoryRouter&gt;</code> <a href="https://reacttraining.com/react-router/core/api/MemoryRouter">https://reacttraining.com/react-router/core/api/MemoryRouter</a></li>
+  <li>React Router Testing <a href="https://reacttraining.com/react-router/core/guides/testing">https://reacttraining.com/react-router/core/guides/testing</a></li>
+</ol>
+
+</article>
+<hr>
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+        <hr />
+<footer id="bottomnav" class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-footer" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.tamouse.org">&copy; 2017 Tamara Temple</a>
+    </div> <!-- /.navbat-header -->
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+        <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+        <li><a href="/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+        <li><a href="/pages/colophon/">Colophon</a></li>
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div>  <!-- /.container-fluid -->
+</footer>
+
+        <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/js/main.js"></script>
+
+        
+
+    </body>
+</html>

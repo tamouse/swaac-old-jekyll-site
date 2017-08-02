@@ -5,9 +5,101 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 29 Jul 2017 12:37:41 -0500</pubDate>
-    <lastBuildDate>Sat, 29 Jul 2017 12:37:41 -0500</lastBuildDate>
+    <pubDate>Wed, 02 Aug 2017 12:00:31 -0500</pubDate>
+    <lastBuildDate>Wed, 02 Aug 2017 12:00:31 -0500</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>TIL: Using enzyme's shallow render with MemoryRouter doesn't work</title>
+        <description>&lt;p&gt;Today, I was writing some React code that used the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Link&amp;gt;&lt;/code&gt; component
+from &lt;code class=&quot;highlighter-rouge&quot;&gt;react-router-dom&lt;/code&gt;, and writing the Jest tests to go along with
+that.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Link&amp;gt;&lt;/code&gt; requires a router and a history component to be available to
+it, and the recommended tool for testing this is to use
+&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;MemoryRouter&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;enzyme&lt;/code&gt; testing package that works with Jest provides both deep
+and shallow renderers. Shallow rendering is good for doing snapshot
+testing on components where you don’t want to or haven’t yet finalized
+the underlying components.&lt;/p&gt;
+
+&lt;p&gt;The MemoryRouter, however, provides a history object that generates a
+collection of objects with randomly generated keys, so when you
+shallow render your component under test, wrapped in the MemoryRouter,
+you can’t use the snapshot, because it changes every time.&lt;/p&gt;
+
+&lt;p&gt;I got around this particular problem by deep rendering, using
+&lt;code class=&quot;highlighter-rouge&quot;&gt;enzyme&lt;/code&gt;’s &lt;code class=&quot;highlighter-rouge&quot;&gt;render&lt;/code&gt; function. The component under test was very
+simple, just a few &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Link&amp;gt;&lt;/code&gt; components, and no other components I was
+developing underneath it.&lt;/p&gt;
+
+&lt;p&gt;There will likely be cases coming up that cannot be addressed well
+with a deep render as a unit test, however, in which case I will have
+to rely more on writing many more expectations.&lt;/p&gt;
+
+&lt;h2 id=&quot;example&quot;&gt;Example&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-jsx&quot;&gt;import React from 'react'
+import {MemoryRouter} from 'react-router'
+import {Link} from 'react-router-dom'
+import {render, shallow} from 'enzyme'
+
+const MyComp = props =&amp;gt; {
+  const {href, linkText, icon} = props
+  const iconClass = `fa fa-sm fa-${icon}`
+  return (&amp;lt;div&amp;gt;
+        &amp;lt;h2&amp;gt;Some header&amp;lt;/h2&amp;gt;
+        &amp;lt;Link to={href}&amp;gt;{linkText}&amp;lt;i className={iconClass}/&amp;gt;&amp;lt;/Link&amp;gt;
+      &amp;lt;/div&amp;gt;)
+}
+
+
+test(&quot;This will work with a deep render&quot;, () =&amp;gt; {
+  const actual = render(&amp;lt;MemoryRouter&amp;gt;
+    &amp;lt;MyComp href=&quot;http://example.com&quot; linkText=&quot;An Example&quot; icon=&quot;external-link&quot;/&amp;gt;
+  &amp;lt;/MemoryRouter&amp;gt;)
+  expect(actual).toMatchSnapshot()
+})
+
+test(&quot;This will fail with a shallow render&quot;, () =&amp;gt; {
+  const actual = shallow(&amp;lt;MemoryRouter&amp;gt;
+    &amp;lt;MyComp href=&quot;http://example.com&quot; linkText=&quot;An Example&quot; icon=&quot;external-link&quot;/&amp;gt;
+  &amp;lt;/MemoryRouter&amp;gt;)
+  expect(actual).toMatchSnapshot()
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;links&quot;&gt;Links&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Link&amp;gt;&lt;/code&gt; &lt;a href=&quot;https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/api/Link.md&quot;&gt;https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/api/Link.md&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;MemoryRouter&amp;gt;&lt;/code&gt; &lt;a href=&quot;https://reacttraining.com/react-router/core/api/MemoryRouter&quot;&gt;https://reacttraining.com/react-router/core/api/MemoryRouter&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;React Router Testing &lt;a href=&quot;https://reacttraining.com/react-router/core/guides/testing&quot;&gt;https://reacttraining.com/react-router/core/guides/testing&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Wed, 02 Aug 2017 10:54:00 -0500</pubDate>
+        <link>http://swaac.tamouse.org/testing/2017/08/02/TIL-enzyme-shallow-render-with-memoryrouter-doesnt-work/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/testing/2017/08/02/TIL-enzyme-shallow-render-with-memoryrouter-doesnt-work/</guid>
+        
+        <category>react</category>
+        
+        <category>react-router</category>
+        
+        <category>react-router-dom</category>
+        
+        <category>MemoryRouter</category>
+        
+        <category>jest</category>
+        
+        <category>enzyme</category>
+        
+        <category>testing</category>
+        
+        
+        <category>testing</category>
+        
+      </item>
     
       <item>
         <title>PP 2: Think First, Program Later</title>
@@ -908,43 +1000,6 @@ apt-get install ruby-switch
         
         
         <category>a11y</category>
-        
-      </item>
-    
-      <item>
-        <title>Minimum needed for full height with standard header / main / footer</title>
-        <description>&lt;p&gt;I figured this out once, but lost it somewhere, so I’m recording here
-for sure: How to make a web page attain it’s full height, with a page
-header, page footer, and a main content section, so the footer will be
-on the bottom if the main content section is not tall enough.&lt;/p&gt;
-
-&lt;p&gt;This was based off
-a &lt;a href=&quot;https://css-tricks.com/&quot;&gt;CSS-Tricks&lt;/a&gt;
-article
-&lt;a href=&quot;http://codepen.io/tamouse/pen/LyrNBB&quot;&gt;Boxes That Fill Height (Or More) (and Don’t Squish)&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Trying some a bit new, am using an embedded gist:&lt;/p&gt;
-
-&lt;script src=&quot;https://gist.github.com/tamouse/ed0174615be56bc4309f5dff7537d03a.js&quot;&gt;&lt;/script&gt;
-
-&lt;h2 id=&quot;screenshot&quot;&gt;Screenshot&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://monosnap.com/file/Du9EXFqr6RGRBwP2eCM991d1Az1ehZ.png&quot; alt=&quot;Screen Capture&quot; /&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sun, 14 May 2017 17:43:00 -0500</pubDate>
-        <link>http://swaac.tamouse.org/css/2017/05/14/minimum-needed-for-full-height-with-standard-header-slash-main-slash-footer/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/css/2017/05/14/minimum-needed-for-full-height-with-standard-header-slash-main-slash-footer/</guid>
-        
-        <category>css-tricks</category>
-        
-        <category>css</category>
-        
-        <category>flexbox</category>
-        
-        <category>full-height</category>
-        
-        
-        <category>css</category>
         
       </item>
     
