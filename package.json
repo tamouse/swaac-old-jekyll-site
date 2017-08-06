@@ -14,16 +14,13 @@
     "watch": "^1.0.2"
   },
   "scripts": {
-    "sass": "node-sass --output _site/assets/css --source-map true  styles/main.scss",
-    "sass:dist": "node-sass --output source/assets/css --source-map true styles/main.scss",
-    "sass:watch": "watch 'npm run sass' styles/",
+    "start": "concurrently 'npm run sync:start' 'npm run jekyll'",
     "jekyll": "bundle exec jekyll build --incremental --watch",
-    "jekyll:dist": "bundle exec jekyll build --config=_config.yml,_baseurl.yml",
-    "jekyll:watch": "watch 'npm run jekyll'",
-    "sync:start":  "browser-sync start -s _site --files _site/**/* --reload-delay 1000 --reload-debounce",
-    "start": "concurrently 'npm run sync:start' 'npm run sass:watch' 'npm run jekyll'",
-    "dist": "npm run sass:dist && npm run jekyll:dist",
+    "sync:start":  "browser-sync start -s _site --files _site --reload-delay 1000 --reload-debounce",
+
     "build": "npm run dist",
+    "dist": "npm run jekyll:dist",
+    "jekyll:dist": "bundle exec jekyll build --config=_config.yml,_baseurl.yml",
     "publish": "npm run dist"
   }
 }

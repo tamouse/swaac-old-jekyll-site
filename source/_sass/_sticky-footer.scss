@@ -1,0 +1,27 @@
+$sticky-footer-margin:     100px;
+
+html {
+  position: relative;
+  min-height: 100%;
+
+  body {
+    margin-bottom: $sticky-footer-margin;
+
+    #main > .container {
+      margin-top: $navbar-height;
+    }
+
+    footer.footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: $sticky-footer-margin;
+
+      .well {
+        background-color: $body-bg
+      }
+    }
+
+  }
+
+}

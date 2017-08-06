@@ -5,4 +5,5 @@ tmp/
 _s3-images/
 node_modules/
 .jekyll-metadata
-/source/assets/*
+/source/assets/css/*.css
+/source/assets/css/*.css.map
