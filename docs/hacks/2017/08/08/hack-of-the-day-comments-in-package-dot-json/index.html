@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Categories</title>
+    <title>Hack of the Day: Comments in package.json?</title>
     <meta name="description" content="The development blog of tamouse">
     <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="canonical" href="http://swaac.tamouse.org/categories/">
+    <link rel="canonical" href="http://swaac.tamouse.org/hacks/2017/08/08/hack-of-the-day-comments-in-package-dot-json/">
     <link href="/favicon.png" rel="icon">
 </head>
 
@@ -51,131 +51,66 @@
 
         <main id="main-content" class="container-fluid">
             <header class="page-header">
-<h1>Categories </h1>
+<h1>Hack of the Day: Comments in package.json?</h1>
+Aug 8, 2017
 
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/categories/hacks">hacks</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/tags/hacks">hacks</a></li> <li role="presentation"><a href="/tags/package.json">package.json</a></li> <li role="presentation"><a href="/tags/comments">comments</a></li> 
 </header>
 
 <article>
+<p>You know how you can’t have JavaScript comments in a .JSON file?
+Sometimes you want them, thus this hack for <code class="highlighter-rouge">package.json</code>.</p>
+
+<p>I’m probably not the first person to think of this, but no one’s ever
+suggested it to me.</p>
+
+<p>JSON files cannot have comments. But many of our configuration files
+are in JSON, and could benefit from some commentary. For example, why
+did you nail that particular version of <code class="highlighter-rouge">webpack-dev-server</code> ? (A true
+story that happened today.)</p>
+
+<p>Comments are a sometimes good, sometimes bad thing. I like comments
+that give explanations for why things are the way they are, not so
+much what things are, or how things are done.</p>
+
+<p>In this case, I wanted to leave a breadcrumb where my project mates
+(now and future) would be able to find some reason for a particular
+version being nailed instead of being allowed to increase with minor
+version changes.</p>
+
+<p>The <code class="highlighter-rouge">package.json</code> file has a set of required keys
+(see <a href="https://docs.npmjs.com/files/package.json">https://docs.npmjs.com/files/package.json</a> for details). It
+doesn’t seem to mind if there are other keys, in fact several other
+things utilize keys to configure themselves (e.g. Jest).</p>
+
+<p>There isn’t a “comments” key, however.</p>
+
+<p>So I decided to make use of it in our <code class="highlighter-rouge">package.json</code> file by creating
+an array of comments offering that “wth were you thinking” commentary
+for future devs.</p>
+
+<p>Here’s the top fragment of the file:</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"comments"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"There is a bug in webpack-dev-server v2.7.0: https://github.com/webpack/webpack-dev-server/issues/1025"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Nailing redux to v3.5.2 because v3.7.1 is breaking the dispatch maps"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
 
 
+</span></code></pre>
+</div>
 
-<ul>
-  
-  <li><a href="/categories/a11y/index.html">a11y</a></li>
-  
-  <li><a href="/categories/angularjs/index.html">angularjs</a></li>
-  
-  <li><a href="/categories/beginner/index.html">beginner</a></li>
-  
-  <li><a href="/categories/book/index.html">book</a></li>
-  
-  <li><a href="/categories/books/index.html">books</a></li>
-  
-  <li><a href="/categories/class/index.html">class</a></li>
-  
-  <li><a href="/categories/correspondence/index.html">correspondence</a></li>
-  
-  <li><a href="/categories/css/index.html">css</a></li>
-  
-  <li><a href="/categories/databases/index.html">databases</a></li>
-  
-  <li><a href="/categories/day-in-the-life/index.html">day-in-the-life</a></li>
-  
-  <li><a href="/categories/deployment/index.html">deployment</a></li>
-  
-  <li><a href="/categories/devops/index.html">devops</a></li>
-  
-  <li><a href="/categories/docker/index.html">docker</a></li>
-  
-  <li><a href="/categories/elixir/index.html">elixir</a></li>
-  
-  <li><a href="/categories/emacs/index.html">emacs</a></li>
-  
-  <li><a href="/categories/git/index.html">git</a></li>
-  
-  <li><a href="/categories/github/index.html">github</a></li>
-  
-  <li><a href="/categories/graphql/index.html">graphql</a></li>
-  
-  <li><a href="/categories/hacks/index.html">hacks</a></li>
-  
-  <li><a href="/categories/html/index.html">html</a></li>
-  
-  <li><a href="/categories/javascript/index.html">javascript</a></li>
-  
-  <li><a href="/categories/jekyll/index.html">jekyll</a></li>
-  
-  <li><a href="/categories/jquery/index.html">jquery</a></li>
-  
-  <li><a href="/categories/learning/index.html">learning</a></li>
-  
-  <li><a href="/categories/link/index.html">link</a></li>
-  
-  <li><a href="/categories/links/index.html">links</a></li>
-  
-  <li><a href="/categories/management/index.html">management</a></li>
-  
-  <li><a href="/categories/misc/index.html">misc</a></li>
-  
-  <li><a href="/categories/node.js/index.html">node.js</a></li>
-  
-  <li><a href="/categories/org-mode/index.html">org-mode</a></li>
-  
-  <li><a href="/categories/osx/index.html">osx</a></li>
-  
-  <li><a href="/categories/postgresql/index.html">postgresql</a></li>
-  
-  <li><a href="/categories/productivity/index.html">productivity</a></li>
-  
-  <li><a href="/categories/programming/index.html">programming</a></li>
-  
-  <li><a href="/categories/python/index.html">python</a></li>
-  
-  <li><a href="/categories/rails/index.html">rails</a></li>
-  
-  <li><a href="/categories/react/index.html">react</a></li>
-  
-  <li><a href="/categories/react-native/index.html">react-native</a></li>
-  
-  <li><a href="/categories/reactjs/index.html">reactjs</a></li>
-  
-  <li><a href="/categories/ruby/index.html">ruby</a></li>
-  
-  <li><a href="/categories/security/index.html">security</a></li>
-  
-  <li><a href="/categories/snippet/index.html">snippet</a></li>
-  
-  <li><a href="/categories/swaac/index.html">swaac</a></li>
-  
-  <li><a href="/categories/sysadmin/index.html">sysadmin</a></li>
-  
-  <li><a href="/categories/tbp/index.html">tbp</a></li>
-  
-  <li><a href="/categories/technology/index.html">technology</a></li>
-  
-  <li><a href="/categories/testing/index.html">testing</a></li>
-  
-  <li><a href="/categories/thoughts/index.html">thoughts</a></li>
-  
-  <li><a href="/categories/tools/index.html">tools</a></li>
-  
-  <li><a href="/categories/typography/index.html">typography</a></li>
-  
-  <li><a href="/categories/vagrant/index.html">vagrant</a></li>
-  
-  <li><a href="/categories/web-publishing/index.html">web-publishing</a></li>
-  
-  <li><a href="/categories/webdev/index.html">webdev</a></li>
-  
-  <li><a href="/categories/wordpress/index.html">wordpress</a></li>
-  
-  <li><a href="/categories/workflow/index.html">workflow</a></li>
-  
-  <li><a href="/categories/www/index.html">www</a></li>
-  
-</ul>
+<p>and the regular parts of the file continue after that.</p>
+
+<p>I think I’ll improve on that by adding the branch / commit where those
+comments come into play.</p>
 
 </article>
+<hr>
+
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">

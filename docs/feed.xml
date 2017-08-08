@@ -5,9 +5,74 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 06 Aug 2017 11:09:01 -0500</pubDate>
-    <lastBuildDate>Sun, 06 Aug 2017 11:09:01 -0500</lastBuildDate>
+    <pubDate>Tue, 08 Aug 2017 15:45:40 -0500</pubDate>
+    <lastBuildDate>Tue, 08 Aug 2017 15:45:40 -0500</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Hack of the Day: Comments in package.json?</title>
+        <description>&lt;p&gt;You know how you can’t have JavaScript comments in a .JSON file?
+Sometimes you want them, thus this hack for &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;I’m probably not the first person to think of this, but no one’s ever
+suggested it to me.&lt;/p&gt;
+
+&lt;p&gt;JSON files cannot have comments. But many of our configuration files
+are in JSON, and could benefit from some commentary. For example, why
+did you nail that particular version of &lt;code class=&quot;highlighter-rouge&quot;&gt;webpack-dev-server&lt;/code&gt; ? (A true
+story that happened today.)&lt;/p&gt;
+
+&lt;p&gt;Comments are a sometimes good, sometimes bad thing. I like comments
+that give explanations for why things are the way they are, not so
+much what things are, or how things are done.&lt;/p&gt;
+
+&lt;p&gt;In this case, I wanted to leave a breadcrumb where my project mates
+(now and future) would be able to find some reason for a particular
+version being nailed instead of being allowed to increase with minor
+version changes.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; file has a set of required keys
+(see &lt;a href=&quot;https://docs.npmjs.com/files/package.json&quot;&gt;https://docs.npmjs.com/files/package.json&lt;/a&gt; for details). It
+doesn’t seem to mind if there are other keys, in fact several other
+things utilize keys to configure themselves (e.g. Jest).&lt;/p&gt;
+
+&lt;p&gt;There isn’t a “comments” key, however.&lt;/p&gt;
+
+&lt;p&gt;So I decided to make use of it in our &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; file by creating
+an array of comments offering that “wth were you thinking” commentary
+for future devs.&lt;/p&gt;
+
+&lt;p&gt;Here’s the top fragment of the file:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;comments&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;There is a bug in webpack-dev-server v2.7.0: https://github.com/webpack/webpack-dev-server/issues/1025&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Nailing redux to v3.5.2 because v3.7.1 is breaking the dispatch maps&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;and the regular parts of the file continue after that.&lt;/p&gt;
+
+&lt;p&gt;I think I’ll improve on that by adding the branch / commit where those
+comments come into play.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 08 Aug 2017 15:32:00 -0500</pubDate>
+        <link>http://swaac.tamouse.org/hacks/2017/08/08/hack-of-the-day-comments-in-package-dot-json/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/hacks/2017/08/08/hack-of-the-day-comments-in-package-dot-json/</guid>
+        
+        <category>hacks</category>
+        
+        <category>package.json</category>
+        
+        <category>comments</category>
+        
+        
+        <category>hacks</category>
+        
+      </item>
     
       <item>
         <title>TIL: Using enzyme's shallow render with MemoryRouter doesn't work</title>
@@ -974,32 +1039,6 @@ apt-get install ruby-switch
         
         
         <category>devops</category>
-        
-      </item>
-    
-      <item>
-        <title>List of awesome accessibility resources</title>
-        <description>&lt;p&gt;Great collection of resources available for implementing accessibility
-(a11y) over on github:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://brunopulis.com/awesome-a11y/&quot;&gt;List of awesome accessibility resources&lt;/a&gt; &lt;small&gt;(&lt;a href=&quot;https://github.com/brunopulis/aweasome-a11y&quot;&gt;Github repo&lt;/a&gt;)&lt;/small&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sun, 14 May 2017 23:25:00 -0500</pubDate>
-        <link>http://swaac.tamouse.org/a11y/2017/05/14/list-of-awesome-a11y-links/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/a11y/2017/05/14/list-of-awesome-a11y-links/</guid>
-        
-        <category>ally</category>
-        
-        <category>links</category>
-        
-        <category>accessibility</category>
-        
-        <category>lists</category>
-        
-        <category>github</category>
-        
-        
-        <category>a11y</category>
         
       </item>
     

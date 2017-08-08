@@ -805,6 +805,10 @@
 <lastmod>2017-08-02T10:54:00-05:00</lastmod>
 </url>
 <url>
+<loc>http://swaac.tamouse.org/hacks/2017/08/08/hack-of-the-day-comments-in-package-dot-json/</loc>
+<lastmod>2017-08-08T15:32:00-05:00</lastmod>
+</url>
+<url>
 <loc>http://swaac.tamouse.org/404/</loc>
 </url>
 <url>
@@ -1034,6 +1038,9 @@
 </url>
 <url>
 <loc>http://swaac.tamouse.org/categories/graphql/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/categories/hacks/</loc>
 </url>
 <url>
 <loc>http://swaac.tamouse.org/tags/dennis-ritchie/</loc>
@@ -2405,6 +2412,12 @@
 </url>
 <url>
 <loc>http://swaac.tamouse.org/tags/enzyme/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/package.json/</loc>
+</url>
+<url>
+<loc>http://swaac.tamouse.org/tags/comments/</loc>
 </url>
 <url>
 <loc>http://swaac.tamouse.org/pages/css-examples/clearfix/clearfix-example.html</loc>
