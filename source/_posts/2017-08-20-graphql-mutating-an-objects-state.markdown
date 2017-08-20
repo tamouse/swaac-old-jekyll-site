@@ -2,7 +2,7 @@
 layout: post
 title: "GraphQL: Mutating an Object's State"
 date: 2017-08-20 11:08
-categories: ["graphql"]
+categories: ["webdev"]
 tags: ["graphql", "ruby", "rails"]
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "TIL: GraphQL"
 date: 2017-07-03 22:14
-categories: ["graphql"]
+categories: ["webdev"]
 tags: ["graphql", "apollo-client", "rails", "react", "webpack"]
 
 ---

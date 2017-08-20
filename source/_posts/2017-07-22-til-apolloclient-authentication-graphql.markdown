@@ -2,7 +2,7 @@
 layout: post
 title: "TIL: ApolloClient Authentication (graphql)"
 date: 2017-07-22 02:19
-categories: ["graphql"]
+categories: ["webdev"]
 tags: ["graphql", "react", "apollo-client"]
 
 ---
