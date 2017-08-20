@@ -2,21 +2,26 @@
 // ------------------------------
 
 
-*[id]:before {
-  display: block;
-  content: " ";
-  margin-top: -($navbar-height+25); // Set the Appropriate Height
-  height: ($navbar-height+25); // Set the Appropriate Height
-  visibility: hidden;
+#main-content {
+  article {
+    *[id]:before {
+      display: block;
+      content: " ";
+      margin-top: -($navbar-height+25); // Set the Appropriate Height
+      height: ($navbar-height+25); // Set the Appropriate Height
+      visibility: hidden;
+    }
+
+    li *[id]:before {
+      display: inherit;
+      content: '';
+      margin-top: 0;
+      height: 0;
+      visibility: hidden;
+    }
+  }
 }
 
-li *[id]:before {
-  display: inherit;
-  content: '';
-  margin-top: 0;
-  height: 0;
-  visibility: hidden;
-}
 .page-header {
   margin: 0 0 20px 0;
 }

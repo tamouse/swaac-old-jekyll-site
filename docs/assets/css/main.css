@@ -5947,14 +5947,13 @@ pre.highlight > code {
   white-space: pre;
   overflow-x: auto; }
 
-*[id]:before {
+#main-content article *[id]:before {
   display: block;
   content: " ";
   margin-top: -75px;
   height: 75px;
   visibility: hidden; }
-
-li *[id]:before {
+#main-content article li *[id]:before {
   display: inherit;
   content: '';
   margin-top: 0;

@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>PP: Programming Proverbs, an Introduction</title>
+    <title>PP 3: Use the Top-Down Approach</title>
     <meta name="description" content="The development blog of tamouse">
     <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="canonical" href="http://swaac.tamouse.org/programming/2017/07/23/pp-introduction/">
+    <link rel="canonical" href="http://swaac.tamouse.org/programming/2017/08/20/pp-3-use-the-top-down-approach/">
     <link href="/favicon.png" rel="icon">
 </head>
 
@@ -51,98 +51,90 @@
 
         <main id="main-content" class="container-fluid">
             <header class="page-header">
-<h1>PP: Programming Proverbs, an Introduction</h1>
-Jul 23, 2017
+<h1>PP 3: Use the Top-Down Approach</h1>
+Aug 20, 2017
 
 
  &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/categories/programming">programming</a></li></ul>
- &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/tags/programming">programming</a></li> <li role="presentation"><a href="/tags/style">style</a></li> <li role="presentation"><a href="/tags/proverbs">proverbs</a></li> <li role="presentation"><a href="/tags/craft">craft</a></li> <li role="presentation"><a href="/tags/improving">improving</a></li> 
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/tags/programming">programming</a></li> <li role="presentation"><a href="/tags/proverbs">proverbs</a></li> <li role="presentation"><a href="/tags/top-down">top-down</a></li> 
 </header>
 
 <article>
-<p>Back in 1975, Henry F. Ledgard published a small book called
-“Programming Proverbs”, a book of 26 best practices for programming,
-using Algol 60 as the explanatory language. This was followed up with
-“Pascal with Style: Programming Proverbs”, which restated the
-practices using Pascal as the language, which was the one I found and
-read, since I was using Pascal at the time in University.</p>
+<p>Ledgard’s 3rd Proverb is “Use the Top-Down Approach”, which means to
+design our code in levels, from most abstract to most detailed.</p>
 
-<p>I read the book voraciously, small though it was. Ledgard’s proverbs
-were very apt, and I was pretty well interested in writing good
-quality code even back then, not really wanting to settle for good
-enough to pass the class.</p>
+<hr />
 
-<p>Many years, decades even, have passed since that time, and I’ve found
-many new authors to read, and have gotten great guidance from
-them. And even so, that little book of proverbs has stuck in my head,
-forming a real foundation from which to approach the craft of software
-development.</p>
+<p><a href="/programming/2017/07/23/pp-introduction/">Programming Proverbs Introduction</a></p>
 
-<p>I’m going to write a series of posts on these programming proverbs,
-with the title tag “PP”, and a tag of “proverbs” if you want to sort
-them out later.</p>
+<hr />
 
-<p>In this introduction, I’m going to list the proverbs. Subsequent posts
-will go into more depth on them.</p>
+<p>It builds on the first two proverbs directly, and introduces the idea
+of <em>postponement of details</em> by making <em>abstractions</em>, which are
+<em>successively refined</em>.</p>
 
-<h2 id="the-proverbs">The Proverbs</h2>
+<p>This approach tends to favour the imperative (aka procedural) sort of
+coding and can be useful in object-oriented programming. It’s perhaps
+less useful in functional programming, but it still makes sense
+conceptually that we’ll know a lot more about the big pieces of
+something when we start than the details of implementation.</p>
 
-<ol>
-  <li><a href="/programming/2017/07/29/pp-1-define-the-problem-completely/">Define the problem completely</a>.</li>
-  <li><a href="/programming/2017/07/29/pp-2-think-first-program-later/">Think first, program later</a>.</li>
-  <li><a href="/programming/2017/08/20/pp-3-use-the-top-down-approach/">Use the top-down approach</a>.</li>
-  <li>Beware of other approaches.</li>
-  <li>Construct the program in logical units.</li>
-  <li>Use procedures.</li>
-  <li>Avoid unnecessary GOTOs.</li>
-  <li>Avoid side effects.</li>
-  <li>Get the syntax right now, not later.</li>
-  <li>Use good mnenonic names.</li>
-  <li>Use intermediate variables properly.</li>
-  <li>Leave loop variables alone.</li>
-  <li>Do not recompute constants within a loop.</li>
-  <li>Avoid implementation-dependent features.</li>
-  <li>Avoid tricks.</li>
-  <li>Build in debugging techniques.</li>
-  <li>Never assume the computer assumes anything.</li>
-  <li>Use comments.</li>
-  <li>Prettyprint.</li>
-  <li>Provide good documentation.</li>
-  <li>Hand-check the programming before running it.</li>
-  <li>Get the program correct before trying to produce good output.</li>
-  <li>When the program is correct, produce good output.</li>
-  <li>Reread the manual.</li>
-  <li>Consider another language.</li>
-  <li>Don’t be afraid to start over.</li>
-</ol>
+<p>Top-down also lends itself very well to the Test-/Behavior-Driven
+development approach, as we should be testing and verifying each
+level as we go along.</p>
 
-<h2 id="updating-the-proverbs">Updating the proverbs</h2>
+<p>On the other hand, it creates a need for a lot of mocking of
+unimplemented code, which can create overblown test suites for no
+apparent gain. Keep the mocks minimal and only to the point of testing
+the logic of the level under test and don’t attempt to build
+integration tests at first.</p>
 
-<p>You many note some of those proverbs seem quite archaic in the world
-of software development we are in today. How many people <em>ever</em> step
-through their code by hand before subjecting it to the compiler /
-interpretter / browser?</p>
+<p>Another advantage is that the top-down approach is helpful in keeping
+our modules, classes, functions, procedures, and methods small. It
+allows us to focus on just what’s important at this level of
+abstraction.</p>
 
-<p>Also, with the rise of test-driven development, perhaps it’s more
-likely that your code will be running the moment you hit the “Save”
-key.</p>
+<p>When creating our initial levels, it’s often helpful to write them
+out in human language as comments. This can often help us derive
+useful names for variables and methods, and to write the test
+statements to be filled in as well.</p>
 
-<p>Before you dismiss these, consider not just the time and practice of
-the day (1975 is likely longer ago than most of my readers have been
-alive). Consider, really, the intent: there is a reason for all of
-these, and I’ll be bring those ideas up to date as I cover them.</p>
+<h3 id="example-atm">example: ATM</h3>
 
-<h2 id="acknowledgements">Acknowledgements</h2>
+<p>Most of us are familiar with an automated teller machine (ATM). If our
+task was to write an interface, in a top-down approach, we might start
+with this:</p>
 
-<p>I owe a <em>great</em> deal to Mr. Ledgard. I don’t know if he’s still with
-us, but as a teacher of a very young and enthusiastic computer science
-student back in the 1970’s, he meant a lot. As I write these, I know I
-would not be anywhere near the craftsperson I am with him.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>loop
+  accept card
+  validate customer
 
-<p>As these works are no longer in print, I hope the spirit of sharing
-these proverbs for helping new software developers acquire the
-everyday skills of the craft will cause you to seek out these books,
-in order to possibly get them updated and republished.</p>
+  loop
+    gather request
+    process request
+    break loop if customer is finished
+
+  return card
+</code></pre>
+</div>
+
+<p>and then refine each step. Taking just “process request” step from
+above:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>when request is a
+  deposit: process deposit
+  withdrawal: process withdrawal
+  balance check: process balance check
+  purchase stamps: process stamp purchase
+</code></pre>
+</div>
+
+<p>(Some ATMs do a lot more than that, but you get the picture.)</p>
+
+<p>Being able to just write out the algorithm in plain human language
+helps us to keep
+to
+<a href="/programming/2017/07/29/pp-2-think-first-program-later/">proverb 2: think first, program later</a>.</p>
 
 </article>
 <hr>

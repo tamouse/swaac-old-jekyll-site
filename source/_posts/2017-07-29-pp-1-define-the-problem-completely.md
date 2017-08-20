@@ -8,6 +8,12 @@ tags: [programming, proverbs, problem-definition]
 
 Continuing in the Programming Proverb series, by Henry F. Ledgard.
 
+-----
+
+[Programming Proverbs Introduction]({% link _posts/2017-07-23-pp-introduction.markdown %})
+
+-----
+
 **Contents:**
 
 {:toc}

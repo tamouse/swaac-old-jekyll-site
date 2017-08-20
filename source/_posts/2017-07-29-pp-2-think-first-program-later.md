@@ -9,6 +9,12 @@ tags: [programming, proverbs, think-first-code-later]
 Next in the Programming Proverbs series: #2: Think First, Program
 Later.
 
+-----
+
+[Programming Proverbs Introduction]({% link _posts/2017-07-23-pp-introduction.markdown %})
+
+-----
+
 **Page Contents:**
 
 {:toc}

@@ -34,9 +34,9 @@ will go into more depth on them.
 
 ## The Proverbs
 
-1. Define the problem completely.
-2. Think first, program later.
-3. Use the top-down approach.
+1. [Define the problem completely]({% link _posts/2017-07-29-pp-1-define-the-problem-completely.md %}).
+2. [Think first, program later]({% link _posts/2017-07-29-pp-2-think-first-program-later.md %}).
+3. [Use the top-down approach]({% link _posts/2017-08-20-pp-3-use-the-top-down-approach.markdown %}).
 4. Beware of other approaches.
 5. Construct the program in logical units.
 6. Use procedures.
