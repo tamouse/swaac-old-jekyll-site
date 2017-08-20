@@ -19,7 +19,8 @@ thought. Lots of others have expressed similar words and concepts.
 I want to underline it here because I think it is rather essential to
 the whole concept of Software as a Craft that this blog is about.
 
-SWAAC for me started with this notion of future communication in a
+SWAAC for me started with this notion of future communication in
+a
 [chat I had with someone else on IRC]({% post_url 2012-12-05-code-as-literature-software-dev-as-communication %}).
 The notion of whom we are writing our code for is something a lot of
 programmers don't quite get. We don't write ruby, perl, java, C, etc,
@@ -28,10 +29,8 @@ and other people reading our code. The computer doesn't actually care
 a lick what our code means; it's not a cognitive processor that can
 apply meaning, intent, implication, etc., onto our writing. Only
 humans can do that. The compiler/interpretter merely translates into
-things the computer can do things with. There is no DWIM[^1] for a
-computer.
-
-[^1]: DWIM: Do What I Mean(t)
+things the computer can do things with. There is no DWIM (Do What I
+Mean) for a computer.
 
 So the question that prompted this remark was this:
 
