@@ -5,8 +5,8 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 20 Aug 2017 11:41:16 -0500</pubDate>
-    <lastBuildDate>Sun, 20 Aug 2017 11:41:16 -0500</lastBuildDate>
+    <pubDate>Sun, 20 Aug 2017 11:44:42 -0500</pubDate>
+    <lastBuildDate>Sun, 20 Aug 2017 11:44:42 -0500</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -1087,8 +1087,8 @@ new. Frustrations go along with learning; as one of my teachers says
 Scott!)&lt;/p&gt;
 </description>
         <pubDate>Mon, 03 Jul 2017 22:14:00 -0500</pubDate>
-        <link>http://swaac.tamouse.org/webdev/2017/07/03/til-graphql/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/webdev/2017/07/03/til-graphql/</guid>
+        <link>http://swaac.tamouse.org/graphql/2017/07/03/til-graphql/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/graphql/2017/07/03/til-graphql/</guid>
         
         <category>graphql</category>
         
@@ -1101,7 +1101,7 @@ Scott!)&lt;/p&gt;
         <category>webpack</category>
         
         
-        <category>webdev</category>
+        <category>graphql</category>
         
       </item>
     
