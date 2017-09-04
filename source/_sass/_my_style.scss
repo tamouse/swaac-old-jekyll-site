@@ -1,24 +1,60 @@
 // Local style variations
 // ------------------------------
 
+.full-height-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.two-column-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  @media (min-width: $screen-sm) {
+    flex-direction: row;
+  }
+  aside {
+    /* display: none; */
+    order: 2;
+    @media (min-width: $screen-sm) {
+      display: block;
+      flex: 1;
+      order: 1
+    }
+  }
+  main {
+    order: 1;
+    @media (min-width: $screen-sm) {
+      order: 2;
+      flex: 3;
+    }
+  }
+}
 
 #main-content {
+  max-height: 100%;
+  overflow: auto;
   article {
-    *[id]:before {
-      display: block;
-      content: " ";
-      margin-top: -($navbar-height+25); // Set the Appropriate Height
-      height: ($navbar-height+25); // Set the Appropriate Height
-      visibility: hidden;
+    max-width: inherit;
+    @media (min-width: $screen-sm) {
+      max-width: 52em;
     }
+    /* *[id]:before { */
+    /*   display: block; */
+    /*   content: " "; */
+    /*   margin-top: -($navbar-height+25); // Set the Appropriate Height */
+    /*   height: ($navbar-height+25); // Set the Appropriate Height */
+    /*   visibility: hidden; */
+    /* } */
 
-    li *[id]:before {
-      display: inherit;
-      content: '';
-      margin-top: 0;
-      height: 0;
-      visibility: hidden;
-    }
+    /* li *[id]:before { */
+    /*   display: inherit; */
+    /*   content: ''; */
+    /*   margin-top: 0; */
+    /*   height: 0; */
+    /*   visibility: hidden; */
+    /* } */
   }
 }
 
@@ -40,12 +76,6 @@
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: repeat(3, auto);
-}
-
-#main-content {
-  max-height: 100%;
-  overflow: auto;
-  margin-top: $navbar-height + 20px;
 }
 
 .nowrap {
@@ -205,12 +235,12 @@ $max-width-for-highlight: $screen-xxs - $offset-for-highlight;
 
 @media screen and (min-width: $screen-md-min) {
   main {
-	  max-width: 800px;
+	  /* max-width: 800px; */
   }
 }
 
 @media screen and (min-width: $screen-lg-min) {
   main {
-	  max-width: 800px;
+	  /* max-width: 800px; */
   }
 }
