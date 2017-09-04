@@ -5947,18 +5947,55 @@ pre.highlight > code {
   white-space: pre;
   overflow-x: auto; }
 
-#main-content article *[id]:before {
-  display: block;
-  content: " ";
-  margin-top: -75px;
-  height: 75px;
-  visibility: hidden; }
-#main-content article li *[id]:before {
-  display: inherit;
-  content: '';
-  margin-top: 0;
-  height: 0;
-  visibility: hidden; }
+.full-height-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column; }
+
+.two-column-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column; }
+  @media (min-width: 768px) {
+    .two-column-wrapper {
+      flex-direction: row; } }
+  .two-column-wrapper aside {
+    /* display: none; */
+    order: 2; }
+    @media (min-width: 768px) {
+      .two-column-wrapper aside {
+        display: block;
+        flex: 1;
+        order: 1; } }
+  .two-column-wrapper main {
+    order: 1; }
+    @media (min-width: 768px) {
+      .two-column-wrapper main {
+        order: 2;
+        flex: 3; } }
+
+#main-content {
+  max-height: 100%;
+  overflow: auto; }
+  #main-content article {
+    max-width: inherit;
+    /* *[id]:before { */
+    /*   display: block; */
+    /*   content: " "; */
+    /*   margin-top: -($navbar-height+25); // Set the Appropriate Height */
+    /*   height: ($navbar-height+25); // Set the Appropriate Height */
+    /*   visibility: hidden; */
+    /* } */
+    /* li *[id]:before { */
+    /*   display: inherit; */
+    /*   content: ''; */
+    /*   margin-top: 0; */
+    /*   height: 0; */
+    /*   visibility: hidden; */
+    /* } */ }
+    @media (min-width: 768px) {
+      #main-content article {
+        max-width: 52em; } }
 
 .page-header {
   margin: 0 0 20px 0; }
@@ -5976,11 +6013,6 @@ pre.highlight > code {
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: repeat(3, auto); }
-
-#main-content {
-  max-height: 100%;
-  overflow: auto;
-  margin-top: 70px; }
 
 .nowrap {
   white-space: nowrap; }
@@ -6101,7 +6133,7 @@ hr.divider-primary {
         max-width: 1140px; } }
 @media screen and (min-width: 992px) {
   main {
-    max-width: 800px; } }
+    /* max-width: 800px; */ } }
 @media screen and (min-width: 1200px) {
   main {
-    max-width: 800px; } }
+    /* max-width: 800px; */ } }
