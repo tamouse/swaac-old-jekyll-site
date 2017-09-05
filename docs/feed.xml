@@ -5,9 +5,86 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 04 Sep 2017 17:46:26 -0500</pubDate>
-    <lastBuildDate>Mon, 04 Sep 2017 17:46:26 -0500</lastBuildDate>
+    <pubDate>Mon, 04 Sep 2017 20:19:49 -0500</pubDate>
+    <lastBuildDate>Mon, 04 Sep 2017 20:19:49 -0500</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Jekyll: Making Posts Sticky Redux</title>
+        <description>&lt;p&gt;&lt;a href=&quot;/swaac/2013/09/28/jekyll-making-posts-sticky/&quot;&gt;Last time&lt;/a&gt;,
+I talked about using categories to make a post sticky. This eats up a
+category, though, and can make the post’s permalink look silly.&lt;/p&gt;
+
+&lt;h2 id=&quot;use-a-page-variable&quot;&gt;Use a Page Variable&lt;/h2&gt;
+
+&lt;p&gt;This time, we’re just going to use a page variable to do it.&lt;/p&gt;
+
+&lt;p&gt;In your posts that you want to be sticky, add a page variable to the
+front matter:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;post&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;sticky&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# ...&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Then in your page where you want the sticky posts to appear first, use
+the following template:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;{% for post in site.posts %}{% if post.sticky %}
+* [{{post.title}}]({{post.url}}) {{post.date|date_to_string}}
+{% endif %}{% endfor %}
+
+{% for post in site.posts %}{% unless post.sticky %}
+* [{{post.title}}]({{post.url}}) {{post.date|date_to_string}}
+{% endunless %}{% endfor %}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;If you wanted the sticky posts to show up again in the lower section,
+just remove the &lt;code class=&quot;highlighter-rouge&quot;&gt;unless-endunless&lt;/code&gt; condition in the second loop.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;use-a-collection&quot;&gt;Use a Collection&lt;/h2&gt;
+
+&lt;p&gt;The above solution is still a bit crude, and doesn’t really lend
+itself to pagination.&lt;/p&gt;
+
+&lt;p&gt;Perhaps a better solution to try for is set up a collection of sticky
+posts and deal with them completely separately from your regular
+posts.&lt;/p&gt;
+
+&lt;p&gt;In &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;s&quot;&gt;collections&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;important&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Create the sticky posts in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_important&lt;/code&gt; folder like regular posts.&lt;/p&gt;
+
+&lt;p&gt;The file you want to show the sticky and regular post then can have
+the following construction:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;{% for post in site.important %}
+* [{{post.title}}]({{post.url}}) {{post.date|date_to_string}}
+{% endfor %}
+
+{% for post in site.posts %}
+* [{{post.title}}]({{post.url}}) {{post.date|date_to_string}}
+{% endfor %}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Works with Jekyl 3.5.2. YMMV.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 04 Sep 2017 19:00:00 -0500</pubDate>
+        <link>http://swaac.tamouse.org/jekyll/2017/09/04/jekyll-making-posts-sticky-redux/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/jekyll/2017/09/04/jekyll-making-posts-sticky-redux/</guid>
+        
+        <category>jekyll</category>
+        
+        
+        <category>jekyll</category>
+        
+      </item>
     
       <item>
         <title>PP 3: Use the Top-Down Approach</title>
@@ -884,76 +961,6 @@ an Internal Server Error.&lt;/p&gt;
         
         
         <category>books</category>
-        
-      </item>
-    
-      <item>
-        <title>Playing games with the :checked pseudo-selector</title>
-        <description>&lt;p&gt;I’m not sure what made me think of this, but I got a wild hair and
-thought I’d try it out.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;:checked&lt;/code&gt; CSS pseudo-selector lets you select a &lt;em&gt;checked&lt;/em&gt;
-checkbox or radio button. The question I wondered, would this be a
-cheap-azz way of making a sliding sidebar? And the answer is, yes it
-could.&lt;/p&gt;
-
-&lt;p&gt;Over at &lt;a href=&quot;https://codepen.io/tamouse/pen/YQjVNb?editors=1100&quot;&gt;codepen&lt;/a&gt; I left a pen showing just that:&lt;/p&gt;
-
-&lt;iframe height=&quot;265&quot; scrolling=&quot;no&quot; title=&quot;what can you do with :checked?&quot; src=&quot;//codepen.io/tamouse/embed/YQjVNb/?height=265&amp;amp;theme-id=0&amp;amp;default-tab=result&amp;amp;embed-version=2&quot; frameborder=&quot;no&quot; allowtransparency=&quot;true&quot; allowfullscreen=&quot;true&quot; style=&quot;width: 100%;&quot;&gt;See the Pen &lt;a href=&quot;https://codepen.io/tamouse/pen/YQjVNb/&quot;&gt;what can you do with :checked?&lt;/a&gt; by Tamara Temple (&lt;a href=&quot;https://codepen.io/tamouse&quot;&gt;@tamouse&lt;/a&gt;) on &lt;a href=&quot;https://codepen.io&quot;&gt;CodePen&lt;/a&gt;.
-&lt;/iframe&gt;
-
-&lt;p&gt;Some of the interesting bits:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;The body is set to &lt;code class=&quot;highlighter-rouge&quot;&gt;display: flex&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;flex-direction: row&lt;/code&gt;, which
-would normally put the 3 major body parts, &lt;code class=&quot;highlighter-rouge&quot;&gt;input&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;aside&lt;/code&gt;, and
-&lt;code class=&quot;highlighter-rouge&quot;&gt;article&lt;/code&gt; horizontally, but…&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;The input checkbox is positioned absolute taking it out of the flex
-flow, so only the &lt;code class=&quot;highlighter-rouge&quot;&gt;aside&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;article&lt;/code&gt; are flexed&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;After setting everything up for the “normal” state, with the
-checkbox &lt;em&gt;un&lt;/em&gt;checked, and the sidebar &lt;em&gt;hidden&lt;/em&gt;, I added the last CSS
-rule to display the sidebar when the input checkbox is checked.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;normal-state&quot;&gt;normal state&lt;/h3&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-scss&quot; data-lang=&quot;scss&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.sidebar&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;20px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;tomato&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;padding-top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;40px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h3 id=&quot;checked-state&quot;&gt;checked state&lt;/h3&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-scss&quot; data-lang=&quot;scss&quot;&gt;&lt;span class=&quot;nt&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.sidebar-toggle&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:checked&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.sidebar&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;200px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;inherit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Of course, this could be taken in all sorts of directions, but I
-wanted to try this out to see if it works.&lt;/p&gt;
-</description>
-        <pubDate>Thu, 06 Jul 2017 01:25:00 -0500</pubDate>
-        <link>http://swaac.tamouse.org/css/2017/07/06/playing-games-with-the-checked-pseudo-selector/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/css/2017/07/06/playing-games-with-the-checked-pseudo-selector/</guid>
-        
-        <category>css</category>
-        
-        <category>checked</category>
-        
-        
-        <category>css</category>
         
       </item>
     

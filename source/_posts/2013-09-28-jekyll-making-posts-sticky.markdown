@@ -13,6 +13,13 @@ A recent visitor to the IRC channel #octopress was wondering how they
 could have both regular pagination and sticky posts that always show
 up on the first page.
 
+**Update:** The solution proposed here is pretty old and not that
+great. Have a look
+at
+[Jekyll: Making Posts Sticky Redux]({% link _posts/2017-09-04-jekyll-making-posts-sticky-redux.markdown %}) for
+a better way to do it (or two better ways!)
+
+
 Seemingly simple, the proffered solutions did not seem to fit the
 bill. This is the way I've solved this.
 
