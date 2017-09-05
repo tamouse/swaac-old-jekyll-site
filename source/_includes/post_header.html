@@ -1,0 +1,8 @@
+<header class="page-header">
+<h1>{{ page.title }}{% if page.subtitle %}<br><small>{{page.subtitle}}</small>{% endif %}</h1>
+{{ page.date | date: "%b %-d, %Y" }}
+{% if page.author %} &bullet; Author: {{ page.author }}{% endif %}
+{% if page.meta %} &bullet; Meta: {{ page.meta }}{% endif %}
+{% if page.categories %} &bullet; <ul class="link-list"><li>Categories:</li>{% for cat in page.categories %}<li role="presentation"><a href="{{site.baseurl}}/categories/{{cat}}">{{cat}}</a></li>{% endfor %}{% endif %}</ul>
+{% if page.tags %} &bullet; <ul class="link-list"><li>Tags: </li>{% for tag in page.tags %}<li role="presentation"><a href="{{site.baseurl}}/tags/{{tag}}">{{tag}}</a></li> {% endfor %}{% endif %}
+</header>

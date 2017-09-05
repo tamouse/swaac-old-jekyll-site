@@ -1,3 +1,4 @@
+require "pry"
 module Jekyll
 
   class CategoryPage < Page
@@ -36,7 +37,7 @@ module Jekyll
     end
 
   end
-  
+
 end
 
 Liquid::Template.register_tag('category_list', Jekyll::CategoryList)
