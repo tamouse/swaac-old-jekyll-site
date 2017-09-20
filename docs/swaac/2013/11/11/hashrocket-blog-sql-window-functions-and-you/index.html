@@ -218,14 +218,14 @@ Nov 11, 2013
 <span class="o">&gt;</span> 
 <span class="o">&gt;</span>  <span class="nb">id</span> <span class="o">|</span>         <span class="nb">name</span>         <span class="o">|</span> <span class="n">category_id</span> <span class="o">|</span> <span class="n">price</span> 
 <span class="o">&gt;</span> <span class="o">----+----------------------+-------------+-------</span>
-<span class="o">&gt;</span>   <span class="mi">7</span> <span class="o">|</span> <span class="no">Triple</span> <span class="no">LOL</span>           <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span>  <span class="mi">9</span><span class="o">.</span><span class="mi">99</span>
-<span class="o">&gt;</span>   <span class="mi">5</span> <span class="o">|</span> <span class="no">Hugs</span> <span class="n">not</span> <span class="no">Drugs</span>       <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span>  <span class="mi">9</span><span class="o">.</span><span class="mi">99</span>
-<span class="o">&gt;</span>   <span class="mi">2</span> <span class="o">|</span> <span class="no">Puss</span> <span class="k">in</span> <span class="no">Boots</span>        <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span> <span class="mi">14</span><span class="o">.</span><span class="mi">99</span>
-<span class="o">&gt;</span>   <span class="mi">3</span> <span class="o">|</span> <span class="no">Cats</span> <span class="no">Gone</span> <span class="no">By</span>         <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span> <span class="mi">19</span><span class="o">.</span><span class="mi">99</span>
-<span class="o">&gt;</span>   <span class="mi">6</span> <span class="o">|</span> <span class="no">Cats</span> <span class="k">in</span> <span class="n">it</span> <span class="k">for</span> <span class="n">me</span>    <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span> <span class="mi">22</span><span class="o">.</span><span class="mi">99</span>
+<span class="o">&gt;</span>   <span class="mi">7</span> <span class="o">|</span> <span class="no">Triple</span> <span class="no">LOL</span>           <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span>  <span class="mf">9.99</span>
+<span class="o">&gt;</span>   <span class="mi">5</span> <span class="o">|</span> <span class="no">Hugs</span> <span class="n">not</span> <span class="no">Drugs</span>       <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span>  <span class="mf">9.99</span>
+<span class="o">&gt;</span>   <span class="mi">2</span> <span class="o">|</span> <span class="no">Puss</span> <span class="k">in</span> <span class="no">Boots</span>        <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span> <span class="mf">14.99</span>
+<span class="o">&gt;</span>   <span class="mi">3</span> <span class="o">|</span> <span class="no">Cats</span> <span class="no">Gone</span> <span class="no">By</span>         <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span> <span class="mf">19.99</span>
+<span class="o">&gt;</span>   <span class="mi">6</span> <span class="o">|</span> <span class="no">Cats</span> <span class="k">in</span> <span class="n">it</span> <span class="k">for</span> <span class="n">me</span>    <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span> <span class="mf">22.99</span>
 <span class="o">&gt;</span>   <span class="mi">4</span> <span class="o">|</span> <span class="no">Turkleton</span><span class="s1">'s Folly    |           2 | 11.99
 &gt;   1 | Meowna Lisa          |           2 | 19.99
-&gt;   8 | Lady Caterly'</span><span class="n">s</span> <span class="no">Lover</span> <span class="o">|</span>           <span class="mi">2</span> <span class="o">|</span> <span class="mi">22</span><span class="o">.</span><span class="mi">99</span>
+&gt;   8 | Lady Caterly'</span><span class="n">s</span> <span class="no">Lover</span> <span class="o">|</span>           <span class="mi">2</span> <span class="o">|</span> <span class="mf">22.99</span>
 <span class="o">&gt;</span> </code></pre></figure>
 
 <blockquote>
@@ -235,30 +235,30 @@ Nov 11, 2013
   <p>Whereas a normal aggregate function with <code class="highlighter-rouge">GROUP BY</code> would collapse the results, a window function retains the original row. Let’s consider how this would affect the inner query from the subselect approach above:</p>
 
 </blockquote>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">&gt; </span>SELECT category_id, min<span class="o">(</span>price<span class="o">)</span> FROM cat_pictures GROUP BY category_id;
-<span class="gp">&gt; </span>
-<span class="gp">&gt;  </span>category_id |  min  
-<span class="gp">&gt; </span>-------------+-------
-<span class="gp">&gt;            </span>1 |  9.99
-<span class="gp">&gt;            </span>2 | 11.99
-<span class="gp">&gt; </span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;</span> SELECT category_id, min<span class="o">(</span>price<span class="o">)</span> FROM cat_pictures GROUP BY category_id<span class="p">;</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span>  category_id |  min  
+<span class="o">&gt;</span> <span class="nt">-------------</span>+-------
+<span class="o">&gt;</span>            1 |  9.99
+<span class="o">&gt;</span>            2 | 11.99
+<span class="o">&gt;</span> </code></pre></figure>
 
 <blockquote>
 
 </blockquote>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">&gt; </span>SELECT category_id, min<span class="o">(</span>price<span class="o">)</span> OVER <span class="o">(</span>PARTITION BY category_id<span class="o">)</span> FROM cat_pictures;
-<span class="gp">&gt; </span>
-<span class="gp">&gt;  </span>category_id |  min  
-<span class="gp">&gt; </span>-------------+-------
-<span class="gp">&gt;            </span>1 |  9.99
-<span class="gp">&gt;            </span>1 |  9.99
-<span class="gp">&gt;            </span>1 |  9.99
-<span class="gp">&gt;            </span>1 |  9.99
-<span class="gp">&gt;            </span>1 |  9.99
-<span class="gp">&gt;            </span>2 | 11.99
-<span class="gp">&gt;            </span>2 | 11.99
-<span class="gp">&gt;            </span>2 | 11.99
-<span class="gp">&gt; </span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;</span> SELECT category_id, min<span class="o">(</span>price<span class="o">)</span> OVER <span class="o">(</span>PARTITION BY category_id<span class="o">)</span> FROM cat_pictures<span class="p">;</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span>  category_id |  min  
+<span class="o">&gt;</span> <span class="nt">-------------</span>+-------
+<span class="o">&gt;</span>            1 |  9.99
+<span class="o">&gt;</span>            1 |  9.99
+<span class="o">&gt;</span>            1 |  9.99
+<span class="o">&gt;</span>            1 |  9.99
+<span class="o">&gt;</span>            1 |  9.99
+<span class="o">&gt;</span>            2 | 11.99
+<span class="o">&gt;</span>            2 | 11.99
+<span class="o">&gt;</span>            2 | 11.99
+<span class="o">&gt;</span> </code></pre></figure>
 
 <blockquote>
 
@@ -267,19 +267,19 @@ Nov 11, 2013
   <p>When a window frame is ordered, using an <code class="highlighter-rouge">ORDER BY</code> clause, even more options are possible. For example, consider the following:</p>
 
 </blockquote>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">&gt; </span>SELECT id, name, category_id, price, rank<span class="o">()</span> OVER <span class="o">(</span>PARTITION BY category_id ORDER BY price<span class="o">)</span> FROM cat_pictures;
-<span class="gp">&gt; </span>
-<span class="gp">&gt;  </span>id |         name         | category_id | price | rank 
-<span class="gp">&gt; </span>----+----------------------+-------------+-------+------
-<span class="gp">&gt;   </span>7 | Triple LOL           |           1 |  9.99 |    1
-<span class="gp">&gt;   </span>5 | Hugs not Drugs       |           1 |  9.99 |    1
-<span class="gp">&gt;   </span>2 | Puss <span class="k">in </span>Boots        |           1 | 14.99 |    3
-<span class="gp">&gt;   </span>3 | Cats Gone By         |           1 | 19.99 |    4
-<span class="gp">&gt;   </span>6 | Cats <span class="k">in </span>it <span class="k">for </span>me    |           1 | 22.99 |    5
-<span class="gp">&gt;   </span>4 | Turkleton<span class="s1">'s Folly    |           2 | 11.99 |    1
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;</span> SELECT id, name, category_id, price, rank<span class="o">()</span> OVER <span class="o">(</span>PARTITION BY category_id ORDER BY price<span class="o">)</span> FROM cat_pictures<span class="p">;</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span>  id |         name         | category_id | price | rank 
+<span class="o">&gt;</span> <span class="nt">----</span>+----------------------+-------------+-------+------
+<span class="o">&gt;</span>   7 | Triple LOL           |           1 |  9.99 |    1
+<span class="o">&gt;</span>   5 | Hugs not Drugs       |           1 |  9.99 |    1
+<span class="o">&gt;</span>   2 | Puss <span class="k">in </span>Boots        |           1 | 14.99 |    3
+<span class="o">&gt;</span>   3 | Cats Gone By         |           1 | 19.99 |    4
+<span class="o">&gt;</span>   6 | Cats <span class="k">in </span>it <span class="k">for </span>me    |           1 | 22.99 |    5
+<span class="o">&gt;</span>   4 | Turkleton<span class="s1">'s Folly    |           2 | 11.99 |    1
 &gt;   1 | Meowna Lisa          |           2 | 19.99 |    2
 &gt;   8 | Lady Caterly'</span>s Lover |           2 | 22.99 |    3
-<span class="gp">&gt; </span></code></pre></figure>
+<span class="o">&gt;</span> </code></pre></figure>
 
 <blockquote>
 
@@ -288,19 +288,19 @@ Nov 11, 2013
   <p>Not so fast. Can you spot the issue with the above? The <code class="highlighter-rouge">rank()</code> window function assigns the same rank to ties, but we need the first one alphabetically in the case of “ties”. We can remedy that by using a different window function, <code class="highlighter-rouge">row_number()</code>, which guarantees different numbers.</p>
 
 </blockquote>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">&gt; </span>SELECT id, name, category_id, price, row_number<span class="o">()</span> OVER <span class="o">(</span>PARTITION BY category_id ORDER BY price, name<span class="o">)</span> FROM cat_pictures;
-<span class="gp">&gt; </span>
-<span class="gp">&gt;  </span>id |         name         | category_id | price | row_number 
-<span class="gp">&gt; </span>----+----------------------+-------------+-------+------------
-<span class="gp">&gt;   </span>5 | Hugs not Drugs       |           1 |  9.99 |          1
-<span class="gp">&gt;   </span>7 | Triple LOL           |           1 |  9.99 |          2
-<span class="gp">&gt;   </span>2 | Puss <span class="k">in </span>Boots        |           1 | 14.99 |          3
-<span class="gp">&gt;   </span>3 | Cats Gone By         |           1 | 19.99 |          4
-<span class="gp">&gt;   </span>6 | Cats <span class="k">in </span>it <span class="k">for </span>me    |           1 | 22.99 |          5
-<span class="gp">&gt;   </span>4 | Turkleton<span class="s1">'s Folly    |           2 | 11.99 |          1
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;</span> SELECT id, name, category_id, price, row_number<span class="o">()</span> OVER <span class="o">(</span>PARTITION BY category_id ORDER BY price, name<span class="o">)</span> FROM cat_pictures<span class="p">;</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span>  id |         name         | category_id | price | row_number 
+<span class="o">&gt;</span> <span class="nt">----</span>+----------------------+-------------+-------+------------
+<span class="o">&gt;</span>   5 | Hugs not Drugs       |           1 |  9.99 |          1
+<span class="o">&gt;</span>   7 | Triple LOL           |           1 |  9.99 |          2
+<span class="o">&gt;</span>   2 | Puss <span class="k">in </span>Boots        |           1 | 14.99 |          3
+<span class="o">&gt;</span>   3 | Cats Gone By         |           1 | 19.99 |          4
+<span class="o">&gt;</span>   6 | Cats <span class="k">in </span>it <span class="k">for </span>me    |           1 | 22.99 |          5
+<span class="o">&gt;</span>   4 | Turkleton<span class="s1">'s Folly    |           2 | 11.99 |          1
 &gt;   1 | Meowna Lisa          |           2 | 19.99 |          2
 &gt;   8 | Lady Caterly'</span>s Lover |           2 | 22.99 |          3
-<span class="gp">&gt; </span></code></pre></figure>
+<span class="o">&gt;</span> </code></pre></figure>
 
 <blockquote>
 
@@ -318,10 +318,10 @@ Nov 11, 2013
 <blockquote>
 
 </blockquote>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">&gt;  </span>id | category_id |         name         | price 
-<span class="gp">&gt; </span>----+-------------+----------------------+-------
-<span class="gp">&gt;   </span>5 |           1 | Hugs not Drugs       |  9.99
-<span class="gp">&gt;   </span>4 |           2 | Turkleton<span class="s1">'s Folly    | 11.99
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;</span>  id | category_id |         name         | price 
+<span class="o">&gt;</span> <span class="nt">----</span>+-------------+----------------------+-------
+<span class="o">&gt;</span>   5 |           1 | Hugs not Drugs       |  9.99
+<span class="o">&gt;</span>   4 |           2 | Turkleton<span class="s1">'s Folly    | 11.99
 &gt; </span></code></pre></figure>
 
 <blockquote>

@@ -79,7 +79,7 @@ Oct 3, 2014
 <article>
 <p>Following steps from here: <a href="http://ubuntuforums.org/showthread.php?t=1999720">http://ubuntuforums.org/showthread.php?t=1999720</a></p>
 
-<figure class="highlight"><pre><code class="language-console" data-lang="console"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -96,25 +96,25 @@ Oct 3, 2014
 15
 16
 17
-18</pre></td><td class="code"><pre>&gt; # Obtain latest emacs from Savannah: http://ftp.gnu.org/gnu/emacs/
-&gt; wget http://ftp.gnu.org/gnu/emacs/emacs-24.3.tar.gz 
-
-&gt; # Install dependencies:
-&gt; sudo apt-get install libjpeg-dev libpng-dev libgif-dev \
-&gt;   libtiff-dev libncurses-dev -y 
-
-&gt; # Untar the archive:
-&gt; tar xvfz emacs-24.3-rc.tar.gz
-
-&gt; cd emacs-24.3
-
-&gt; # Do not include the X-Windows system code (just CLI version)
-&gt; ./configure --without-x
-
-&gt; make
-
-<span class="err">&gt; sudo make install</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></figure>
+18
+</pre></td><td class="code"><pre><span class="gp">&gt;</span> <span class="c"># Obtain latest emacs from Savannah: http://ftp.gnu.org/gnu/emacs/</span>
+<span class="gp">&gt;</span> wget http://ftp.gnu.org/gnu/emacs/emacs-24.3.tar.gz 
+<span class="go">
+</span><span class="gp">&gt;</span> <span class="c"># Install dependencies:</span>
+<span class="gp">&gt;</span> <span class="nb">sudo </span>apt-get install libjpeg-dev libpng-dev libgif-dev <span class="se">\</span>
+<span class="o">&gt;</span>   libtiff-dev libncurses-dev <span class="nt">-y</span> 
+<span class="go">
+</span><span class="gp">&gt;</span> <span class="c"># Untar the archive:</span>
+<span class="gp">&gt;</span> <span class="nb">tar </span>xvfz emacs-24.3-rc.tar.gz
+<span class="go">
+</span><span class="gp">&gt;</span> <span class="nb">cd </span>emacs-24.3
+<span class="go">
+</span><span class="gp">&gt;</span> <span class="c"># Do not include the X-Windows system code (just CLI version)</span>
+<span class="gp">&gt;</span> ./configure <span class="nt">--without-x</span>
+<span class="go">
+</span><span class="gp">&gt;</span> make
+<span class="go">
+</span><span class="gp">&gt;</span> <span class="nb">sudo </span>make install</pre></td></tr></tbody></table></code></pre></figure>
 
 <p><a href="/downloads/install-emacs-24-without-x-on-ubuntu.txt">Download source</a></p>
 

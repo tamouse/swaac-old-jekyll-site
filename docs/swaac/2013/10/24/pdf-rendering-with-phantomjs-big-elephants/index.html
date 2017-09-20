@@ -94,28 +94,26 @@ Oct 24, 2013
 
   <p>Our <a href="https://github.com/adeven/shrimp">shrimp gem</a> is a simple wrapper around PhantomJS’s pdf-rendering capabilities. You can download and install PhantomJS from <a href="http://phantomjs.org/download.html">http://phantomjs.org/download.html</a> or simply do a</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>brew install phantomjs
-</code></pre>
-  </div>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew install phantomjs
+</code></pre></div>  </div>
 
   <p>if you are on MacOS using homebrew.</p>
 
   <p>To install shrimp just type</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>gem install shrimp
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem install shrimp
 
 require 'shrimp'
 url = 'http://www.adjust.io/'
 options = { :margin =&gt; "1cm"}
 Shrimp::Phantom.new(url, options).to_pdf("~/output.pdf")
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>Et voila! A rendered pdf of your website.</p>
 
   <p>Shrimp comes with plenty of options that you can pass to the Phantom Object. However, you can also configure shrimp to your needs with a config file:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>Shrimp.configure do |config|
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Shrimp.configure do |config|
   # The path to the phantomjs executable
   # defaults to `where phantomjs`
   config.phantomjs = '/usr/local/bin/phantomjs'
@@ -144,8 +142,7 @@ Shrimp::Phantom.new(url, options).to_pdf("~/output.pdf")
   # this needs always to be higher than rendering_time
   config.rendering_timeout       = 90000
 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>Most of the options are self explanatory. Note that if you have very complex pages with a lot of javascript that needs to be executed after document ready, you might want to increase the rendering_time. For example with our d3js graphs we need 3 seconds to get good results.</p>
 
@@ -153,7 +150,7 @@ end
 
   <p>The Phantom Class come with three different rendering options:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>require 'shrimp'
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require 'shrimp'
 phantom = Shrimp::Phantom.new('http://www.adjust.io/')
 # returning a pdf file path
 phantom.to_pdf("~/output.pdf")
@@ -164,30 +161,27 @@ phantom.to_file("~/output.pdf")
 # returning the file content as String
 phantom.to_string
 =&gt; "%PDF-1.4....
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <h2 id="shits-being-weird">Shit’s being weird</h2>
 
   <p>If some error occurs you will still get a result - an empty file. This is necessary to let some asynchronous rendering like Shrimp::Middleware know about it. However you still can check the error response.</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>require 'shrimp'
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require 'shrimp'
 phantom = Shrimp::Phantom.new('http://www.adjust.io/foo/bar')
 phantom.to_pdf("~/output.pdf")
 phantom.error
 =&gt; "302 Unable to load the address!\n"
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>To make sure the resulting pdf has the expected content, phantom does not follow redirects or render weird 500 status pages. So everything other than a 200 response results in an empty output file.</p>
 
   <p>If you prefer bang methods each of the rendering options comes with a bang!</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>require 'shrimp'
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require 'shrimp'
 Shrimp::Phantom.new('http://www.adjust.io/foo/bar').to_pdf!("~/output.pdf")
 =&gt; Shrimp::RenderingError: Rendering Error: 404 Unable to load the address!
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <h2 id="shrimpmiddleware">Shrimp::Middleware</h2>
 
@@ -195,30 +189,27 @@ Shrimp::Phantom.new('http://www.adjust.io/foo/bar').to_pdf!("~/output.pdf")
 
   <p><strong>Non-Rails Rack apps</strong></p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code># in config.ru
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># in config.ru
 require 'shrimp'
 use Shrimp::Middleware
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p><strong>Rails apps</strong></p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code># in application.rb(Rails3) or environment.rb(Rails2)
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># in application.rb(Rails3) or environment.rb(Rails2)
 require 'shrimp'
 config.middleware.use Shrimp::Middleware
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p><strong>With Shrimp options</strong></p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code># options will be passed to Shrimp::Phantom.new
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># options will be passed to Shrimp::Phantom.new
 config.middleware.use Shrimp::Middleware, :margin =&gt; '0.5cm', :format =&gt; 'Letter'
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p><strong>With conditions to limit routes that can be generated in pdf</strong></p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code># conditions can be regexps (either one or an array)
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># conditions can be regexps (either one or an array)
 config.middleware.use Shrimp::Middleware, {}, :only =&gt; %r[^/public]
 config.middleware.use Shrimp::Middleware, {}, :only =&gt; [%r[^/invoice], %r[^/public]]
 
@@ -231,24 +222,21 @@ config.middleware.use Shrimp::Middleware, {}, :except =&gt; [%r[^/prawn], %r[^/s
 
 # conditions can be strings (either one or an array)
 config.middleware.use Shrimp::Middleware, {}, :except =&gt; ['/secret']
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <h3 id="polling">Polling</h3>
 
   <p>To avoid deadlocks, Shrimp::Middleware renders the pdf in a separate process retuning a 503 Retry-After response Header. you can setup the polling interval and the polling offset in seconds.</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>config.middleware.use Shrimp::Middleware, :polling_interval =&gt; 1, :polling_offset =&gt; 5
-</code></pre>
-  </div>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>config.middleware.use Shrimp::Middleware, :polling_interval =&gt; 1, :polling_offset =&gt; 5
+</code></pre></div>  </div>
 
   <h3 id="caching">Caching</h3>
 
   <p>To avoid rendering the page on each request you can setup some the cache ttl in seconds</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>config.middleware.use Shrimp::Middleware, :cache_ttl =&gt; 3600, :out_path =&gt; "/my/pdf/store" 
-</code></pre>
-  </div>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>config.middleware.use Shrimp::Middleware, :cache_ttl =&gt; 3600, :out_path =&gt; "/my/pdf/store" 
+</code></pre></div>  </div>
 
   <h3 id="cookies">Cookies</h3>
 
@@ -256,7 +244,7 @@ config.middleware.use Shrimp::Middleware, {}, :except =&gt; ['/secret']
 
   <p>However, as we also send pdf reports to our customers we want to render resources without being logged in. Since we use devise for user handling in our Rails App, things get easy with our own devise SignInInterceptor:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code># lib/devise/sign_in_interceptor.rb
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># lib/devise/sign_in_interceptor.rb
 module Devise
   class SignInInterceptor
     def initialize(app, opts)
@@ -280,12 +268,11 @@ end
 require File.expand_path('../../lib/devise/sign_in_interceptor', __FILE__)
 config.middleware.use Devise::SignInInterceptor, { :scope  =&gt; :user, :klass =&gt; 'User',
                                                     :secret =&gt; "our_very_very_long_secret" }
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>With this setup we can add a <code class="highlighter-rouge">to_pdf</code> method to our resource</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code># report.rb
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># report.rb
 def to_pdf
   host        = Rails.env.production? ? 'www.adjust.io' : 'localhost:3000'
   url         = Rails.application.routes.url_helpers.reports_url(self, :host =&gt; host)
@@ -293,26 +280,24 @@ def to_pdf
   options     = { :margin =&gt; "1cm"}
   res         = Shrimp::Phantom.new(url, opt, ck).to_pdf("#{Rails.root}/reports/report_#{self.id}.pdf")
 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <h3 id="fancy-ajax">Fancy Ajax</h3>
 
   <p>The middleware return three different status codes based on the rendering status.</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>503 Retry-After                     # as long as the rendering is still in progress
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>503 Retry-After                     # as long as the rendering is still in progress
 504                                 # if rendering took longer than request_timeout
 200 Content-Type application/pdf    # delivering the pdf file if rendering is finished 
 
 if request was HTTP_X_REQUESTED_WITH (Ajax)
 
 200 Content-Type text/html          # delivering html with the link to the pdf file 
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>To include some fancy Ajax stuff with jquery you can do</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code> var url = '/my_page.pdf'
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> var url = '/my_page.pdf'
  var statusCodes = {
       200: function() {
         console.log("going to the resulting pdf");
@@ -338,14 +323,13 @@ if request was HTTP_X_REQUESTED_WITH (Ajax)
     url: url,
     statusCode: statusCodes
   })
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <h3 id="css-styling">CSS Styling</h3>
 
   <p>The good thing about PhantomJS is that you only need to take care of webkit’s css implementation. To implement manual page breaks you can do:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>.newpage {
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.newpage {
   width: 21cm;
   height: 29.3cm;
   overflow: hidden;
@@ -357,8 +341,7 @@ if request was HTTP_X_REQUESTED_WITH (Ajax)
 .non-breaking-box {
   page-break-inside: avoid;
 }
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <h2 id="tldr">TL;DR</h2>
 

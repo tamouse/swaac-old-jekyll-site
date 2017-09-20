@@ -137,7 +137,7 @@ down.</p>
 <p>The consumer provides an array of tag strings to search for, and a
 callback to process the return from the API.</p>
 
-<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -168,12 +168,13 @@ callback to process the return from the API.</p>
 29
 30
 31
-32</pre></td><td class="code"><pre><span class="cm">/**
+32
+</pre></td><td class="code"><pre><span class="cm">/**
  * Getting a gif from Giphy: https://github.com/giphy/Giphyapi#search-endpoint
  */</span>
 
-<span class="kr">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./../config'</span><span class="p">);</span>
-<span class="kr">const</span> <span class="nx">fetch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./../config'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">fetch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
 
@@ -199,13 +200,12 @@ callback to process the return from the API.</p>
     <span class="na">fetch_giphy</span><span class="p">:</span> <span class="nx">fetch_giphy</span>
   <span class="p">}</span>
 
-<span class="p">})(</span><span class="nx">config</span><span class="p">);</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></figure>
+<span class="p">})(</span><span class="nx">config</span><span class="p">);</span></pre></td></tr></tbody></table></code></pre></figure>
 
 <p>I wrote a mocha test for this as well, although I could probably do a
 lot more in terms of verification:</p>
 
-<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -219,10 +219,11 @@ lot more in terms of verification:</p>
 12
 13
 14
-15</pre></td><td class="code"><pre><span class="kr">const</span> <span class="nx">expect</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'expect.js'</span><span class="p">);</span>
+15
+</pre></td><td class="code"><pre><span class="kd">const</span> <span class="nx">expect</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'expect.js'</span><span class="p">);</span>
 
-<span class="kr">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./../../config'</span><span class="p">);</span>
-<span class="kr">const</span> <span class="nx">get_giphy</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./../../services/get_giphy'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./../../config'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">get_giphy</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./../../services/get_giphy'</span><span class="p">);</span>
 
 <span class="nx">describe</span><span class="p">(</span><span class="s1">'get_giphy tests'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
 
@@ -233,8 +234,7 @@ lot more in terms of verification:</p>
       <span class="nx">done</span><span class="p">();</span>
     <span class="p">});</span>
   <span class="p">});</span>
-<span class="p">});</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></figure>
+<span class="p">});</span></pre></td></tr></tbody></table></code></pre></figure>
 
 <h2 id="til-calling-done-to-fire-async-mocha-tests">TIL: calling <code class="highlighter-rouge">done</code> to fire async mocha tests</h2>
 

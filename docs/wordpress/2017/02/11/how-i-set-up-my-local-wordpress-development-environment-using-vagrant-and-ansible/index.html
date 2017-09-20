@@ -155,7 +155,7 @@ I do.</p>
 
 <p>I always start my projects the same way:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>mkdir -p ~/Projects/wordpress-stuff/sandbox.wp.local
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir -p ~/Projects/wordpress-stuff/sandbox.wp.local
 cd ~/Projects/wordpress-stuff/sandbox.wp.local
 git init
 echo 'Local WordPress Development Sandbox running in Vagrant with Ansible Provisioning' | tee README.md &gt; .git/description
@@ -163,15 +163,13 @@ hub create -d "$(cat .git/description)"
 git add -Av
 git commit -m 'initial commit'
 git push -u origin master
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>(Truth be told, this is one of my bash functions, so it really looked
 like this:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>new_proj sandbox.wp.local 'Local WordPress Development Sandbox running in Vagrant with Ansible Provisioning' 'initial commit'
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>new_proj sandbox.wp.local 'Local WordPress Development Sandbox running in Vagrant with Ansible Provisioning' 'initial commit'
+</code></pre></div></div>
 
 <p>)</p>
 
@@ -180,9 +178,8 @@ like this:</p>
 <p>I typically use one of the later Ubuntu server variants; mostly I’ve
 been using ‘trusty’:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>vagrant init <span class="s1">'ubuntu/trusty64'</span>
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant init <span class="s1">'ubuntu/trusty64'</span>
+</code></pre></div></div>
 
 <p>This writes out a default <code class="highlighter-rouge">Vagrantfile</code> (which is written in Ruby).</p>
 
@@ -190,7 +187,7 @@ been using ‘trusty’:</p>
 
 <p>I modify the file so it looks like so:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -226,7 +223,8 @@ been using ‘trusty’:</p>
 34
 35
 36
-37</pre></td><td class="code"><pre><span class="no">BOX_NAME</span><span class="o">=</span><span class="s2">"sandbox.wp.local"</span>
+37
+</pre></td><td class="code"><pre><span class="no">BOX_NAME</span><span class="o">=</span><span class="s2">"sandbox.wp.local"</span>
 <span class="no">DEFAULT_IP</span><span class="o">=</span><span class="s2">"192.168.33.35"</span>
 
 <span class="nb">require</span> <span class="s2">"resolv"</span>
@@ -262,23 +260,20 @@ been using ‘trusty’:</p>
     <span class="n">a</span><span class="p">.</span><span class="nf">playbook</span> <span class="o">=</span> <span class="s1">'ansible/sandbox.yml'</span>
     <span class="c1"># a.verbose  = 'vvvv'</span>
   <span class="k">end</span>
-<span class="k">end</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></figure>
+<span class="k">end</span></pre></td></tr></tbody></table></code></pre></figure>
 
 <p>Some explanation about the various settings:</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="no">BOX_NAME</span><span class="o">=</span><span class="s2">"sandbox.wp.local"</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">BOX_NAME</span><span class="o">=</span><span class="s2">"sandbox.wp.local"</span>
 <span class="no">DEFAULT_IP</span><span class="o">=</span><span class="s2">"192.168.33.35"</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>These define two constants that get used later in the <code class="highlighter-rouge">Vagrantfile</code>. I
 edited my machine’s <code class="highlighter-rouge">/etc/hosts</code> file, which maps IP addresses to
 hostnames locally. The line I added to <code class="highlighter-rouge">/etc/hosts</code> looks like so:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>192.168.33.35	sandbox.wp.local sandbox
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>192.168.33.35	sandbox.wp.local sandbox
+</code></pre></div></div>
 
 <p>This lets me type ‘http://sandbox/’ or ‘http://sandbox.wp.local’ in
 the browser address bar to access the web server that will be running
@@ -298,68 +293,58 @@ for my WordPress sandbox.</p>
 everything from here out can be found in vagrant’s documentation, if
 you want.</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code>  <span class="n">config</span><span class="p">.</span><span class="nf">ssh</span><span class="p">.</span><span class="nf">forward_agent</span> <span class="o">=</span> <span class="kp">true</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">config</span><span class="p">.</span><span class="nf">ssh</span><span class="p">.</span><span class="nf">forward_agent</span> <span class="o">=</span> <span class="kp">true</span>
+</code></pre></div></div>
 
 <p>I set this to true so when I’m logged into the vagrant box, it will
 use my ssh keys from my development machine; this is especially
 helpful when using git commands that talk to GitHub, etc.</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code>    <span class="n">sb</span><span class="p">.</span><span class="nf">vm</span><span class="p">.</span><span class="nf">network</span>  <span class="s2">"private_network"</span><span class="p">,</span> <span class="ss">ip: </span><span class="n">my_ip</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">sb</span><span class="p">.</span><span class="nf">vm</span><span class="p">.</span><span class="nf">network</span>  <span class="s2">"private_network"</span><span class="p">,</span> <span class="ss">ip: </span><span class="n">my_ip</span>
+</code></pre></div></div>
 
 <p>Here is where that calculation for figuring out what IP address to use
 that matches the name ‘sandbox.wp.local’ I set up is made.</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code>    <span class="n">sb</span><span class="p">.</span><span class="nf">vm</span><span class="p">.</span><span class="nf">hostname</span> <span class="o">=</span> <span class="no">BOX_NAME</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">sb</span><span class="p">.</span><span class="nf">vm</span><span class="p">.</span><span class="nf">hostname</span> <span class="o">=</span> <span class="no">BOX_NAME</span>
+</code></pre></div></div>
 
 <p>This sets the VM host name, so it will match ‘sandbox.wp.local’ when
 I’m logged in.</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code>      <span class="n">vb</span><span class="p">.</span><span class="nf">customize</span> <span class="p">[</span><span class="s2">"modifyvm"</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="s2">"--memory"</span><span class="p">,</span> <span class="s2">"2048"</span><span class="p">]</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="n">vb</span><span class="p">.</span><span class="nf">customize</span> <span class="p">[</span><span class="s2">"modifyvm"</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="s2">"--memory"</span><span class="p">,</span> <span class="s2">"2048"</span><span class="p">]</span>
+</code></pre></div></div>
 
 <p>This reserves 2GiB of RAM for the VM.</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code>      <span class="n">vb</span><span class="p">.</span><span class="nf">customize</span> <span class="p">[</span><span class="s2">"modifyvm"</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="s2">"--vram"</span><span class="p">,</span> <span class="s2">"18"</span><span class="p">]</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="n">vb</span><span class="p">.</span><span class="nf">customize</span> <span class="p">[</span><span class="s2">"modifyvm"</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="s2">"--vram"</span><span class="p">,</span> <span class="s2">"18"</span><span class="p">]</span>
+</code></pre></div></div>
 
 <p>This reserves 18MB of RAM for the video buffer.</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code>      <span class="n">vb</span><span class="p">.</span><span class="nf">customize</span> <span class="p">[</span><span class="s2">"modifyvm"</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="s2">"--cpus"</span><span class="p">,</span> <span class="s2">"2"</span><span class="p">]</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="n">vb</span><span class="p">.</span><span class="nf">customize</span> <span class="p">[</span><span class="s2">"modifyvm"</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="s2">"--cpus"</span><span class="p">,</span> <span class="s2">"2"</span><span class="p">]</span>
+</code></pre></div></div>
 
 <p>This allows up to 2 CPU Cores to be used by the VM.</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code>      <span class="n">vb</span><span class="p">.</span><span class="nf">customize</span> <span class="p">[</span><span class="s2">"modifyvm"</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="s2">"--natdnshostresolver1"</span><span class="p">,</span> <span class="s2">"on"</span><span class="p">]</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="n">vb</span><span class="p">.</span><span class="nf">customize</span> <span class="p">[</span><span class="s2">"modifyvm"</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="s2">"--natdnshostresolver1"</span><span class="p">,</span> <span class="s2">"on"</span><span class="p">]</span>
+</code></pre></div></div>
 
 <p>This does some magic to use the host machine’s DNS resolver to find
 IP address, which pulls in the magic of mapping ‘sandbox.wp.local’.</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code>  <span class="n">config</span><span class="p">.</span><span class="nf">vm</span><span class="p">.</span><span class="nf">provision</span> <span class="ss">:ansible</span> <span class="k">do</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">config</span><span class="p">.</span><span class="nf">vm</span><span class="p">.</span><span class="nf">provision</span> <span class="ss">:ansible</span> <span class="k">do</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span>
+</code></pre></div></div>
 
 <p>Tells vagrant I’m using Ansible provisioning.</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code>    <span class="n">a</span><span class="p">.</span><span class="nf">playbook</span> <span class="o">=</span> <span class="s1">'ansible/sandbox.yml'</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">a</span><span class="p">.</span><span class="nf">playbook</span> <span class="o">=</span> <span class="s1">'ansible/sandbox.yml'</span>
+</code></pre></div></div>
 
 <p>Specifies the Ansible ‘playbook’</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code>    <span class="c1"># a.verbose  = 'vvvv'</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1"># a.verbose  = 'vvvv'</span>
+</code></pre></div></div>
 
 <p>Leaving this commented out, but usually it’s uncommented for me to be
 able to debug things during provisioning.</p>
@@ -369,23 +354,20 @@ able to debug things during provisioning.</p>
 <p>Committing the current changes at this point to create a “save point”
 to get back to if I end up mucking things up.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git add -Av &amp;&amp; git commit -m 'Vagrantfile updated' &amp;&amp; git push
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add -Av &amp;&amp; git commit -m 'Vagrantfile updated' &amp;&amp; git push
+</code></pre></div></div>
 
 <p>(And this is also a bash function:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>gacp <span class="s1">'Vagrantfile updated'</span>
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gacp <span class="s1">'Vagrantfile updated'</span>
+</code></pre></div></div>
 <p>)</p>
 
 <p>At this point, I decided I would make a branch to work on Ansible
 stuff, too:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>git checkout -b ansible-playbook
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout <span class="nt">-b</span> ansible-playbook
+</code></pre></div></div>
 
 <h3 id="create-the-anisble-playbook">Create the Anisble Playbook</h3>
 
@@ -395,7 +377,7 @@ specifying structured data. It’s akin to JSON and XML.</p>
 <p>I made the ansible playbook in the <code class="highlighter-rouge">ansible</code> subdirectory, the
 structure is:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>ansible/
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible/
   group_vars/
     all.yml
   roles/
@@ -412,8 +394,7 @@ structure is:</p>
 	requirements.yml
   sandbox.yml
   sudo_roles.yml
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="top-level-playbook">Top level playbook</h3>
 
@@ -421,10 +402,9 @@ structure is:</p>
 the top-level playbook that sets the whole provisioning activity
 off. It is simple and just contains:</p>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="nn">---</span>
-<span class="pi">-</span> <span class="s">include</span><span class="pi">:</span> <span class="s">sudo_roles.yml</span>
-</code></pre>
-</div>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="pi">-</span> <span class="na">include</span><span class="pi">:</span> <span class="s">sudo_roles.yml</span>
+</code></pre></div></div>
 
 <h3 id="sudo-roles-playbook">Sudo Roles Playbook</h3>
 
@@ -555,27 +535,24 @@ installation directly update from the codex without using FTP.</li>
 
 <p>Yep. This is how I roll.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>gacp <span class="s1">'Ansible Playbook Created'</span>
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gacp <span class="s1">'Ansible Playbook Created'</span>
+</code></pre></div></div>
 
 <h3 id="gathering-the-external-requirements">Gathering the External Requirements</h3>
 
 <p>Specifying the external requirements is not enough, I needed to tell
 ansible to fetch them.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>ansible-galaxy install -r ansible/roles/requirements.yml --force --ignore-errors
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-galaxy install <span class="nt">-r</span> ansible/roles/requirements.yml <span class="nt">--force</span> <span class="nt">--ignore-errors</span>
+</code></pre></div></div>
 
 <h3 id="bringing-up-the-vm-and-first-provisioning">Bringing up the VM and first provisioning</h3>
 
 <p>Now I was ready to pull together all the prior stuff and build the
 box.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>vagrant up
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant up
+</code></pre></div></div>
 
 <p>The first time you run <code class="highlighter-rouge">up</code> vagrant will start running the
 provisioning after the box comes up. After this first time, however,
@@ -594,7 +571,7 @@ ansible is to provide an “idempotent” (i.e. same result each time
 it’s run) solution, it will check if it’s successfully run a step and
 skip over it. So my provisioning actually looked something like:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>vagrant up
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant up
 <span class="c"># something broke, fix it</span>
 vagrant provision
 <span class="c"># something broke, fix it</span>
@@ -606,17 +583,15 @@ vagrant provision
 <span class="c"># and so on</span>
 vagrant provision
 <span class="c"># yay it finally worked!</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="and-another-save-point-and-merge-back-to-master">And another save point, and merge back to master</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>gacp 'Anisble provisioning works! Yay!`
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gacp 'Anisble provisioning works! Yay!`
 git checkout master # aliased to: gco master
 git merge ansible-playbook
 gacp 'Merging ansible-playbook to master'
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Whew!</p>
 
@@ -651,28 +626,25 @@ for local editing.</p>
 <p>Logging into the VM, I created a folder <code class="highlighter-rouge">/vagrant/dev</code>, which would
 show up on the local machine in the project root as just <code class="highlighter-rouge">dev/</code>.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mkdir /vagrant/dev
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir /vagrant/dev
+</code></pre></div></div>
 
 <p>Then I recursively copied the contents of
 <code class="highlighter-rouge">/var/www/sandbox_wp/wp-content/themes</code> and
 <code class="highlighter-rouge">/var/www/sandbox_wp/wp-content/plugins</code> to <code class="highlighter-rouge">/vagrant/dev/</code>, which
 created two folders <code class="highlighter-rouge">/vagrant/dev/themes</code> and <code class="highlighter-rouge">/vagrant/dev/plugins</code>.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>cp -r /var/www/sandbox_wp/wp-content/themes /vagrant/dev
-cp -r /var/www/sandbox_wp/wp-content/plugins /vagrant/dev
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp <span class="nt">-r</span> /var/www/sandbox_wp/wp-content/themes /vagrant/dev
+cp <span class="nt">-r</span> /var/www/sandbox_wp/wp-content/plugins /vagrant/dev
+</code></pre></div></div>
 
 <h3 id="creating-a-little-demo-custom-theme">Creating a little demo custom theme</h3>
 
 <p>To test things out, I created a custom theme under <code class="highlighter-rouge">dev/</code> on the local
 machine, and filled with some bare-bones content:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mkdir -p dev/themes/demo
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir <span class="nt">-p</span> dev/themes/demo
+</code></pre></div></div>
 
 <p>The
 <a href="https://github.com/tamouse/sandbox.wp.local/tree/master/dev/themes/demo">demo content</a> was
@@ -684,10 +656,9 @@ would have been just making a child theme to try stuff out.</p>
 <p>Back over on the VM, I needed to tell the WordPress installation about
 this new custom theme:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> /var/www/sandbox_wp/wp-content/themes
-sudo ln -s /vagrant/dev/themes/demo .
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /var/www/sandbox_wp/wp-content/themes
+<span class="nb">sudo </span>ln <span class="nt">-s</span> /vagrant/dev/themes/demo <span class="nb">.</span>
+</code></pre></div></div>
 
 <p>Popping back over to the browser, and pulling up the Appearances -&gt;
 Themes menu, lo and behold, the custom theme now showed up.</p>

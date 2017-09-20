@@ -159,12 +159,11 @@ system.</p>
 
 <h3 id="debian-jessie-8">Debian Jessie 8</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ vagrant box add deb8 https://github.com/holms/vagrant-jessie-box/releases/download/Jessie-v0.1/Debian-jessie-amd64-netboot.box
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ vagrant box add deb8 https://github.com/holms/vagrant-jessie-box/releases/download/Jessie-v0.1/Debian-jessie-amd64-netboot.box
 ==&gt; box: Adding box 'deb8' (v0) for provider:
     box: Downloading: https://github.com/holms/vagrant-jessie-box/releases/download/Jessie-v0.1/Debian-jessie-amd64-netboot.box
 ==&gt; box: Successfully added box 'deb8' (v0) for 'virtualbox'!
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Elapsed time: approximately 12 minutes.</p>
 
@@ -174,23 +173,21 @@ difference in the provisioning times (though not always).</p>
 
 <h3 id="jason-hsu-debian-wheezy--rvm">Jason Hsu Debian Wheezy + RVM</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ vagrant box add deb7hsu 'http://downloads.sourceforge.net/project/vagrant-debian-wheezy-rvm/debian-wheezy-rvm-2015_03_07.box?r=&amp;ts=1425788198&amp;use_mirror=master'
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ vagrant box add deb7hsu 'http://downloads.sourceforge.net/project/vagrant-debian-wheezy-rvm/debian-wheezy-rvm-2015_03_07.box?r=&amp;ts=1425788198&amp;use_mirror=master'
 ==&gt; box: Adding box 'deb7hsu' (v0) for provider:
     box: Downloading: http://downloads.sourceforge.net/project/vagrant-debian-wheezy-rvm/debian-wheezy-rvm-2015_03_07.box?r=&amp;ts=1425788198&amp;use_mirror=master
 ==&gt; box: Successfully added box 'deb7hsu' (v0) for 'virtualbox'!
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Elapsed time: approximately 22 minutes.</p>
 
 <h3 id="ubuntu-trusty">Ubuntu Trusty</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ vagrant box add ubu1404daily 'https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box'
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ vagrant box add ubu1404daily 'https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box'
 ==&gt; box: Adding box 'ubu1404daily' (v0) for provider:
     box: Downloading: https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box
 ==&gt; box: Successfully added box 'ubu1404daily' (v0) for 'virtualbox'!
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Elapsed time: approximately 16 minutes.</p>
 
@@ -200,27 +197,25 @@ difference in the provisioning times (though not always).</p>
 
 <h4 id="vagrant-up">Vagrant up</h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>real	0m31.201s
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>real	0m31.201s
 user	0m3.744s
 sys	0m1.748s
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="manual-provisioning">Manual Provisioning</h4>
 
 <h5 id="system-stuff">System stuff</h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get update
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get update
 sudo apt-get install -yqq build-essential
 sudo apt-get install -yqq git curl python-psycopg2 postgresql-9.4 postgresql-client libpq-dev sqlite3 libsqlite3-dev libyaml-dev libgdbm-dev libreadline-dev libncurses5-dev libxml2-dev libxslt-dev imagemagick libmagickwand-dev libmagickcore-dev xvfb nodejs
 sudo su - postgres -c 'createuser -s vagrant'
 createdb vagrant
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="rvm-ruby-rails-fun">RVM, Ruby, Rails, fun</h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>/usr/bin/curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/bin/curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 /usr/bin/curl -sSL https://get.rvm.io | bash -s stable
 source /home/vagrant/.rvm/scripts/rvm
 echo 'gem: --no-document' &gt;&gt; /home/vagrant/.gemrc
@@ -229,8 +224,7 @@ rvm @global do gem install bundler
 rvm @global do gem install pry
 rvm @global do gem install pry-byebug
 rvm @global do gem install rails
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>started at: 2015-05-09@04:30:12</li>
@@ -248,12 +242,11 @@ to do things manually!</p>
 
 <h3 id="jason-hsu-debian-wheezy--rvm-1">Jason Hsu Debian Wheezy + RVM</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>vagrant up
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant up
 real	1m14.191s
 user	0m4.777s
 sys	0m2.763s
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This is all that should be needed.</p>
 
@@ -265,16 +258,15 @@ sys	0m2.763s
 <code class="highlighter-rouge">rails new</code> work, I’m redoing this provisioning step to make the
 changes manually here.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ time vagrant up
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ time vagrant up
 real	1m11.181s
 user	0m4.436s
 sys	0m2.269s
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Fxing Postgres permissions, establishing <code class="highlighter-rouge">vagrant</code> user for Postgres:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ time vagrant ssh
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ time vagrant ssh
 vagrant@vagrant-rvm:~$ sudo -i
 root@vagrant-rvm:~# vi /etc/postgresql/9.1/main/pg_hba.conf
 root@vagrant-rvm:~# service postgresql restart
@@ -296,33 +288,29 @@ Connection to 127.0.0.1 closed.
 real	1m13.240s
 user	0m1.314s
 sys	0m0.397s
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Elapsed time: appoximately 3 minutes (for both steps).</p>
 
 <h3 id="ubuntu-trusty-with-ansible">Ubuntu Trusty with Ansible</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>vagrant up --provision
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant up --provision
 real	11m32.594s
 user	0m5.733s
 sys	0m3.362s
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>rvm @global do gem install rails
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm @global do gem install rails
 real	1m27.209s
 user	0m29.696s
 sys	0m25.426s
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Also had to do a couple housekeepting things with <code class="highlighter-rouge">nvm</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>nvm use iojs
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nvm use iojs
 nvm alias default iojs
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>I didn’t bother timing those.</p>
 
@@ -330,12 +318,11 @@ nvm alias default iojs
 
 <h3 id="debian-jessie-8-with-ansible">Debian Jessie 8 with Ansible</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>vagrant up --provision
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant up --provision
 real	9m32.044s
 user	0m5.751s
 sys	0m3.076s
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>In this case, I added the rails gem installation and nvm housekeeping
 to the provisioning package.</p>
@@ -346,23 +333,21 @@ to the provisioning package.</p>
 
 <h3 id="debian-jessie-8-2">Debian Jessie 8</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ time (rails new myApp -d postgresql --skip-spring --skip-turbolinks &amp;&amp; cd myApp &amp;&amp; bin/rake db:create &amp;&amp; bin/rails g scaffold Post title body:text published:boolean &amp;&amp; bin/rake db:migrate)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ time (rails new myApp -d postgresql --skip-spring --skip-turbolinks &amp;&amp; cd myApp &amp;&amp; bin/rake db:create &amp;&amp; bin/rails g scaffold Post title body:text published:boolean &amp;&amp; bin/rake db:migrate)
 real	0m56.383s
 user	0m14.604s
 sys	0m1.540s
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Elapsed time: approximately 1 minute.</p>
 
 <h3 id="jason-hsu-debian-wheezy--rvm-2">Jason Hsu Debian Wheezy + RVM</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>rails new myApp -d postgresql --skip-spring --skip-turbolinks
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails new myApp -d postgresql --skip-spring --skip-turbolinks
 real	1m4.808s
 user	0m12.629s
 sys	0m2.036s
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Cannot just run <code class="highlighter-rouge">rake db:create</code>.</p>
 
@@ -374,12 +359,11 @@ connection on all local users.</p>
 
 <p>Now, these work:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>rake db:create
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rake db:create
 rails generate scaffold Post title body:text published:boolean
 rake db:migrate
 rails server -b 0.0.0.0
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><em>However</em>, could not connect from host machine to VM. Needed to
 provide a <code class="highlighter-rouge">private_network</code> ip address that would work. Utilized the
@@ -403,66 +387,59 @@ provisioning and new app steps.</p>
 <p>After fixing the postgres configuration in the provisioning step,
 building the new rails app ran so much faster:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ time (rails new myApp -d postgresql --skip-spring --skip-turbolinks &amp;&amp; cd myApp &amp;&amp; bin/rake db:create &amp;&amp; bin/rails g scaffold Post title body:text published:boolean &amp;&amp; bin/rake db:migrate)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ time (rails new myApp -d postgresql --skip-spring --skip-turbolinks &amp;&amp; cd myApp &amp;&amp; bin/rake db:create &amp;&amp; bin/rails g scaffold Post title body:text published:boolean &amp;&amp; bin/rake db:migrate)
 real	1m28.536s
 user	0m15.681s
 sys	0m4.680s
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Elapsed time: approximately 1.5 minutes</p>
 
 <h3 id="ubuntu-trusty-with-ansible-1">Ubuntu Trusty with Ansible</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ time (rails new myApp -d postgresql --skip-spring --skip-turbolinks &amp;&amp; cd myApp &amp;&amp; bin/rake db:create &amp;&amp; bin/rails g scaffold Post title body:text published:boolean &amp;&amp; bin/rake db:migrate)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ time (rails new myApp -d postgresql --skip-spring --skip-turbolinks &amp;&amp; cd myApp &amp;&amp; bin/rake db:create &amp;&amp; bin/rails g scaffold Post title body:text published:boolean &amp;&amp; bin/rake db:migrate)
 real	0m54.673s
 user	0m15.867s
 sys	0m4.743s
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Elapsed time: approximately 1 minute</p>
 
 <h3 id="debian-jessie-8-with-ansible-1">Debian Jessie 8 with Ansible</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ time rails new myApp -d postgresql --skip-spring --skip-turbolinks
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ time rails new myApp -d postgresql --skip-spring --skip-turbolinks
 real	0m37.400s
 user	0m11.376s
 sys	0m1.204s
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ time bin/rake db:create
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ time bin/rake db:create
 real	0m1.823s
 user	0m0.964s
 sys	0m0.160s
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ time bin/rails g scaffold Post title body:text published:boolean
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ time bin/rails g scaffold Post title body:text published:boolean
 real	0m3.965s
 user	0m2.100s
 sys	0m0.872s
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ time bin/rake db:migrate
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ time bin/rake db:migrate
 real	0m3.212s
 user	0m1.864s
 sys	0m0.592s
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Wow that was fast.</p>
 
 <p>Trying that again from scratch.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ time (rails new myApp -d postgresql --skip-spring --skip-turbolinks &amp;&amp; cd myApp &amp;&amp; bin/rake db:create &amp;&amp; bin/rails g scaffold Post title body:text published:boolean &amp;&amp; bin/rake db:migrate)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ time (rails new myApp -d postgresql --skip-spring --skip-turbolinks &amp;&amp; cd myApp &amp;&amp; bin/rake db:create &amp;&amp; bin/rails g scaffold Post title body:text published:boolean &amp;&amp; bin/rake db:migrate)
 real	0m15.154s
 user	0m6.088s
 sys	0m2.088s
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Elapsed time: approximately 15 seconds.</p>
 

@@ -87,13 +87,12 @@ go the SaaS route.</p>
 
 <p>Let’s just create a simple local repo to work with.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git init my_project
-<span class="gp">$ </span><span class="nb">cd </span>my_project
-<span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'My Project'</span> &gt; README.md
-<span class="gp">$ </span>git add .
-<span class="gp">$ </span>git commit -m <span class="s1">'initial'</span>
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git init my_project
+<span class="nv">$ </span><span class="nb">cd </span>my_project
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'My Project'</span> <span class="o">&gt;</span> README.md
+<span class="nv">$ </span>git add <span class="nb">.</span>
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s1">'initial'</span>
+</code></pre></div></div>
 
 <p>Great, now let’s get on with the remote stuff.</p>
 
@@ -104,10 +103,9 @@ server:</p>
 
 <p><em>(Don’t do this if you’ve already uploaded your public ssh key!)</em></p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>ssh myuser@server.com <span class="s1">'mkdir -p .ssh'</span>
-<span class="gp">$ </span>cat .ssh/id_rsa.pub | ssh myuser@server.com <span class="s1">'cat &gt;&gt; .ssh/authorized_keys'</span>
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ssh myuser@server.com <span class="s1">'mkdir -p .ssh'</span>
+<span class="nv">$ </span><span class="nb">cat</span> .ssh/id_rsa.pub | ssh myuser@server.com <span class="s1">'cat &gt;&gt; .ssh/authorized_keys'</span>
+</code></pre></div></div>
 
 <p>This will let you use git push without having to supply your password
 every time.</p>
@@ -116,22 +114,19 @@ every time.</p>
 
 <p>Login to the server:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>ssh myuser@server.com
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ssh myuser@server.com
+</code></pre></div></div>
 
 <p>Create a directory to keep all your remote repos in one place</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mkdir Repos
-<span class="gp">$ </span><span class="nb">cd </span>Repos
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mkdir Repos
+<span class="nv">$ </span><span class="nb">cd </span>Repos
+</code></pre></div></div>
 
 <p>Now we can create our remote repository:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git init --bare my_project.git
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git init <span class="nt">--bare</span> my_project.git
+</code></pre></div></div>
 
 <p>Note that I’ve chosen to mirror the local project directory name. This
 is a pretty good practice, less confusion, less decision making. In
@@ -149,18 +144,16 @@ the <code class="highlighter-rouge">.git</code> directory in your local project.
 <p>To use the remote repository, we have to add it to the remotes
 available in the local repository.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git remote add origin myuser@server.com:Repos/my_project.git
-<span class="gp">$ </span>git push origin master
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git remote add origin myuser@server.com:Repos/my_project.git
+<span class="nv">$ </span>git push origin master
+</code></pre></div></div>
 
 <p>You’ll probably also want to make sure you add a default merge and
 remote:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git config branch.master.remote origin
-<span class="gp">$ </span>git config branch.master.merge refs/heads/master
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config branch.master.remote origin
+<span class="nv">$ </span>git config branch.master.merge refs/heads/master
+</code></pre></div></div>
 
 <p>And that’s it!</p>
 

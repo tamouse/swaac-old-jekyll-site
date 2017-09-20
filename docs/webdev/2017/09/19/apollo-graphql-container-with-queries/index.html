@@ -1,0 +1,213 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Apollo graphql container with queries</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="canonical" href="http://swaac.tamouse.org/webdev/2017/09/19/apollo-graphql-container-with-queries/">
+    <link href="/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/pages/learning">Learning</a></li>
+            
+            <li><a href="/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/pages">Pages</a></li>
+            
+            <li><a href="/tags">Tags</a></li>
+            
+            <li><a href="/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2017 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>Apollo graphql container with queries</h1>
+Sep 19, 2017
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/categories/webdev">webdev</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/tags/graphql">graphql</a></li> <li role="presentation"><a href="/tags/react">react</a></li> <li role="presentation"><a href="/tags/apollo">apollo</a></li> <li role="presentation"><a href="/tags/api">api</a></li> 
+</header>
+
+<article>
+<p>The <a href="http://dev.apollodata.com/react/api-graphql.html" title="graphql API docs">graphql</a> function in <a href="http://dev.apollodata.com/" title="ApolloData Developer Documentation">Apollo</a>  <a href="http://dev.apollodata.com/react/" title="Apollo React Client">client</a> wraps queries with
+a <code class="highlighter-rouge">data</code> property. The <em>canonical</em> component wrapped with a query
+should look like this:</p>
+
+<figure class="highlight"><pre><code class="language-jsx" data-lang="jsx"><span class="kd">const</span> <span class="nx">MyComponent</span> <span class="o">=</span> <span class="nx">props</span> <span class="o">=&gt;</span> <span class="p">{</span>
+
+  <span class="kd">const</span> <span class="p">{</span> <span class="na">data</span><span class="p">:</span> <span class="p">{</span> <span class="nx">loading</span><span class="p">,</span> <span class="nx">error</span><span class="p">,</span> <span class="nx">data_name</span> <span class="p">}</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">loading</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Loading...<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Error!<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="si">{</span> <span class="nx">blah</span> <span class="nx">blah</span> <span class="si">}</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p>I’ve been using the pattern of wrapping a super-presentational component
+in the graphql component, so that file only really deals with one
+thing. This might be overkill; I could also write the file that the
+<code class="highlighter-rouge">graphql</code> HOC wraps in another file, too, and just remember to process
+the <code class="highlighter-rouge">loading</code>, <code class="highlighter-rouge">error</code>, and returned data.</p>
+
+<p>The form typically given in the tutorials and docs looks rather like
+this when put all together:</p>
+
+<figure class="highlight"><pre><code class="language-jsx" data-lang="jsx"><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="s1">'react'</span>
+<span class="c1">// import PropTypes from 'prop-types'</span>
+<span class="k">import</span> <span class="nx">styled</span> <span class="k">from</span> <span class="s1">'styled-components'</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">graphql</span><span class="p">,</span> <span class="nx">gql</span><span class="p">}</span> <span class="k">from</span> <span class="s1">'react-apollo'</span>
+<span class="k">import</span> <span class="nx">PostSummary</span> <span class="k">from</span> <span class="s1">'./PostSummary'</span>
+
+<span class="kd">const</span> <span class="nx">listPosts</span> <span class="o">=</span> <span class="nx">gql</span><span class="s2">`query Posts{viewer {public_posts {id title excerpt publishedAt}}}`</span>
+
+<span class="kd">const</span> <span class="nx">PostsIndex</span> <span class="o">=</span> <span class="nx">props</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="na">data</span><span class="p">:</span> <span class="p">{</span> <span class="nx">loading</span><span class="p">,</span> <span class="nx">error</span><span class="p">,</span> <span class="nx">viewer</span><span class="p">},</span> <span class="p">...</span><span class="nx">rest</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">props</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">loading</span><span class="p">)</span> <span class="k">return</span> <span class="p">&lt;</span><span class="nc">Loading</span><span class="p">&gt;</span>Loading...<span class="p">&lt;/</span><span class="nc">Loading</span><span class="p">&gt;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nc">Error</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Error:<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">error</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nc">Error</span><span class="p">&gt;</span>
+  <span class="p">)</span>
+
+  <span class="kd">const</span> <span class="p">{</span><span class="nx">public_posts</span><span class="p">}</span> <span class="o">=</span> <span class="nx">viewer</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">public_posts</span><span class="p">)</span> <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nc">PostsListing</span> <span class="err">{</span><span class="p">...</span><span class="nt">rest</span><span class="err">}</span><span class="p">&gt;</span>No posts<span class="p">&lt;/</span><span class="nc">PostsListing</span><span class="p">&gt;</span>
+  <span class="p">)</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nc">PostsListing</span> <span class="err">{</span><span class="p">...</span><span class="nt">rest</span><span class="err">}</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Posts<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+      <span class="si">{</span><span class="nx">public_posts</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">post</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">&lt;</span><span class="nc">PostSummary</span> <span class="na">post=</span><span class="si">{</span><span class="nx">post</span><span class="si">}</span> <span class="na">key=</span><span class="si">{</span><span class="nx">idx</span><span class="si">}</span> <span class="p">/&gt;</span>
+      <span class="p">})</span><span class="si">}</span>
+    <span class="p">&lt;/</span><span class="nc">PostsListing</span><span class="p">&gt;</span>
+  <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">PostsIndexWithData</span> <span class="o">=</span> <span class="nx">graphql</span><span class="p">(</span><span class="nx">listPosts</span><span class="p">)(</span><span class="nx">PostsIndex</span><span class="p">)</span>
+
+<span class="nx">PostsIndexWithData</span><span class="p">.</span><span class="nx">propTypes</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="nx">PostsIndexWithData</span><span class="p">.</span><span class="nx">defaultProps</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">PostsIndexWithData</span>
+
+<span class="kd">const</span> <span class="nx">Loading</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">div</span><span class="s2">`
+  font-size: 2em;
+  color: RebeccaPurple;
+  background-color: PapayaWhip;
+  margin: 10px;
+  padding: 10px;
+`</span>
+
+<span class="kd">const</span> <span class="nb">Error</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">div</span><span class="s2">`
+  backgound-color: rgb(245, 147, 156, 0.7);
+  color: red;
+  border: 1 solid red;
+  margin: 10px;
+  padding: 10px;
+`</span>
+
+<span class="kd">const</span> <span class="nx">PostsListing</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">div</span><span class="s2">`
+  backgound-color: rgb(252, 243, 207, 0.7);
+  color: black;
+  border: 1 solid black;
+  margin: 10px;
+  padding: 10px;
+`</span></code></pre></figure>
+
+<p>My small learning project supporting this learning is
+at <a href="https://github.com/tamouse/r5_graphql_react">https://github.com/tamouse/r5_graphql_react</a>. Feel free to
+contribute, comment, etc. I’m still a beginner at this and would
+appreciate feedback.</p>
+
+
+</article>
+<hr>
+<p><a href="http://dev.apollodata.com/react/api-queries.html#graphql-query-data">Source</a></p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/js/main.js"></script>
+
+    
+
+  </body>
+</html>

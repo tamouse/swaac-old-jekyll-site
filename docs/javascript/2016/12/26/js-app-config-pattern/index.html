@@ -95,7 +95,7 @@ it all into a single location.</p>
 service- or resource-oriented structure, I have an folder structures
 like so:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  app/
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  app/
     posts/
       index.js
       postModel.js
@@ -119,8 +119,7 @@ like so:</p>
     index.html
   index.js
   package.json
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>I’m taking advantage of the convention of using an <code class="highlighter-rouge">index.js</code> at the root
 of the components (and app) to make requiring the module as simple as
@@ -130,7 +129,7 @@ providing the directory name.</p>
 
 <p>In <code class="highlighter-rouge">./config/index.js</code>, I have the following:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="kd">var</span> <span class="nx">baseConfig</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">env</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">||</span> <span class="s1">'development'</span><span class="p">,</span>
   <span class="na">logging</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
@@ -142,8 +141,7 @@ providing the directory name.</p>
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span> <span class="nx">baseConfig</span><span class="p">,</span> <span class="nx">envConfig</span><span class="p">);</span>
 
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>A <strong>HUGE</strong> caveat, of course, is to <strong>NEVER</strong> save secrets and
 credentials in git (or Github, Gitlab, BitBucket, etc.) since they
@@ -169,11 +167,10 @@ during production or testing.</p>
 
 <p>In <code class="highlighter-rouge">./config/development.js</code>:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">logging</span><span class="p">:</span> <span class="kc">true</span>
 <span class="p">};</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This would be merged during the <code class="highlighter-rouge">Object.assign</code> step in
 <code class="highlighter-rouge">./config/index.js</code>.</p>
@@ -196,9 +193,8 @@ and comparison.)</p>
 <p>Now, with my per-environment configuration set, I use it in my
 application. In <code class="highlighter-rouge">./index.js</code> (the root of the app), I put:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./config'</span><span class="p">);</span>
-</code></pre>
-</div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./config'</span><span class="p">);</span>
+</code></pre></div></div>
 
 <p>Deeper down, in a server component, for example, I need to use the
 appropriate path lift to find it. Getting the configuration into the
@@ -206,18 +202,16 @@ posts controller:</p>
 
 <p>File <code class="highlighter-rouge">./app/posts/postsController.js</code></p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../../../config'</span><span class="p">);</span> <span class="c1">// might need more '../' to get to the right level</span>
-</code></pre>
-</div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../../../config'</span><span class="p">);</span> <span class="c1">// might need more '../' to get to the right level</span>
+</code></pre></div></div>
 
 <p>When you need a configuration value, it’s right there on the <code class="highlighter-rouge">config</code>
 object:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="k">if</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">env</span> <span class="o">===</span> <span class="s1">'development'</span><span class="p">){</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">env</span> <span class="o">===</span> <span class="s1">'development'</span><span class="p">){</span>
    <span class="c1">// ... do something you only do in development</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 </article>
 <hr>

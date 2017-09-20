@@ -159,17 +159,15 @@ serve your static site from the document root we’ll define below.</p>
 
 <p>Create a directory for your site:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">remote$ </span>mkdir -p Sites/my_static_site
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>remote<span class="nv">$ </span>mkdir <span class="nt">-p</span> Sites/my_static_site
+</code></pre></div></div>
 
 <p>Create a bare repository that can receive the updates:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">remote$ </span>mkdir -p Repos/my_static_site.git
-<span class="gp">remote$ </span><span class="nb">cd </span>Repos/my_static_site.git
-<span class="gp">remote$ </span>git init --bare
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>remote<span class="nv">$ </span>mkdir <span class="nt">-p</span> Repos/my_static_site.git
+remote<span class="nv">$ </span><span class="nb">cd </span>Repos/my_static_site.git
+remote<span class="nv">$ </span>git init <span class="nt">--bare</span>
+</code></pre></div></div>
 
 <p>Now we’re going to add the <code class="highlighter-rouge">post-receive</code> hook to the bare git
 repository.</p>
@@ -180,7 +178,7 @@ we’ve created above. Create the file <code class="highlighter-rouge">post-rece
 directory of the bare repository (<code class="highlighter-rouge">Repos/my_static_site.git</code> in our
 example above).</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
 <span class="nb">echo</span> <span class="s2">"[log] </span><span class="nv">$0</span><span class="s2">"</span>
 <span class="nb">export </span><span class="nv">GIT_WORK_TREE</span><span class="o">=</span><span class="s2">"/full/path/to/Site/my_static_site"</span>
 <span class="nb">export </span><span class="nv">BRANCH</span><span class="o">=</span><span class="s2">"master"</span>
@@ -190,10 +188,9 @@ example above).</p>
     <span class="nb">echo</span> <span class="s2">"[log] newrev: </span><span class="nv">$newrev</span><span class="s2">"</span>
     <span class="nb">echo</span> <span class="s2">"[log] refname: </span><span class="nv">$refname</span><span class="s2">"</span>
     <span class="nb">echo</span> <span class="s2">"[log] deploying to </span><span class="nv">$GIT_WORK_TREE</span><span class="s2"> with </span><span class="nv">$BRANCH</span><span class="s2">"</span>
-    git checkout -f <span class="nv">$BRANCH</span>
+    git checkout <span class="nt">-f</span> <span class="nv">$BRANCH</span>
 <span class="k">done</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Change the value for <code class="highlighter-rouge">GIT_WORK_TREE</code> to the full system path where
 your document root is. Make sure that the file <code class="highlighter-rouge">post-receive</code> is world
@@ -208,27 +205,24 @@ contains a line to ignore this directory.</p>
 <p>Let’s prepare that directory by running <code class="highlighter-rouge">jekyll build</code> once to create
 the full site.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>jekyll build
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>jekyll build
+</code></pre></div></div>
 
 <p>Now that the directory is there, step into it and set up the Git-based
 deployment.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">cd </span>_site
-<span class="gp">_site/$ </span>git init <span class="c"># make this directory into *another* git repo</span>
-<span class="gp">_site/$ </span>git add .
-<span class="gp">_site/$ </span>git commit -m <span class="s1">'first time'</span>
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>_site
+_site/<span class="nv">$ </span>git init <span class="c"># make this directory into *another* git repo</span>
+_site/<span class="nv">$ </span>git add <span class="nb">.</span>
+_site/<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s1">'first time'</span>
+</code></pre></div></div>
 
 <p>Now we add the remote repository on our server that we created above
 as the origin, and push our first commit:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">_site/$ </span>git remote add origin you@remote:Repos/my_static_site.git
-<span class="gp">_site/$ </span>git push origin master
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>_site/<span class="nv">$ </span>git remote add origin you@remote:Repos/my_static_site.git
+_site/<span class="nv">$ </span>git push origin master
+</code></pre></div></div>
 
 <p>In the push output, you should see the lines echoed from the
 post-receive hook. If you’re remote server’s web server is working
@@ -255,42 +249,38 @@ script that you can run locally to publish might look something like
 this. Create a file <code class="highlighter-rouge">publish.sh</code> with the following content in your
 local site directory:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
 jekyll build
 <span class="nb">cd </span>_site
-git add --all --verbose
-git commit -m <span class="sb">`</span>date <span class="s2">"+%Y%m%d%H%M%S"</span><span class="sb">`</span>
+git add <span class="nt">--all</span> <span class="nt">--verbose</span>
+git commit <span class="nt">-m</span> <span class="sb">`</span>date <span class="s2">"+%Y%m%d%H%M%S"</span><span class="sb">`</span>
 git push origin master
 <span class="nb">cd</span> ..
 <span class="nb">echo</span> <span class="s1">'Site deployed!'</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>I’ve set the commit message to the current timestamp, mostly because I
 don’t much care about the git log content for the published site. You
 might, though, so you might want to pass it in as an argument to the
 publish script:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>git commit -m <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit <span class="nt">-m</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
+</code></pre></div></div>
 
 <p>in place of that line above.</p>
 
 <p>Make sure to exclude the file in your <code class="highlighter-rouge">_config.yml</code> file:</p>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">exclude</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">exclude</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="s">publish.sh</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Set the file executable, and then you can publish by just calling the
 script:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>chmod -x ./publish.sh <span class="c"># just once</span>
-<span class="gp">$ </span>./publish.sh
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>chmod <span class="nt">-x</span> ./publish.sh <span class="c"># just once</span>
+<span class="nv">$ </span>./publish.sh
+</code></pre></div></div>
 
 </article>
 <hr>

@@ -1,0 +1,211 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Using Current User (Viewer) as root of GraphQL queries</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="canonical" href="http://swaac.tamouse.org/webdev/2017/09/19/using-current-user-viewer-as-root-of-graphql-queries/">
+    <link href="/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/pages/learning">Learning</a></li>
+            
+            <li><a href="/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/pages">Pages</a></li>
+            
+            <li><a href="/tags">Tags</a></li>
+            
+            <li><a href="/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2017 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>Using Current User (Viewer) as root of GraphQL queries</h1>
+Sep 19, 2017
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/categories/webdev">webdev</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/tags/graphql">graphql</a></li> <li role="presentation"><a href="/tags/graphql-ruby">graphql-ruby</a></li> <li role="presentation"><a href="/tags/authorization">authorization</a></li> <li role="presentation"><a href="/tags/viewer-rooted-graph">viewer-rooted-graph</a></li> 
+</header>
+
+<article>
+<p>I was watching a <a href="https://youtu.be/etax3aEe2dA">youtube video by Dan Schafer</a> of
+Facebook where he talks about a lot of things, with the immedate
+take-away for me of rooting the graphql query in the current viewer or
+user of the website (big assumption this is being driven by a user
+sitting in front of a client.)</p>
+
+<p>The idea makes sense to me, as it’s a way of establishing who is
+requesting info and be able to authorize the queries and mutations.</p>
+
+<p>For <a href="https://github.com/rmosolgo/graphql-ruby/tree/master/lib/graphql" title="Ruby implementation of GraphQL">graphql-ruby</a>, this means setting up the Query graph like so:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Types</span><span class="o">::</span><span class="no">QueryType</span> <span class="o">=</span> <span class="no">GraphQL</span><span class="o">::</span><span class="no">ObjectType</span><span class="p">.</span><span class="nf">define</span> <span class="k">do</span>
+  <span class="nb">name</span> <span class="s2">"Query"</span>
+  <span class="n">field</span> <span class="ss">:viewer</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">ViewerType</span><span class="p">,</span> <span class="s2">"Viewer of data, may be an anonymous user or registered user"</span> <span class="k">do</span>
+    <span class="n">resolve</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">_object</span><span class="p">,</span> <span class="n">_args</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span> <span class="k">do</span>
+      <span class="k">if</span> <span class="n">context</span><span class="p">[</span><span class="ss">:current_user</span><span class="p">].</span><span class="nf">present?</span>
+        <span class="n">context</span><span class="p">[</span><span class="ss">:current_user</span><span class="p">]</span>
+      <span class="k">else</span>
+        <span class="no">NullUser</span><span class="p">.</span><span class="nf">new</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>The viewer type is reflective of the <code class="highlighter-rouge">User</code> model in the data store,
+which is what is contained in the <code class="highlighter-rouge">current_user</code> in the context passed
+in. That value can be obtained in a few ways: some typical to Rails
+apps, through OAuth, through JWTs, etc. It’s not especially important
+here how the current user is determined to the graphql system, as it
+should be. Here we can see that if there is no current user in the
+context, a “Null User” object is returned.</p>
+
+<p>For sake of clarity, the <code class="highlighter-rouge">ViewerType</code> is:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Types</span><span class="o">::</span><span class="no">ViewerType</span> <span class="o">=</span> <span class="no">GraphQL</span><span class="o">::</span><span class="no">ObjectType</span><span class="p">.</span><span class="nf">define</span> <span class="k">do</span>
+  <span class="nb">name</span> <span class="s2">"Viewer"</span>
+  <span class="n">field</span> <span class="ss">:id</span><span class="p">,</span> <span class="o">!</span><span class="n">types</span><span class="o">.</span><span class="no">ID</span><span class="p">,</span> <span class="ss">hash_key: :uuid</span>
+  <span class="n">field</span> <span class="ss">:name</span><span class="p">,</span> <span class="o">!</span><span class="n">types</span><span class="o">.</span><span class="no">String</span>
+  <span class="n">field</span> <span class="ss">:email</span><span class="p">,</span> <span class="o">!</span><span class="n">types</span><span class="o">.</span><span class="no">String</span>
+  <span class="n">field</span> <span class="ss">:my_posts</span><span class="p">,</span> <span class="n">types</span><span class="p">[</span><span class="no">Types</span><span class="o">::</span><span class="no">PostType</span><span class="p">]</span> <span class="k">do</span>
+    <span class="n">resolve</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="p">{</span> <span class="n">obj</span><span class="p">.</span><span class="nf">posts</span> <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="n">field</span> <span class="ss">:public_posts</span><span class="p">,</span> <span class="n">types</span><span class="p">[</span><span class="no">Types</span><span class="o">::</span><span class="no">PostType</span><span class="p">]</span> <span class="k">do</span>
+    <span class="n">resolve</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">_</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">_</span><span class="p">){</span> <span class="no">Post</span><span class="p">.</span><span class="nf">publised</span> <span class="p">}</span>
+  <span class="k">end</span>
+  <span class="n">field</span> <span class="ss">:all_authors</span><span class="p">,</span> <span class="n">types</span><span class="p">[</span><span class="no">Types</span><span class="o">::</span><span class="no">UserType</span><span class="p">]</span> <span class="k">do</span>
+    <span class="n">resolve</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">_</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">_</span><span class="p">){</span> <span class="no">User</span><span class="p">.</span><span class="nf">all</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Giving the above a query like:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">query Query { viewer { public_posts { title excerpt publishedAt }}}</code></pre></figure>
+
+<p>Will return a JSON object like:</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"viewer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"public_posts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some post title"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"It was a dark and stormy night..."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"publishedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-18T12:25:03.005600-05:00"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Another post"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"excerpt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"We were once free to roam the..."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"publishedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-18T12:25:03.005600-05:00"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>Here’s something I’m doing, which I haven’t seen anywhere else yet.</p>
+
+<p>The application is the canonical micropost system, with users, posts,
+and (eventually) comments.</p>
+
+<p>Posts belong to Users, Comments belong to both Users and Posts. A rule
+would be that all published posts are visible to everyone, and these
+are gathered with the <code class="highlighter-rouge">:public_posts</code> field.</p>
+
+<p>Another rule would be that only the post’s author can update, publish,
+or delete a given post</p>
+
+<p>So, a query from an anonymous user would have the published posts, but
+<code class="highlighter-rouge">my_posts</code> would be an empty set.</p>
+
+<p>Another way to sort this is have multiple root fields in the base
+query, but this seems frowned on.</p>
+
+<p>My small learning project supporting this learning is
+at <a href="https://github.com/tamouse/r5_graphql_react">https://github.com/tamouse/r5_graphql_react</a>. Feel free to
+contribute, comment, etc. I’m still a beginner at this and would
+appreciate feedback.</p>
+
+
+</article>
+<hr>
+<p><a href="https://youtu.be/etax3aEe2dA">Source</a></p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/js/main.js"></script>
+
+    
+
+  </body>
+</html>

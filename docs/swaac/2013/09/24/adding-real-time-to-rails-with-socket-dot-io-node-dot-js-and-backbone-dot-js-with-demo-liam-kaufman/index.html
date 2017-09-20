@@ -127,14 +127,13 @@ specified.</p>
 
   <p>Manifest file (app/assets/javasripts/bacboneApp.js)</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>//= require jquery
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//= require jquery
 //= require bootstrap
 //= require underscore
 //= require backbone
 //= require socket.io
 //= require app
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>The Backbone application is within the <code class="highlighter-rouge">app</code> folder, which also has a
 manifest file. The manifest files describe all the JavaScript files that
@@ -145,7 +144,7 @@ actual organization of the files is as follows:</p>
 
   <p>app/assets</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>javascripts
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>javascripts
 ├── app
 │   ├── index.js
 │   ├── launch.js.coffee
@@ -163,8 +162,7 @@ actual organization of the files is as follows:</p>
 ├── application.js
 ├── backboneApp.js
 └── backbone_app.js.coffee
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p><code class="highlighter-rouge">main.js.coffee</code> is where the app object is defined, while
 `launch.js.coffee` is called last, after all the files have loaded, to
@@ -220,7 +218,7 @@ instantiated within its MessageModule object.</p>
 
   <p>Example Module</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>ExampleModel = Backbone.Model.extend()
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ExampleModel = Backbone.Model.extend()
 
 ExampleCollection = Backbone.Collection.extend
   model: ExampleModel
@@ -255,8 +253,7 @@ class ExampleModule
     @examplesView = new ExamplesView()
 
 new ExampleView()
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <h2 id="deploying-nodejs-and-rails-app-to-heroku">Deploying Node.js and Rails App to Heroku</h2>
 
@@ -267,7 +264,7 @@ listen for connections (note that Heroku doesn’t support websockets):</p>
 
   <p>Socket.IO server</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>var app = require('http').createServer();
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var app = require('http').createServer();
 var io = require('socket.io');
 
 io = io.listen(app);
@@ -281,8 +278,7 @@ io.configure(function(){
 io.sockets.on('connection', function (socket) {}
 var port = process.env.PORT || 5001;
 app.listen(port);
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>Unfortunately, Heroku’s documentation only contains fragments of the
 above code. The above code, along with deploying instructions, is posted
@@ -311,7 +307,7 @@ the browser to cache the Backbone.js app for 25,300 seconds.</p>
 
   <p>Controller associated with Backbone.js App</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>class BackboneAppController &lt; ApplicationController
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class BackboneAppController &lt; ApplicationController
   layout 'backboneApp'
   respond_to :html, :json
   def show
@@ -330,8 +326,7 @@ the browser to cache the Backbone.js app for 25,300 seconds.</p>
     Rails.env.production? ? "http://chatty-server.herokuapp.com/" : "http://0.0.0.0:5001"
   end
 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>In order for Heroku to manage the asset pipeline your application must
 be <a href="http://devcenter.heroku.com/articles/rails3">deployed to Heroku Cedar’s
@@ -345,10 +340,9 @@ cache and and I had to do it manually (connect to console:
 
   <p>Clearing the cache</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>dc = Dalli::Client.new('localhost:11211')
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dc = Dalli::Client.new('localhost:11211')
 dc.flush_all
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <h2 id="final-thoughts">Final Thoughts</h2>
 

@@ -85,9 +85,8 @@ complete URL to the images which were in <code class="highlighter-rouge">app/ass
 
 <p>The particular setting that worked in <code class="highlighter-rouge">:development</code> was:</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code>  <span class="n">config</span><span class="p">.</span><span class="nf">action_mailer</span><span class="p">.</span><span class="nf">asset_host</span> <span class="o">=</span> <span class="s2">"http://localhost:3000"</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">config</span><span class="p">.</span><span class="nf">action_mailer</span><span class="p">.</span><span class="nf">asset_host</span> <span class="o">=</span> <span class="s2">"http://localhost:3000"</span>
+</code></pre></div></div>
 
 <p>This configuration option is just like <code class="highlighter-rouge">action_controller.asset_host</code>
 except it applied to the mailers instead of the controllers.</p>

@@ -87,15 +87,13 @@
 
 <p>This is a simple, one line shell statement to generate a random password:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>cat /dev/urandom | strings | grep -o '[[:alnum:]!@%_-+=., ]' | head -n 15 | tr -d '\n'
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat /dev/urandom | strings | grep -o '[[:alnum:]!@%_-+=., ]' | head -n 15 | tr -d '\n'
+</code></pre></div></div>
 
 <p>which gives something like:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>oJhh!j0bNAiZNDa
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oJhh!j0bNAiZNDa
+</code></pre></div></div>
 
 
 </article>

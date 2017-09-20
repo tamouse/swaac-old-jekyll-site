@@ -88,9 +88,8 @@ Oct 22, 2013
 
   <p>If you are not clear about what I’m talking about, I simply mean adding the multiple attribute to the input tag for file uploads. Like so:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>&lt;input type="file" name="foo" id="foo" multiple&gt;
-</code></pre>
-  </div>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;input type="file" name="foo" id="foo" multiple&gt;
+</code></pre></div>  </div>
 
   <p>In browsers that support it, the user will be able to select multiple files. In browsers that don’t support it, it still works fine as a file control, but they are limited to one file. In theory, this is pretty trivial to use, but there’s a UX issue that kind of bugs me. Here is a screen shot of a form using this control. I’ve selected two files:</p>
 
@@ -104,17 +103,16 @@ Oct 22, 2013
 
   <p>First, let’s add a simple change handler to our input field:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>document.addEventListener("DOMContentLoaded", init, false);
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>document.addEventListener("DOMContentLoaded", init, false);
     
 function init() {
     document.querySelector('#files').addEventListener('change', handleFileSelect, false);
 }
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>Next, let’s write an event handler and see if we can get access to the files property of the event. Not all browsers support this, but in the ones that do, we can enumerate over them.</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>function handleFileSelect(e) {
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function handleFileSelect(e) {
         
     if(!e.target.files) return;
         
@@ -124,12 +122,11 @@ function init() {
     }
         
 }
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>The file object gives us a few properties, but the one we care about is the name. So let’s create a full demo of this. I’m going to add a little div below my input field and use it as place to list my files.</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!doctype html&gt;</span>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!doctype html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
 <span class="nt">&lt;head&gt;</span>
 <span class="nt">&lt;title&gt;</span>Proper Title<span class="nt">&lt;/title&gt;</span>
@@ -175,8 +172,7 @@ function init() {
 
 <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>Pretty simple, right? You can view an example of this here: <a href="http://www.raymondcamden.com/demos/2013/sep/10/test0A.html">http://www.raymondcamden.com/demos/2013/sep/10/test0A.html</a>. And here is a quick screen shot in case you are viewing this in a non-compliant browser.</p>
 
@@ -186,7 +182,7 @@ function init() {
 
   <p><strong>Edit on September 11:</strong> A big thank you to Sime Vidas for <a href="http://www.raymondcamden.com/index.cfm/2013/9/10/Adding-a-file-display-list-to-a-multifile-upload-HTML-control#c6E612D19-BAD9-A665-957DCD4546E53F41">pointing out</a> a stupid little bug in my code I missed on first pass around. I made a classic array/callback bug and didn’t notice it. I fixed the code and the screen shot, but if you want to see the broken code, view source on http://www.raymondcamden.com/demos/2013/sep/10/test0orig.html.</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!doctype html&gt;</span>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!doctype html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
 <span class="nt">&lt;head&gt;</span>
 <span class="nt">&lt;title&gt;</span>Proper Title<span class="nt">&lt;/title&gt;</span>
@@ -237,7 +233,7 @@ function init() {
 
             <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">();</span>
             <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-                <span class="kd">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="s2">"&lt;img src=\""</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span> <span class="o">+</span> <span class="s2">"\"&gt;"</span> <span class="o">+</span> <span class="nx">f</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">"&lt;br clear=\"left\"/&gt;"</span><span class="p">;</span>
+                <span class="kd">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="s2">"&lt;img src=</span><span class="se">\"</span><span class="s2">"</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\"</span><span class="s2">&gt;"</span> <span class="o">+</span> <span class="nx">f</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">"&lt;br clear=</span><span class="se">\"</span><span class="s2">left</span><span class="se">\"</span><span class="s2">/&gt;"</span><span class="p">;</span>
                 <span class="nx">selDiv</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">+=</span> <span class="nx">html</span><span class="p">;</span>               
             <span class="p">}</span>
             <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsDataURL</span><span class="p">(</span><span class="nx">f</span><span class="p">);</span> 
@@ -248,8 +244,7 @@ function init() {
 
 <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>I’ve modified the handleFileSelect code to check for both the files array as well as FileReader. (Note - I should do this <em>before</em> I even attach the event handler. I just thought of that.) I’ve updated my input field to say it accepts only images and added a second check within the event handler. Once we are sure we have an image, I use the FileReader API to create a DataURL (string) version of the image. With that I can actually draw the image as a preview.</p>
 

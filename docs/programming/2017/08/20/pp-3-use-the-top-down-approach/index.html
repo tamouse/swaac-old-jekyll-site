@@ -122,7 +122,7 @@ statements to be filled in as well.</p>
 task was to write an interface, in a top-down approach, we might start
 with this:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>loop
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>loop
   accept card
   validate customer
 
@@ -132,19 +132,17 @@ with this:</p>
     break loop if customer is finished
 
   return card
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>and then refine each step. Taking just “process request” step from
 above:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>when request is a
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>when request is a
   deposit: process deposit
   withdrawal: process withdrawal
   balance check: process balance check
   purchase stamps: process stamp purchase
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>(Some ATMs do a lot more than that, but you get the picture.)</p>
 

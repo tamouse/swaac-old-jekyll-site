@@ -127,47 +127,42 @@ source code.</p>
 
 <p>I first created a new directory for the site.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ mkdir ~/Sites/test_jekyll_guard
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mkdir ~/Sites/test_jekyll_guard
 $ cd ~/Sites/test_jekyll_guard
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="git-ized-it">Git-ized it</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ git init
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git init
 $ echo _site/ &gt;&gt; .gitignore
 $ git add .
 $ git commit -m "initial"
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="initialize-bundler">Initialize <code class="highlighter-rouge">bundler</code></h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ bundle init
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bundle init
+</code></pre></div></div>
 
 <h2 id="edit-the-gemfile">Edit the <code class="highlighter-rouge">Gemfile</code></h2>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="n">source</span> <span class="s2">"https://rubygems.org"</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">source</span> <span class="s2">"https://rubygems.org"</span>
 <span class="n">gem</span> <span class="s2">"jekyll"</span>
 <span class="n">gem</span> <span class="s2">"guard"</span>
 <span class="n">gem</span> <span class="s2">"guard-jekyll-plus"</span>
 <span class="n">gem</span> <span class="s2">"guard-livereload"</span>
 <span class="n">gem</span> <span class="s2">"rack-livereload"</span>
 <span class="n">gem</span> <span class="s2">"thin"</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="bundle-it-up">Bundle it up</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ bundle
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bundle
+</code></pre></div></div>
 
 <h2 id="created-the-guardfile">Created the <code class="highlighter-rouge">Guardfile</code></h2>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="n">guard</span> <span class="s1">'livereload'</span> <span class="k">do</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">guard</span> <span class="s1">'livereload'</span> <span class="k">do</span>
   <span class="n">watch</span> <span class="sr">/.*/</span>
 <span class="k">end</span>
 
@@ -175,30 +170,27 @@ $ git commit -m "initial"
   <span class="n">watch</span> <span class="sr">/.*/</span>
   <span class="n">ignore</span> <span class="sr">/^_site/</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="built-an-empty-jekyll-site">Built an empty jekyll site</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ bundle exec jekyll new . --force --blank
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bundle exec jekyll new . --force --blank
+</code></pre></div></div>
 
 <h2 id="made-a-_configyml-file">Made a <code class="highlighter-rouge">_config.yml</code> file</h2>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">title</span><span class="pi">:</span> <span class="s">testing guard-livereload with jekyll</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">title</span><span class="pi">:</span> <span class="s">testing guard-livereload with jekyll</span>
 
-<span class="s">exclude</span><span class="pi">:</span>
+<span class="na">exclude</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="s">Gemfile</span>
   <span class="pi">-</span> <span class="s">Gemfile.lock</span>
   <span class="pi">-</span> <span class="s">Guardfile</span>
   <span class="pi">-</span> <span class="s">README.md</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="and-fired-up-guard">And fired up <code class="highlighter-rouge">guard</code></h2>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bundle <span class="nb">exec </span>guard
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>guard
 Configuration file: _config.yml
 05:50:10 - INFO - Jekyll building...
 05:50:10 - INFO - LiveReload is waiting <span class="k">for </span>a browser to connect.
@@ -207,11 +199,10 @@ Configuration file: _config.yml
 05:50:10 - INFO - Jekyll watching and serving using rack at 127.0.0.1:4000
 05:50:10 - INFO - Jekyll watching
 05:50:10 - INFO - Guard is now watching at <span class="s1">'/Users/tamara/Sites/test_jekyll_guard'</span>
-<span class="o">[</span>1] guard<span class="o">(</span>main<span class="o">)</span>&gt; Thin web server <span class="o">(</span>v1.6.4 codename Gob Bluth<span class="o">)</span>
+<span class="o">[</span>1] guard<span class="o">(</span>main<span class="o">)&gt;</span> Thin web server <span class="o">(</span>v1.6.4 codename Gob Bluth<span class="o">)</span>
 Maximum connections <span class="nb">set </span>to 1024
 Listening on 127.0.0.1:4000, CTRL+C to stop
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This starts up the jekyll server at it’s usual place serving
 <code class="highlighter-rouge">http://127.0.0.1:4000</code>, but before I could browse there, I needed to
@@ -227,11 +218,10 @@ initially click the livereload button that was on the toolbar. In
 other browsers, there might be some other way to start it
 listening. The output at your terminal will show:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>127.0.0.1 - - <span class="o">[</span>13/Jan/2016:05:50:18 -0600] <span class="s2">"GET /index.html HTTP/1.1"</span> 200 - 0.0019
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>127.0.0.1 - - <span class="o">[</span>13/Jan/2016:05:50:18 <span class="nt">-0600</span><span class="o">]</span> <span class="s2">"GET /index.html HTTP/1.1"</span> 200 - 0.0019
 05:50:19 - INFO - Browser connected.
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The page will be blank, because the <code class="highlighter-rouge">index.html</code> file is empty.</p>
 
@@ -241,7 +231,7 @@ listening. The output at your terminal will show:</p>
 
 <h3 id="in-_layoutsdefaulthtml">In <code class="highlighter-rouge">_layouts/default.html</code></h3>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
   <span class="nt">&lt;head&gt;</span>
     <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
@@ -254,20 +244,18 @@ listening. The output at your terminal will show:</p>
   <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="in-indexhtml">In <code class="highlighter-rouge">index.html</code></h3>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>---
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
 layout: default
 ---
 
 <span class="nt">&lt;h1&gt;</span>{{ site.title }}<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;h2&gt;</span>It works!<span class="nt">&lt;/h2&gt;</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="watch-it-reload">Watch it reload!</h2>
 

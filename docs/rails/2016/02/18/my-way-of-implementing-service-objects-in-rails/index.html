@@ -97,23 +97,21 @@ later) versions, you may need to adjust things accordingly.</p>
 
 <p>Example: <code class="highlighter-rouge">app/services/build_new_product.rb</code>:</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BuildNewProduct</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BuildNewProduct</span>
   <span class="c1"># ...</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="create-the-main-method-based-on-the-verb-of-the-service">Create the main method based on the verb of the service</h2>
 
 <p>In the above example the main method would be called <code class="highlighter-rouge">build</code>:</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BuildNewProduct</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BuildNewProduct</span>
   <span class="k">def</span> <span class="nf">build</span>
     <span class="c1"># ...</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="use-the-initialize-method-to-set-up-the-operation">Use the <code class="highlighter-rouge">initialize</code> method to set up the operation</h2>
 
@@ -121,7 +119,7 @@ later) versions, you may need to adjust things accordingly.</p>
 combining information from a warehouse product and information from a
 third-party product description service.</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BuildNewProduct</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BuildNewProduct</span>
   <span class="n">attr_attribute</span> <span class="ss">:warehouse_product</span><span class="p">,</span> <span class="ss">:product_specifications</span><span class="p">,</span> <span class="ss">:product</span>
 
   <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">warehouse_product</span><span class="p">,</span> <span class="n">product_specifications</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{})</span>
@@ -142,16 +140,14 @@ third-party product description service.</p>
     <span class="nb">self</span><span class="p">.</span><span class="nf">product</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="invoking-the-service-object">Invoking the service object</h2>
 
 <p>The invocation is simply:</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="n">product</span> <span class="o">=</span> <span class="no">BuildNewProduct</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">warehouse_product</span><span class="p">,</span> <span class="n">product_specifications</span><span class="p">).</span><span class="nf">build</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">product</span> <span class="o">=</span> <span class="no">BuildNewProduct</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">warehouse_product</span><span class="p">,</span> <span class="n">product_specifications</span><span class="p">).</span><span class="nf">build</span>
+</code></pre></div></div>
 
 <h2 id="more-service-object-actions">More service object actions</h2>
 
@@ -163,15 +159,14 @@ I’m using it. (Yes, I’m contriving the example a bit.)</p>
 
 <p>In this example, it would be trivial to add two more calls:</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code>  <span class="k">def</span> <span class="nf">create</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">def</span> <span class="nf">create</span>
     <span class="n">build</span><span class="p">.</span><span class="nf">save</span>
   <span class="k">end</span>
 
   <span class="k">def</span> <span class="nf">create!</span>
     <span class="n">build</span><span class="p">.</span><span class="nf">save!</span>
   <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This would be preferable, I think, to adding another service object
 called <code class="highlighter-rouge">CreateNewProduct</code> that basically did the same thing using the
@@ -216,20 +211,18 @@ unnecessary, let’s just see what it might be like.</p>
 
 <h2 id="injecting-class-of-build-object">Injecting class of build object</h2>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">warehouse_product</span><span class="p">,</span> <span class="n">product_specifications</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{})</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">warehouse_product</span><span class="p">,</span> <span class="n">product_specifications</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{})</span>
     <span class="nb">self</span><span class="p">.</span><span class="nf">warehouse_product</span> <span class="o">=</span> <span class="n">warehouse_product</span>
     <span class="nb">self</span><span class="p">.</span><span class="nf">product_specifications</span> <span class="o">=</span> <span class="n">product_specifications</span>
 	<span class="n">product_klass</span> <span class="o">=</span> <span class="n">options</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="ss">:product_klass</span><span class="p">)</span> <span class="p">{</span> <span class="no">Product</span> <span class="p">}</span>
     <span class="nb">self</span><span class="p">.</span><span class="nf">product</span> <span class="o">=</span> <span class="n">product_klass</span><span class="p">.</span><span class="nf">new</span>
   <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>and I could substitute another product class as:</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="no">BuildNewProduct</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">gprod</span><span class="p">,</span> <span class="n">eprod</span><span class="p">,</span> <span class="ss">product_klass: </span><span class="no">MyProduct</span><span class="p">)</span>
-</code></pre>
-</div>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">BuildNewProduct</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">gprod</span><span class="p">,</span> <span class="n">eprod</span><span class="p">,</span> <span class="ss">product_klass: </span><span class="no">MyProduct</span><span class="p">)</span>
+</code></pre></div></div>
 
 <p>However, I would need to ensure that the <code class="highlighter-rouge">MyProduct</code> class could
 respond to all the calls done to <code class="highlighter-rouge">self.product</code> in the service object.
@@ -261,10 +254,10 @@ development.</p>
 <p>Here is a somewhat redacted skeleton of one of the runners that
 fetches product specification information from a third party.</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Etl</span><span class="o">::</span><span class="no">Runner</span><span class="o">::</span><span class="no">ProductSpecificationFetch</span> <span class="o">&lt;</span> <span class="no">Etl</span><span class="o">::</span><span class="no">Runner</span><span class="o">::</span><span class="no">Base</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Etl</span><span class="o">::</span><span class="no">Runner</span><span class="o">::</span><span class="no">ProductSpecificationFetch</span> <span class="o">&lt;</span> <span class="no">Etl</span><span class="o">::</span><span class="no">Runner</span><span class="o">::</span><span class="no">Base</span>
   <span class="no">DEFAULT_APP_ID</span> <span class="o">=</span> <span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">secrets</span><span class="p">.</span><span class="nf">etl_default_app_id</span>
 
-  <span class="kp">attr_accessor</span> <span class="ss">:datafilename</span><span class="p">,</span> <span class="ss">:mfr_datafilename</span><span class="p">,</span> <span class="ss">:product_spec_client</span><span class="p">,</span> <span class="ss">:app_id</span>
+  <span class="nb">attr_accessor</span> <span class="ss">:datafilename</span><span class="p">,</span> <span class="ss">:mfr_datafilename</span><span class="p">,</span> <span class="ss">:product_spec_client</span><span class="p">,</span> <span class="ss">:app_id</span>
 
   <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
     <span class="n">options</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="nf">extract_options!</span>
@@ -291,18 +284,17 @@ fetches product specification information from a third party.</p>
     <span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="no">Etl</span><span class="o">::</span><span class="no">Runner</span><span class="o">::</span><span class="no">DATA_FILES</span><span class="p">[</span><span class="ss">:manufacturers</span><span class="p">])</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>In this example, I can provide an alternate service object to
 implement the client that talks to third party, and different means of
 obtaining the two output files for this service object. This is one I
 used that saved the responses from the service into a file.</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="nb">require</span> <span class="s2">"product_specification_client"</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s2">"product_specification_client"</span>
 <span class="k">class</span> <span class="nc">SavingProductSpecificationClient</span> <span class="o">&lt;</span> <span class="no">ProductSpecificationClient</span>
 
-  <span class="kp">attr_accessor</span> <span class="ss">:save_dir</span>
+  <span class="nb">attr_accessor</span> <span class="ss">:save_dir</span>
 
   <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="ss">app_id: </span><span class="s2">""</span><span class="p">,</span> <span class="ss">save_dir: </span><span class="s2">"."</span><span class="p">)</span>
     <span class="k">super</span><span class="p">(</span><span class="ss">app_id: </span><span class="n">app_id</span><span class="p">)</span>
@@ -323,8 +315,7 @@ used that saved the responses from the service into a file.</p>
   <span class="k">end</span>
 
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>By using this alternate version, I could build a rake task to call the
 runner shown above, injecting the above client, and save all the raw

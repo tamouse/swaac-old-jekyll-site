@@ -104,7 +104,7 @@ Oct 4, 2013
 
   <p>I’m happy with these. Let’s make a spec.</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>feature 'Navigating through workpapers' do
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>feature 'Navigating through workpapers' do
   let(:user) { create(:user) }
   let(:audit) { create(:audit, users: [user]) }
 
@@ -120,8 +120,7 @@ Oct 4, 2013
     expect(page).to have_css?('.workpaper', text: workpaper.name)
   end
 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>This doesn’t look too bad but a more complicated feature would really start to get muddy and the login logic will eventually be duplicated between tests. Even this example doesn’t read as well as I would like.</p>
 
@@ -133,7 +132,7 @@ end
 
   <p>Here’s a login page object:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>class LoginPage
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class LoginPage
   include Capybara::DSL
 
   def visit_page
@@ -147,12 +146,11 @@ end
     click_on 'Log In'
   end
 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>Here is another page object for the Workpaper index page:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>class WorkpaperIndexPage
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class WorkpaperIndexPage
   include Capybara::DSL
 
   def select_audit(audit)
@@ -163,12 +161,11 @@ end
     has_css?('.workpaper', text: workpaper.name)
   end
 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>Here’s the new test using these page objects:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>feature 'Navigating through workpapers' do
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>feature 'Navigating through workpapers' do
   let(:user) { create(:user) }
   let(:audit) { create(:audit, users: [user]) }
   let(:login_page) { LoginPage.new }
@@ -182,8 +179,7 @@ end
     expect(workpaper_page).to have_workpaper(workpaper)
   end
 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>Now let’s say someone keeps tweaking that login button. You can pop into the Login page, start using an ID selector or an I18n entry (which might even have been a good idea upfront), and not worry about changing any other test code. All of that page fiddlyness is contained in the page objects.</p>
 
@@ -193,25 +189,23 @@ end
 
   <p>Failing feature tests can be hard to diagnose. Let’s say you used a page object like this:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>expect(workpaper_page).to have_one_workpaper(workpaper)
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>expect(workpaper_page).to have_one_workpaper(workpaper)
 
 Failure/Error: expect(workpaper_page).to have_one_workpaper(workpaper)
   expected #has_one_workpaper?(workpaper) to return true, got false
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>The expectation is readable, but it would be even better to know whether the workpaper was missing or whether there were other workpapers there causing the expectation to fail.</p>
 
   <p>In practice I’ve raised exceptions when calling these type of predicate methods on page objects.</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>Failure/Error: expect(workpaper_page).to have_one_workpaper(workpaper)
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Failure/Error: expect(workpaper_page).to have_one_workpaper(workpaper)
   PageExpectationNotMetError:
     expected one workpaper called "My Sweet Workpaper", but the following
     workpapers were on the page:
       * "Bogus Workpaper"
       * "My Sweet Workpaper"
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>I’ve been using this technique sparingly and I’m still looking for a more elegant approach, but this helps me to get more descriptive error messages and avoid debugging trips to the browser. Let me know if you have some good ways of integrating messages like this into your tests.</p>
 
@@ -233,9 +227,8 @@ Failure/Error: expect(workpaper_page).to have_one_workpaper(workpaper)
 
   <p>The following code waits for the workpaper to be awesome and fails if the expectation is not met within 2 seconds.</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>eventually { expect(workpaper).to be_awesome }
-</code></pre>
-  </div>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eventually { expect(workpaper).to be_awesome }
+</code></pre></div>  </div>
 
   <p>But when would you ever make a polling assertion like this without Capybara? Read on…</p>
 
@@ -245,7 +238,7 @@ Failure/Error: expect(workpaper_page).to have_one_workpaper(workpaper)
 
   <p>I use FactoryGirl extensively for setting up data in tests. This means that I have factories that that can generate complicated objects. For instance here is a way to make a <code class="highlighter-rouge">workpaper</code> with a <code class="highlighter-rouge">worflow</code> that has <code class="highlighter-rouge">steps</code> assigned to certain <code class="highlighter-rouge">users</code> called <code class="highlighter-rouge">preparers</code> and <code class="highlighter-rouge">reviewers</code>.</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>FactoryGirl.define do
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FactoryGirl.define do
   factory :workpaper do
     sequence(:name) {|n| "workpaper #{n}"}
 
@@ -280,14 +273,12 @@ Failure/Error: expect(workpaper_page).to have_one_workpaper(workpaper)
 
   factory :step
 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>This lets me create specific, declarative objects for my tests:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>create(:assigned_workpaper, preparer: first_user, reviewer: second_user)
-</code></pre>
-  </div>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>create(:assigned_workpaper, preparer: first_user, reviewer: second_user)
+</code></pre></div>  </div>
 
   <p>I always create database models through FactoryGirl in my feature tests. I’m definitely a fan of FactoryGirl, but I think there is probably room for improvement for building complex data like this. Whatever tool you use, the data setup for your tests should be readable, easy to use, and well-factored.</p>
 
@@ -295,9 +286,8 @@ end
 
   <p>Just as we have helpers for building up the data, we should have helpers for inspecting it. This assertion will make sure that the preparer for a workpaper has been successfully saved in the database:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>eventually { preparer_for(workpaper).should be(preparer) }
-</code></pre>
-  </div>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eventually { preparer_for(workpaper).should be(preparer) }
+</code></pre></div>  </div>
 
   <h2 id="6---prefer-refining-existing-tests-over-creating-new-ones">6 - Prefer Refining Existing Tests Over Creating New Ones</h2>
 
@@ -314,28 +304,26 @@ end
 
   <p>Let’s say I have a test like this:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>scenario "assigning a reviewer to a workpaper" do
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scenario "assigning a reviewer to a workpaper" do
   user_visits_workpaper(user, workpaper)
   ui.begin_assigning_reviewer
   ui.assign_work_to(reviewer)
   eventually { expect(reviewer_for workpaper).to eq(other_tester) }
 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>When we call <code class="highlighter-rouge">ui.begin_assigning_reviewer</code> a modal dialog pops up that lets the user pick someone to assign as a reviewer. That feature works. Great.</p>
 
   <p>Now I want to make sure that only users with access to review show up in that modal dialog. Instead of making a new spec for that, I would rather refine the one that I already have.</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>scenario "assigning a reviewer to a workpaper" do
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scenario "assigning a reviewer to a workpaper" do
   user_visits_workpaper(user, workpaper)
   ui.begin_assigning_reviewer
   expect(ui).to have_excluded_user(non_reviewer)
   ui.assign_work_to(reviewer)
   eventually { expect(reviewer_for workpaper).to eq(other_tester) }
 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>You would not want to use this approach in unit tests, but this works in feature tests where the goal is to guide your progress and efficiently detect regressions.</p>
 

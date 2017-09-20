@@ -103,22 +103,21 @@ when used in errors for the parent model.</p>
 
 <p>Setting new names for attributes in the config/locales/en.yml file as:</p>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">en</span><span class="pi">:</span>
-  <span class="s">activerecord</span><span class="pi">:</span>
-    <span class="s">attributes</span><span class="pi">:</span>
-      <span class="s">address</span><span class="pi">:</span>
-        <span class="s">locality</span><span class="pi">:</span> <span class="s2">"</span><span class="s">City"</span>
-        <span class="s">region</span><span class="pi">:</span> <span class="s2">"</span><span class="s">State"</span>
-      <span class="s">employer</span><span class="pi">:</span>
-        <span class="s">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Nom"</span>
-      <span class="s">user</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">en</span><span class="pi">:</span>
+  <span class="na">activerecord</span><span class="pi">:</span>
+    <span class="na">attributes</span><span class="pi">:</span>
+      <span class="na">address</span><span class="pi">:</span>
+        <span class="na">locality</span><span class="pi">:</span> <span class="s2">"</span><span class="s">City"</span>
+        <span class="na">region</span><span class="pi">:</span> <span class="s2">"</span><span class="s">State"</span>
+      <span class="na">employer</span><span class="pi">:</span>
+        <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Nom"</span>
+      <span class="na">user</span><span class="pi">:</span>
         <span class="s">address.locality</span><span class="pi">:</span> <span class="s2">"</span><span class="s">City"</span>
         <span class="s">address.region</span><span class="pi">:</span> <span class="s2">"</span><span class="s">State"</span>
         <span class="s">mailing_address.locality</span><span class="pi">:</span> <span class="s2">"</span><span class="s">City"</span>
         <span class="s">mailing_address.region</span><span class="pi">:</span> <span class="s2">"</span><span class="s">State"</span>
         <span class="s">employer.name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Societe</span><span class="nv"> </span><span class="s">Nom"</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Building a new, unsaved user with new mailing address and new employer
 (i.e., all fields are empty, which will not validate).</p>
@@ -126,35 +125,34 @@ when used in errors for the parent model.</p>
 <p><code class="highlighter-rouge">u.errors.full_messages</code> will use the translations for the nested
 employer, but <strong>NOT</strong> for the nested, polymorphic mailing address.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ rails c
-Loading development environment (Rails 4.2.1)
-[1] pry(main)&gt; user = User.new(mailing_address: Address.new, employer: Employer.new)
-=&gt; #&lt;User:0x007f81e28ab4f0 id: nil, username: nil, lastname: nil, firstname: nil, email: nil, created_at: nil, updated_at: nil&gt;
-[2] pry(main)&gt; user.valid?
-=&gt; false
-[3] pry(main)&gt; user.errors
-=&gt; #&lt;ActiveModel::Errors:0x007f81e2951710
- @base=#&lt;User:0x007f81e28ab4f0 id: nil, username: nil, lastname: nil, firstname: nil, email: nil, created_at: nil, updated_at: nil&gt;,
- @messages=
-  {:"employer.name"=&gt;["can't be blank"],
-   :"mailing_address.street"=&gt;["can't be blank"],
-   :"mailing_address.locality"=&gt;["can't be blank"],
-   :"mailing_address.region"=&gt;["can't be blank"],
-   :"mailing_address.country"=&gt;["can't be blank"],
-   :"mailing_address.postal_code"=&gt;["can't be blank"],
-   :username=&gt;["can't be blank"],
-   :email=&gt;["can't be blank"]}&gt;
-[4] pry(main)&gt; user.errors.full_messages
-=&gt; ["Nom can't be blank",
- "Mailing address street can't be blank",
- "Mailing address locality can't be blank",
- "Mailing address region can't be blank",
- "Mailing address country can't be blank",
- "Mailing address postal code can't be blank",
- "Username can't be blank",
- "Email can't be blank"]
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">$</span><span class="w"> </span><span class="n">rails</span><span class="w"> </span><span class="n">c
+Loading</span><span class="w"> </span><span class="n">development</span><span class="w"> </span><span class="n">environment</span><span class="w"> </span><span class="p">(</span><span class="n">Rails</span><span class="w"> </span><span class="mf">4.2.1</span><span class="p">)</span><span class="w">
+</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="err">&gt;</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">User</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="nn">mailing_address:</span><span class="w"> </span><span class="n">Address</span><span class="p">.</span><span class="n">new,</span><span class="w"> </span><span class="nn">employer:</span><span class="w"> </span><span class="n">Employer</span><span class="p">.</span><span class="n">new</span><span class="p">)</span><span class="w">
+</span><span class="n">=</span><span class="err">&gt;</span><span class="w"> </span><span class="c1">#&lt;User:0x007f81e28ab4f0 id: nil, username: nil, lastname: nil, firstname: nil, email: nil, created_at: nil, updated_at: nil&gt;</span><span class="w">
+</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="err">&gt;</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="n">valid?
+=</span><span class="err">&gt;</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="err">&gt;</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="n">errors
+=</span><span class="err">&gt;</span><span class="w"> </span><span class="c1">#&lt;ActiveModel::Errors:0x007f81e2951710</span><span class="w">
+ </span><span class="kd">@base</span><span class="n">=</span><span class="c1">#&lt;User:0x007f81e28ab4f0 id: nil, username: nil, lastname: nil, firstname: nil, email: nil, created_at: nil, updated_at: nil&gt;,</span><span class="w">
+ </span><span class="na">@messages=</span><span class="w">
+  </span><span class="p">{</span><span class="err">:</span><span class="s">"employer.name"</span><span class="n">=</span><span class="err">&gt;</span><span class="p">[</span><span class="s">"can't be blank"</span><span class="p">],</span><span class="w">
+   </span><span class="err">:</span><span class="s">"mailing_address.street"</span><span class="n">=</span><span class="err">&gt;</span><span class="p">[</span><span class="s">"can't be blank"</span><span class="p">],</span><span class="w">
+   </span><span class="err">:</span><span class="s">"mailing_address.locality"</span><span class="n">=</span><span class="err">&gt;</span><span class="p">[</span><span class="s">"can't be blank"</span><span class="p">],</span><span class="w">
+   </span><span class="err">:</span><span class="s">"mailing_address.region"</span><span class="n">=</span><span class="err">&gt;</span><span class="p">[</span><span class="s">"can't be blank"</span><span class="p">],</span><span class="w">
+   </span><span class="err">:</span><span class="s">"mailing_address.country"</span><span class="n">=</span><span class="err">&gt;</span><span class="p">[</span><span class="s">"can't be blank"</span><span class="p">],</span><span class="w">
+   </span><span class="err">:</span><span class="s">"mailing_address.postal_code"</span><span class="n">=</span><span class="err">&gt;</span><span class="p">[</span><span class="s">"can't be blank"</span><span class="p">],</span><span class="w">
+   </span><span class="err">:</span><span class="n">username=</span><span class="err">&gt;</span><span class="p">[</span><span class="s">"can't be blank"</span><span class="p">],</span><span class="w">
+   </span><span class="err">:</span><span class="n">email=</span><span class="err">&gt;</span><span class="p">[</span><span class="s">"can't be blank"</span><span class="p">]}</span><span class="err">&gt;</span><span class="w">
+</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="err">&gt;</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="n">errors</span><span class="p">.</span><span class="n">full_messages
+=</span><span class="err">&gt;</span><span class="w"> </span><span class="p">[</span><span class="s">"Nom can't be blank"</span><span class="p">,</span><span class="w">
+ </span><span class="s">"Mailing address street can't be blank"</span><span class="p">,</span><span class="w">
+ </span><span class="s">"Mailing address locality can't be blank"</span><span class="p">,</span><span class="w">
+ </span><span class="s">"Mailing address region can't be blank"</span><span class="p">,</span><span class="w">
+ </span><span class="s">"Mailing address country can't be blank"</span><span class="p">,</span><span class="w">
+ </span><span class="s">"Mailing address postal code can't be blank"</span><span class="p">,</span><span class="w">
+ </span><span class="s">"Username can't be blank"</span><span class="p">,</span><span class="w">
+ </span><span class="s">"Email can't be blank"</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
 
 <p>You can see that <code class="highlighter-rouge">employer.name</code> in the errors collection was turned
 into “Nom” in the full messages, while <code class="highlighter-rouge">mailing_address.locality</code> was
@@ -168,61 +166,59 @@ a regular nested table?</p>
 
 <p>Using the relationship names in the locale file:</p>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">en</span><span class="pi">:</span>
-  <span class="s">activerecord</span><span class="pi">:</span>
-    <span class="s">attributes</span><span class="pi">:</span>
-      <span class="s">address</span><span class="pi">:</span>
-        <span class="s">street</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Street"</span>
-        <span class="s">locality</span><span class="pi">:</span> <span class="s2">"</span><span class="s">City"</span>
-        <span class="s">region</span><span class="pi">:</span> <span class="s2">"</span><span class="s">State"</span>
-        <span class="s">country</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Country"</span>
-        <span class="s">postal_code</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Zip"</span>
-      <span class="s">mailing_address</span><span class="pi">:</span>
-        <span class="s">street</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Street"</span>
-        <span class="s">locality</span><span class="pi">:</span> <span class="s2">"</span><span class="s">City"</span>
-        <span class="s">region</span><span class="pi">:</span> <span class="s2">"</span><span class="s">State"</span>
-        <span class="s">country</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Country"</span>
-        <span class="s">postal_code</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Zip"</span>
-      <span class="s">employer</span><span class="pi">:</span>
-        <span class="s">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Nom"</span>
-      <span class="s">user</span><span class="pi">:</span>
-        <span class="s">username</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Handle"</span>
-        <span class="s">email</span><span class="pi">:</span> <span class="s2">"</span><span class="s">E-mail</span><span class="nv"> </span><span class="s">address"</span>
-</code></pre>
-</div>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">en</span><span class="pi">:</span>
+  <span class="na">activerecord</span><span class="pi">:</span>
+    <span class="na">attributes</span><span class="pi">:</span>
+      <span class="na">address</span><span class="pi">:</span>
+        <span class="na">street</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Street"</span>
+        <span class="na">locality</span><span class="pi">:</span> <span class="s2">"</span><span class="s">City"</span>
+        <span class="na">region</span><span class="pi">:</span> <span class="s2">"</span><span class="s">State"</span>
+        <span class="na">country</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Country"</span>
+        <span class="na">postal_code</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Zip"</span>
+      <span class="na">mailing_address</span><span class="pi">:</span>
+        <span class="na">street</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Street"</span>
+        <span class="na">locality</span><span class="pi">:</span> <span class="s2">"</span><span class="s">City"</span>
+        <span class="na">region</span><span class="pi">:</span> <span class="s2">"</span><span class="s">State"</span>
+        <span class="na">country</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Country"</span>
+        <span class="na">postal_code</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Zip"</span>
+      <span class="na">employer</span><span class="pi">:</span>
+        <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Nom"</span>
+      <span class="na">user</span><span class="pi">:</span>
+        <span class="na">username</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Handle"</span>
+        <span class="na">email</span><span class="pi">:</span> <span class="s2">"</span><span class="s">E-mail</span><span class="nv"> </span><span class="s">address"</span>
+</code></pre></div></div>
 
 <p>This works!! Giving the entry <code class="highlighter-rouge">mailing_address</code> in the attributes list
 tells Rails where to look for it.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ rails c
-Loading development environment (Rails 4.2.1)
-[1] pry(main)&gt; user = User.new(mailing_address: Address.new, employer: Employer.new)
-=&gt; #&lt;User:0x007f9d519c8830 id: nil, username: nil, lastname: nil, firstname: nil, email: nil, created_at: nil, updated_at: nil&gt;
-[2] pry(main)&gt; user.valid?
-=&gt; false
-[3] pry(main)&gt; user.errors
-=&gt; #&lt;ActiveModel::Errors:0x007f9d4b6aacf8
- @base=#&lt;User:0x007f9d519c8830 id: nil, username: nil, lastname: nil, firstname: nil, email: nil, created_at: nil, updated_at: nil&gt;,
- @messages=
-  {:"employer.name"=&gt;["can't be blank"],
-   :"mailing_address.street"=&gt;["can't be blank"],
-   :"mailing_address.locality"=&gt;["can't be blank"],
-   :"mailing_address.region"=&gt;["can't be blank"],
-   :"mailing_address.country"=&gt;["can't be blank"],
-   :"mailing_address.postal_code"=&gt;["can't be blank"],
-   :username=&gt;["can't be blank"],
-   :email=&gt;["can't be blank"]}&gt;
-[4] pry(main)&gt; user.errors.full_messages
-=&gt; ["Nom can't be blank",
- "Street can't be blank",
- "City can't be blank",
- "State can't be blank",
- "Country can't be blank",
- "Zip can't be blank",
- "Handle can't be blank",
- "E-mail address can't be blank"]
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">$</span><span class="w"> </span><span class="n">rails</span><span class="w"> </span><span class="n">c
+Loading</span><span class="w"> </span><span class="n">development</span><span class="w"> </span><span class="n">environment</span><span class="w"> </span><span class="p">(</span><span class="n">Rails</span><span class="w"> </span><span class="mf">4.2.1</span><span class="p">)</span><span class="w">
+</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="err">&gt;</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="n">=</span><span class="w"> </span><span class="n">User</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="nn">mailing_address:</span><span class="w"> </span><span class="n">Address</span><span class="p">.</span><span class="n">new,</span><span class="w"> </span><span class="nn">employer:</span><span class="w"> </span><span class="n">Employer</span><span class="p">.</span><span class="n">new</span><span class="p">)</span><span class="w">
+</span><span class="n">=</span><span class="err">&gt;</span><span class="w"> </span><span class="c1">#&lt;User:0x007f9d519c8830 id: nil, username: nil, lastname: nil, firstname: nil, email: nil, created_at: nil, updated_at: nil&gt;</span><span class="w">
+</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="err">&gt;</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="n">valid?
+=</span><span class="err">&gt;</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="err">&gt;</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="n">errors
+=</span><span class="err">&gt;</span><span class="w"> </span><span class="c1">#&lt;ActiveModel::Errors:0x007f9d4b6aacf8</span><span class="w">
+ </span><span class="kd">@base</span><span class="n">=</span><span class="c1">#&lt;User:0x007f9d519c8830 id: nil, username: nil, lastname: nil, firstname: nil, email: nil, created_at: nil, updated_at: nil&gt;,</span><span class="w">
+ </span><span class="na">@messages=</span><span class="w">
+  </span><span class="p">{</span><span class="err">:</span><span class="s">"employer.name"</span><span class="n">=</span><span class="err">&gt;</span><span class="p">[</span><span class="s">"can't be blank"</span><span class="p">],</span><span class="w">
+   </span><span class="err">:</span><span class="s">"mailing_address.street"</span><span class="n">=</span><span class="err">&gt;</span><span class="p">[</span><span class="s">"can't be blank"</span><span class="p">],</span><span class="w">
+   </span><span class="err">:</span><span class="s">"mailing_address.locality"</span><span class="n">=</span><span class="err">&gt;</span><span class="p">[</span><span class="s">"can't be blank"</span><span class="p">],</span><span class="w">
+   </span><span class="err">:</span><span class="s">"mailing_address.region"</span><span class="n">=</span><span class="err">&gt;</span><span class="p">[</span><span class="s">"can't be blank"</span><span class="p">],</span><span class="w">
+   </span><span class="err">:</span><span class="s">"mailing_address.country"</span><span class="n">=</span><span class="err">&gt;</span><span class="p">[</span><span class="s">"can't be blank"</span><span class="p">],</span><span class="w">
+   </span><span class="err">:</span><span class="s">"mailing_address.postal_code"</span><span class="n">=</span><span class="err">&gt;</span><span class="p">[</span><span class="s">"can't be blank"</span><span class="p">],</span><span class="w">
+   </span><span class="err">:</span><span class="n">username=</span><span class="err">&gt;</span><span class="p">[</span><span class="s">"can't be blank"</span><span class="p">],</span><span class="w">
+   </span><span class="err">:</span><span class="n">email=</span><span class="err">&gt;</span><span class="p">[</span><span class="s">"can't be blank"</span><span class="p">]}</span><span class="err">&gt;</span><span class="w">
+</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="n">pry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="err">&gt;</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="n">errors</span><span class="p">.</span><span class="n">full_messages
+=</span><span class="err">&gt;</span><span class="w"> </span><span class="p">[</span><span class="s">"Nom can't be blank"</span><span class="p">,</span><span class="w">
+ </span><span class="s">"Street can't be blank"</span><span class="p">,</span><span class="w">
+ </span><span class="s">"City can't be blank"</span><span class="p">,</span><span class="w">
+ </span><span class="s">"State can't be blank"</span><span class="p">,</span><span class="w">
+ </span><span class="s">"Country can't be blank"</span><span class="p">,</span><span class="w">
+ </span><span class="s">"Zip can't be blank"</span><span class="p">,</span><span class="w">
+ </span><span class="s">"Handle can't be blank"</span><span class="p">,</span><span class="w">
+ </span><span class="s">"E-mail address can't be blank"</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
 
 <p>Note that what I <em>thought</em> was happening, that the yaml key somehow
 had to be on the attribute itself was incorrect. I’m glad I used a
@@ -235,24 +231,23 @@ base.</del></p>
 
 <p><em>Update:</em> And then, when I think about YAML, it’s easy to DRY it up:</p>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">en</span><span class="pi">:</span>
-  <span class="s">activerecord</span><span class="pi">:</span>
-    <span class="s">attributes</span><span class="pi">:</span>
-      <span class="s">address</span><span class="pi">:</span> <span class="nl">&amp;address</span>
-        <span class="s">street</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Street"</span>
-        <span class="s">locality</span><span class="pi">:</span> <span class="s2">"</span><span class="s">City"</span>
-        <span class="s">region</span><span class="pi">:</span> <span class="s2">"</span><span class="s">State"</span>
-        <span class="s">country</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Country"</span>
-        <span class="s">postal_code</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Zip"</span>
-      <span class="s">mailing_address</span><span class="pi">:</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">en</span><span class="pi">:</span>
+  <span class="na">activerecord</span><span class="pi">:</span>
+    <span class="na">attributes</span><span class="pi">:</span>
+      <span class="na">address</span><span class="pi">:</span> <span class="nl">&amp;address</span>
+        <span class="na">street</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Street"</span>
+        <span class="na">locality</span><span class="pi">:</span> <span class="s2">"</span><span class="s">City"</span>
+        <span class="na">region</span><span class="pi">:</span> <span class="s2">"</span><span class="s">State"</span>
+        <span class="na">country</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Country"</span>
+        <span class="na">postal_code</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Zip"</span>
+      <span class="na">mailing_address</span><span class="pi">:</span>
         <span class="s">&lt;&lt;</span><span class="pi">:</span> <span class="nv">*address</span>
-      <span class="s">employer</span><span class="pi">:</span>
-        <span class="s">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Nom"</span>
-      <span class="s">user</span><span class="pi">:</span>
-        <span class="s">username</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Handle"</span>
-        <span class="s">email</span><span class="pi">:</span> <span class="s2">"</span><span class="s">E-mail</span><span class="nv"> </span><span class="s">address"</span>
-</code></pre>
-</div>
+      <span class="na">employer</span><span class="pi">:</span>
+        <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Nom"</span>
+      <span class="na">user</span><span class="pi">:</span>
+        <span class="na">username</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Handle"</span>
+        <span class="na">email</span><span class="pi">:</span> <span class="s2">"</span><span class="s">E-mail</span><span class="nv"> </span><span class="s">address"</span>
+</code></pre></div></div>
 
 <p>And upon even further thinking about how Rails’ I18n tags work, it
 makes perfect sense as the translation tags are keys joined by dots,

@@ -90,13 +90,12 @@ Sep 29, 2013
 
   <p>Install the canister…</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>$ gem install scorched
-</code></pre>
-  </div>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ gem install scorched
+</code></pre></div>  </div>
 
   <p>Open the valve…</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code># hello_world.ru
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># hello_world.ru
 require 'scorched'
 class App &lt; Scorched::Controller
   get '/' do
@@ -104,14 +103,12 @@ class App &lt; Scorched::Controller
   end
 end
 run App
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>And light the flame…</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>$ rackup hello_world.ru
-</code></pre>
-  </div>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rackup hello_world.ru
+</code></pre></div>  </div>
 
   <h4 id="a-note-on-requirements">A Note on Requirements</h4>
 
@@ -137,7 +134,7 @@ run App
 
   <h2 id="first-impressions">First Impressions</h2>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>class MyApp &lt; Scorched::Controller
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class MyApp &lt; Scorched::Controller
 
   # From the most simple route possible...
   get '/' do
@@ -172,8 +169,7 @@ run App
     @request.body &lt;&lt; 'Maintenance underway, please be patient.'
   }}
 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>This API shouldn’t look too foreign to anyone familiar with frameworks like Sinatra, and the potential power at hand should be obvious. The <code class="highlighter-rouge">route</code> method demonstrates a few minor features of Scorched:</p>
 

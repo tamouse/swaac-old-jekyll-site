@@ -106,35 +106,35 @@ to rely more on writing many more expectations.</p>
 
 <h2 id="example">Example</h2>
 
-<pre><code class="language-jsx">import React from 'react'
-import {MemoryRouter} from 'react-router'
-import {Link} from 'react-router-dom'
-import {render, shallow} from 'enzyme'
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="s1">'react'</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">MemoryRouter</span><span class="p">}</span> <span class="k">from</span> <span class="s1">'react-router'</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">Link</span><span class="p">}</span> <span class="k">from</span> <span class="s1">'react-router-dom'</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">render</span><span class="p">,</span> <span class="nx">shallow</span><span class="p">}</span> <span class="k">from</span> <span class="s1">'enzyme'</span>
 
-const MyComp = props =&gt; {
-  const {href, linkText, icon} = props
-  const iconClass = `fa fa-sm fa-${icon}`
-  return (&lt;div&gt;
-        &lt;h2&gt;Some header&lt;/h2&gt;
-        &lt;Link to={href}&gt;{linkText}&lt;i className={iconClass}/&gt;&lt;/Link&gt;
-      &lt;/div&gt;)
-}
+<span class="kd">const</span> <span class="nx">MyComp</span> <span class="o">=</span> <span class="nx">props</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span><span class="nx">href</span><span class="p">,</span> <span class="nx">linkText</span><span class="p">,</span> <span class="nx">icon</span><span class="p">}</span> <span class="o">=</span> <span class="nx">props</span>
+  <span class="kd">const</span> <span class="nx">iconClass</span> <span class="o">=</span> <span class="s2">`fa fa-sm fa-</span><span class="p">${</span><span class="nx">icon</span><span class="p">}</span><span class="s2">`</span>
+  <span class="k">return</span> <span class="p">(&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Some header<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nc">Link</span> <span class="na">to=</span><span class="si">{</span><span class="nx">href</span><span class="si">}</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">linkText</span><span class="si">}</span><span class="p">&lt;</span><span class="nt">i</span> <span class="na">className=</span><span class="si">{</span><span class="nx">iconClass</span><span class="si">}</span><span class="p">/&gt;&lt;/</span><span class="nc">Link</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;)</span>
+<span class="p">}</span>
 
 
-test("This will work with a deep render", () =&gt; {
-  const actual = render(&lt;MemoryRouter&gt;
-    &lt;MyComp href="http://example.com" linkText="An Example" icon="external-link"/&gt;
-  &lt;/MemoryRouter&gt;)
-  expect(actual).toMatchSnapshot()
-})
+<span class="nx">test</span><span class="p">(</span><span class="s2">"This will work with a deep render"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">actual</span> <span class="o">=</span> <span class="nx">render</span><span class="p">(&lt;</span><span class="nc">MemoryRouter</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nc">MyComp</span> <span class="na">href=</span><span class="s2">"http://example.com"</span> <span class="na">linkText=</span><span class="s2">"An Example"</span> <span class="na">icon=</span><span class="s2">"external-link"</span><span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nc">MemoryRouter</span><span class="p">&gt;)</span>
+  <span class="nx">expect</span><span class="p">(</span><span class="nx">actual</span><span class="p">).</span><span class="nx">toMatchSnapshot</span><span class="p">()</span>
+<span class="p">})</span>
 
-test("This will fail with a shallow render", () =&gt; {
-  const actual = shallow(&lt;MemoryRouter&gt;
-    &lt;MyComp href="http://example.com" linkText="An Example" icon="external-link"/&gt;
-  &lt;/MemoryRouter&gt;)
-  expect(actual).toMatchSnapshot()
-})
-</code></pre>
+<span class="nx">test</span><span class="p">(</span><span class="s2">"This will fail with a shallow render"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">actual</span> <span class="o">=</span> <span class="nx">shallow</span><span class="p">(&lt;</span><span class="nc">MemoryRouter</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nc">MyComp</span> <span class="na">href=</span><span class="s2">"http://example.com"</span> <span class="na">linkText=</span><span class="s2">"An Example"</span> <span class="na">icon=</span><span class="s2">"external-link"</span><span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nc">MemoryRouter</span><span class="p">&gt;)</span>
+  <span class="nx">expect</span><span class="p">(</span><span class="nx">actual</span><span class="p">).</span><span class="nx">toMatchSnapshot</span><span class="p">()</span>
+<span class="p">})</span>
+</code></pre></div></div>
 
 <h2 id="references">References</h2>
 

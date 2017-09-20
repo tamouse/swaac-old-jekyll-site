@@ -139,7 +139,7 @@ used techniques to get around this. So giving that a go, I built a set
 of insert statements that used rails’s <code class="highlighter-rouge">DateTime.now</code> to generate the
 timestamp.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="nf">.</span><span class="mi">100</span><span class="p">).</span><span class="nf">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">_</span><span class="o">|</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">100</span><span class="p">).</span><span class="nf">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">_</span><span class="o">|</span>
   <span class="no">OpenStruct</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span>
     <span class="ss">content: </span><span class="no">Faker</span><span class="o">::</span><span class="no">Lorem</span><span class="p">.</span><span class="nf">sentence</span><span class="p">,</span>
     <span class="ss">created_at: </span><span class="no">DateTime</span><span class="p">.</span><span class="nf">now</span><span class="p">,</span>

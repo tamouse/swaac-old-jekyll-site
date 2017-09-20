@@ -88,7 +88,7 @@ Oct 15, 2013
 
   <p>I figured I’d start just by trying to iterate through all the pages and output a one-dimensional list just to make sure I could at least do that. Here’s what I have so far:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>module Jekyll
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module Jekyll
 
   class NavTree &lt; Liquid::Tag
     def initialize(tag_name, text, tokens)
@@ -110,10 +110,9 @@ Oct 15, 2013
 end
 
 Liquid::Template.register_tag('nav_tree', Jekyll::NavTree)
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
-  <p>And I’m inserting it into my liquid template via <code class="highlighter-rouge"><span class="p">{</span><span class="err">\%</span><span class="w"> </span><span class="err">nav_tree</span><span class="w"> </span><span class="err">%\</span><span class="p">}</span></code>.</p>
+  <p>And I’m inserting it into my liquid template via <code class="highlighter-rouge">{\% nav_tree %\}</code>.</p>
 
   <p>The problem is that the <code class="highlighter-rouge">page</code> variable in the code above doesn’t have all the data that you’d expect. <code class="highlighter-rouge">page.title</code> is undefined and <code class="highlighter-rouge">page.url</code> is just the basename with a forward slash in front of it (e.g. for <code class="highlighter-rouge">/a/b/c.html</code>, it’s just giving me <code class="highlighter-rouge">/c.html</code>).</p>
 
@@ -162,7 +161,7 @@ Liquid::Template.register_tag('nav_tree', Jekyll::NavTree)
 
   <p>Try:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>module Jekyll
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module Jekyll
 
   # Add accessor for directory
   class Page
@@ -190,8 +189,7 @@ Liquid::Template.register_tag('nav_tree', Jekyll::NavTree)
 end
 
 Liquid::Template.register_tag('nav_tree', Jekyll::NavTree)
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <table>
     <tbody>
@@ -243,7 +241,7 @@ Liquid::Template.register_tag('nav_tree', Jekyll::NavTree)
 
   <p><code class="highlighter-rouge">page.title</code> is not always defined (example: <code class="highlighter-rouge">atom.xml</code>). You have to check if it is defined. Then you can take <code class="highlighter-rouge">page.name</code> or not process the entry…</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>def render(context)
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def render(context)
   site = context.registers[:site]
   output = '&lt;ul&gt;'
   site.pages.each do |page|
@@ -257,8 +255,7 @@ Liquid::Template.register_tag('nav_tree', Jekyll::NavTree)
   output += '&lt;ul&gt;'
   output
 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <table>
     <tbody>

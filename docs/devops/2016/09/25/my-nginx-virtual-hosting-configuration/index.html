@@ -89,7 +89,7 @@ tribulations.</p>
 <p>This configuration is by no means unique, special, or anything other
 than a thing I cobbled together and that works for my needs.</p>
 
-<figure class="highlight"><pre><code class="language-nginx" data-lang="nginx"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+<figure class="highlight"><pre><code class="language-nginx" data-lang="nginx"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -142,7 +142,8 @@ than a thing I cobbled together and that works for my needs.</p>
 51
 52
 53
-54</pre></td><td class="code"><pre><span class="c1"># -*- nginx -*-
+54
+</pre></td><td class="code"><pre><span class="c1"># -*- nginx -*-
 # This is a generic virtual host file, it will map vhosts onto
 # the appropriate subdirectory
 </span>
@@ -195,8 +196,7 @@ than a thing I cobbled together and that works for my needs.</p>
 	<span class="kn">fastcgi_pass</span> <span class="s">unix:/var/run/php5-fpm.sock</span><span class="p">;</span>
     <span class="p">}</span>
 
-<span class="p">}</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></figure>
+<span class="p">}</span></pre></td></tr></tbody></table></code></pre></figure>
 
 <p>I originally had the static file caching in place, but since I mainly
 post blog updates that are static, it was always forcing readers to

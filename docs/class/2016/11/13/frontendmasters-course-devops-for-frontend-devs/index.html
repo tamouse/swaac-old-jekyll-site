@@ -168,9 +168,8 @@ following is not needed.</p>
       <li>
         <p>Users: [tamara, git]</p>
 
-        <div class="highlighter-rouge"><pre class="highlight"><code>cat ~/.ssh/is_rsa.pub | ssh $USERa@$NEW_SERVER 'mkdir -p .ssh &amp;&amp; cat &gt;&gt; .ssh/authorized_keys
-</code></pre>
-        </div>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat ~/.ssh/is_rsa.pub | ssh $USERa@$NEW_SERVER 'mkdir -p .ssh &amp;&amp; cat &gt;&gt; .ssh/authorized_keys
+</code></pre></div>        </div>
       </li>
     </ul>
   </li>
@@ -213,8 +212,8 @@ on
 <a href="https://github.com/nodesource/distributions#installation-instructions">nodesource/distributions</a></li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
-sudo apt-get install -y nodejs</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="nt">-sL</span> https://deb.nodesource.com/setup_7.x | <span class="nb">sudo</span> <span class="nt">-E</span> bash -
+<span class="nb">sudo </span>apt-get install <span class="nt">-y</span> nodejs</code></pre></figure>
 
 <ul>
   <li>
@@ -227,12 +226,12 @@ using
   </li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install software-properties-common
-sudo apt-add-repository ppa:brightbox/ruby-ng
-sudo apt-get update
-sudo apt-get install ruby2.4
-sudo gem install bundler rake
-sudo gem install rails</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo </span>apt-get install software-properties-common
+<span class="nb">sudo </span>apt-add-repository ppa:brightbox/ruby-ng
+<span class="nb">sudo </span>apt-get update
+<span class="nb">sudo </span>apt-get install ruby2.4
+<span class="nb">sudo </span>gem install bundler rake
+<span class="nb">sudo </span>gem install rails</code></pre></figure>
 
 <h2 id="setting-up-the-application">setting up the application</h2>
 

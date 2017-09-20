@@ -105,12 +105,11 @@ happen via executing a JS script, but by simply <strong>SENDING A TAB</strong>.<
 
 <p>Here’s the step:</p>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="no">When</span><span class="p">(</span><span class="sr">/^I unfocus field (.*?)$/</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">field_name</span><span class="o">|</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">When</span><span class="p">(</span><span class="sr">/^I unfocus field (.*?)$/</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">field_name</span><span class="o">|</span>
   <span class="n">field</span> <span class="o">=</span> <span class="n">page</span><span class="p">.</span><span class="nf">find_field</span><span class="p">(</span><span class="n">field_name</span><span class="p">)</span>
   <span class="n">field</span><span class="p">.</span><span class="nf">native</span><span class="p">.</span><span class="nf">send_keys</span> <span class="ss">:tab</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>That did the trick, and now we all have an uncle Bob.</p>
 

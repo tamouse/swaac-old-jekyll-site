@@ -92,7 +92,7 @@ array at that point in the chain.</p>
 
 <p><strong>For example:</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>[3] pry(main)&gt; lazy_power = 1.step.lazy.map{|n| n**n}
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[3] pry(main)&gt; lazy_power = 1.step.lazy.map{|n| n**n}
 =&gt; #&lt;Enumerator::Lazy: ...&gt;
 [4] pry(main)&gt; lazy_power.take(5)
 =&gt; #&lt;Enumerator::Lazy: ...&gt;
@@ -115,8 +115,7 @@ array at that point in the chain.</p>
 [13] pry(main)&gt; lazy_power_enum.next
 StopIteration: iteration reached an end
 from (pry):13:in `next'
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="footnotes">Footnotes</h2>
 

@@ -96,7 +96,7 @@ One of the patterns from this blog post that I want to focus on is
   <p>We have been using this pattern for a while but I missed the convenience
 of chainable and reusable scopes. Here’s an example:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code> 1 class Product &lt; ActiveRecord::Base
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 1 class Product &lt; ActiveRecord::Base
  2   has_many :reviews
  3 end
  4 
@@ -118,8 +118,7 @@ of chainable and reusable scopes. Here’s an example:</p>
 20     @relation.joins(:reviews).where(reviews: { available: true })
 21   end
 22 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>The query object above defines three utility methods to return records
 of <code class="highlighter-rouge">Product</code> with certain properties. However, you will notice that
@@ -127,7 +126,7 @@ of <code class="highlighter-rouge">Product</code> with certain properties. Howev
 <code class="highlighter-rouge">#with_recent_activity</code> and <code class="highlighter-rouge">#with_available_reviews</code>. The trivial
 solution to keeping this DRY is defining scopes on the <code class="highlighter-rouge">Product</code> model:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code> 1 class Product &lt; ActiveRecord::Base
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 1 class Product &lt; ActiveRecord::Base
  2   has_many :reviews
  3 
  4   scope :popular, -&gt;(time) {
@@ -142,8 +141,7 @@ solution to keeping this DRY is defining scopes on the <code class="highlighter-
 13     joins(:reviews).where(reviews: { available: true })
 14   }
 15 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>Ideally we would like to define these scopes on our query objects to
 prevent our models from growing “fat” over time. If these scopes were so
@@ -156,7 +154,7 @@ scopes that we would like to isolate to the query object.</p>
 have the ability to extend any <code class="highlighter-rouge">ActiveRecord::Relation</code> object with your
 custom scopes:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code> 1 class PopularProductQuery
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 1 class PopularProductQuery
  2   def initialize(relation = Product.scoped)
  3     @relation = relation.extending(Scopes)
  4   end
@@ -175,8 +173,7 @@ custom scopes:</p>
 17     end
 18   end
 19 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>Here we are taking advantage of the
 <code class="highlighter-rouge">ActiveRecord::QueryMethods#extending</code> method to add custom scopes to
@@ -184,9 +181,8 @@ our query object without polluting the model space. In other words,
 <code class="highlighter-rouge">Product.with_available_reviews</code> is <strong>not</strong> valid. To put it all
 together, you would use the enhanced query object like so:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>PopularProductQuery.new.popular(2.weeks.ago)
-</code></pre>
-  </div>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PopularProductQuery.new.popular(2.weeks.ago)
+</code></pre></div>  </div>
 
   <p>I’ve come to really like this pattern to adhere to the Single
 Responsibility Principle and keep my models manageable.</p>

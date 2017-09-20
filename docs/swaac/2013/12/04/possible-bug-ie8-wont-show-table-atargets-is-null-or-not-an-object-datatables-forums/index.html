@@ -91,25 +91,25 @@ Dec 4, 2013
   <p>In IE8, it shows this error:</p>
 
 </blockquote>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">&gt;     </span>Webpage error details
-<span class="gp">&gt; </span>
-<span class="gp">&gt;     </span>User Agent: Mozilla/4.0 <span class="o">(</span>compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.4506.2152<span class="o">)</span>
-<span class="gp">&gt;     </span>Timestamp: Tue, 21 Aug 2012 20:16:07 UTC
-<span class="gp">&gt; </span>
-<span class="gp">&gt;     </span>Message: <span class="s1">'aTargets'</span> is null or not an object
-<span class="gp">&gt;     </span>Line: 19
-<span class="gp">&gt;     </span>Char: 4817
-<span class="gp">&gt;     </span>Code: 0
-<span class="gp">&gt;     </span>URI: http://MYDOMAIN/assets/application-3b0e185edc6cf38f7bdac3207f7b8585.js
-<span class="gp">&gt;     </span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;</span>     Webpage error details
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span>     User Agent: Mozilla/4.0 <span class="o">(</span>compatible<span class="p">;</span> MSIE 8.0<span class="p">;</span> Windows NT 5.1<span class="p">;</span> Trident/4.0<span class="p">;</span> .NET4.0C<span class="p">;</span> .NET4.0E<span class="p">;</span> .NET CLR 2.0.50727<span class="p">;</span> .NET CLR 3.5.30729<span class="p">;</span> .NET CLR 3.0.4506.2152<span class="o">)</span>
+<span class="o">&gt;</span>     Timestamp: Tue, 21 Aug 2012 20:16:07 UTC
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span>     Message: <span class="s1">'aTargets'</span> is null or not an object
+<span class="o">&gt;</span>     Line: 19
+<span class="o">&gt;</span>     Char: 4817
+<span class="o">&gt;</span>     Code: 0
+<span class="o">&gt;</span>     URI: http://MYDOMAIN/assets/application-3b0e185edc6cf38f7bdac3207f7b8585.js
+<span class="o">&gt;</span>     </code></pre></figure>
 
 <blockquote>
 
   <p>In the min.js code, it corresponds to this bit:</p>
 
 </blockquote>
-<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="o">&gt;</span>     <span class="kd">function</span> <span class="nx">ua</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">t</span><span class="p">,</span><span class="nx">n</span><span class="p">,</span><span class="nx">r</span><span class="p">){</span><span class="kd">var</span> <span class="nx">s</span><span class="p">,</span><span class="nx">u</span><span class="p">,</span><span class="nx">a</span><span class="p">,</span><span class="nx">f</span><span class="p">,</span><span class="nx">l</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span><span class="k">for</span><span class="p">(</span><span class="nx">s</span><span class="o">=</span><span class="nx">t</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="mi">0</span><span class="o">&lt;=</span><span class="nx">s</span><span class="p">;</span><span class="nx">s</span><span class="o">--</span><span class="p">){</span><span class="kd">var</span> <span class="nx">c</span><span class="o">=</span><span class="nx">t</span><span class="p">[</span><span class="nx">s</span><span class="p">].</span><span class="nx">aTargets</span><span class="p">;</span><span class="nx">i</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span><span class="o">||</span><span class="nx">E</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s2">"aTargets must be an array of targets, not a "</span><span class="o">+</span><span class="k">typeof</span> <span class="nx">c</span><span class="p">),</span><span class="nx">u</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="err">"</span>
-<span class="o">&gt;</span>     </code></pre></figure>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="o">&gt;</span>     <span class="kd">function</span> <span class="nx">ua</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">t</span><span class="p">,</span><span class="nx">n</span><span class="p">,</span><span class="nx">r</span><span class="p">){</span><span class="kd">var</span> <span class="nx">s</span><span class="p">,</span><span class="nx">u</span><span class="p">,</span><span class="nx">a</span><span class="p">,</span><span class="nx">f</span><span class="p">,</span><span class="nx">l</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span><span class="k">for</span><span class="p">(</span><span class="nx">s</span><span class="o">=</span><span class="nx">t</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="mi">0</span><span class="o">&lt;=</span><span class="nx">s</span><span class="p">;</span><span class="nx">s</span><span class="o">--</span><span class="p">){</span><span class="kd">var</span> <span class="nx">c</span><span class="o">=</span><span class="nx">t</span><span class="p">[</span><span class="nx">s</span><span class="p">].</span><span class="nx">aTargets</span><span class="p">;</span><span class="nx">i</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span><span class="o">||</span><span class="nx">E</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s2">"aTargets must be an array of targets, not a "</span><span class="o">+</span><span class="k">typeof</span> <span class="nx">c</span><span class="p">),</span><span class="nx">u</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="s2">"
+&gt;     </span></code></pre></figure>
 
 <blockquote>
 

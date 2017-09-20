@@ -100,20 +100,19 @@ predicates.</p>
 in the domain, they could be in the implementation. For our ridiculously
 simple example, we will choose bank accounts:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>class BankAccount
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class BankAccount
 
   # ... 
 
 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>Our bank account instances have lots of state. A really forward-looking
 way to deal with that is to implement a state machine, but let’s
 hand-wave over that and imagine that we’re trying to write Java programs
 with Ruby syntax, so we use a getter and setter for some attribute:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>class BankAccount
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class BankAccount
 
   attr_accessor :frozen
 
@@ -127,13 +126,12 @@ chequing_acct.frozen = false
 if chequeing_acct.frozen
   # do something
 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>If this attribute is always a boolean, we call it a predicate, and in
 the Ruby style borrowed from Lisp, we suffix its getter with a <code class="highlighter-rouge">?</code>:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>class BankAccount
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class BankAccount
 
   attr_writer :frozen
   
@@ -151,8 +149,7 @@ chequing_acct.frozen = false
 if chequeing_acct.frozen?
   # do something
 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>That’s how most of my code is written, and it works just fine. But we
 should be clear about what this code is saying and what it isn’t saying.</p>
@@ -161,7 +158,7 @@ should be clear about what this code is saying and what it isn’t saying.</p>
 
   <p>Let’s compare this:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>class BankAccount
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class BankAccount
 
   attr_writer :frozen
   
@@ -170,12 +167,11 @@ should be clear about what this code is saying and what it isn’t saying.</p>
   end
 
 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>With the following:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>class BankAccount
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class BankAccount
 
 end
 
@@ -192,8 +188,7 @@ class Frozen &lt; BankAccount
 end
 
 bank_account = Frozen.new(...)
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>In the first example, using an attribute <em>implies</em> that <code class="highlighter-rouge">frozen</code> can
 change during an object’s lifespan. In the second example, using classes
@@ -212,7 +207,7 @@ would be insane.</p>
 
   <p>Modules can help us out. Let’s try:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>class BankAccount
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class BankAccount
 
 end
 
@@ -232,8 +227,7 @@ bank_account = BankAccount.new(...).extend(Frozen)
 
 bank_account.frozen?
   #=&gt; true
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>Now we’re extending an object with a module (not including the module in
 a class), and we get the module’s functionality in that object. It works
@@ -251,7 +245,7 @@ nearly always a bad idea, so we bakeit into the initialize method. I
 prefer hashes of options and initializers, but you can do this in other
 ways:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>class BankAccount
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class BankAccount
 
   def initialize options = {}
     self.extend(
@@ -264,23 +258,21 @@ ways:</p>
   end
 
 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>You can experiment with this pattern. If you find yourself writing a lot
 of this kind of code:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>if object.frozen?
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if object.frozen?
   raise "Cannot fuggle with a frozen object"
 else
   fuggle(object)
 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>You can write:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>module Thawed
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module Thawed
 
   def frozen?; false; end
 
@@ -303,15 +295,14 @@ end
 bank_account.guard_with_frozen_check('fuggle') do |acct|
   fuggle(acct)
 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>This is much more ‘OO’ than having code test <code class="highlighter-rouge">frozen?</code>. Not that there’s
 anything wrong with that! But what if you like to test bank accounts for
 frozen-ness? Well, you don’t really need a <code class="highlighter-rouge">frozen?</code> method if you don’t
 want one:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>module Thawed; end
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module Thawed; end
 
 module Frozen; end
 
@@ -319,8 +310,7 @@ bank_account = BankAccount.new(...).extend(Frozen)
 
 bank_account.kind_of?(Frozen)
   #=&gt; true
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>Checking whether an account is a kind of <code class="highlighter-rouge">Frozen</code> is a matter of taste,
 of course. But it’s no worse in my mind than a <code class="highlighter-rouge">frozen?</code> method if we do
@@ -382,7 +372,7 @@ checking predicates or values at all times. The name
 terrible in practice. I’d pick <em>the name</em> as the smell. Consider
 instead:</p>
 
-  <div class="highlighter-rouge"><pre class="highlight"><code>class BankAccount
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class BankAccount
 
   def initialize options = {}
     self.extend(
@@ -417,8 +407,7 @@ bank_account = BankAccount.new security_score: 74
 bank_account.perform_user_action('fuggle') do |acct|
   fuggle(acct)
 end
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
   <p>In this code, clients do not know anything about why an account might be
 froze, they create accounts and provide security scores, and they ask
