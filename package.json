@@ -16,8 +16,7 @@
   "scripts": {
     "start": "concurrently 'npm run sync:start' 'npm run jekyll'",
     "jekyll": "bundle exec jekyll build --incremental --watch",
-    "sync:start":  "browser-sync start -s _site --files _site --reload-delay 1000 --reload-debounce",
-
+    "sync:start": "browser-sync start -s _site --files _site --reload-delay 1000 --reload-debounce",
     "build": "npm run dist",
     "dist": "npm run jekyll:dist",
     "jekyll:dist": "bundle exec jekyll build --config=_config.yml,_baseurl.yml",
