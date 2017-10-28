@@ -5,9 +5,61 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 11 Oct 2017 18:16:12 -0500</pubDate>
-    <lastBuildDate>Wed, 11 Oct 2017 18:16:12 -0500</lastBuildDate>
+    <pubDate>Fri, 27 Oct 2017 20:53:24 -0700</pubDate>
+    <lastBuildDate>Fri, 27 Oct 2017 20:53:24 -0700</lastBuildDate>
     <generator>Jekyll v3.6.0.pre.beta1</generator>
+    
+      <item>
+        <title>TIL: React setState is async, and has a callback</title>
+        <description>&lt;p&gt;While this wasn’t &lt;em&gt;today&lt;/em&gt; exactly, I just learned this recently, and
+it made a difference for something I was working on.&lt;/p&gt;
+
+&lt;p&gt;I had been looking around for a way to determine if the component’s
+state had changed as I expected, mostly doing some debugging and
+tracing, I discovered that &lt;code class=&quot;highlighter-rouge&quot;&gt;setState&lt;/code&gt; is an asynchronous function. The
+second parameter to &lt;code class=&quot;highlighter-rouge&quot;&gt;setState&lt;/code&gt; is a callback function that runs when
+the state has finished updating.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://stackoverflow.com/a/42038724/742446&quot;&gt;discussion&lt;/a&gt; at
+&lt;a href=&quot;https://stackoverflow.com/questions/42038590/when-to-use-react-setstate-callback&quot;&gt;stackoverflow&lt;/a&gt; gives a quite detailed explanation,
+which is great.&lt;/p&gt;
+
+&lt;p&gt;In my case, doing a simplistic &lt;code class=&quot;highlighter-rouge&quot;&gt;console.log&lt;/code&gt; debugging thing, I ended
+up with&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;handleUpdate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;payload&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;other&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;someOtherCrap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mutate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;payload&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;newData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;There are much better reasons for having that callback, of course, but
+this is the one I found a need for at the time.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 27 Oct 2017 17:35:00 -0700</pubDate>
+        <link>http://swaac.tamouse.org/webdev/2017/10/27/til-react-setstate-is-async-and-has-a-callback/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/webdev/2017/10/27/til-react-setstate-is-async-and-has-a-callback/</guid>
+        
+        <category>webdev</category>
+        
+        <category>react</category>
+        
+        <category>setState</category>
+        
+        
+        <category>webdev</category>
+        
+      </item>
     
       <item>
         <title>TIL: Export Unwrapped GraphQL Components to make Unit Testing Possible</title>
@@ -72,7 +124,7 @@ yup
 
 &lt;p&gt;So Cool!&lt;/p&gt;
 </description>
-        <pubDate>Wed, 11 Oct 2017 18:02:00 -0500</pubDate>
+        <pubDate>Wed, 11 Oct 2017 18:02:00 -0700</pubDate>
         <link>http://swaac.tamouse.org/graphql/2017/10/11/til-export-unwrapped-graphql-components-to-make-unit-testing-possible/</link>
         <guid isPermaLink="true">http://swaac.tamouse.org/graphql/2017/10/11/til-export-unwrapped-graphql-components-to-make-unit-testing-possible/</guid>
         
@@ -117,7 +169,7 @@ repo is at &lt;a href=&quot;https://github.com/tamouse/Talk-Rails-GraphQL-React&
 &lt;p&gt;The repo that contains my sandbox / learning application is
 at &lt;a href=&quot;https://github.com/tamouse/r5_graphql_react&quot;&gt;https://github.com/tamouse/r5_graphql_react&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>Mon, 02 Oct 2017 09:40:00 -0500</pubDate>
+        <pubDate>Mon, 02 Oct 2017 09:40:00 -0700</pubDate>
         <link>http://swaac.tamouse.org/graphql/2017/10/02/talk-learning-react-plus-graphql-plus-apollo-with-rails-graphql-api-all-at-once/</link>
         <guid isPermaLink="true">http://swaac.tamouse.org/graphql/2017/10/02/talk-learning-react-plus-graphql-plus-apollo-with-rails-graphql-api-all-at-once/</guid>
         
@@ -174,7 +226,7 @@ as someone suggests, though of course that will work, too.)&lt;/p&gt;
 &lt;p&gt;It seems like this value gets reset to Apple’s choice of &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt; after
 updates from time to time, so you may need to do this more than once.&lt;/p&gt;
 </description>
-        <pubDate>Tue, 26 Sep 2017 18:42:00 -0500</pubDate>
+        <pubDate>Tue, 26 Sep 2017 18:42:00 -0700</pubDate>
         <link>http://swaac.tamouse.org/osx/2017/09/26/fix-make-mac-key-repeat-work/</link>
         <guid isPermaLink="true">http://swaac.tamouse.org/osx/2017/09/26/fix-make-mac-key-repeat-work/</guid>
         
@@ -312,7 +364,7 @@ contribute, comment, etc. I’m still a beginner at this and would
 appreciate feedback.&lt;/p&gt;
 
 </description>
-        <pubDate>Tue, 19 Sep 2017 21:43:00 -0500</pubDate>
+        <pubDate>Tue, 19 Sep 2017 21:43:00 -0700</pubDate>
         <link>http://swaac.tamouse.org/webdev/2017/09/19/apollo-graphql-container-for-mutations/</link>
         <guid isPermaLink="true">http://swaac.tamouse.org/webdev/2017/09/19/apollo-graphql-container-for-mutations/</guid>
         
@@ -431,7 +483,7 @@ contribute, comment, etc. I’m still a beginner at this and would
 appreciate feedback.&lt;/p&gt;
 
 </description>
-        <pubDate>Tue, 19 Sep 2017 21:09:00 -0500</pubDate>
+        <pubDate>Tue, 19 Sep 2017 21:09:00 -0700</pubDate>
         <link>http://swaac.tamouse.org/webdev/2017/09/19/using-current-user-viewer-as-root-of-graphql-queries/</link>
         <guid isPermaLink="true">http://swaac.tamouse.org/webdev/2017/09/19/using-current-user-viewer-as-root-of-graphql-queries/</guid>
         
@@ -552,7 +604,7 @@ contribute, comment, etc. I’m still a beginner at this and would
 appreciate feedback.&lt;/p&gt;
 
 </description>
-        <pubDate>Tue, 19 Sep 2017 18:29:00 -0500</pubDate>
+        <pubDate>Tue, 19 Sep 2017 18:29:00 -0700</pubDate>
         <link>http://swaac.tamouse.org/webdev/2017/09/19/apollo-graphql-container-with-queries/</link>
         <guid isPermaLink="true">http://swaac.tamouse.org/webdev/2017/09/19/apollo-graphql-container-with-queries/</guid>
         
@@ -635,7 +687,7 @@ the following construction:&lt;/p&gt;
 
 &lt;p&gt;Works with Jekyl 3.5.2. YMMV.&lt;/p&gt;
 </description>
-        <pubDate>Mon, 04 Sep 2017 19:00:00 -0500</pubDate>
+        <pubDate>Mon, 04 Sep 2017 19:00:00 -0700</pubDate>
         <link>http://swaac.tamouse.org/jekyll/2017/09/04/jekyll-making-posts-sticky-redux/</link>
         <guid isPermaLink="true">http://swaac.tamouse.org/jekyll/2017/09/04/jekyll-making-posts-sticky-redux/</guid>
         
@@ -722,7 +774,7 @@ helps us to keep
 to
 &lt;a href=&quot;/programming/2017/07/29/pp-2-think-first-program-later/&quot;&gt;proverb 2: think first, program later&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>Sun, 20 Aug 2017 12:01:00 -0500</pubDate>
+        <pubDate>Sun, 20 Aug 2017 12:01:00 -0700</pubDate>
         <link>http://swaac.tamouse.org/programming/2017/08/20/pp-3-use-the-top-down-approach/</link>
         <guid isPermaLink="true">http://swaac.tamouse.org/programming/2017/08/20/pp-3-use-the-top-down-approach/</guid>
         
@@ -819,7 +871,7 @@ employees, and a whole raft of other things. The root mutation seems
 like it’s going to end up as large as the Rails &lt;code class=&quot;highlighter-rouge&quot;&gt;routes.rb&lt;/code&gt; file if
 I’m not careful.&lt;/p&gt;
 </description>
-        <pubDate>Sun, 20 Aug 2017 11:08:00 -0500</pubDate>
+        <pubDate>Sun, 20 Aug 2017 11:08:00 -0700</pubDate>
         <link>http://swaac.tamouse.org/webdev/2017/08/20/graphql-mutating-an-objects-state/</link>
         <guid isPermaLink="true">http://swaac.tamouse.org/webdev/2017/08/20/graphql-mutating-an-objects-state/</guid>
         
@@ -831,70 +883,6 @@ I’m not careful.&lt;/p&gt;
         
         
         <category>webdev</category>
-        
-      </item>
-    
-      <item>
-        <title>Hack of the Day: Comments in package.json?</title>
-        <description>&lt;p&gt;You know how you can’t have JavaScript comments in a .JSON file?
-Sometimes you want them, thus this hack for &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;I’m probably not the first person to think of this, but no one’s ever
-suggested it to me.&lt;/p&gt;
-
-&lt;p&gt;JSON files cannot have comments. But many of our configuration files
-are in JSON, and could benefit from some commentary. For example, why
-did you nail that particular version of &lt;code class=&quot;highlighter-rouge&quot;&gt;webpack-dev-server&lt;/code&gt; ? (A true
-story that happened today.)&lt;/p&gt;
-
-&lt;p&gt;Comments are a sometimes good, sometimes bad thing. I like comments
-that give explanations for why things are the way they are, not so
-much what things are, or how things are done.&lt;/p&gt;
-
-&lt;p&gt;In this case, I wanted to leave a breadcrumb where my project mates
-(now and future) would be able to find some reason for a particular
-version being nailed instead of being allowed to increase with minor
-version changes.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; file has a set of required keys
-(see &lt;a href=&quot;https://docs.npmjs.com/files/package.json&quot;&gt;https://docs.npmjs.com/files/package.json&lt;/a&gt; for details). It
-doesn’t seem to mind if there are other keys, in fact several other
-things utilize keys to configure themselves (e.g. Jest).&lt;/p&gt;
-
-&lt;p&gt;There isn’t a “comments” key, however.&lt;/p&gt;
-
-&lt;p&gt;So I decided to make use of it in our &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; file by creating
-an array of comments offering that “wth were you thinking” commentary
-for future devs.&lt;/p&gt;
-
-&lt;p&gt;Here’s the top fragment of the file:&lt;/p&gt;
-
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;comments&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;There is a bug in webpack-dev-server v2.7.0: https://github.com/webpack/webpack-dev-server/issues/1025&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Nailing redux to v3.5.2 because v3.7.1 is breaking the dispatch maps&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-
-
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;and the regular parts of the file continue after that.&lt;/p&gt;
-
-&lt;p&gt;I think I’ll improve on that by adding the branch / commit where those
-comments come into play.&lt;/p&gt;
-</description>
-        <pubDate>Tue, 08 Aug 2017 15:32:00 -0500</pubDate>
-        <link>http://swaac.tamouse.org/hacks/2017/08/08/hack-of-the-day-comments-in-package-dot-json/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/hacks/2017/08/08/hack-of-the-day-comments-in-package-dot-json/</guid>
-        
-        <category>hacks</category>
-        
-        <category>package.json</category>
-        
-        <category>comments</category>
-        
-        
-        <category>hacks</category>
         
       </item>
     
