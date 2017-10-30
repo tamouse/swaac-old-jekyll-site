@@ -5,9 +5,53 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 27 Oct 2017 20:53:24 -0700</pubDate>
-    <lastBuildDate>Fri, 27 Oct 2017 20:53:24 -0700</lastBuildDate>
+    <pubDate>Sun, 29 Oct 2017 17:31:24 -0700</pubDate>
+    <lastBuildDate>Sun, 29 Oct 2017 17:31:24 -0700</lastBuildDate>
     <generator>Jekyll v3.6.0.pre.beta1</generator>
+    
+      <item>
+        <title>Gerald Wienberg: My most challenging experience as a software develoer</title>
+        <description>&lt;p&gt;&lt;a href=&quot;http://www.geraldmweinberg.com/&quot;&gt;Gerald Weinberg&lt;/a&gt; is a long-time
+writer and commenter on the field of software enginering. I’ve been a
+longtime fan of Jerry, and had the privilege and pleasure of meeting
+him, working with him on some stuff back at HP, and attending one of
+his seminars.&lt;/p&gt;
+
+&lt;p&gt;He’s always proven faithful to my vision of how the field of software
+development should be run, in a humane, thoughtful, and intelligent
+fashion.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;&quot;&gt;Here’s his answer&lt;/a&gt; to the question: “What was your most challenging
+experience in software development?”&lt;/p&gt;
+
+&lt;p&gt;The moral at the end is really the most important take-away for all of
+us learning and working in this area:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Moral: We may think that hardware and software errors are
+challenging, but nothing matches the difficulty of confronting human
+errors—especially when those humans are managers willing to hide
+errors in order to make schedules.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Software development is ultimately a human system, focused on solving
+human problems. This also brings into it all the human fallabilities
+and problems. Keep clear what’s important.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 29 Oct 2017 17:13:00 -0700</pubDate>
+        <link>http://swaac.tamouse.org/people/2017/10/29/gerald-wienberg-my-most-challenging-experience-as-a-software-develoer/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/people/2017/10/29/gerald-wienberg-my-most-challenging-experience-as-a-software-develoer/</guid>
+        
+        <category>jerry</category>
+        
+        <category>weinberg</category>
+        
+        <category>people</category>
+        
+        
+        <category>people</category>
+        
+      </item>
     
       <item>
         <title>TIL: React setState is async, and has a callback</title>
@@ -786,103 +830,6 @@ to
         
         
         <category>programming</category>
-        
-      </item>
-    
-      <item>
-        <title>GraphQL: Mutating an Object's State</title>
-        <description>&lt;p&gt;In our project, we have a class, Job, that includes a state machine to
-handle the different states the job can be in, such as &lt;code class=&quot;highlighter-rouge&quot;&gt;:unscheduled&lt;/code&gt;,
-&lt;code class=&quot;highlighter-rouge&quot;&gt;:scheduled&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;:in_progress&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;:completed&lt;/code&gt; , etc.&lt;/p&gt;
-
-&lt;p&gt;The various state transitions can include some extra logic, such as
-setting or clearing dates, recording the transition step, and a few
-other things. This means I can’t really use a typical mutation of just
-sending up attributes that change.&lt;/p&gt;
-
-&lt;p&gt;In addition, using the &lt;code class=&quot;highlighter-rouge&quot;&gt;graphql-ruby&lt;/code&gt; gem with a root mutation that
-breaks out into other mutations via the fields, I didn’t want to
-populate that root mutation with a slew of entries.&lt;/p&gt;
-
-&lt;p&gt;My approach was to create a &lt;code class=&quot;highlighter-rouge&quot;&gt;transitionJob&lt;/code&gt; field in the root
-mutation:&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;RootMutation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;GraphQL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ObjectType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;define&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;RootMutation&quot;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Root Mutation for Kickserv Application&quot;&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:transitionJob&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;JobGraphType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Mutation that transitions a Job to a new state&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;argument&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;types&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Job ID (not the job_number)&quot;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;argument&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;types&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Action to perform on Job: (start|stop|restart|cancel|hold|unhold)&quot;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;resolve&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;JobTransitionMutation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-  &lt;span class=&quot;c1&quot;&gt;# other mutations...&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;I created the PORO &lt;code class=&quot;highlighter-rouge&quot;&gt;JobTransitionMutation&lt;/code&gt; to handle the actions
-getting passed up to the graphql controller. This was also an
-opportunity to refactor the actual transitions into and event PORO as
-the same code occurred in two standard Rails controllers as well.&lt;/p&gt;
-
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;JobTransitionMutation&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;job&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Job&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;action&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_sym&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;JobStateMachineEventCrank&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;job&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;public_send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;job&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;reload&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Down in the React client, the query to match that mutation looks like:&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;jobTransitionMutation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;gql&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`
-mutation JobTransitionMutation($id: Int!, $action: String!) {
-  transitionJob(id: $id, action: $action) {
-    id status completed_on
-  }
-}
-`&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;A few React components create buttons that the user can press to
-change the various job states that are wrapped with the query above.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;This took me a while to figure out, bouncing back and forth between
-the ruby side and the javascript side, and digging through a lot of
-documentation. I want to give a shoutout to the great folks
-at &lt;a href=&quot;https://www.apollodata.com/&quot;&gt;Apollo Data&lt;/a&gt; for their excellent
-documentation and to &lt;a href=&quot;https://github.com/rmosolgo&quot;&gt;Robert Mosolgo&lt;/a&gt; and
-the GitHub team for
-the &lt;a href=&quot;https://github.com/rmosolgo/graphql-ruby&quot;&gt;graphql-ruby&lt;/a&gt; gem.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Future plans include converting the action into an Enum type.&lt;/p&gt;
-
-&lt;p&gt;I’m not quite sure what to do about the number of mutations we’re
-going to need. Nearly everything in the client hangs off the root node
-of the account, which includes job, estimates, invoices, customers,
-employees, and a whole raft of other things. The root mutation seems
-like it’s going to end up as large as the Rails &lt;code class=&quot;highlighter-rouge&quot;&gt;routes.rb&lt;/code&gt; file if
-I’m not careful.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 20 Aug 2017 11:08:00 -0700</pubDate>
-        <link>http://swaac.tamouse.org/webdev/2017/08/20/graphql-mutating-an-objects-state/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/webdev/2017/08/20/graphql-mutating-an-objects-state/</guid>
-        
-        <category>graphql</category>
-        
-        <category>ruby</category>
-        
-        <category>rails</category>
-        
-        
-        <category>webdev</category>
         
       </item>
     
