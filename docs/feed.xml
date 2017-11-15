@@ -5,9 +5,62 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 29 Oct 2017 17:31:24 -0700</pubDate>
-    <lastBuildDate>Sun, 29 Oct 2017 17:31:24 -0700</lastBuildDate>
+    <pubDate>Wed, 15 Nov 2017 08:44:20 -0600</pubDate>
+    <lastBuildDate>Wed, 15 Nov 2017 08:44:20 -0600</lastBuildDate>
     <generator>Jekyll v3.6.0.pre.beta1</generator>
+    
+      <item>
+        <title>Making Capybara wait a little longer for just one test</title>
+        <description>&lt;p&gt;I needed to add some time to a Capybara test that was checking some
+AJAX in my code. I didn’t want to increase the waiting time overall,
+just for this one particular transaction.&lt;/p&gt;
+
+&lt;p&gt;Capybara has a &lt;code class=&quot;highlighter-rouge&quot;&gt;default_wait_time&lt;/code&gt; setting in the configuration, so it
+makes sense there’s a way to set wait time some other way that’s &lt;em&gt;not&lt;/em&gt;
+the default.&lt;/p&gt;
+
+&lt;p&gt;I couldn’t find anything in the readme, and I didn’t know what to
+search for in the docs. I entered a general set of search terms in
+google, to no particular avail. I finally settled on the rather brute
+force desperation “How do I change Capybara’s wait time for just one
+test?” and got a page at reddit that covered it exactly:
+&lt;a href=&quot;https://www.reddit.com/r/rails/comments/25xrdy/is_there_a_way_to_change_capybaras_wait_time_just/&quot;&gt;https://www.reddit.com/r/rails/comments/25xrdy/is_there_a_way_to_change_capybaras_wait_time_just/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The top two answers provide the best solutions, I think, as they
+expose features available in Capybara that I didn’t know existed.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Capybara&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;using_wait_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# .. run your test in this block&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# .. and it will wait n seconds&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# .. for items to appear in the page&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.reddit.com/r/rails/comments/25xrdy/is_there_a_way_to_change_capybaras_wait_time_just/chm1fe1/&quot;&gt;https://www.reddit.com/r/rails/comments/25xrdy/is_there_a_way_to_change_capybaras_wait_time_just/chm1fe1/&lt;/a&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;have_selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#my_thing&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;wait: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# .. the above will wait 5 seconds for&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# .. `#my_button` item to appear on the page&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.reddit.com/r/rails/comments/25xrdy/is_there_a_way_to_change_capybaras_wait_time_just/chm383m/&quot;&gt;https://www.reddit.com/r/rails/comments/25xrdy/is_there_a_way_to_change_capybaras_wait_time_just/chm383m/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Pretty dang cool!&lt;/p&gt;
+</description>
+        <pubDate>Wed, 15 Nov 2017 08:29:00 -0600</pubDate>
+        <link>http://swaac.tamouse.org/testing/2017/11/15/making-capybara-wait-a-little-longer-for-just-one-test/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/testing/2017/11/15/making-capybara-wait-a-little-longer-for-just-one-test/</guid>
+        
+        <category>capybara</category>
+        
+        <category>testing</category>
+        
+        <category>delay</category>
+        
+        <category>using_wait_time</category>
+        
+        
+        <category>testing</category>
+        
+      </item>
     
       <item>
         <title>Gerald Wienberg: My most challenging experience as a software develoer</title>
@@ -38,7 +91,7 @@ errors in order to make schedules.&lt;/p&gt;
 human problems. This also brings into it all the human fallabilities
 and problems. Keep clear what’s important.&lt;/p&gt;
 </description>
-        <pubDate>Sun, 29 Oct 2017 17:13:00 -0700</pubDate>
+        <pubDate>Sun, 29 Oct 2017 17:13:00 -0500</pubDate>
         <link>http://swaac.tamouse.org/people/2017/10/29/gerald-wienberg-my-most-challenging-experience-as-a-software-develoer/</link>
         <guid isPermaLink="true">http://swaac.tamouse.org/people/2017/10/29/gerald-wienberg-my-most-challenging-experience-as-a-software-develoer/</guid>
         
@@ -90,7 +143,7 @@ up with&lt;/p&gt;
 &lt;p&gt;There are much better reasons for having that callback, of course, but
 this is the one I found a need for at the time.&lt;/p&gt;
 </description>
-        <pubDate>Fri, 27 Oct 2017 17:35:00 -0700</pubDate>
+        <pubDate>Fri, 27 Oct 2017 17:35:00 -0500</pubDate>
         <link>http://swaac.tamouse.org/webdev/2017/10/27/til-react-setstate-is-async-and-has-a-callback/</link>
         <guid isPermaLink="true">http://swaac.tamouse.org/webdev/2017/10/27/til-react-setstate-is-async-and-has-a-callback/</guid>
         
@@ -168,7 +221,7 @@ yup
 
 &lt;p&gt;So Cool!&lt;/p&gt;
 </description>
-        <pubDate>Wed, 11 Oct 2017 18:02:00 -0700</pubDate>
+        <pubDate>Wed, 11 Oct 2017 18:02:00 -0500</pubDate>
         <link>http://swaac.tamouse.org/graphql/2017/10/11/til-export-unwrapped-graphql-components-to-make-unit-testing-possible/</link>
         <guid isPermaLink="true">http://swaac.tamouse.org/graphql/2017/10/11/til-export-unwrapped-graphql-components-to-make-unit-testing-possible/</guid>
         
@@ -213,7 +266,7 @@ repo is at &lt;a href=&quot;https://github.com/tamouse/Talk-Rails-GraphQL-React&
 &lt;p&gt;The repo that contains my sandbox / learning application is
 at &lt;a href=&quot;https://github.com/tamouse/r5_graphql_react&quot;&gt;https://github.com/tamouse/r5_graphql_react&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>Mon, 02 Oct 2017 09:40:00 -0700</pubDate>
+        <pubDate>Mon, 02 Oct 2017 09:40:00 -0500</pubDate>
         <link>http://swaac.tamouse.org/graphql/2017/10/02/talk-learning-react-plus-graphql-plus-apollo-with-rails-graphql-api-all-at-once/</link>
         <guid isPermaLink="true">http://swaac.tamouse.org/graphql/2017/10/02/talk-learning-react-plus-graphql-plus-apollo-with-rails-graphql-api-all-at-once/</guid>
         
@@ -270,7 +323,7 @@ as someone suggests, though of course that will work, too.)&lt;/p&gt;
 &lt;p&gt;It seems like this value gets reset to Apple’s choice of &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt; after
 updates from time to time, so you may need to do this more than once.&lt;/p&gt;
 </description>
-        <pubDate>Tue, 26 Sep 2017 18:42:00 -0700</pubDate>
+        <pubDate>Tue, 26 Sep 2017 18:42:00 -0500</pubDate>
         <link>http://swaac.tamouse.org/osx/2017/09/26/fix-make-mac-key-repeat-work/</link>
         <guid isPermaLink="true">http://swaac.tamouse.org/osx/2017/09/26/fix-make-mac-key-repeat-work/</guid>
         
@@ -408,7 +461,7 @@ contribute, comment, etc. I’m still a beginner at this and would
 appreciate feedback.&lt;/p&gt;
 
 </description>
-        <pubDate>Tue, 19 Sep 2017 21:43:00 -0700</pubDate>
+        <pubDate>Tue, 19 Sep 2017 21:43:00 -0500</pubDate>
         <link>http://swaac.tamouse.org/webdev/2017/09/19/apollo-graphql-container-for-mutations/</link>
         <guid isPermaLink="true">http://swaac.tamouse.org/webdev/2017/09/19/apollo-graphql-container-for-mutations/</guid>
         
@@ -527,7 +580,7 @@ contribute, comment, etc. I’m still a beginner at this and would
 appreciate feedback.&lt;/p&gt;
 
 </description>
-        <pubDate>Tue, 19 Sep 2017 21:09:00 -0700</pubDate>
+        <pubDate>Tue, 19 Sep 2017 21:09:00 -0500</pubDate>
         <link>http://swaac.tamouse.org/webdev/2017/09/19/using-current-user-viewer-as-root-of-graphql-queries/</link>
         <guid isPermaLink="true">http://swaac.tamouse.org/webdev/2017/09/19/using-current-user-viewer-as-root-of-graphql-queries/</guid>
         
@@ -648,7 +701,7 @@ contribute, comment, etc. I’m still a beginner at this and would
 appreciate feedback.&lt;/p&gt;
 
 </description>
-        <pubDate>Tue, 19 Sep 2017 18:29:00 -0700</pubDate>
+        <pubDate>Tue, 19 Sep 2017 18:29:00 -0500</pubDate>
         <link>http://swaac.tamouse.org/webdev/2017/09/19/apollo-graphql-container-with-queries/</link>
         <guid isPermaLink="true">http://swaac.tamouse.org/webdev/2017/09/19/apollo-graphql-container-with-queries/</guid>
         
@@ -731,7 +784,7 @@ the following construction:&lt;/p&gt;
 
 &lt;p&gt;Works with Jekyl 3.5.2. YMMV.&lt;/p&gt;
 </description>
-        <pubDate>Mon, 04 Sep 2017 19:00:00 -0700</pubDate>
+        <pubDate>Mon, 04 Sep 2017 19:00:00 -0500</pubDate>
         <link>http://swaac.tamouse.org/jekyll/2017/09/04/jekyll-making-posts-sticky-redux/</link>
         <guid isPermaLink="true">http://swaac.tamouse.org/jekyll/2017/09/04/jekyll-making-posts-sticky-redux/</guid>
         
@@ -739,97 +792,6 @@ the following construction:&lt;/p&gt;
         
         
         <category>jekyll</category>
-        
-      </item>
-    
-      <item>
-        <title>PP 3: Use the Top-Down Approach</title>
-        <description>&lt;p&gt;Ledgard’s 3rd Proverb is “Use the Top-Down Approach”, which means to
-design our code in levels, from most abstract to most detailed.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&quot;/programming/2017/07/23/pp-introduction/&quot;&gt;Programming Proverbs Introduction&lt;/a&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;It builds on the first two proverbs directly, and introduces the idea
-of &lt;em&gt;postponement of details&lt;/em&gt; by making &lt;em&gt;abstractions&lt;/em&gt;, which are
-&lt;em&gt;successively refined&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;This approach tends to favour the imperative (aka procedural) sort of
-coding and can be useful in object-oriented programming. It’s perhaps
-less useful in functional programming, but it still makes sense
-conceptually that we’ll know a lot more about the big pieces of
-something when we start than the details of implementation.&lt;/p&gt;
-
-&lt;p&gt;Top-down also lends itself very well to the Test-/Behavior-Driven
-development approach, as we should be testing and verifying each
-level as we go along.&lt;/p&gt;
-
-&lt;p&gt;On the other hand, it creates a need for a lot of mocking of
-unimplemented code, which can create overblown test suites for no
-apparent gain. Keep the mocks minimal and only to the point of testing
-the logic of the level under test and don’t attempt to build
-integration tests at first.&lt;/p&gt;
-
-&lt;p&gt;Another advantage is that the top-down approach is helpful in keeping
-our modules, classes, functions, procedures, and methods small. It
-allows us to focus on just what’s important at this level of
-abstraction.&lt;/p&gt;
-
-&lt;p&gt;When creating our initial levels, it’s often helpful to write them
-out in human language as comments. This can often help us derive
-useful names for variables and methods, and to write the test
-statements to be filled in as well.&lt;/p&gt;
-
-&lt;h3 id=&quot;example-atm&quot;&gt;example: ATM&lt;/h3&gt;
-
-&lt;p&gt;Most of us are familiar with an automated teller machine (ATM). If our
-task was to write an interface, in a top-down approach, we might start
-with this:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;loop
-  accept card
-  validate customer
-
-  loop
-    gather request
-    process request
-    break loop if customer is finished
-
-  return card
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;and then refine each step. Taking just “process request” step from
-above:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;when request is a
-  deposit: process deposit
-  withdrawal: process withdrawal
-  balance check: process balance check
-  purchase stamps: process stamp purchase
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;(Some ATMs do a lot more than that, but you get the picture.)&lt;/p&gt;
-
-&lt;p&gt;Being able to just write out the algorithm in plain human language
-helps us to keep
-to
-&lt;a href=&quot;/programming/2017/07/29/pp-2-think-first-program-later/&quot;&gt;proverb 2: think first, program later&lt;/a&gt;.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 20 Aug 2017 12:01:00 -0700</pubDate>
-        <link>http://swaac.tamouse.org/programming/2017/08/20/pp-3-use-the-top-down-approach/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/programming/2017/08/20/pp-3-use-the-top-down-approach/</guid>
-        
-        <category>programming</category>
-        
-        <category>proverbs</category>
-        
-        <category>top-down</category>
-        
-        
-        <category>programming</category>
         
       </item>
     
