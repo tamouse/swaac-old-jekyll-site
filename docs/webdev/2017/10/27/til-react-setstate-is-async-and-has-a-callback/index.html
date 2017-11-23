@@ -1,0 +1,146 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>TIL: React setState is async, and has a callback</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="canonical" href="http://swaac.tamouse.org/webdev/2017/10/27/til-react-setstate-is-async-and-has-a-callback/">
+    <link href="/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/pages/learning">Learning</a></li>
+            
+            <li><a href="/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/pages">Pages</a></li>
+            
+            <li><a href="/tags">Tags</a></li>
+            
+            <li><a href="/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2017 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>TIL: React setState is async, and has a callback</h1>
+Oct 27, 2017
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/categories/webdev">webdev</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/tags/webdev">webdev</a></li> <li role="presentation"><a href="/tags/react">react</a></li> <li role="presentation"><a href="/tags/setState">setState</a></li> 
+</header>
+
+<article>
+<p>While this wasn’t <em>today</em> exactly, I just learned this recently, and
+it made a difference for something I was working on.</p>
+
+<p>I had been looking around for a way to determine if the component’s
+state had changed as I expected, mostly doing some debugging and
+tracing, I discovered that <code class="highlighter-rouge">setState</code> is an asynchronous function. The
+second parameter to <code class="highlighter-rouge">setState</code> is a callback function that runs when
+the state has finished updating.</p>
+
+<p>The <a href="https://stackoverflow.com/a/42038724/742446">discussion</a> at
+<a href="https://stackoverflow.com/questions/42038590/when-to-use-react-setstate-callback">stackoverflow</a> gives a quite detailed explanation,
+which is great.</p>
+
+<p>In my case, doing a simplistic <code class="highlighter-rouge">console.log</code> debugging thing, I ended
+up with</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">handleUpdate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">data</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">myData</span><span class="p">,</span>
+    <span class="na">other</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">someOtherCrap</span><span class="p">,</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">mutate</span><span class="p">({</span>
+    <span class="na">variables</span><span class="p">:</span> <span class="nx">payload</span>
+  <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+        <span class="na">data</span><span class="p">:</span> <span class="nx">response</span><span class="p">.</span><span class="nx">newData</span><span class="p">,</span>
+      <span class="p">},</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">))</span>
+    <span class="p">})</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>There are much better reasons for having that callback, of course, but
+this is the one I found a need for at the time.</p>
+
+</article>
+<hr>
+<p><a href="https://stackoverflow.com/questions/42038590/when-to-use-react-setstate-callback">Source</a></p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/js/main.js"></script>
+
+    
+
+  </body>
+</html>
