@@ -5,9 +5,128 @@
     <description>The development blog of tamouse</description>
     <link>http://swaac.tamouse.org/</link>
     <atom:link href="http://swaac.tamouse.org/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 02 Oct 2017 09:53:14 -0500</pubDate>
-    <lastBuildDate>Mon, 02 Oct 2017 09:53:14 -0500</lastBuildDate>
+    <pubDate>Thu, 23 Nov 2017 09:58:15 -0600</pubDate>
+    <lastBuildDate>Thu, 23 Nov 2017 09:58:15 -0600</lastBuildDate>
     <generator>Jekyll v3.6.0.pre.beta1</generator>
+    
+      <item>
+        <title>What's Falsy in JavaScript?</title>
+        <description>&lt;p&gt;This is a question that comes up from time to time, and is sometimes a
+surprising answer.&lt;/p&gt;
+
+&lt;p&gt;“Falsy” is a term that generally means “These terms act as if they are
+&lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt; when used in comparisons”. There’s a corresponding term
+“Truthy” which generally means “everything else acts like
+&lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;”. These terms are used across many different languages, both
+typed and untyped.&lt;/p&gt;
+
+&lt;p&gt;In JavaScript, there is sometimes confusion and surprise. For clarity,
+I turn to &lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS&quot; title=&quot;You don't know JS on
+Github&quot;&gt;You Don’t Know
+JS&lt;/a&gt; by one of my master teachers, &lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS&quot;&gt;Kyle Simpson
+(@getify)&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In &lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS/blob/master/types%20%26%20grammar/ch4.md#falsy-values&quot;&gt;Types &amp;amp; Grammar: Falsy Values&lt;/a&gt;,
+Kyle explains how things get defined as Falsy:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;All of JavaScript’s values can be divided into two categories:&lt;/p&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;values that will become &lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt; if coerced to &lt;code class=&quot;highlighter-rouge&quot;&gt;boolean&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;everything else (which will obviously become &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;)&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;p&gt;I’m not just being facetious. The JS spec defines a specific, narrow list of values that will coerce to &lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt; when coerced to a &lt;code class=&quot;highlighter-rouge&quot;&gt;boolean&lt;/code&gt; value.&lt;/p&gt;
+
+  &lt;p&gt;How do we know what the list of values is? In the ES5 spec, section 9.2 defines a &lt;code class=&quot;highlighter-rouge&quot;&gt;ToBoolean&lt;/code&gt; abstract operation, which says exactly what happens for all the possible values when you try to coerce them “to boolean.”&lt;/p&gt;
+
+  &lt;p&gt;From that table, we get the following as the so-called “falsy” values list:&lt;/p&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;undefined&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;+0, -0, and &lt;code class=&quot;highlighter-rouge&quot;&gt;NaN&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;””&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;p&gt;That’s it. If a value is on that list, it’s a “falsy” value, and it will coerce to &lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt; if you force a &lt;code class=&quot;highlighter-rouge&quot;&gt;boolean&lt;/code&gt; coercion on it.&lt;/p&gt;
+
+  &lt;p&gt;By logical conclusion, if a value is not on that list, it must be on another list, which we call the “truthy” values list. But JS doesn’t really define a “truthy” list per se. It gives some examples, such as saying explicitly that all objects are truthy, but mostly the spec just implies: &lt;strong&gt;anything not explicitly on the falsy list is therefore truthy&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If the term “coersion” is new to you, read &lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS/blob/master/types%20%26%20grammar/ch4.md#falsy-values&quot;&gt;the whole chapter on Coercion&lt;/a&gt;
+for a deeper understanding. Briefly, “coercion” means when you try to
+change the type of an expression into another in a programming
+language. We do this a lot in JavaScript when you might not realize
+it. A &lt;em&gt;very&lt;/em&gt; common
+(&lt;span style=&quot;color:red;font-weight:bold&quot;&gt;but somewhat dangerous&lt;/span&gt;)
+JS idiom is:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;blah&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// a guard clause; `foo` is coerced to a boolean by the `!` operator&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// carry on with the rest of blah&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;and &lt;code class=&quot;highlighter-rouge&quot;&gt;foo&lt;/code&gt; is not explicitly a &lt;code class=&quot;highlighter-rouge&quot;&gt;boolean&lt;/code&gt; value, such as &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;
+or &lt;code class=&quot;highlighter-rouge&quot;&gt;undefined&lt;/code&gt;, when checking to make sure you’re not operating on
+such a value, it is &lt;em&gt;coerced&lt;/em&gt; into one (using that &lt;code class=&quot;highlighter-rouge&quot;&gt;.ToBoolean&lt;/code&gt; Kyle
+mentions above.) This idiom is used a lot in functions as a guard
+clause to prevent mischief from callers.&lt;/p&gt;
+
+&lt;p&gt;You might also see this instead of an early return:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;blah&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// a guard clause, `foo` is coerced to a boolean by the `if`&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// statement directly&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// carry on with `blah` knowing that `foo` is not `null` or `undefined`&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Of course, with both of these idioms, there can be problems with some
+of the other definitions for falsy: what happend when you intend to
+pass in a value of &lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt; for &lt;code class=&quot;highlighter-rouge&quot;&gt;foo&lt;/code&gt;?&lt;/p&gt;
+
+&lt;p&gt;In such a case, I step back and stop using coercion and go for
+explicitness, and the idiom becomes:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;blah&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// a guard clause, explicit checking&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;undefined&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// carry on with `blah` knowing *exactly* that `foo` is not `null` or `undefined`&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;So there we have it. The ECMAScript specification Kyle refers to above
+is at &lt;a href=&quot;http://www.ecma-international.org/ecma-262/6.0/#sec-toboolean&quot;&gt;http://www.ecma-international.org/ecma-262/6.0/#sec-toboolean&lt;/a&gt;
+if you’re interested in reading it.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;If you found this useful, please go visit Kyle’s site
+&lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS&quot; title=&quot;You
+Don't Know JS Series by Kyle Simpson (@getify) on Github.com&quot;&gt;You-Dont-Know-JS&lt;/a&gt; and
+give him some love. Buy the books, become a patreon!&lt;/p&gt;
+</description>
+        <pubDate>Thu, 23 Nov 2017 09:05:00 -0600</pubDate>
+        <link>http://swaac.tamouse.org/javascript/2017/11/23/whats-falsy-in-javascript/</link>
+        <guid isPermaLink="true">http://swaac.tamouse.org/javascript/2017/11/23/whats-falsy-in-javascript/</guid>
+        
+        <category>javascript</category>
+        
+        <category>falsy</category>
+        
+        <category>coercion</category>
+        
+        
+        <category>javascript</category>
+        
+      </item>
     
       <item>
         <title>Talk: Learning React+GraphQL+Apollo with Rails GraphQL API All At Once</title>
@@ -811,98 +930,6 @@ comments come into play.&lt;/p&gt;
         
         
         <category>hacks</category>
-        
-      </item>
-    
-      <item>
-        <title>TIL: Using enzyme's shallow render with MemoryRouter doesn't work</title>
-        <description>&lt;p&gt;Today, I was writing some React code that used the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Link&amp;gt;&lt;/code&gt; component
-from &lt;code class=&quot;highlighter-rouge&quot;&gt;react-router-dom&lt;/code&gt;, and writing the Jest tests to go along with
-that.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Link&amp;gt;&lt;/code&gt; requires a router and a history component to be available to
-it, and the recommended tool for testing this is to use
-&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;MemoryRouter&amp;gt;&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;enzyme&lt;/code&gt; testing package that works with Jest provides both deep
-and shallow renderers. Shallow rendering is good for doing snapshot
-testing on components where you don’t want to or haven’t yet finalized
-the underlying components.&lt;/p&gt;
-
-&lt;p&gt;The MemoryRouter, however, provides a history object that generates a
-collection of objects with randomly generated keys, so when you
-shallow render your component under test, wrapped in the MemoryRouter,
-you can’t use the snapshot, because it changes every time.&lt;/p&gt;
-
-&lt;p&gt;I got around this particular problem by deep rendering, using
-&lt;code class=&quot;highlighter-rouge&quot;&gt;enzyme&lt;/code&gt;’s &lt;code class=&quot;highlighter-rouge&quot;&gt;render&lt;/code&gt; function. The component under test was very
-simple, just a few &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Link&amp;gt;&lt;/code&gt; components, and no other components I was
-developing underneath it.&lt;/p&gt;
-
-&lt;p&gt;There will likely be cases coming up that cannot be addressed well
-with a deep render as a unit test, however, in which case I will have
-to rely more on writing many more expectations.&lt;/p&gt;
-
-&lt;h2 id=&quot;example&quot;&gt;Example&lt;/h2&gt;
-
-&lt;div class=&quot;language-jsx highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'react'&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;MemoryRouter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'react-router'&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Link&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'react-router-dom'&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;shallow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'enzyme'&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;MyComp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;linkText&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;iconClass&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;`fa fa-sm fa-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;h2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;Some header&lt;span class=&quot;p&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;h2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;to=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;href&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;linkText&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;className=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;iconClass&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;/&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Link&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-
-&lt;span class=&quot;nx&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;This will work with a deep render&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;actual&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MemoryRouter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MyComp&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http://example.com&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;linkText=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;An Example&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;icon=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;external-link&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;/&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MemoryRouter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;)&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toMatchSnapshot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-
-&lt;span class=&quot;nx&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;This will fail with a shallow render&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;actual&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;shallow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MemoryRouter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MyComp&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http://example.com&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;linkText=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;An Example&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;icon=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;external-link&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;/&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MemoryRouter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;)&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toMatchSnapshot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Link&amp;gt;&lt;/code&gt; &lt;a href=&quot;https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/api/Link.md&quot;&gt;https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/api/Link.md&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;MemoryRouter&amp;gt;&lt;/code&gt; &lt;a href=&quot;https://reacttraining.com/react-router/core/api/MemoryRouter&quot;&gt;https://reacttraining.com/react-router/core/api/MemoryRouter&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;React Router Testing &lt;a href=&quot;https://reacttraining.com/react-router/core/guides/testing&quot;&gt;https://reacttraining.com/react-router/core/guides/testing&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</description>
-        <pubDate>Wed, 02 Aug 2017 10:54:00 -0500</pubDate>
-        <link>http://swaac.tamouse.org/testing/2017/08/02/TIL-enzyme-shallow-render-with-memoryrouter-doesnt-work/</link>
-        <guid isPermaLink="true">http://swaac.tamouse.org/testing/2017/08/02/TIL-enzyme-shallow-render-with-memoryrouter-doesnt-work/</guid>
-        
-        <category>react</category>
-        
-        <category>react-router</category>
-        
-        <category>react-router-dom</category>
-        
-        <category>MemoryRouter</category>
-        
-        <category>jest</category>
-        
-        <category>enzyme</category>
-        
-        <category>testing</category>
-        
-        
-        <category>testing</category>
         
       </item>
     
