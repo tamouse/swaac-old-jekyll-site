@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Gerald Wienberg: My most challenging experience as a software develoer"
+title: "Gerald Wienberg: My most challenging experience as a software developer"
 date: 2017-10-29 17:13
 categories: ["people"]
 tags: ["jerry", "weinberg", "people"]
