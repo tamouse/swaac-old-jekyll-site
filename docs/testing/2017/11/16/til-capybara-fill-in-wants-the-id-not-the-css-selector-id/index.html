@@ -1,0 +1,141 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>TIL: Capybara fill_in wants the id, not the CSS selector id</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/testing/2017/11/16/til-capybara-fill-in-wants-the-id-not-the-css-selector-id/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>TIL: Capybara fill_in wants the id, not the CSS selector id</h1>
+Nov 16, 2017
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/testing">testing</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/capybara">capybara</a></li> <li role="presentation"><a href="/swaac/tags/rails">rails</a></li> <li role="presentation"><a href="/swaac/tags/testing">testing</a></li> <li role="presentation"><a href="/swaac/tags/forms">forms</a></li> <li role="presentation"><a href="/swaac/tags/fill_in">fill_in</a></li> 
+</header>
+
+<article>
+  <p>So today I learned that one should pay closer attention to what the
+documetation says instead of just assuming you already know. RTFM^2.</p>
+
+<p>In Capybara, you can fill in fields in forms using the <code class="highlighter-rouge">.fill_in()</code>
+method. In
+<a href="http://www.rubydoc.info/github/teamcapybara/capybara/master/Capybara/Node/Actions#fill_in-instance_method">the documentation</a>
+it discusses the types of locators you can use:</p>
+
+<blockquote>
+  <p>Locate a text field or text area and fill it in with the given text
+The field can be found via its name, id or label text.</p>
+</blockquote>
+
+<p>It doesn’t say <em>anything</em> about using a CSS selector!</p>
+
+<p>So: this does not work:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@modal.fill_in("#new-job-number-input-#{@job.id}", with: "999")
+</code></pre></div></div>
+
+<p>But this, however, <strong>DOES</strong> work:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@modal.fill_in("new-job-number-input-#{@job.id}", with: "999")
+</code></pre></div></div>
+
+<p>That one, single “#” at the beginning of the string was throwing me
+off, causing me to reach for other sorts of shenannigans to find the
+field to fill in.</p>
+
+<p>Hooray, persistence!</p>
+
+</article>
+<hr>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

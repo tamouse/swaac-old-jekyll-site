@@ -1,0 +1,189 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Jekyllizing My Cookbook</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/swaac/2013/08/26/jekyllizing-my-cookbook/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>Jekyllizing My Cookbook</h1>
+Aug 26, 2013
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/swaac">swaac</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/howtos">howtos</a></li> <li role="presentation"><a href="/swaac/tags/jekyll">jekyll</a></li> 
+</header>
+
+<article>
+  <p>Today’s fun was working with <a href="http://jekyllrb.com">Jekyll</a>, the static
+site generator that underlies <a href="http://octopress.org">Octopress</a> and
+<a href="http://pages.github.com">Github Pages</a>. I have a cookbook online on
+my <a href="http://wiki.tamaratemple.com/Recipes/HomePage">wiki</a>. I am
+starting to look at moving off that wiki and building the information
+there as a static web site instead, as part of my migration away from
+managing a server as I said in my
+<a href="/blog/2013/05/15/introduction/">introduction</a>.</p>
+
+<p>Today was fun and interesting learning how to work with Jekyll itself
+and finding out what I might be able to do with it.</p>
+
+<!--more-->
+
+<h2 id="where-to-start">Where To Start?</h2>
+
+<p>I knew I was going to go with a static site generator, but which one?
+I have been using Octopress here on the github pages, but did I want
+to create another github pages project blog for something that didn’t
+really have a project associated with it? Plus, how to generate the
+gh-pages themselves. I know octopress can do that, but I also am
+wanting to use non-blog pages, and wanted to learn more about Jekyll
+itself.</p>
+
+<p>So Jekyll it is.</p>
+
+<h2 id="how-to-organize-things">How to Organize Things?</h2>
+
+<p>I still haven’t quite gotten this fully fleshed out, but for now, I
+have pages starting from the root directory, <code class="highlighter-rouge">recipes/</code> and
+subdirectories for the major types of food: <code class="highlighter-rouge">main-dishes</code>,
+<code class="highlighter-rouge">side-dishes</code>, <code class="highlighter-rouge">baked-goods</code>, and so on.</p>
+
+<p>I envision that under each of the directories and subdirectories, I
+will generate and index.html page containining links to the
+subdirectories and files within it. Should be interesting! I will have
+to write this by hand, obviously, as well as whatever feeds might be
+involved here, but I probably won’t do that as such. (Although feeds
+might be a reason to go back to posting recipes instead and using
+categories. Hmm.)</p>
+
+<h2 id="writing-a-liquid-tag">Writing a Liquid Tag</h2>
+
+<p>Jekyll has a liquid tag that lets you write the link to a post by just
+giving it’s slug name: <code class="highlighter-rouge">post_url</code>. There isn’t one for getting the
+page’s url given it’s slug, so I wrote one. That was fun and a good
+learning, though I had to embed lots of debug prints to see what was
+going on. I didn’t want to debug with <code class="highlighter-rouge">pry</code> as it involved too many
+loops and steps.</p>
+
+<h2 id="where-to-deploy">Where to Deploy?</h2>
+
+<p>Despite my reluctance to run a server, I still have 3 of them (!?!?)
+and so I’m putting the recipes under my server at tamouse.org on
+Gandi. I have that set up to quickly add domains and subdomains, and
+letting it serve up the static files will be neat. I’m currently
+saving the generated files in the git repo; I may change my mind later
+and remove them, and make sure the generate the pages on the remote
+site during an update, which I may automate with <code class="highlighter-rouge">chef-solo</code> which I
+am also playing with.</p>
+
+<h2 id="but-wait-theres-more">But Wait, There’s More!</h2>
+
+<p>While working on both this blog and the recipe blog at the same time,
+I found myself having to remember to shut down the preview servers
+going back and forth.</p>
+
+<p>And then <strong>POW</strong> it hit me: Use POW.</p>
+
+<h2 id="pow">POW</h2>
+
+<p><a href="http://pow.cx/">POW</a> is a powerful little gizmo for the mac that
+lets you have multiple Rack applications underway in development at
+the same time, without having the bindings collide.</p>
+
+<p>After you install it, all you have to do is symlink your application
+to the <code class="highlighter-rouge">~/.pow/</code> directory, and then you can point your browser at the
+symlink name plus <code class="highlighter-rouge">.dev</code>. So cool!</p>
+
+</article>
+<hr>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

@@ -1,0 +1,239 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Essential Tools for Starting a Rails App in 2013 | Pete Keen</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/swaac/2013/09/20/essential-tools-for-starting-a-rails-app-in-2013-pete-keen/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>Essential Tools for Starting a Rails App in 2013 | Pete Keen</h1>
+Sep 20, 2013
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/swaac">swaac</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/rails">rails</a></li> <li role="presentation"><a href="/swaac/tags/tools">tools</a></li> 
+</header>
+
+<article>
+  <p>A repost of <a href="http://www.petekeen.net/essential-tools-for-starting-a-rails-app-in-2013">http://www.petekeen.net/essential-tools-for-starting-a-rails-app-in-2013</a>.</p>
+
+<h2 id="author-pete-keen">Author: Pete Keen</h2>
+<h2 id="sunday-15-september-2013">Sunday, 15 September 2013</h2>
+
+<blockquote>
+  <p>Over the past few years I’ve written a number of Rails applications.
+It’s become my default “scratch an itch” tool for when I need to build
+an app quickly to do a task. Even though Rails is mostly
+batteries-included, there are a few tools that make writing new
+applications so much easier. This is my list of tools that I use for
+pretty much every new Rails project.</p>
+
+  <p><em>Edit: The discussion on <a href="https://news.ycombinator.com/item?id=6393242">Hacker
+News</a> has some great gems
+that you should consider using as well.</em></p>
+
+  <h3 id="dotenv"><a href="https://github.com/bkeepers/dotenv">Dotenv</a></h3>
+
+  <p><a href="https://github.com/bkeepers/dotenv">Dotenv</a> is a simple gem that loads
+environment variables from a file named <code class="highlighter-rouge">.env</code> in your project root into
+the <code class="highlighter-rouge">ENV</code> hash within Ruby. Getting configuration from the environment
+is one of the factors in <a href="http://12factor.net">12 Factor Applications</a>,
+and using a <code class="highlighter-rouge">.env</code> file for development eases the transition to
+deploying on Heroku. Or, if you’re crazy like me, deploying on your own
+hardware using a nasty brew of Capistrano and Foreman.</p>
+
+  <h3 id="devise"><a href="https://github.com/plataformatec/devise">Devise</a></h3>
+
+  <p>Most Rails apps are going to need a way to authenticate users. You could
+write something yourself, but there are a lot of subtle security
+concerns that you have to take into account. By using an off the shelf
+product like <a href="https://github.com/plataformatec/devise">Devise</a> you’re
+insulated from having to worry about that. Some people use
+<a href="https://github.com/binarylogic/authlogic">AuthLogic</a>, which is also
+perfectly fine.</p>
+
+  <h3 id="brakeman"><a href="http://brakemanscanner.org">Brakeman</a></h3>
+
+  <p>There have been quite a few security vulnerabilities over the past year
+or so inside Rails, some of which are due to Rails themselves, but many
+are coding errors or best practices that, over time, have turned out to
+be not the best. <a href="http://brakemanscanner.org">Brakeman</a> is a security
+scanner that looks at your code base for both categories of error and
+tells you if you’re doing something wrong. I run Brakeman over my
+codebase as part of my test suite so I know immediately when I’m doing
+something that isn’t quite right.</p>
+
+  <h3 id="rails-best-practices"><a href="https://github.com/railsbp/rails_best_practices">Rails Best Practices</a></h3>
+
+  <p>In a simlar vein to Brakeman, <a href="https://github.com/railsbp/rails_best_practices">Rails Best
+Practices</a> is a list of
+best practices that anyone can add to, vote on, and modify. They provide
+a scanner that looks for violations of these best practices and tells
+you about them. I also run this as part of my test suite, not because
+they’re necessarily security focused, but hard-won experience has taught
+me that doing (most of) the things that RBP says to do leads to a more
+maintainable codebase. They provide a configuration file that you can
+tweak, in case the scanner starts warning on something that you don’t
+think it should.</p>
+
+  <h3 id="simple-form"><a href="https://github.com/plataformatec/simple_form">Simple Form</a></h3>
+
+  <p>Much of what we do as Rails developers boils down to making simple CRUD
+forms to work with models. Much of this is going to be inside an admin
+interface that users never actually see so we want to get the job done
+as quickly as possible. <a href="https://github.com/plataformatec/simple_form">Simple
+Form</a> lets you write the
+simplest form declaration possible and bakes in a lot of useful things
+like error and validation handling. It’s also compatible with a number
+of CSS frameworks like Zurb Foundation and Bootstrap. I tend to use
+Simple Form in lieu of an admin interface generator like ActiveAdmin,
+mostly because I haven’t had much luck getting those to play with Rails
+4.</p>
+
+  <h3 id="sidekiq"><a href="http://sidekiq.org">Sidekiq</a></h3>
+
+  <p>At some point every Rails application is going to need to do some
+background processing, especially if you’re making server-side calls to
+other web services. These should <em>always</em> be done outside of a web
+request because Rule Number 1 is <a href="http://en.wikipedia.org/wiki/Fallacies_of_Distributed_Computing">The network is
+unreliable</a>
+(the PDF in the sources block is a great explanation of the problems of
+distributed computing, btw). I’ve explored a number of different
+background processing systems for Rails and the best that I’ve found is
+named <a href="http://sidekiq.org">Sidekiq</a>. It uses less resources per worker
+than any of the rest and it is super easy to manage.</p>
+
+  <p>Share: 
+<a href="https://facebook.com/sharer.php?u=http%3A%2F%2Fpkn.me/tools"><strong>](https://plus.google.com/share?url=http%3A%2F%2Fpkn.me/tools) 
+[</strong></a> 
+<a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fpkn.me/tools&amp;text=Essential%20Tools%20for%20Starting%20a%20Rails%20App%20in%202013&amp;via=zrail">**</a> 
+<a href="https://news.ycombinator.com/submitlink?u=http%3A%2F%2Fwww.petekeen.net/essential-tools-for-starting-a-rails-app-in-2013&amp;t=Essential%20Tools%20for%20Starting%20a%20Rails%20App%20in%202013">Y</a> </p>
+
+  <p><a href="/mastering-modern-payments"><img src="https://d2s7foagexgnc2.cloudfront.net/files/9e8485ea8977967c7fe7/paperbacklandscape-1.png" alt="" /></a></p>
+
+  <h4 id="mastering-modern-payments-using-stripe-with-rails"><a href="/mastering-modern-payments">Mastering Modern Payments: Using Stripe with Rails</a></h4>
+
+  <p>Check out my guide on how to properly integrate Stripe with Ruby on
+Rails, covering background processing, audit trails, admin pages and
+more.</p>
+
+  <p><a href="/mastering-modern-payments">Learn More and Buy Now</a></p>
+
+  <p>Other Formats:  <a href="/essential-tools-for-starting-a-rails-app-in-2013.pdf"><img src="https://d2s7foagexgnc2.cloudfront.net/files/7d44797a6ac52e7fb898/pdf.png" alt="Download
+PDF" /></a>
+<a href="/essential-tools-for-starting-a-rails-app-in-2013.md"><img src="https://d2s7foagexgnc2.cloudfront.net/files/4fb4d0b0a7a0bb33a2e0/markdown.png" alt="Download Raw
+Markdown" /></a></p>
+
+  <p>Tagged: <a href="/tag/Programming">Programming</a>  <a href="/tag/Rails">Rails</a> </p>
+
+  <ul>
+    <li>© <a href="/">Pete Keen</a></li>
+    <li><a href="https://github.com/peterkeen">**</a></li>
+    <li><a href="http://www.linkedin.com/in/peterkeen">**</a></li>
+    <li><a href="http://twitter.com/zrail">**</a></li>
+    <li><a href="mailto:pete@bugsplat.info">**</a></li>
+    <li><a href="/index.xml">**</a></li>
+  </ul>
+
+</blockquote>
+
+</article>
+<hr>
+
+<p>
+  <strong>Source</strong>:
+  <a href="http://www.petekeen.net/essential-tools-for-starting-a-rails-app-in-2013">
+    http://www.petekeen.net/essential-tools-for-starting-a-rails-app-in-2013
+  </a>
+</p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

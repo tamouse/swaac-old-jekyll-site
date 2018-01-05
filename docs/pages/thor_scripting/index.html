@@ -1,0 +1,179 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Thor Scripting</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/pages/thor_scripting/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>Thor Scripting </h1>
+
+</header>
+
+<article>
+<p>So I’ve been playing around with thor for a whlie, and have a couple of interesting things I’ve learned.</p>
+
+<h2 id="making-unix-like-options-available-for-commands">Making “unix-like” options available for commands</h2>
+
+<p>A typical unix command (both short and long options) typically doesn’t have a subcommand associated with it.</p>
+
+<p>To get <code class="highlighter-rouge">thor</code> to emulate this, you use the <code class="highlighter-rouge">map</code> method:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyScript</span> <span class="o">&lt;</span> <span class="no">Thor</span>
+  <span class="no">VERSION</span> <span class="o">=</span> <span class="s2">"0.1.0"</span>
+  <span class="kp">include</span> <span class="no">Thor</span><span class="o">::</span><span class="no">Actions</span>
+  <span class="n">map</span> <span class="s2">"-V"</span> <span class="o">=&gt;</span> <span class="ss">:version</span>
+  <span class="n">map</span> <span class="s2">"--version"</span> <span class="o">=&gt;</span> <span class="ss">:version</span>
+
+  <span class="n">desc</span> <span class="s2">"version"</span><span class="p">,</span> <span class="s2">"display the version string"</span>
+  <span class="k">def</span> <span class="nf">version</span>
+    <span class="n">say</span> <span class="s2">"MyScript version: </span><span class="si">#{</span><span class="no">MyScript</span><span class="o">::</span><span class="no">VERSION</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">MyScript</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="no">ARGV</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Then you can call the script with</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ myscript -V
+MyScript version: 0.1.0
+</code></pre></div></div>
+
+<p>And you’ll see the version string!</p>
+
+<h2 id="testing-thor-scripts">Testing thor scripts</h2>
+
+<p>I set up a thor script development arena with the standard bundler <code class="highlighter-rouge">gem</code> command:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bundle gem jekyllpress -b -t spec
+</code></pre></div></div>
+
+<p>which creates an executable in <code class="highlighter-rouge">bin/jekyllpress</code> that just requires <code class="highlighter-rouge">lib/jekyllpress.rb</code> and that’s it. I put my thor application inside the <code class="highlighter-rouge">Jekyllpress</code> module like so:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">Jekyllpress</span>
+  <span class="k">class</span> <span class="nc">App</span> <span class="o">&lt;</span> <span class="no">Thor</span>
+    <span class="c1">#...</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>and added the autoinvocation into the <code class="highlighter-rouge">bin</code> script:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#... initializing thingies</span>
+<span class="nb">require</span> <span class="s1">'jekyllpress'</span>
+<span class="no">Jekyllpress</span><span class="o">::</span><span class="no">App</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="no">ARGV</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>so the library module would be clean for the purposes of testing; I could pass in things from the specs without having to worry about the application running every time it got included.</p>
+
+<p>Now, a typical spec will be:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">it</span> <span class="s2">"returns a version string"</span> <span class="k">do</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="no">Jekyllpress</span><span class="o">::</span><span class="no">App</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="sx">%w[version]</span><span class="p">)</span>
+  <span class="n">expect</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="nf">to</span> <span class="kp">include</span><span class="p">(</span><span class="no">Jekyllpress</span><span class="o">::</span><span class="no">VERSION</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="what-if-your-action-prints-output-instead-of-returning-a-value">What if your action prints output instead of returning a value?</h2>
+
+<p>Have it do both: do the printing or whatever, but return the value(s) you want to test for:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">version</span>
+  <span class="n">say</span> <span class="s2">"Jekyllpress version: </span><span class="si">#{</span><span class="no">Jekyllpress</span><span class="o">::</span><span class="no">VERSION</span><span class="si">}</span><span class="s2">"</span>
+  <span class="no">Jekyllpress</span><span class="o">::</span><span class="no">VERSION</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

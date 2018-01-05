@@ -1,0 +1,134 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Implementing Password Recovery</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/pages/security-concerns/implementing-password-recovery/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>Implementing Password Recovery </h1>
+
+</header>
+
+<article>
+<p>Password recovery is a process which becomes necessary when a genuine application user is unable to authenticate due to lost or forgotten passwords. There are several challenges in the implementation of an automated password recovery process as passwords are often the only verifiable identifier which is known only to the user. Implementation of an insecure password recovery process often results in the following risks:</p>
+
+<ul>
+  <li>A malicious user can use an automated tool to initiate password recovery request for hundreds of genuine users resulting in SPAM.</li>
+  <li>Sensitive information like OLD password or a temporary-NEW password is sent in clear text email to the genuine user making it susceptible to a sniffer.</li>
+  <li>Weak authentication mechanisms like secret questions (Which is your favorite color?) with easily guessable answers are used to authenticate the user.</li>
+</ul>
+
+<h2 id="secure-implementation-of-automated-password-recovery">Secure implementation of automated password recovery</h2>
+
+<p>When a “Forgot Password” link is clicked by a user, his primary concern is whether he has reached a valid page or a phishing site. To avoid such concerns, it is good if all the pages are SSL enabled.</p>
+
+<p>At the first page ask the user for his user-id for which the recovery process is getting initiated. Also query some details to partially confirm his identity — some details like zip code and last name of the user. These details may not be entirely “secret” but will still reduce the number of people who can proceed to next stage. It is still better if we use random user details instead of having the same question at all times.</p>
+
+<p>Correct answers to the above will take the user to second page. At the second page ask the user the secret question he had provided at the time of registration. If the answer is true send an email to the user with a link. Provide a Captcha (Completely Automated Public Turing test to tell Computers and Humans Apart) here to stop the automated tools. At the time of registration, it is ideal to have the user choose his questions and provide answers in addition to providing standard set of questions. Questions like “What is your favorite color” should be avoided from the standard set.</p>
+
+<p>Correct answers to the secret question should trigger an automated mail to the user’s email id (preset and confirmed by the user at the time of registration) which would contain a https link to page “Select a new password”. At this page application should again validate the user’s secret question. A genuine response to the secret question should take him directly to the page that would request the user to enter a new password and save this in the application password-database. The link should contain an ID or token number which gets invalidated after the password has been changed. Prompting for the secret question a second time, is to ensure that an unauthorized person has not sniffed the user’s email and got access to the link.</p>
+
+<p>The above process addresses all the key security issues pertaining to password recovery. To summarize:</p>
+
+<ul>
+  <li>Enable SSL for all pages related to password recovery</li>
+  <li>Have multi-stage validation-personal details and secret question</li>
+  <li>Use CAPTCHAS to defend against automated tools</li>
+  <li>For valid users send an email with link to “Select a new password”</li>
+  <li>Revalidate the user when he reaches the link</li>
+  <li>Invalidate the link soon after password is changed</li>
+</ul>
+
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

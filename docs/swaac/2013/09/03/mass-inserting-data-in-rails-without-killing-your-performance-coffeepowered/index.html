@@ -1,0 +1,348 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Mass inserting data in Rails without killing your performance – Coffeepowered</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/swaac/2013/09/03/mass-inserting-data-in-rails-without-killing-your-performance-coffeepowered/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>Mass inserting data in Rails without killing your performance – Coffeepowered</h1>
+Sep 3, 2013
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/swaac">swaac</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/rails">rails</a></li> <li role="presentation"><a href="/swaac/tags/mass-insertion">mass-insertion</a></li> <li role="presentation"><a href="/swaac/tags/performance">performance</a></li> <li role="presentation"><a href="/swaac/tags/activerecord">activerecord</a></li> <li role="presentation"><a href="/swaac/tags/tutorials">tutorials</a></li> <li role="presentation"><a href="/swaac/tags/howtos">howtos</a></li> 
+</header>
+
+<article>
+  <p>Clipped on 2013-09-03 10:22:52 -0500</p>
+
+<!--more-->
+
+<blockquote>
+  <h4 id="chris-heald">Chris Heald</h4>
+
+  <p>Chief Architect for <a href="http://mashable.com">Mashable</a>. Rubyist, husband,
+father, and all around tall guy.</p>
+
+  <h1 id="mass-inserting-data-in-rails-without-killing-your-performance">Mass inserting data in Rails without killing your performance</h1>
+
+  <p>Mass inserting is one of those operations that isn’t really
+well-supported by ActiveRecord, but which has to be done nonethless. You
+might say, “Well hey, I’ll just run a loop and create a bunch of AR
+objects, no sweat”.</p>
+
+  <p>That’ll work, but if speed is a factor, it might not be your best
+option.</p>
+
+  <p>ActiveRecord makes interface to the DB very easy, but it doesn’t
+necessarily make it fast. Instantiating an ActiveRecord object is
+costly, and if you do a lot of ‘em, that’s going to cause you to bump up
+against the garbage collector, which will significantly hinder
+performance. There are several options, though, depending on how much
+speed you need.</p>
+
+  <p>There are benchmarks at the bottom of the post, so if you’re just
+interested in those, scroll down.</p>
+
+  <h2 id="option-1-use-transactions">Option 1: Use transactions</h2>
+
+  <p>This is definitely the easiest method, and while you’ll realize gains
+from it, you aren’t going to be breaking any speed records using only
+this method. However, it’s well worth it if you are doing mass inserts
+via ActiveRecord.</p>
+
+  <p>Instead of</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1000.times { Model.create(options) }
+</code></pre></div>  </div>
+
+  <p>You want:</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ActiveRecord::Base.transaction do
+  1000.times { Model.create(options) }
+end
+</code></pre></div>  </div>
+
+  <p>The net effect is that the database performs all of your inserts in a
+single transaction, rather than starting and committing a new
+transaction for every request.</p>
+
+  <h2 id="options-2-get-down-and-dirty-with-the-raw-sql">Options 2: Get down and dirty with the raw SQL</h2>
+
+  <p>If you know that your data is valid and can afford to skip validations,
+you can save a <strong>lot</strong> of time by just jumping directly to raw SQL.</p>
+
+  <p>Imagine, for example, that you’re running the following:</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1000.times {|i| Foo.create(:counter =&gt; i) }
+</code></pre></div>  </div>
+
+  <p>That’s going to create 1000 ActiveRecord objects, run validations,
+generate the insert SQL, and dump it into the database. You can realize
+large performance gains by just jumping directly to the generated SQL.</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1000.times do |i|
+  Foo.connection.execute "INSERT INTO foos (counter) values (#{i})"
+end
+</code></pre></div>  </div>
+
+  <p>You should use <code class="highlighter-rouge">sanitize_sql</code> and such as necessary to sanitize input
+values if they are not already sanitized, but with this technique you
+can realize extremely large performance gains. Of course, wrapping all
+those inserts in a single transaction, as in Option 1 gets you even more
+performance.</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Foo.transaction do
+  1000.times do |i|
+    Foo.connection.execute "INSERT INTO foos (counter) values (#{i})"
+  end
+end
+</code></pre></div>  </div>
+
+  <h1 id="option-3-a-single-mass-insert">Option 3: A single mass insert</h1>
+
+  <p>Many databases support mass inserts of data in a single insert
+statement. They are able to significantly optimize this operation under
+the hood, and if you’re comfortable using it, will be your fastest
+option by far.</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>inserts = []
+TIMES.times do
+  inserts.push "(3.0, '2009-01-23 20:21:13', 2, 1)"
+end
+sql = "INSERT INTO user_node_scores (`score`, `updated_at`, `node_id`, `user_id`) VALUES #{inserts.join(", ")}"
+</code></pre></div>  </div>
+
+  <p>No transaction block is necessary here, since it’s just a single
+statement, and the DB will wrap it in a transaction. We build an array
+of value sets to include, then just join them into the <code class="highlighter-rouge">INSERT</code>
+statement. We don’t use string concatenation, since it will result in
+significantly more string garbage generated, which could potentially get
+us into the GC, which we’re trying to avoid (and hey, memory savings are
+always good).</p>
+
+  <h2 id="option-4-activerecordextensions">Option 4: ActiveRecord::Extensions</h2>
+
+  <p>njero in <code class="highlighter-rouge">#rubyonrails</code> pointed me at <a href="http://www.continuousthinking.com/tags/arext/rdoc/index.html">this nifty little gem</a> and I
+decided to include it. It seems to try to intelligently do mass inserts
+of data. I wasn’t able to get it to emulate the single mass insert for a
+MySQL database, but it does provide a significant speed increase without
+much additional work, and can preserve your validations and such.</p>
+
+  <p>There’s the obvious added benefit that you stay in pure Ruby, and don’t
+have to get into the raw SQL.</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>columns = [:score, :node_id, :user_id]
+values = []
+TIMES.times do
+    values.push [3, 2, 1]
+end
+
+UserNodeScore.import columns, values
+</code></pre></div>  </div>
+
+  <h2 id="benchmarks">Benchmarks</h2>
+
+  <p>I used a simple script to test each of the methods described here.</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require "ar-extensions"
+
+CONN = ActiveRecord::Base.connection
+TIMES = 10000
+
+def do_inserts
+    TIMES.times { UserNodeScore.create(:user_id =&gt; 1, :node_id =&gt; 2, :score =&gt; 3) }
+end
+
+def raw_sql
+    TIMES.times { CONN.execute "INSERT INTO `user_node_scores` (`score`, `updated_at`, `node_id`, `user_id`) VALUES(3.0, '2009-01-23 20:21:13', 2, 1)" }
+end
+
+def mass_insert
+    inserts = []
+    TIMES.times do
+        inserts.push "(3.0, '2009-01-23 20:21:13', 2, 1)"
+    end
+    sql = "INSERT INTO user_node_scores (`score`, `updated_at`, `node_id`, `user_id`) VALUES #{inserts.join(", ")}"
+    CONN.execute sql
+end
+
+def activerecord_extensions_mass_insert(validate = true)
+    columns = [:score, :node_id, :user_id]
+    values = []
+    TIMES.times do
+        values.push [3, 2, 1]
+    end
+
+    UserNodeScore.import columns, values, {:validate =&gt; validate}
+end
+
+puts "Testing various insert methods for #{TIMES} inserts\n"
+puts "ActiveRecord without transaction:"
+puts base = Benchmark.measure { do_inserts }
+
+puts "ActiveRecord with transaction:"
+puts bench = Benchmark.measure { ActiveRecord::Base.transaction { do_inserts } }
+puts sprintf("  %2.2fx faster than base", base.real / bench.real)
+
+puts "Raw SQL without transaction:"
+puts bench = Benchmark.measure { raw_sql }
+puts sprintf("  %2.2fx faster than base", base.real / bench.real)
+
+puts "Raw SQL with transaction:"
+puts bench = Benchmark.measure { ActiveRecord::Base.transaction { raw_sql } }
+puts sprintf("  %2.2fx faster than base", base.real / bench.real)
+
+puts "Single mass insert:"
+puts bench = Benchmark.measure { mass_insert }
+puts sprintf("  %2.2fx faster than base", base.real / bench.real)
+
+puts "ActiveRecord::Extensions mass insert:"
+puts bench = Benchmark.measure { activerecord_extensions_mass_insert }
+puts sprintf("  %2.2fx faster than base", base.real / bench.real)
+
+puts "ActiveRecord::Extensions mass insert without validations:"
+puts bench = Benchmark.measure { activerecord_extensions_mass_insert(true)  }
+puts sprintf("  %2.2fx faster than base", base.real / bench.real)
+</code></pre></div>  </div>
+
+  <p>And the results:</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Testing various insert methods for 10000 inserts
+ActiveRecord without transaction:
+ 14.930000   0.640000  15.570000 ( 18.898352)
+ActiveRecord with transaction:
+ 13.420000   0.310000  13.730000 ( 14.619136)
+  1.29x faster than base
+Raw SQL without transaction:
+  0.920000   0.170000   1.090000 (  3.731032)
+  5.07x faster than base
+Raw SQL with transaction:
+  0.870000   0.150000   1.020000 (  1.648834)
+  11.46x faster than base
+Single mass insert:
+  0.000000   0.000000   0.000000 (  0.268634)
+  70.35x faster than base
+ActiveRecord::Extensions mass insert:
+  6.580000   0.280000   6.860000 (  9.409169)
+  2.01x faster than base
+ActiveRecord::Extensions mass insert without validations:
+  6.550000   0.240000   6.790000 (  9.446273)
+  2.00x faster than base
+</code></pre></div>  </div>
+
+  <p>The results are fairly self-explainatory, but of particular note is the
+specific single INSERT statement. At 70x faster than the
+non-transactional ActiveRecord insert, if you need speed, it’s hard to
+beat.</p>
+
+  <h2 id="conclusions">Conclusions</h2>
+
+  <p>ActiveRecord is great, but sometimes it’ll hold you back. Finding the
+balance between ease of use (full ActiveRecord) and performance (bare
+metal mass inserts) can have a profound effect on the performance of
+your app.</p>
+
+</blockquote>
+
+</article>
+<hr>
+
+<p>
+  <strong>Source</strong>:
+  <a href="https://www.coffeepowered.net/2009/01/23/mass-inserting-data-in-rails-without-killing-your-performance/">
+    https://www.coffeepowered.net/2009/01/23/mass-inserting-data-in-rails-without-killing-your-performance/
+  </a>
+</p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

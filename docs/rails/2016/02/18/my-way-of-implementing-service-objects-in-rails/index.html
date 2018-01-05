@@ -1,0 +1,362 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>My Way of Implementing Service Objects in Rails</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/rails/2016/02/18/my-way-of-implementing-service-objects-in-rails/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>My Way of Implementing Service Objects in Rails</h1>
+Feb 18, 2016
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/rails">rails</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/service-objects">service-objects</a></li> <li role="presentation"><a href="/swaac/tags/poros">poros</a></li> <li role="presentation"><a href="/swaac/tags/plain old ruby objects">plain old ruby objects</a></li> 
+</header>
+
+<article>
+  <p>Over the years, I’ve come at the idea of using POROs (Plain Old Ruby
+Objects) in different ways in Rails.  In a recent work project, we are
+using the concept of a “service object” to implement procedures as
+POROs. I’ve come to like the way we are putting them together, using
+things we’ve learned along the way, with input from other folks
+advancing these ideas, including Sandi Metz and Avdi Grim.</p>
+
+<p>This means of organizing code removes methods, callbacks, and lines of
+code from Controllers and Models, putting them in a place it is much
+simpler to write and express what is happening, and subsequently much
+easier to test, maintain, and extend.</p>
+
+<p>Note: The methods employed here work well with Ruby 2.3.0 and Rails
+4.2.5 which I’m currently using. If you’re using earlier (or even
+later) versions, you may need to adjust things accordingly.</p>
+
+<h2 id="create-a-class-for-the-service-under-appservices">Create a class for the service under <code class="highlighter-rouge">app/services</code></h2>
+
+<p>Example: <code class="highlighter-rouge">app/services/build_new_product.rb</code>:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BuildNewProduct</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="create-the-main-method-based-on-the-verb-of-the-service">Create the main method based on the verb of the service</h2>
+
+<p>In the above example the main method would be called <code class="highlighter-rouge">build</code>:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BuildNewProduct</span>
+  <span class="k">def</span> <span class="nf">build</span>
+    <span class="c1"># ...</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="use-the-initialize-method-to-set-up-the-operation">Use the <code class="highlighter-rouge">initialize</code> method to set up the operation</h2>
+
+<p>In the case above, a new product would be build based on the
+combining information from a warehouse product and information from a
+third-party product description service.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BuildNewProduct</span>
+  <span class="n">attr_attribute</span> <span class="ss">:warehouse_product</span><span class="p">,</span> <span class="ss">:product_specifications</span><span class="p">,</span> <span class="ss">:product</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">warehouse_product</span><span class="p">,</span> <span class="n">product_specifications</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{})</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">warehouse_product</span> <span class="o">=</span> <span class="n">warehouse_product</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">product_specifications</span> <span class="o">=</span> <span class="n">product_specifications</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">product</span> <span class="o">=</span> <span class="no">Product</span><span class="p">.</span><span class="nf">new</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">build</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">product</span><span class="p">.</span>
+      <span class="nf">assign_attributes</span><span class="p">(</span>
+        <span class="n">warehouse_product</span><span class="p">.</span><span class="nf">attributes</span><span class="p">.</span><span class="nf">except</span><span class="p">(</span><span class="s2">"id"</span><span class="p">,</span> <span class="s2">"created_at"</span><span class="p">,</span> <span class="s2">"updated_at"</span><span class="p">)</span>
+	  <span class="p">)</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">product</span><span class="p">.</span>
+      <span class="nf">assign_attributes</span><span class="p">(</span>
+        <span class="n">product_specifications</span><span class="p">.</span><span class="nf">attributes</span><span class="p">.</span><span class="nf">except</span><span class="p">(</span><span class="s2">"id"</span><span class="p">,</span> <span class="s2">"created_at"</span><span class="p">,</span> <span class="s2">"updated_at"</span><span class="p">)</span>
+      <span class="p">)</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">product</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="invoking-the-service-object">Invoking the service object</h2>
+
+<p>The invocation is simply:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">product</span> <span class="o">=</span> <span class="no">BuildNewProduct</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">warehouse_product</span><span class="p">,</span> <span class="n">product_specifications</span><span class="p">).</span><span class="nf">build</span>
+</code></pre></div></div>
+
+<h2 id="more-service-object-actions">More service object actions</h2>
+
+<p>Suppose I want to be able to not only build, but also save the
+product with the <code class="highlighter-rouge">BuildNewProduct</code> service object? While it’s
+simple to call <code class="highlighter-rouge">.save</code> or <code class="highlighter-rouge">.save!</code> on the returned
+(non-persisted) object, maybe it improves the readability at the point
+I’m using it. (Yes, I’m contriving the example a bit.)</p>
+
+<p>In this example, it would be trivial to add two more calls:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">def</span> <span class="nf">create</span>
+    <span class="n">build</span><span class="p">.</span><span class="nf">save</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">create!</span>
+    <span class="n">build</span><span class="p">.</span><span class="nf">save!</span>
+  <span class="k">end</span>
+</code></pre></div></div>
+
+<p>This would be preferable, I think, to adding another service object
+called <code class="highlighter-rouge">CreateNewProduct</code> that basically did the same thing using the
+<code class="highlighter-rouge">BuildNewProduct</code> service object.</p>
+
+<h1 id="why-do-it-this-way">Why do it this way?</h1>
+
+<p>Using POROs for service objects makes testing the logic of the
+operation in isolation much easier than if the logic was embedded in a
+Controller or Model within the application. It’s easier to isolate
+other functions, modules, and framework elements from the code under
+test.</p>
+
+<p>In general using POROs this way removes complexity from Controllers
+and Models (especially ActiveRecord Models) where there would
+otherwise be a growing pile of model class and instance methods,
+callbacks, validations, and so on.</p>
+
+<p>This way of creating service objects provides a standard way of
+implementation, sure, but why not just a direct class method, or a
+module with module methods?</p>
+
+<p>When I first began looking at service objects, it seemed the standard
+form was to create a module using nothing but module methods. Later
+refinements I found led to using the module’s singleton class, but I’m
+afraid I don’t quite get what all that means.</p>
+
+<p>The primary advantage I can see for instantiating the object is that
+it stays within the usual notion of a Ruby object (an instance of a
+Class). This also allows other notions such as Composition to
+construct the object, thus allowing run time injection.</p>
+
+<p>For example, while the above service object is really simple, suppose
+I needed to gather information from a few different places and the
+assembly required additional components and operations.</p>
+
+<p>In the above example, one might not care to make any such
+substitutions. Looking at the service object, there is a piece of it
+that <em>could</em> be injected: the <code class="highlighter-rouge">Product</code> class <em>could</em> be replaced by
+something else and while for this particular example seems
+unnecessary, let’s just see what it might be like.</p>
+
+<h2 id="injecting-class-of-build-object">Injecting class of build object</h2>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">warehouse_product</span><span class="p">,</span> <span class="n">product_specifications</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{})</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">warehouse_product</span> <span class="o">=</span> <span class="n">warehouse_product</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">product_specifications</span> <span class="o">=</span> <span class="n">product_specifications</span>
+	<span class="n">product_klass</span> <span class="o">=</span> <span class="n">options</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="ss">:product_klass</span><span class="p">)</span> <span class="p">{</span> <span class="no">Product</span> <span class="p">}</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">product</span> <span class="o">=</span> <span class="n">product_klass</span><span class="p">.</span><span class="nf">new</span>
+  <span class="k">end</span>
+</code></pre></div></div>
+
+<p>and I could substitute another product class as:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">BuildNewProduct</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">gprod</span><span class="p">,</span> <span class="n">eprod</span><span class="p">,</span> <span class="ss">product_klass: </span><span class="no">MyProduct</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>However, I would need to ensure that the <code class="highlighter-rouge">MyProduct</code> class could
+respond to all the calls done to <code class="highlighter-rouge">self.product</code> in the service object.
+There are distinct pitfalls to doing this, and using Mocks in general.</p>
+
+<p>Again, I wouldn’t recommend injecting a Mock in this particular
+situation.</p>
+
+<p>In her famous talk,
+<a href="https://youtu.be/OMPfEXIlTVE">“Nothing is Something”</a>, Sandi Metz
+runs through a great example of using injection to organize code. Her
+example also uses POROs, and I think it is a great study in organizing
+code.</p>
+
+<p>Using this inside Rails service objects extends the elegance of this
+approach quite a lot, I think.</p>
+
+<h2 id="using-options-to-inject-components">Using options to inject components</h2>
+
+<p>In some of our project’s ETL (Extract, Transform, Load) Runners, we go
+off to the network and fetch some data. While there are things like
+VCR and WebMock available for testing, I wanted to have something that
+would allow in-situ substitution should it prove necessary. In some
+cases, for example, I wanted to be able to execute the runner to
+gather the pristine responses for other uses, including load testing
+and building a working development database for other aspects of
+development.</p>
+
+<p>Here is a somewhat redacted skeleton of one of the runners that
+fetches product specification information from a third party.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Etl</span><span class="o">::</span><span class="no">Runner</span><span class="o">::</span><span class="no">ProductSpecificationFetch</span> <span class="o">&lt;</span> <span class="no">Etl</span><span class="o">::</span><span class="no">Runner</span><span class="o">::</span><span class="no">Base</span>
+  <span class="no">DEFAULT_APP_ID</span> <span class="o">=</span> <span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">secrets</span><span class="p">.</span><span class="nf">etl_default_app_id</span>
+
+  <span class="nb">attr_accessor</span> <span class="ss">:datafilename</span><span class="p">,</span> <span class="ss">:mfr_datafilename</span><span class="p">,</span> <span class="ss">:product_spec_client</span><span class="p">,</span> <span class="ss">:app_id</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="nf">extract_options!</span>
+    <span class="k">super</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">datafilename</span> <span class="o">=</span> <span class="n">options</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="ss">:products_filename</span><span class="p">,</span> <span class="n">default_products_filename</span><span class="p">)</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">mfr_datafilename</span> <span class="o">=</span> <span class="n">options</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="ss">:manufacturers_filename</span><span class="p">,</span> <span class="n">default_manufacturers_filename</span><span class="p">)</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">app_id</span> <span class="o">=</span> <span class="n">options</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="ss">:app_id</span><span class="p">,</span> <span class="no">DEFAULT_APP_ID</span><span class="p">)</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">product_spec_client</span> <span class="o">=</span> <span class="n">options</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="ss">:product_spec_client</span><span class="p">,</span> <span class="n">default_product_spec_client</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">run</span>
+    <span class="c1"># ... lots of other code ...</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">default_product_spec_client</span>
+    <span class="no">ProductSpecificationClient</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">app_id: </span><span class="n">app_id</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">default_products_filename</span>
+    <span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="no">Etl</span><span class="o">::</span><span class="no">Runner</span><span class="o">::</span><span class="no">DATA_FILES</span><span class="p">[</span><span class="ss">:product_specifications</span><span class="p">])</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">default_manufacturers_filename</span>
+    <span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="no">Etl</span><span class="o">::</span><span class="no">Runner</span><span class="o">::</span><span class="no">DATA_FILES</span><span class="p">[</span><span class="ss">:manufacturers</span><span class="p">])</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>In this example, I can provide an alternate service object to
+implement the client that talks to third party, and different means of
+obtaining the two output files for this service object. This is one I
+used that saved the responses from the service into a file.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s2">"product_specification_client"</span>
+<span class="k">class</span> <span class="nc">SavingProductSpecificationClient</span> <span class="o">&lt;</span> <span class="no">ProductSpecificationClient</span>
+
+  <span class="nb">attr_accessor</span> <span class="ss">:save_dir</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="ss">app_id: </span><span class="s2">""</span><span class="p">,</span> <span class="ss">save_dir: </span><span class="s2">"."</span><span class="p">)</span>
+    <span class="k">super</span><span class="p">(</span><span class="ss">app_id: </span><span class="n">app_id</span><span class="p">)</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">save_dir</span> <span class="o">=</span> <span class="n">save_dir</span>
+    <span class="no">FileUtils</span><span class="p">.</span><span class="nf">mkdir_p</span><span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="nf">save_dir</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="kp">protected</span>
+
+  <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="nb">method</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">{})</span>
+    <span class="k">super</span><span class="p">(</span><span class="nb">method</span><span class="p">,</span> <span class="n">parameters</span><span class="p">).</span><span class="nf">tap</span> <span class="k">do</span> <span class="o">|</span><span class="n">response</span><span class="o">|</span>
+      <span class="no">File</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="vi">@save_dir</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">method</span><span class="si">}</span><span class="s2">.</span><span class="si">#{</span><span class="n">slugify</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span><span class="si">}</span><span class="s2">.xml"</span><span class="p">),</span> <span class="n">response</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">slugify</span><span class="p">(</span><span class="n">parameters</span><span class="o">=</span><span class="p">{})</span>
+    <span class="c1"># some code that converts a hash into a slug for a file name fragment</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>By using this alternate version, I could build a rake task to call the
+runner shown above, injecting the above client, and save all the raw
+XML responses.</p>
+
+<p>In this particular case, I chose to inherit from the client because of
+the way the client handles the actual method calls using
+<code class="highlighter-rouge">missing_method</code>, requiring less code here.</p>
+
+<p>Admittedly there is a lot more to this application that the snippet of
+code above, but it should serve as an example of the sort of thing one
+can do to create and use a service object.</p>
+
+</article>
+<hr>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

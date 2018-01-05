@@ -1,0 +1,212 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Postgresql Timestamp Accuracy and Precision</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/postgresql/2017/05/09/postgresql-timestamp-accuracy/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>Postgresql Timestamp Accuracy and Precision</h1>
+May 9, 2017
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/postgresql">postgresql</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/postgresql">postgresql</a></li> <li role="presentation"><a href="/swaac/tags/databases">databases</a></li> <li role="presentation"><a href="/swaac/tags/timestamps">timestamps</a></li> <li role="presentation"><a href="/swaac/tags/test">test</a></li> 
+</header>
+
+<article>
+  <p>Today at work, a question came up whether one could count on the last
+inserted item in a table to have the most recent value for the
+<code class="highlighter-rouge">created_at</code> timestamp, so I went looking.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#rtfm" id="markdown-toc-rtfm">RTFM</a></li>
+  <li><a href="#factorygirl-insert" id="markdown-toc-factorygirl-insert">FactoryGirl insert</a></li>
+  <li><a href="#create-multiple-records" id="markdown-toc-create-multiple-records">Create multiple records</a></li>
+  <li><a href="#sql-insert-with-date-formatting" id="markdown-toc-sql-insert-with-date-formatting">SQL Insert with date formatting</a>    <ul>
+      <li><a href="#forgetting-the-milliseconds-ooops" id="markdown-toc-forgetting-the-milliseconds-ooops">Forgetting the milliseconds: Ooops</a></li>
+    </ul>
+  </li>
+  <li><a href="#sql-now-function" id="markdown-toc-sql-now-function">SQL <code class="highlighter-rouge">now()</code> function</a></li>
+  <li><a href="#single-insert-statement-multiple-values-with-now" id="markdown-toc-single-insert-statement-multiple-values-with-now">Single insert statement, multiple values with <code class="highlighter-rouge">now()</code></a></li>
+  <li><a href="#conclusion" id="markdown-toc-conclusion">Conclusion</a></li>
+</ul>
+
+<h2 id="rtfm">RTFM</h2>
+
+<p>The
+<a href="https://www.postgresql.org/docs/9.6/static/index.html">postgresql documentation</a> for
+<a href="https://www.postgresql.org/docs/9.6/static/datatype-datetime.html">Date / Time Types</a> shows
+the resolution as 14 digits and 1 microsecond.</p>
+
+<h2 id="factorygirl-insert">FactoryGirl insert</h2>
+
+<p>I ran a small experiment where I first used <code class="highlighter-rouge">FactoryGirl</code> to insert 50
+records. These showed only increasing timestamps showing there’s
+enough resolution at a microsecond to distinguish insertion order
+accurately building and inserting objects with FG.</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">id</span><span class="p">,</span><span class="n">created_at</span> <span class="k">from</span> <span class="n">posts</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /> <span class="n">id</span>  <span class="o">|</span>         <span class="n">created_at</span><br data-jekyll-commonmark-ghpages="" /><span class="c1">-----+----------------------------</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">453</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">10</span> <span class="mi">03</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">20</span><span class="p">.</span><span class="mi">065175</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">454</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">10</span> <span class="mi">03</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">20</span><span class="p">.</span><span class="mi">074039</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">455</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">10</span> <span class="mi">03</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">20</span><span class="p">.</span><span class="mi">077969</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">456</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">10</span> <span class="mi">03</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">20</span><span class="p">.</span><span class="mi">08049</span></code></pre></figure>
+
+<h2 id="create-multiple-records">Create multiple records</h2>
+
+<p>Next I tried it by creating an array of new values and passing it to
+the <code class="highlighter-rouge">.create</code> method of the Model. This also showed plenty of
+resolution where none of them would be considdred a “tie” when
+ordering.</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">id</span><span class="p">,</span><span class="n">created_at</span> <span class="k">from</span> <span class="n">posts</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /> <span class="n">id</span>  <span class="o">|</span>         <span class="n">created_at</span><br data-jekyll-commonmark-ghpages="" /><span class="c1">-----+----------------------------</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">553</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">10</span> <span class="mi">03</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">22</span><span class="p">.</span><span class="mi">415659</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">554</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">10</span> <span class="mi">03</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">22</span><span class="p">.</span><span class="mi">432941</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">555</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">10</span> <span class="mi">03</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">22</span><span class="p">.</span><span class="mi">436157</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">556</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">10</span> <span class="mi">03</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">22</span><span class="p">.</span><span class="mi">437815</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">557</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">10</span> <span class="mi">03</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">22</span><span class="p">.</span><span class="mi">439465</span></code></pre></figure>
+
+<h2 id="sql-insert-with-date-formatting">SQL Insert with date formatting</h2>
+
+<p>One of the things Rails is poor at is mass uploading. In the past I’ve
+used techniques to get around this. So giving that a go, I built a set
+of insert statements that used rails’s <code class="highlighter-rouge">DateTime.now</code> to generate the
+timestamp.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">100</span><span class="p">).</span><span class="nf">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">_</span><span class="o">|</span><br data-jekyll-commonmark-ghpages="" />  <span class="no">OpenStruct</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><br data-jekyll-commonmark-ghpages="" />    <span class="ss">content: </span><span class="no">Faker</span><span class="o">::</span><span class="no">Lorem</span><span class="p">.</span><span class="nf">sentence</span><span class="p">,</span><br data-jekyll-commonmark-ghpages="" />    <span class="ss">created_at: </span><span class="no">DateTime</span><span class="p">.</span><span class="nf">now</span><span class="p">,</span><br data-jekyll-commonmark-ghpages="" />    <span class="ss">updated_at: </span><span class="no">DateTime</span><span class="p">.</span><span class="nf">now</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">)</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+
+<p>Then made that into an SQL statement.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">insert</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="nf">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span><br data-jekyll-commonmark-ghpages="" />  <span class="s2">"insert into posts (content, created_at, updated_at) "</span> <span class="o">+</span><br data-jekyll-commonmark-ghpages="" />  <span class="s2">"values ('</span><span class="si">#{</span><span class="n">x</span><span class="p">.</span><span class="nf">content</span><span class="si">}</span><span class="s2">', '</span><span class="si">#{</span><span class="n">x</span><span class="p">.</span><span class="nf">created_at</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="s2">"%FT%T.%6N%Z"</span><span class="p">)</span><span class="si">}</span><span class="s2">', "</span> <span class="o">+</span><br data-jekyll-commonmark-ghpages="" />  <span class="s2">"'</span><span class="si">#{</span><span class="n">x</span><span class="p">.</span><span class="nf">updated_at</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="s2">"%FT%T.%6N%Z"</span><span class="p">)</span><span class="si">}</span><span class="s2">' ); "</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span><span class="p">.</span><span class="nf">join</span><span class="p">();</span></code></pre></figure>
+
+<p>This gave the same result of increasing timestamps.</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">id</span><span class="p">,</span><span class="n">created_at</span> <span class="k">from</span> <span class="n">posts</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /> <span class="n">id</span>  <span class="o">|</span>         <span class="n">created_at</span><br data-jekyll-commonmark-ghpages="" /><span class="c1">-----+----------------------------</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">603</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">09</span> <span class="mi">22</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">35</span><span class="p">.</span><span class="mi">038286</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">604</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">09</span> <span class="mi">22</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">35</span><span class="p">.</span><span class="mi">038382</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">605</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">09</span> <span class="mi">22</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">35</span><span class="p">.</span><span class="mi">038421</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">606</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">09</span> <span class="mi">22</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">35</span><span class="p">.</span><span class="mi">038455</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">607</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">09</span> <span class="mi">22</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">35</span><span class="p">.</span><span class="mi">038484</span></code></pre></figure>
+
+<h3 id="forgetting-the-milliseconds-ooops">Forgetting the milliseconds: Ooops</h3>
+
+<p>Note that if the milliseconds are not included in the <code class="highlighter-rouge">strftime</code>
+method above, then it is quite possible to insert timestamps that look
+the same.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">insert</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="nf">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span><br data-jekyll-commonmark-ghpages="" />  <span class="s2">"insert into posts (content, created_at, updated_at) "</span> <span class="o">+</span><br data-jekyll-commonmark-ghpages="" />  <span class="s2">"values ('</span><span class="si">#{</span><span class="n">x</span><span class="p">.</span><span class="nf">content</span><span class="si">}</span><span class="s2">', '</span><span class="si">#{</span><span class="n">x</span><span class="p">.</span><span class="nf">created_at</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="s2">"%FT%T%Z"</span><span class="p">)</span><span class="si">}</span><span class="s2">', "</span> <span class="o">+</span><br data-jekyll-commonmark-ghpages="" />  <span class="s2">"'</span><span class="si">#{</span><span class="n">x</span><span class="p">.</span><span class="nf">updated_at</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="s2">"%FT%T%Z"</span><span class="p">)</span><span class="si">}</span><span class="s2">' ); "</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span><span class="p">.</span><span class="nf">join</span><span class="p">();</span></code></pre></figure>
+
+<p>Oops:</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">id</span><span class="p">,</span><span class="n">created_at</span> <span class="k">from</span> <span class="n">posts</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /> <span class="n">id</span>  <span class="o">|</span>     <span class="n">created_at</span><br data-jekyll-commonmark-ghpages="" /><span class="c1">-----+---------------------</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">703</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">09</span> <span class="mi">22</span><span class="p">:</span><span class="mi">42</span><span class="p">:</span><span class="mi">57</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">704</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">09</span> <span class="mi">22</span><span class="p">:</span><span class="mi">42</span><span class="p">:</span><span class="mi">57</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">705</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">09</span> <span class="mi">22</span><span class="p">:</span><span class="mi">42</span><span class="p">:</span><span class="mi">57</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">706</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">09</span> <span class="mi">22</span><span class="p">:</span><span class="mi">42</span><span class="p">:</span><span class="mi">57</span></code></pre></figure>
+
+<h2 id="sql-now-function">SQL <code class="highlighter-rouge">now()</code> function</h2>
+
+<p>Next, I build an SQL query using the <code class="highlighter-rouge">now()</code> method for each new
+record.</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">id</span><span class="p">,</span><span class="n">created_at</span> <span class="k">from</span> <span class="n">posts</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /> <span class="n">id</span>  <span class="o">|</span>         <span class="n">created_at</span><br data-jekyll-commonmark-ghpages="" /><span class="c1">-----+----------------------------</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">653</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">10</span> <span class="mi">03</span><span class="p">:</span><span class="mi">36</span><span class="p">:</span><span class="mi">42</span><span class="p">.</span><span class="mi">252631</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">654</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">10</span> <span class="mi">03</span><span class="p">:</span><span class="mi">36</span><span class="p">:</span><span class="mi">42</span><span class="p">.</span><span class="mi">252631</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">655</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">10</span> <span class="mi">03</span><span class="p">:</span><span class="mi">36</span><span class="p">:</span><span class="mi">42</span><span class="p">.</span><span class="mi">252631</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">656</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">10</span> <span class="mi">03</span><span class="p">:</span><span class="mi">36</span><span class="p">:</span><span class="mi">42</span><span class="p">.</span><span class="mi">252631</span><br data-jekyll-commonmark-ghpages="" /> <span class="mi">657</span> <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">10</span> <span class="mi">03</span><span class="p">:</span><span class="mi">36</span><span class="p">:</span><span class="mi">42</span><span class="p">.</span><span class="mi">252631</span></code></pre></figure>
+
+<p>Here we can see that every value inserted got the same
+timestamp. Conclusion that Postgresql calculates <code class="highlighter-rouge">now()</code> once in
+compiling the insert statement.</p>
+
+<h2 id="single-insert-statement-multiple-values-with-now">Single insert statement, multiple values with <code class="highlighter-rouge">now()</code></h2>
+
+<p>Final check, using a single <code class="highlighter-rouge">insert into</code> statement with
+multiple values.</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">insert</span> <span class="k">into</span> <span class="n">posts</span> <span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">created_at</span><span class="p">,</span> <span class="n">updated_at</span><span class="p">)</span> <span class="k">values</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">(</span><span class="s1">'Aut exercitationem harum molestiae.'</span><span class="p">,</span> <span class="n">now</span><span class="p">(),</span> <span class="n">now</span><span class="p">()),</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">(</span><span class="s1">'Aliquid sit et distinctio quidem minima ut.'</span><span class="p">,</span> <span class="n">now</span><span class="p">(),</span> <span class="n">now</span><span class="p">()),</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">(</span><span class="s1">'Officiis dolores cupiditate aut sit.'</span><span class="p">,</span> <span class="n">now</span><span class="p">(),</span> <span class="n">now</span><span class="p">());</span></code></pre></figure>
+
+<p>(only for 100 items.)</p>
+
+<p>This gives the same result as the previous, as expected.</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">select id,created_at from posts;<br data-jekyll-commonmark-ghpages="" /> id  |         created_at<br data-jekyll-commonmark-ghpages="" />-----+----------------------------<br data-jekyll-commonmark-ghpages="" /> 353 | 2017-05-10 03:04:59.684801<br data-jekyll-commonmark-ghpages="" /> 354 | 2017-05-10 03:04:59.684801<br data-jekyll-commonmark-ghpages="" /> 355 | 2017-05-10 03:04:59.684801<br data-jekyll-commonmark-ghpages="" /> 356 | 2017-05-10 03:04:59.684801<br data-jekyll-commonmark-ghpages="" /> 357 | 2017-05-10 03:04:59.684801</code></pre></figure>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>So it seems as though one might not be able to count on inserted
+values having an increasing <code class="highlighter-rouge">created_at</code> value, but this won’t come up
+very often in a Rails app unless you’re doing mass-inserts like the
+above.</p>
+
+</article>
+<hr>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

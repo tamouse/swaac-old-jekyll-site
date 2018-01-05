@@ -1,0 +1,221 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>When your tools, environment, computer, and everything you know fails you</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/day-in-the-life/2016/09/13/when-your-tools-environment-computer-and-everything-you-know-fails-you/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>When your tools, environment, computer, and everything you know fails you</h1>
+Sep 13, 2016
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/day-in-the-life">day-in-the-life</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li>
+</header>
+
+<article>
+  <p>This post is one of frustration after a day of struggling with my
+tools, the project environment, my computer, and bashing my head
+against a problem. I’m calling this day “Trampled by Yaks”.</p>
+
+<p>I have been working on Rails applications for a long time. I’ve worked
+on them starting back in 2007, and have been doing them pretty
+steadily for the past several years. I’ve gone from working on
+projects on the host machine, usually OSX, but sometimes Ubuntu
+GNU/Linux as well. I’ve used tools such as RVM, rbenv, and
+chruby. I’ve used Vagrant and VirtualBox. I’ve tried out Docker. None
+of these have presented real problems for me.</p>
+
+<p>But today, things just collided. I was working on my current gig,
+trying to get an understanding of how things needed to work for a
+particular feature (EPS Thumbnails in case anyone’s interested in
+that). However, I kept running into very strange problems.</p>
+
+<p>A particular file was getting prematurely truncated, causing the
+entire operation to fail. This didn’t happen to anyone else on the
+team, nor was it happening in staging or production. The other two
+developers work directly on their company-provided macbooks. As a
+contractor, I’m responsible to provide my own hardware. There are
+differences in how we approach development. As this machine is my
+personal machine, with all my own projects, photos, music and so on, I
+don’t particularly want to contaminate it or jeopardize these things
+with work projects. This is why I use Vagrant as my development and
+test environments.</p>
+
+<p>Things weren’t working. Even rolling everything back to the <code class="highlighter-rouge">develop</code>
+branch, what I was trying to do was failing in this one, repeatable
+way.</p>
+
+<p>The key parts:</p>
+
+<ul>
+  <li>
+    <p>host machine, a macbook pro 13” retina, with 8G of RAM, Intel i5 2
+core processor.</p>
+  </li>
+  <li>
+    <p>started out with VirtualBox 5.0.6, upgraded to 5.0.26</p>
+  </li>
+  <li>
+    <p>started out with Vagrant 1.7.6, upgraded to 1.8.5</p>
+  </li>
+  <li>
+    <p>Centos 7 virtual maching, started with a box created by the project,
+ended with the “centos/7” official hashicorp box.</p>
+  </li>
+  <li>
+    <p>ImageMagick version was 6.9.1-10 (Q16 x86_64 2015-07-26)</p>
+  </li>
+  <li>
+    <p>Ghostscript version was 9.07</p>
+  </li>
+</ul>
+
+<p>The odd behaviour was not detected by any of our tests, which all
+passed while running on my VM. Even casual GUI-based interaction with
+the sample test files worked fine. But when given another file, in
+particular a PDF file, the operations for thumbnailing completely
+b0rk3d.</p>
+
+<p>My colleagues and I found examples of similar failures, but trying the
+fixes proferred proved fruitless.</p>
+
+<p>While attempting to upgrade the various pieces, also, I ran into huge
+problems getting things to work. There were permission errors,
+download errors, and I even found a copy of vagrant in a place I was
+not expecting.</p>
+
+<p>The struggle went on all day.</p>
+
+<p>By the end, I had decided to dump anything to do with VMs, VirtualBox,
+and Vagrant on this project. As my colleagues were able to develop on
+OSX, I went that route as well.</p>
+
+<p>Installing the necessary software at this point was trivial: Ruby,
+Rails, MongoDB, ImageMagick, and Redis were already installed, just
+needed to be upgraded. That was really the extent of the dependencies.</p>
+
+<p>After that, things worked as expected. Only 9.5 hours into the day.</p>
+
+<p>I have no learnings from this yet, and no forward solutions at this
+point except to keep plugging. I never did yet figure out what was
+causing the problem in the first place.</p>
+
+<p>Perhaps I really need to invest in a work-only computer, so I can
+treat it like shit without worrying about breaking my own things.</p>
+
+<p>Code on.</p>
+
+<hr />
+
+<p>Links that helped out today:</p>
+
+<ul>
+  <li>
+    <p><a href="https://github.com/carrierwaveuploader/carrierwave/wiki/How-to:-%22Upload%22-from-a-local-file">How to: “Upload” from a local file · carrierwaveuploader/carrierwave Wiki</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/mitchellh/vagrant/issues/4839#issuecomment-71487954">Vagrant: Warning: Authentication failure. Retrying · Issue #4839 · mitchellh/vagrant</a></p>
+  </li>
+  <li>
+    <p><a href="https://blogs.oracle.com/joshis/entry/virtualbox_guest_additions_iso_download">VirtualBox Guest Additions ISO Download? (Petr Dvorak)</a></p>
+  </li>
+  <li>
+    <p><a href="http://www.ehowstuff.com/how-to-mount-cdrom-media-on-centos-6-2/">How to Mount CDROM Media on CentOS 5/CentOS 6/CentOS 7</a></p>
+  </li>
+</ul>
+
+</article>
+<hr>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

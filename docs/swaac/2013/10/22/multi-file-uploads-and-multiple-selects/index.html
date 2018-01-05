@@ -1,0 +1,191 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Multi-File Uploads and Multiple Selects</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/swaac/2013/10/22/multi-file-uploads-and-multiple-selects/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>Multi-File Uploads and Multiple Selects</h1>
+Oct 22, 2013
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/swaac">swaac</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/javascript">javascript</a></li> <li role="presentation"><a href="/swaac/tags/code">code</a></li> <li role="presentation"><a href="/swaac/tags/multi-file-uploads">multi-file-uploads</a></li> <li role="presentation"><a href="/swaac/tags/user-feedback">user-feedback</a></li> <li role="presentation"><a href="/swaac/tags/user-experience">user-experience</a></li> <li role="presentation"><a href="/swaac/tags/ux">ux</a></li> 
+</header>
+
+<article>
+  <p>A repost of <a href="http://www.raymondcamden.com/index.cfm/2013/10/1/MultiFile-Uploads-and-Multiple-Selects">http://www.raymondcamden.com/index.cfm/2013/10/1/MultiFile-Uploads-and-Multiple-Selects</a> by <a href="http://www.raymondcamden.com/">Raymond Camden</a>.</p>
+
+<blockquote>
+  <h2 id="multi-file-uploads-and-multiple-selects"><a href="http://www.raymondcamden.com/index.cfm/2013/10/1/MultiFile-Uploads-and-Multiple-Selects">Multi-File Uploads and Multiple Selects</a></h2>
+
+  <p>** 10-01-2013 **</p>
+
+  <p>A few weeks back I wrote a <a href="http://www.raymondcamden.com/index.cfm/2013/9/10/Adding-a-file-display-list-to-a-multifile-upload-HTML-control">blog post</a> about adding image previews for multi-file upload controls. I didn’t mention it at the time but I had an ulterior motive. A reader wrote to me a few weeks before with an interesting question.</p>
+
+  <blockquote>
+    <p>Is it possible to use a mult-file input control and let the user select multiple times?</p>
+  </blockquote>
+
+  <p>To be clear, what we mean here is that the user selects some files and closes the file picker dialog. She then realizes she forgot a few files and clicks to select them next.</p>
+
+  <p>What happens in this situation is pretty simple. Like the multiple select field, if you pick something else then the previous selection is removed. Your only option is similar to what you do for the drop down. Use ctrl/cmd to select multiple files in multiple folders all at once - <em>and don’t screw it up!</em> Obviously most users won’t be able to grok this and <strong>will</strong> screw it up, even if they know it is possible.</p>
+
+  <p>But my experiment had given me an idea. Remember that we can use an event handler to detect changes to the input field and get access to the file data beneath. Here is a code snippet showing this:</p>
+
+</blockquote>
+
+<h4 id="using-an-event-handler-to-detect-changes-in-the-files-input-field">using an event handler to detect changes in the files input field</h4>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">handleFileSelect</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">files</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />  <span class="nx">selDiv</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />  <span class="kd">var</span> <span class="nx">files</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">files</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />  <br data-jekyll-commonmark-ghpages="" />  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="p">...)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span></code></pre></figure>
+
+<blockquote>
+
+  <p>Based on this, my <a href="http://www.raymondcamden.com/demos/2013/sep/10/test0.html">final demo</a> uses this code to create image thumbnails based on pictures you select. My demo has a bug though that meshes well with today’s blog post. If you select images twice, the list of thumbnails grow, but the actual files associated with the control are only based on the <strong>last</strong> selection. But what if we could take those files and store them?</p>
+
+  <p>Before I went down this route, I updated my demo code to use AJAX to post the form. Part of the benefits of XHR2 is the ability to send file data over the wire. Let’s look at a simple example of this.</p>
+
+</blockquote>
+
+<h4 id="demo-for-multiple-file-select-handling">demo for multiple file select handling</h4>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!doctype html&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;html&gt;</span><br data-jekyll-commonmark-ghpages="" />  <span class="nt">&lt;head&gt;</span><br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;title&gt;</span>Proper Title<span class="nt">&lt;/title&gt;</span><br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;style&gt;</span><br data-jekyll-commonmark-ghpages="" />      <span class="nf">#selectedFiles</span> <span class="nt">img</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />      <span class="nl">max-width</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />      <span class="nl">max-height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />      <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />      <span class="nl">margin-bottom</span><span class="p">:</span><span class="m">10px</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />      <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;/style&gt;</span><br data-jekyll-commonmark-ghpages="" />  <span class="nt">&lt;/head&gt;</span><br data-jekyll-commonmark-ghpages="" />  <br data-jekyll-commonmark-ghpages="" />  <span class="nt">&lt;body&gt;</span><br data-jekyll-commonmark-ghpages="" />    <br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"myForm"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />      Files: <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">id=</span><span class="s">"files"</span> <span class="na">name=</span><span class="s">"files"</span> <span class="na">multiple</span><span class="nt">&gt;&lt;br/&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />      <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"selectedFiles"</span><span class="nt">&gt;&lt;/div&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;/form&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;script&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="kd">var</span> <span class="nx">selDiv</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"DOMContentLoaded"</span><span class="p">,</span> <span class="nx">init</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="kd">function</span> <span class="nx">init</span><span class="p">()</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#files'</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'change'</span><span class="p">,</span> <span class="nx">handleFileSelect</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" />  <span class="nx">selDiv</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"#selectedFiles"</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#myForm'</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'submit'</span><span class="p">,</span> <span class="nx">handleForm</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="kd">function</span> <span class="nx">handleFileSelect</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="kd">var</span> <span class="nx">files</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">files</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">files</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="kd">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="nx">files</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">f</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="s2">"image.*"</span><span class="p">))</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />      <span class="k">continue</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />    <span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />    <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">();</span><br data-jekyll-commonmark-ghpages="" />    <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />      <span class="kd">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="s2">"&lt;img src=</span><span class="se">\"</span><span class="s2">"</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\"</span><span class="s2">&gt;"</span> <span class="o">+</span> <span class="nx">f</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">"&lt;br clear=</span><span class="se">\"</span><span class="s2">left</span><span class="se">\"</span><span class="s2">/&gt;"</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />      <span class="nx">selDiv</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">+=</span> <span class="nx">html</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />    <span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />    <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsDataURL</span><span class="p">(</span><span class="nx">f</span><span class="p">);</span> <br data-jekyll-commonmark-ghpages="" />  <span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="kd">function</span> <span class="nx">handleForm</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span><br data-jekyll-commonmark-ghpages="" />  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'handleForm'</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" />  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#myForm'</span><span class="p">));</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span><br data-jekyll-commonmark-ghpages="" />  <span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'handler.cfm'</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="nx">xhr</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'onload called'</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" />      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />    <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;/script&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="nt">&lt;/body&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;/html&gt;</span></code></pre></figure>
+
+<blockquote>
+
+  <p>If we focus on the changes, the only real difference is that we have
+a submit handler for the form. We use a FormData object to package
+up our form and then post it to a server-side handler. The
+server-side code isn’t terribly important. It doesn’t see this as
+anything “special” or “Ajax-y” (my word), it is just a form
+post. But now the entire process runs through Ajax and not a
+traditional page reload. (And as a note, I’m not providing <strong>any</strong>
+user feedback here. In a real application I’d disable the submit
+button, tell the user something, etc etc.)</p>
+</blockquote>
+
+<blockquote>
+
+  <p>That parts done, now let’s try storing a copy of the files. Here is my updated version with this in action.</p>
+
+</blockquote>
+
+<h4 id="storing-the-files">storing the files</h4>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!doctype html&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;html&gt;</span><br data-jekyll-commonmark-ghpages="" />  <span class="nt">&lt;head&gt;</span><br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;title&gt;</span>Proper Title<span class="nt">&lt;/title&gt;</span><br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;style&gt;</span><br data-jekyll-commonmark-ghpages="" />      <span class="nf">#selectedFiles</span> <span class="nt">img</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />      <span class="nl">max-width</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />      <span class="nl">max-height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />      <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />      <span class="nl">margin-bottom</span><span class="p">:</span><span class="m">10px</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />      <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;/style&gt;</span><br data-jekyll-commonmark-ghpages="" />  <span class="nt">&lt;/head&gt;</span><br data-jekyll-commonmark-ghpages="" />  <br data-jekyll-commonmark-ghpages="" />  <span class="nt">&lt;body&gt;</span><br data-jekyll-commonmark-ghpages="" />    <br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"myForm"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />      Files: <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">id=</span><span class="s">"files"</span> <span class="na">name=</span><span class="s">"files"</span> <span class="na">multiple</span><span class="nt">&gt;&lt;br/&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />      <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"selectedFiles"</span><span class="nt">&gt;&lt;/div&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;/form&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;script&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="kd">var</span> <span class="nx">selDiv</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /><span class="kd">var</span> <span class="nx">storedFiles</span> <span class="o">=</span> <span class="p">[];</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"DOMContentLoaded"</span><span class="p">,</span> <span class="nx">init</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="kd">function</span> <span class="nx">init</span><span class="p">()</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#files'</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'change'</span><span class="p">,</span> <span class="nx">handleFileSelect</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" />  <span class="nx">selDiv</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">"#selectedFiles"</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#myForm'</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'submit'</span><span class="p">,</span> <span class="nx">handleForm</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="kd">function</span> <span class="nx">handleFileSelect</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="kd">var</span> <span class="nx">files</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">files</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">files</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="kd">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="nx">files</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">f</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="s2">"image.*"</span><span class="p">))</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />      <span class="k">continue</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />    <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />    <span class="nx">storedFiles</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">f</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" />    <br data-jekyll-commonmark-ghpages="" />    <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">();</span><br data-jekyll-commonmark-ghpages="" />    <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />      <span class="kd">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="s2">"&lt;img src=</span><span class="se">\"</span><span class="s2">"</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\"</span><span class="s2">&gt;"</span> <span class="o">+</span> <span class="nx">f</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">"&lt;br clear=</span><span class="se">\"</span><span class="s2">left</span><span class="se">\"</span><span class="s2">/&gt;"</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />      <span class="nx">selDiv</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">+=</span> <span class="nx">html</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />      <br data-jekyll-commonmark-ghpages="" />    <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />    <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsDataURL</span><span class="p">(</span><span class="nx">f</span><span class="p">);</span> <br data-jekyll-commonmark-ghpages="" />  <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />  <br data-jekyll-commonmark-ghpages="" /><span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="kd">function</span> <span class="nx">handleForm</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span><br data-jekyll-commonmark-ghpages="" />  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">();</span><br data-jekyll-commonmark-ghpages="" />  <br data-jekyll-commonmark-ghpages="" />  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nx">len</span><span class="o">=</span><span class="nx">storedFiles</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="nx">data</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'files'</span><span class="p">,</span> <span class="nx">storedFiles</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>   <br data-jekyll-commonmark-ghpages="" />  <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />  <br data-jekyll-commonmark-ghpages="" />  <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span><br data-jekyll-commonmark-ghpages="" />  <span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span> <span class="s1">'handler.cfm'</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" />  <br data-jekyll-commonmark-ghpages="" />  <span class="nx">xhr</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>  <br data-jekyll-commonmark-ghpages="" />      <span class="nx">alert</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">.</span><span class="nx">responseText</span> <span class="o">+</span> <span class="s1">' items uploaded.'</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" />    <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />  <br data-jekyll-commonmark-ghpages="" />  <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span><br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;/script&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="nt">&lt;/body&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;/html&gt;</span></code></pre></figure>
+
+<blockquote>
+
+  <p>The changes are pretty simple. I’ve got a new global variable called storedFiles. When I detect a change on the input field, I now push them into this array. Finally, when the form is submitted, instead of pre-populating the FormData object we create it empty and then simply append our files. Note the append call uses the same name, files, so that when the server processes it the name is consistent.</p>
+
+  <p>And… believe it or not - this worked. This smells like it may be a slight security concern. I have to imagine that if browser vendors allow for this then it must be safe, but if I used this in production, I’d be <strong>real</strong> sure to let the end user know what is going on. As I said my previous demo actually <em>implied</em> it was doing this anyway. (I should have been clearing out my thumbnails when you selected files.) I think in that case the user would have expected it.</p>
+
+  <h2 id="related-blog-entries">Related Blog Entries</h2>
+
+  <ul>
+    <li><a href="http://www.raymondcamden.com/index.cfm/2013/9/10/Adding-a-file-display-list-to-a-multifile-upload-HTML-control">Adding a file display list to a multi-file upload HTML control</a> (September 10, 2013)</li>
+  </ul>
+
+</blockquote>
+
+</article>
+<hr>
+
+<p>
+  <strong>Source</strong>:
+  <a href="http://www.raymondcamden.com/index.cfm/2013/10/1/MultiFile-Uploads-and-Multiple-Selects">
+    http://www.raymondcamden.com/index.cfm/2013/10/1/MultiFile-Uploads-and-Multiple-Selects
+  </a>
+</p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

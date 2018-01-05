@@ -1,0 +1,329 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Adding Real-Time To A RESTful Rails App - Liam Kaufman</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/swaac/2013/09/24/adding-real-time-to-a-restful-rails-app-liam-kaufman/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>Adding Real-Time To A RESTful Rails App - Liam Kaufman</h1>
+Sep 24, 2013
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/swaac">swaac</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/socket.io">socket.io</a></li> <li role="presentation"><a href="/swaac/tags/node-js">node-js</a></li> <li role="presentation"><a href="/swaac/tags/rails">rails</a></li> <li role="presentation"><a href="/swaac/tags/real-time">real-time</a></li> 
+</header>
+
+<article>
+  <p>A reposting of <a href="http://liamkaufman.com/blog/2013/02/27/adding-real-time-to-a-restful-rails-app/">http://liamkaufman.com/blog/2013/02/27/adding-real-time-to-a-restful-rails-app/</a> by <a href="http://liamkaufman.com/blog/">Liam Kaufman</a></p>
+
+<blockquote>
+  <h1 id="adding-real-time-to-a-restful-rails-app">Adding Real-Time to a RESTful Rails App</h1>
+
+  <p>Feb 27th, 2013</p>
+
+  <p>After rewriting <a href="http://understoodit.com">Understoodit</a> several times
+I’ve spent a lot of time thinking about building real-time web
+applications. While I elected to rewrite 100% of Understoodit in Node,
+there are many existing Rails and Sinatra applications that can’t be
+completely rewritten, but could still benefit with the addition of
+real-time updates. The tutorial below starts with a traditional web-app
+written in Backbone and Ruby on Rails (RoR). Of course the modifications
+could easily be applied to any (Backbone|Angular|Ember) and
+(Rails|Sinatra|Django|Pylons) app.</p>
+
+  <p>Between the overview below, and the <a href="https://github.com/liamks/rails-realtime">code on GitHub</a>, you should be able to
+follow along and, in less than 50 lines of code, add real-time updates
+to your Rails app.</p>
+
+  <p><a href="https://github.com/liamks/rails-realtime">Adding Real-Time on Github</a></p>
+
+  <h2 id="starting-point">Starting Point</h2>
+
+  <p>In a traditional web app if a user creates a new model other users must
+refresh their page to see that content. Alternatively, you could poll
+the server every 30 second and refetch all the content. With both
+approaches you end up fetching all the content, and in the first case
+the markup as well.</p>
+
+  <p><img src="/images/rails-realtime-rest.png" alt="Traditional RESTful Rails app" /></p>
+
+  <p>In Figure 1, User 1 creates a new book, but User 2 will not see that new
+book unless they refresh their page.</p>
+
+  <h2 id="adding-real-time-with-redis-and-socketio">Adding Real-Time With Redis And Socket.IO</h2>
+
+  <p>When User 1 creates a new book, we’d like that new book to be pushed to
+User 2 in real-time. I’m going to cover one method that requires only a
+few modifications to your existing app and uses Redis, Node and
+Socket.IO.</p>
+
+  <h2 id="how-it-will-work">How It Will Work</h2>
+
+  <p><img src="/images/rails-realtime-with-rt.png" alt="Traditional RESTful Rails app with Real-Time" /></p>
+
+  <ol>
+    <li>When User 1 creates a new book, an “after_create” callback
+publishes that new book to Redis on the “rt-change” channel.</li>
+    <li>On the Node server, each client subscribing to “rt-change” receives
+that new book.</li>
+    <li>The new book is pushed to the client using Socket.IO.</li>
+    <li>Within the browser, Socket.IO receives that new book and “publishes”
+that change to our Backbone.js App.</li>
+    <li>The Backbone.js books collection, listening for changes to books,
+adds the new book to itself.</li>
+  </ol>
+
+  <p>The advantage of this approach is that it only requires tiny
+modifications to a Rails’ model, and if your Node server crashes, your
+application will work as it always has (without real-time). Thus, I’d
+consider this a real-time enhancement that gracefully degrades to a
+conventional Rails RESTful web app.</p>
+
+  <h2 id="socketio-connection">Socket.IO Connection</h2>
+
+  <p>First, ensure that <code class="highlighter-rouge">socket.io.js</code> has been added to
+<code class="highlighter-rouge">lib/assets/javascripts</code>, and referenced in
+app/assets/javascripts/application.js. In the web app create a new
+module, called realtime, that includes the Socket.IO connection code.
+When the application initializes it calls <code class="highlighter-rouge">app.realtime.connect()</code> to
+setup the Socket.IO connection.</p>
+
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">     <span class="nb">window</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">realtime</span> <span class="o">=</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />       <span class="na">connect</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(){</span><br data-jekyll-commonmark-ghpages="" />         <span class="nb">window</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s2">"http://0.0.0.0:5001"</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" /> <br data-jekyll-commonmark-ghpages="" />         <span class="nb">window</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"rt-change"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">){</span><br data-jekyll-commonmark-ghpages="" />           <span class="c1">// publish the change on the client side, the channel == the resource</span><br data-jekyll-commonmark-ghpages="" />           <span class="nb">window</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">resource</span><span class="p">,</span> <span class="nx">message</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" />         <span class="p">});</span><br data-jekyll-commonmark-ghpages="" />       <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />     <span class="p">}</span></code></pre></figure>
+
+<blockquote>
+  <h2 id="node-server--pubsub">Node Server &amp; Pub/Sub</h2>
+
+  <p>In the root of the Rails app create a new folder called ‘realtime’,
+where the Node server will reside. Don’t forget to create a
+<code class="highlighter-rouge">package.json</code> file and include socket.io, and redis in the
+dependencies. Finally, remember to run <code class="highlighter-rouge">npm install</code>.</p>
+
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">io</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'socket.io'</span><span class="p">).</span><span class="nx">listen</span><span class="p">(</span><span class="mi">5001</span><span class="p">),</span><br data-jekyll-commonmark-ghpages="" />  <span class="nx">redis</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'redis'</span><span class="p">).</span><span class="nx">createClient</span><span class="p">();</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="nx">redis</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s1">'rt-change'</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="nx">io</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'connection'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">socket</span><span class="p">){</span><br data-jekyll-commonmark-ghpages="" />  <span class="nx">redis</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'message'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">channel</span><span class="p">,</span> <span class="nx">message</span><span class="p">){</span><br data-jekyll-commonmark-ghpages="" />    <span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'rt-change'</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">message</span><span class="p">));</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">});</span><br data-jekyll-commonmark-ghpages="" /><span class="p">});</span></code></pre></figure>
+
+<blockquote>
+  <h2 id="rails-models">Rails Models</h2>
+
+  <p>Assuming you have Redis installed, add redis to your Gemfile. Next,
+create a file called <code class="highlighter-rouge">redis.rb</code> in your initializers with the following
+content:</p>
+
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">#make sure redis has been added to your Gemfile</span><br data-jekyll-commonmark-ghpages="" /><span class="vg">$redis</span> <span class="o">=</span> <span class="no">Redis</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:host</span> <span class="o">=&gt;</span> <span class="s1">'localhost'</span><span class="p">,</span> <span class="ss">:port</span><span class="o">=&gt;</span> <span class="mi">6379</span><span class="p">)</span></code></pre></figure>
+
+<blockquote>
+  <p>The Rails app now has access to Redis through the <code class="highlighter-rouge">$redis</code> global
+variable. Below, we publish changes to Redis whenever a model is
+created, updated or destroyed. Changes are published to “rt-change”,
+which our Node.js connections are listening to (see above).</p>
+
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Book</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">attr_accessible</span> <span class="ss">:num_pages</span><span class="p">,</span> <span class="ss">:title</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">after_create</span> <span class="p">{</span><span class="o">|</span><span class="n">book</span><span class="o">|</span> <span class="n">book</span><span class="p">.</span><span class="nf">message</span> <span class="s1">'create'</span> <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">after_update</span> <span class="p">{</span><span class="o">|</span><span class="n">book</span><span class="o">|</span> <span class="n">book</span><span class="p">.</span><span class="nf">message</span> <span class="s1">'update'</span> <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">after_destroy</span> <span class="p">{</span><span class="o">|</span><span class="n">book</span><span class="o">|</span> <span class="n">book</span><span class="p">.</span><span class="nf">message</span> <span class="s1">'destroy'</span> <span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="k">def</span> <span class="nf">message</span> <span class="n">action</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">msg</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">resource: </span><span class="s1">'books'</span><span class="p">,</span><br data-jekyll-commonmark-ghpages="" />            <span class="ss">action: </span><span class="n">action</span><span class="p">,</span><br data-jekyll-commonmark-ghpages="" />            <span class="ss">id: </span><span class="nb">self</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span><br data-jekyll-commonmark-ghpages="" />            <span class="ss">obj: </span><span class="nb">self</span> <span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />    <span class="vg">$redis</span><span class="p">.</span><span class="nf">publish</span> <span class="s1">'rt-change'</span><span class="p">,</span> <span class="n">msg</span><span class="p">.</span><span class="nf">to_json</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+
+<blockquote>
+  <h2 id="listen-for-changes-in-the-backbone-app">Listen For Changes in The Backbone App</h2>
+
+  <p>In the Books Collection, we add the code to both listen for ‘books’
+events and the handler to handle those events. For create, we simply add
+the new object (obj) to the collection. For update we update the
+existing model, while for destroy we remove the object from the
+collection.</p>
+
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">app</span><span class="p">.</span><span class="nx">collections</span><span class="p">.</span><span class="nx">Books</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Collection</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span><br data-jekyll-commonmark-ghpages="" />  <span class="na">model</span> <span class="p">:</span> <span class="nx">app</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Book</span><span class="p">,</span><br data-jekyll-commonmark-ghpages="" />  <span class="na">url</span> <span class="p">:</span> <span class="s1">'/books'</span><span class="p">,</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="na">initialize</span><span class="p">:</span> <span class="kd">function</span><span class="p">(){</span><br data-jekyll-commonmark-ghpages="" />    <span class="nx">app</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'books'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">handle_change</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">},</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="na">handle_change</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">){</span><br data-jekyll-commonmark-ghpages="" />    <span class="kd">var</span> <span class="nx">model</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />    <span class="k">switch</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">action</span><span class="p">){</span><br data-jekyll-commonmark-ghpages="" />      <span class="k">case</span> <span class="s1">'create'</span><span class="p">:</span><br data-jekyll-commonmark-ghpages="" />        <span class="k">this</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">obj</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" />        <span class="k">break</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />      <span class="k">case</span> <span class="s1">'update'</span><span class="p">:</span><br data-jekyll-commonmark-ghpages="" />        <span class="nx">model</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" />        <span class="nx">model</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">obj</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" />        <span class="k">break</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />      <span class="k">case</span> <span class="s1">'destroy'</span><span class="p">:</span><br data-jekyll-commonmark-ghpages="" />        <span class="k">this</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">obj</span><span class="p">);</span><br data-jekyll-commonmark-ghpages="" />    <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><span class="p">});</span></code></pre></figure>
+
+<blockquote>
+  <h2 id="caveats">Caveats</h2>
+
+  <p>In production there are many edge cases to consider. For instance, if
+someone views your app on their mobile phone and then puts the phone in
+their pocket, the screen saver goes on and Socket.IO will disconnect.
+When the user takes the phone out of their pocket, and views the app,
+Socket.IO will reconnect. However, during the period of disconnection
+the data in the client-side app may have become out-of-date. An easy fix
+is just to fetch the data on reconnect. With lots of connections, or
+lots of data, fetching everything becomes problematic and requires a
+more clever method for fetching data (e.g. just fetch the new, or
+changed, data).</p>
+
+  <p>Another issue is if two people are editing the same item, and if person
+1 clicks save that will replace what person 2 is editing. To solve this
+you can present person 2 with a message saying that the book they are
+editing has been updated by someone else and prevent the version of the
+book they are editing from being replaced. This isn’t an ideal solution,
+but would be fine if the chances of two people editing the same model
+were minimal.</p>
+
+  <p>In the code above there is only one channel ‘rt-change’, meaning every
+connected client will get every real-time change. You may want to scope
+your channels by user (e.g. rt-change/[USERID]). Furthermore, you’d want
+to create one redis client for every Socket.IO connection (currently
+there’s one redis client for all connections). In other words the
+<code class="highlighter-rouge">.createClient()</code>, and <code class="highlighter-rouge">redis.subscribe('...')</code>, would have to take
+place within the Socket.IO ‘connection’ callback (after line 6 above).</p>
+
+  <h2 id="alternatives-to-the-above">Alternatives To The Above</h2>
+
+  <h3 id="sockjs">SockJS</h3>
+
+  <p>Socket.IO could be swapped for
+<a href="https://github.com/sockjs/sockjs-client">SockJS</a>, which uses a similar
+API to websockets. I’ve heard from several individuals that it’s
+significantly more stable than the current version of Socket.IO and it’s
+currently <a href="https://github.com/meteor/meteor/tree/master/packages/stream">used by Meteor</a>.</p>
+
+  <h3 id="engineio">Engine.IO</h3>
+
+  <p>Guillermo Rauch, the creator of Socket.IO, has publically stated that
+Socket.IO’s approach of starting with websockets and falling back to
+polling <a href="http://www.devthought.com/2012/07/07/the-realtime-engine/">creates issues</a>. As
+result, he’s been working on Engine.IO, which will power Socket.IO
+version 1.0, and should provide a much more stable experience. I suspect
+Socket.IO, v1.0, will be released in the next few months.</p>
+
+  <h3 id="rails-40">Rails 4.0</h3>
+
+  <p>Rails 4.0, <a href="http://weblog.rubyonrails.org/2013/2/25/Rails-4-0-beta1/">which is due to be released soon</a>, will
+include
+<a href="http://tenderlovemaking.com/2012/07/30/is-it-live.html">streaming</a>.
+Using a combination of Rails 4 streaming, and Puma, you could
+potentially remove Node and Socket.IO, and use Rails for real-time. Of
+course, you’d have to take care of some of what Socket.IO does such as
+reconnects and heart-beats.</p>
+
+  <h3 id="rabbitmqzeromq">RabbitMQ/ZeroMQ</h3>
+
+  <p>Redis’ Pub/Sub functionality could be replaced by either RabbitMQ or
+ZeroMQ. I ended up using Redis, since I was using it for caching, and it
+has an extremely simple API for pub/sub. While RabbitMQ and ZeroMQ
+appear more complex, they do offer many more features for messaging.</p>
+
+  <h3 id="commercial-options">Commercial Options</h3>
+
+  <p>If you’re not keen on tinkering with Node, or waiting for Rails 4, there
+are commercial options such as <a href="http://pusher.com/">Pusher</a> and
+<a href="http://www.pubnub.com/">PubNub</a>, that deal with real-time connections
+for you. While both options can be pricey, especially with many
+concurrent connections, they do save you the hassle of building the
+infrastructure yourself.</p>
+
+  <h2 id="conclusions">Conclusions</h2>
+
+  <p>Adding real-time updates to your Ruby on Rails RESTful app has never
+been easier. Over the next few months Rails 4, or Socket.IO v1.0, will
+make the process even more painless. As Google’s services make users
+more accustomed to real-time updates, it becomes even more important to
+provide a similar experience in your webapps.</p>
+
+  <p><a href="https://github.com/liamks/rails-realtime">Adding Real-Time on Github</a></p>
+
+  <p>Posted by Liam Kaufman Feb 27th, 2013</p>
+</blockquote>
+
+</article>
+<hr>
+
+<p>
+  <strong>Source</strong>:
+  <a href="http://liamkaufman.com/blog/2013/02/27/adding-real-time-to-a-restful-rails-app/">
+    http://liamkaufman.com/blog/2013/02/27/adding-real-time-to-a-restful-rails-app/
+  </a>
+</p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

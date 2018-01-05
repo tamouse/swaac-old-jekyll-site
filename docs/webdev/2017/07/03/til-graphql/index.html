@@ -1,0 +1,278 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>TIL: GraphQL</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/webdev/2017/07/03/til-graphql/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>TIL: GraphQL</h1>
+Jul 3, 2017
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/webdev">webdev</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/graphql">graphql</a></li> <li role="presentation"><a href="/swaac/tags/apollo-client">apollo-client</a></li> <li role="presentation"><a href="/swaac/tags/rails">rails</a></li> <li role="presentation"><a href="/swaac/tags/react">react</a></li> <li role="presentation"><a href="/swaac/tags/webpack">webpack</a></li> 
+</header>
+
+<article>
+  <p>Although today was a workday, I spent it in blissful exploration on a
+technology we’re going to be using in our application: GraphQL.</p>
+
+<p>The setup:</p>
+
+<ul>
+  <li>Rails application, running 4.2.8</li>
+  <li>Webpack 2x, upgraded in existing the <code class="highlighter-rouge">webpack-rails</code> environment</li>
+  <li>React client without any sprockets support</li>
+  <li>ApolloClient</li>
+</ul>
+
+<p>I set up a toy application based on the above constraints,
+at <a href="https://github.com/tamouse/graphql_sample">graphql_sample</a> to
+practice and dig into learning how GraphQL works.</p>
+
+<h2 id="graphql">GraphQL</h2>
+
+<p>A little intro, although it’s best to head over to the
+main <a href="https://graphql.org">GraphQL</a> website if you want to know more
+about it.</p>
+
+<p>GraphQL is a new sort of query language for APIs that gives your
+client applications a very different experience of data than the
+familiar RESTful APIs. It’s centered around data objects in a way
+that’s both similar to JSON-API, but still quite different form that.</p>
+
+<p>It’s a descriptive (declarative) language, where you define your
+data’s types, fields, functions, queries, and schemas.</p>
+
+<h3 id="types">Types</h3>
+
+<p>Let’s look at an example. Supposed you had a data model that looked
+something like this, from ActiveRecord in Rails:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">create_table</span> <span class="ss">:posts</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">t</span><span class="p">.</span><span class="nf">text</span> <span class="ss">:body</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">t</span><span class="p">.</span><span class="nf">boolean</span> <span class="ss">:published</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span><span class="p">,</span> <span class="ss">default: </span><span class="kp">false</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">t</span><span class="p">.</span><span class="nf">datetime</span> <span class="ss">:published_at</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+
+<p>An example of a GraphQL type that describes a post looks like:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">type Post {<br data-jekyll-commonmark-ghpages="" />  id: ID<br data-jekyll-commonmark-ghpages="" />  title: String<br data-jekyll-commonmark-ghpages="" />  body: String<br data-jekyll-commonmark-ghpages="" />  published: Boolean<br data-jekyll-commonmark-ghpages="" />  published_at: String<br data-jekyll-commonmark-ghpages="" />  created_at: String<br data-jekyll-commonmark-ghpages="" />  updated_at: String<br data-jekyll-commonmark-ghpages="" />}</code></pre></figure>
+
+<h3 id="queries">Queries</h3>
+
+<p>Based on that Post type, you can construct a Query that retrieves posts:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">type Query {<br data-jekyll-commonmark-ghpages="" />  post: Post<br data-jekyll-commonmark-ghpages="" />}</code></pre></figure>
+
+<p>(Indeed, queries are also types.)</p>
+
+<h3 id="schema">Schema</h3>
+
+<p>The schema is the top level part of the whole bit that brings the data
+types and query types together, and forms the API itself.</p>
+
+<h3 id="mutations">Mutations</h3>
+
+<p>Mutations are the flip-side of queries, where you can create, update,
+and remove data, i.e. “mutate” it. I didn’t get that far at all today.</p>
+
+<h2 id="apollo-client">Apollo Client</h2>
+
+<p><a href="http://dev.apollodata.com/">Apollo client</a> is a client that
+implements the GraphQL client-side of the API really well. They have
+dev kits for React, Angular, IOS, Android, and even Vanilla JS. Since
+my interest right now is in React, I delved into
+the <a href="http://dev.apollodata.com/react/">Apollo React Client</a> (Note that
+this works with both web and native react.)</p>
+
+<p>The morning was spent with the first two tutorials, building out the
+React Apollo client and an Express GraphQL server. They were great
+tutorials, and went smoothly.</p>
+
+<ol>
+  <li><a href="https://dev-blog.apollodata.com/full-stack-react-graphql-tutorial-582ac8d24e3b">Full Stack React + GraphQL Tutorial</a></li>
+  <li><a href="https://dev-blog.apollodata.com/react-graphql-tutorial-part-2-server-99d0528c7928">React + GraphQL Tutorial - The Server</a></li>
+</ol>
+
+<p>My version, based on the tutorial, is over
+at <a href="https://github.com/tamouse/graphql-tutorial">graphql-tutorial</a></p>
+
+<p>This was enough to get me chomping at the bit to do it in Rails.</p>
+
+<h2 id="rails-server">Rails Server</h2>
+
+<p>A while back, I did write a pretty simple GraphQL Rails API using both
+the <code class="highlighter-rouge">graphql-ruby</code> and <code class="highlighter-rouge">graphql-api</code> gems. The latter makes the
+implementation pretty easy based on introspecting the apps models, but
+I wasn’t quite sure it’s ready for prime-time yet.</p>
+
+<p>Today, I started over, creating a server app within the constraints
+listed above, and added the <code class="highlighter-rouge">webpack-rails</code> and <code class="highlighter-rouge">graphql</code> gems. The
+interesting thing is that installing the <code class="highlighter-rouge">graphql</code> in rails loaded up
+further gems, including a Graph<em>i</em>QL interface that let’s you
+introspect the API while in development.</p>
+
+<p>There was a lot of back-and-forth with <code class="highlighter-rouge">webpack-rails</code>. In the end, I
+probably should have just configured the thing directly with webpack
+2x and all the needful.</p>
+
+<p>I did try going the <code class="highlighter-rouge">create-react-app</code> way at first, and ended up
+keeping a lot of it after ejecting the build, but finally relying on
+my own understands of webpack configuration and knowing the current
+way our application works to be the final arbiters.</p>
+
+<h2 id="graphql-ruby">GraphQL-Ruby</h2>
+
+<p>The <a href="https://github.com/rmosolgo/graphql-ruby"><code class="highlighter-rouge">graphql-ruby</code></a> is
+pretty interesting, in that it sets up a route for the GraphQL API
+directly, <code class="highlighter-rouge">/graphql</code>, which is somewhat of a default / convention. It
+mounts the GraphiQL engine on <code class="highlighter-rouge">/graphiql</code> at the same time, which is a
+nice way to work, as you can progressively test out your types,
+queries, and schemas as you work.</p>
+
+<p>The gem creates a new folder under <code class="highlighter-rouge">app/graphql/</code> with a default
+schema and query type. Types are under the <code class="highlighter-rouge">app/graphql/types/</code>
+directory, and so get name-spaced <code class="highlighter-rouge">Type::NameType</code>. The DSL
+(domain-specific language) used to define things is quite similar to
+the GraphQL syntax, although of course fit to Ruby.</p>
+
+<p>For example, the default query created looks like this:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Types</span><span class="o">::</span><span class="no">QueryType</span> <span class="o">=</span> <span class="no">GraphQL</span><span class="o">::</span><span class="no">ObjectType</span><span class="p">.</span><span class="nf">define</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">name</span> <span class="s2">"Query"</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># Add root-level fields here.</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># They will be entry points for queries on your schema.</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># TODO: remove me</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">field</span> <span class="ss">:testField</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">String</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">description</span> <span class="s2">"An example field added by the generator"</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">resolve</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />      <span class="s2">"Hello World!"</span><br data-jekyll-commonmark-ghpages="" />    <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+
+<h2 id="learning">Learning</h2>
+
+<p>Here’s where the real learning and experimenting started. Up to now,
+things have been pretty simple and straight-forward.</p>
+
+<p>I created the Post model described above, populated it with a few
+entries.</p>
+
+<h3 id="posttype">PostType</h3>
+
+<p>I wrote the following as the data type for the Post model:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Types</span><span class="o">::</span><span class="no">PostType</span> <span class="o">=</span> <span class="no">GraphQL</span><span class="o">::</span><span class="no">ObjectType</span><span class="p">.</span><span class="nf">define</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">name</span> <span class="s2">"Post"</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">description</span> <span class="s2">"A short post of content with a title, may be draft or published."</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">field</span> <span class="ss">:id</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">ID</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">description</span> <span class="s2">"internal ID"</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">field</span> <span class="ss">:title</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">String</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">description</span> <span class="s2">"title of the post"</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">field</span> <span class="ss">:body</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">String</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">description</span> <span class="s2">"the post content"</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">field</span> <span class="ss">:published</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">Boolean</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">description</span> <span class="s2">"true if the post has been published"</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">field</span> <span class="ss">:published_at</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">String</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">description</span> <span class="s2">"the date the post was published"</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">field</span> <span class="ss">:created_at</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">String</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">description</span> <span class="s2">"date the post entry was created"</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">field</span> <span class="ss">:updated_at</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">String</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">description</span> <span class="s2">"date the post entry was last updated"</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+
+<h3 id="querytype">QueryType</h3>
+
+<p>Then modified the sample query to produce a query that would find a
+post by it’s ID:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Types</span><span class="o">::</span><span class="no">QueryType</span> <span class="o">=</span> <span class="no">GraphQL</span><span class="o">::</span><span class="no">ObjectType</span><span class="p">.</span><span class="nf">define</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">name</span> <span class="s2">"Query"</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># Add root-level fields here.</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># They will be entry points for queries on your schema.</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="n">field</span> <span class="ss">:post</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">PostType</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">argument</span> <span class="ss">:id</span><span class="p">,</span> <span class="o">!</span><span class="n">types</span><span class="o">.</span><span class="no">ID</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">description</span> <span class="s2">"find a post by id"</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">resolve</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span> <span class="p">{</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">id: </span><span class="n">args</span><span class="p">[</span><span class="s2">"id"</span><span class="p">])</span> <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+
+<p>Without changing anything else, I was able to successfully query the
+API to get a post.</p>
+
+<h3 id="but-how-do-i-get-multiple-posts">But, how do I get multiple Posts?</h3>
+
+<p>Here’s where I spent the last two hours or so of the day, trying to
+figure out how this works. Clearly, it’s possible, and I think I have
+some ideas to go forward, but I was really stuck at this point.</p>
+
+<p><a href="https://github.com/rmosolgo/graphql-ruby/issues/166">This</a> looks like
+it might provide some insight when I work on this next.</p>
+
+<p>The concept is also explored in Jake Trent’s blog
+post:
+<a href="https://jaketrent.com/post/return-array-graphql/">return an array in graphql</a>
+although I’ll still need to translate to <code class="highlighter-rouge">graphql-ruby</code>.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>All-in-all, a productive, happy day learning something completely
+new. Frustrations go along with learning; as one of my teachers says
+“That banging your head on the desk, that’s called growth” (Hi,
+Scott!)</p>
+
+</article>
+<hr>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

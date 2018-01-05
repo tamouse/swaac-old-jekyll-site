@@ -1,0 +1,398 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Adding Real-Time To Rails With Socket.IO, Node.js and Backbone.js (With Demo) - Liam Kaufman</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/swaac/2013/09/24/adding-real-time-to-rails-with-socket-dot-io-node-dot-js-and-backbone-dot-js-with-demo-liam-kaufman/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>Adding Real-Time To Rails With Socket.IO, Node.js and Backbone.js (With Demo) - Liam Kaufman</h1>
+Sep 24, 2013
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/swaac">swaac</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/socket.io">socket.io</a></li> <li role="presentation"><a href="/swaac/tags/node-js">node-js</a></li> <li role="presentation"><a href="/swaac/tags/backbone-js">backbone-js</a></li> <li role="presentation"><a href="/swaac/tags/rails">rails</a></li> <li role="presentation"><a href="/swaac/tags/real-time">real-time</a></li> 
+</header>
+
+<article>
+  <p>A repost of <a href="http://liamkaufman.com/blog/2012/02/25/adding_real-time_to_rails_with_socket.IO_nodejs_and_backbonejs_with_demo/">http://liamkaufman.com/blog/2012/02/25/adding_real-time_to_rails_with_socket.IO_nodejs_and_backbonejs_with_demo/</a> by <a href="http://liamkaufman.com/blog">Liam Kaufman</a>.</p>
+
+<blockquote>
+  <h1 id="adding-real-time-to-rails-with-socketio-nodejs-and-backbonejs-with-demo-entry-title">Adding Real-Time to Rails With Socket.IO, Node.js and Backbone.js (With Demo) {.entry-title}</h1>
+
+  <p>Feb 25th, 2012</p>
+
+  <p><a href="http://node-chatty.herokuapp.com/chatty"><img src="/images/chatty-screen.png" alt="" /></a></p>
+
+  <p>UPDATE: see my <a href="/blog/2013/02/27/adding-real-time-to-a-restful-rails-app/">new article on adding real-time to your Rails
+application</a>.</p>
+
+  <p>Despite the <a href="http://gilesbowkett.blogspot.in/2012/02/rails-went-off-rails-why-im-rebuilding.html">recent distaste for
+Rails</a>,
+I still think its a nice framework for developing websites (e.g. devise
+&amp; active record). However, if you want real-time communication Socket.IO
+and Node.js seem to be the best options. If you already have an existing
+Rails application porting the entire application to Node.js is likely
+not on option. Fortunately, it is relatively easy to use Rails to serve
+your client-side Socket.IO web application, while Node.js and Socket.IO
+are used for real-time communication. The primary goal of this article
+is to show one method of integrating a real-time application, that is
+slightly more complex than a todo app, with Rails. Thus, I created
+Chatty, a simple chat room web application that allows a user to see all
+the messages in the chat room, or filter the messages by user.
+<a href="http://twitter.github.com/bootstrap/index.html">Twitter’s Bootstrap</a>
+was used for the CSS and modal dialogue.</p>
+
+  <p><a href="https://github.com/liamks/Chatty">Code on Github</a></p>
+
+  <p>Rather than explain the code step-by-step, I’ll provide a high level
+overview of:</p>
+
+  <ul>
+    <li>File organization</li>
+    <li>JavaScript Templates and EJS</li>
+    <li>Application Archicture and Publish/Subscribe</li>
+    <li>Module Architecture</li>
+    <li>Deploying to Heroku</li>
+  </ul>
+
+  <h2 id="file-organization">File Organization</h2>
+
+  <p>The entire client-side Backbone.js application is within
+<code class="highlighter-rouge">app/assets/javascripts</code>. Using a JavaScript manifest file
+(<code class="highlighter-rouge">backboneApp.js</code>) all of the application’s JavaScript files are
+specified.</p>
+
+  <p>Manifest file (app/assets/javasripts/bacboneApp.js)</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//= require jquery
+//= require bootstrap
+//= require underscore
+//= require backbone
+//= require socket.io
+//= require app
+</code></pre></div>  </div>
+
+  <p>The Backbone application is within the <code class="highlighter-rouge">app</code> folder, which also has a
+manifest file. The manifest files describe all the JavaScript files that
+comprise the application. Within the application’s html file only a
+single line of code is needed to include the manifest file:
+<code class="highlighter-rouge">=javascript_include_tag "backboneApp"</code> (haml for templating). The
+actual organization of the files is as follows:</p>
+
+  <p>app/assets</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>javascripts
+├── app
+│   ├── index.js
+│   ├── launch.js.coffee
+│   ├── main.js.coffee
+│   ├── modules
+│   │   ├── index.js
+│   │   ├── loadModule.js.coffee
+│   │   ├── messageModule.js.coffee
+│   │   ├── socketModule.js.coffee
+│   │   └── userModule.js.coffee
+│   └── templates
+│       ├── message.jst.ejs
+│       ├── modal.jst.ejs
+│       └── user.jst.ejs
+├── application.js
+├── backboneApp.js
+└── backbone_app.js.coffee
+</code></pre></div>  </div>
+
+  <p><code class="highlighter-rouge">main.js.coffee</code> is where the app object is defined, while
+`launch.js.coffee` is called last, after all the files have loaded, to
+launch the Backbone.js application. Each module, which might contain
+models, collections and views, are stored within the modules folder. The
+module structure was modelled after <a href="http://tbranyen.github.com/backbone-boilerplate/">Backbone
+Boilerplate</a>.</p>
+
+  <h2 id="javascript-templates-and-ejs">JavaScript Templates and EJS</h2>
+
+  <p>To take full advantage of the asset pipeline it seems as if Sam
+Stephenson’s excellent <a href="https://github.com/sstephenson/ruby-ejs">EJS
+Gem</a> was the most hassle free
+approach for JavaScript templates. Both the ‘ejs’ and ‘jst’ extensions
+are require for the EJS gem to compile the template, and include it
+within a JavaScript file. Access to the template is done with the global
+<code class="highlighter-rouge">JST</code> object.</p>
+
+  <h2 id="application-architecture---publishsubscribe">Application Architecture - Publish/Subscribe</h2>
+
+  <p>Before creating the application I decided to forgo the use of
+asynchronous module definition (AMD) and use a publish/subscribe
+(pub/sub) architecture (<a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/#detailedobserver">see Addy Osmani’s description of
+Pub/Sub</a>).
+Specifically, each module is wrapped in an <a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/">immediately-invoked function
+expression</a>,
+and within each module functions can attach themselves to events
+(subscribe), or trigger events (publish). Using this approach the
+applcation’s only global variable is <code class="highlighter-rouge">app</code> which contains a copy of
+Backbone’s event object.</p>
+
+  <p>To reiterate none of the modules call methods from other modules, all
+communication occurs with pub/sub. This design pattern was a pleasure to
+use; adding new functionality often required simply subscribing to
+events! I found that my code stayed much cleaner than previous attemps
+with Backbone.js.</p>
+
+  <h2 id="module-architecture">Module Architecture</h2>
+
+  <p>The application is comprised of two types of modules, those that contain
+Backbone.js code (messageModule, userModule), and one that contains the
+Socket.IO code (socketModule). If either the messageModule, or the
+userModule, require content from Socket.IO they subscribe to events that
+the socketModule trigger. Likewise, Socket.IO messages sent to the
+server are the result of the socketModule suscribing to events triggered
+by the messageModule and userModule.</p>
+
+  <p>Below is an example module that contains skeleton code for an additional
+Backbone.js module. The ExampleModule class is used to glue all the
+Backbone.js objects together. In this case their is only one, the
+ExampleView, in Chatty’s MessageModule there are two distinct views
+instantiated within its MessageModule object.</p>
+
+  <p>Example Module</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ExampleModel = Backbone.Model.extend()
+
+ExampleCollection = Backbone.Collection.extend
+  model: ExampleModel
+
+# View for a single model
+ExampleView = Backbone.View.extend
+  render: () -&gt;
+    @$el.html app.template 'example', @model.toJSON()
+    @$el
+
+# View for a collection of models
+ExamplesView = Backbone.View.extend
+  initialize: () -&gt;
+    @collection = new ExampleCollection()
+    @collection.on 'add', @addExample, @
+    @eventHandlers()
+
+  eventHandlers: () -&gt;
+    # Subscribe to the app-wide event 'new-example'. When 
+    # the event is called, the call-back function is provided
+    # with an example model, which is then added to the collection.
+    app.events.on 'new-example', (example) =&gt;
+      @collection.add example
+
+  addExample: (example) -&gt;
+    exampleView = new ExampleView
+      model: example
+    @$el.append exampleView.render()
+
+class ExampleModule
+  constructor: () -&gt;
+    @examplesView = new ExamplesView()
+
+new ExampleView()
+</code></pre></div>  </div>
+
+  <h2 id="deploying-nodejs-and-rails-app-to-heroku">Deploying Node.js and Rails App to Heroku</h2>
+
+  <h3 id="deploying-the-nodejs-server">Deploying the Node.js server</h3>
+
+  <p>Heroku requires the following code to create the Socket.IO server and
+listen for connections (note that Heroku doesn’t support websockets):</p>
+
+  <p>Socket.IO server</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var app = require('http').createServer();
+var io = require('socket.io');
+
+io = io.listen(app);
+io.configure(function(){
+  io.set("transports", ["xhr-polling"]);
+  io.set("polling duration", 10);
+  io.set("close timeout", 10);
+  io.set("log level", 1);
+})
+
+io.sockets.on('connection', function (socket) {}
+var port = process.env.PORT || 5001;
+app.listen(port);
+</code></pre></div>  </div>
+
+  <p>Unfortunately, Heroku’s documentation only contains fragments of the
+above code. The above code, along with deploying instructions, is posted
+across several pages: <a href="http://devcenter.heroku.com/articles/node-js">getting started with Node.js on
+Heroku/Cedar</a> and <a href="http://devcenter.heroku.com/articles/using-socket-io-with-node-js-on-heroku">using
+Socket.IO with Node.js on
+Heroku</a>.
+The `close timeout` option was added since the default 25 seconds made
+the chat app seem buggy (a user would log out but other users would seem
+them logged in for 25 seconds).</p>
+
+  <h3 id="deploying-the-rails-app">Deploying the Rails app</h3>
+
+  <p>Deploying a Rails application is relatively well documented, but I
+thought I’d provide a few additional tips.</p>
+
+  <p>The URL for the production and development Socket.IO server differ. To
+accommodate this the Backbone.js app makes an Ajax request to the Rails
+app and gets the URL of the Socket.IO server along with a unique id for
+the current user. The Rails app can serve a different Socket.IO URL
+depending on whether it is currently in production or development.</p>
+
+  <p>The other thing that might be new for nacent Rail’s developers is the
+inclusion of the <code class="highlighter-rouge">response.headers</code> code in the show method, this tells
+the browser to cache the Backbone.js app for 25,300 seconds.</p>
+
+  <p>Controller associated with Backbone.js App</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class BackboneAppController &lt; ApplicationController
+  layout 'backboneApp'
+  respond_to :html, :json
+  def show
+    response.headers['Cache-Control'] = 'public, max-age=25300' if Rails.env.production?
+  end
+
+  def user_info
+    respond_with({
+        'uuid' =&gt; UUIDTools::UUID.random_create.to_s,
+        'socketURL' =&gt; self.get_socket_url
+    })
+  end
+
+  protected
+  def get_socket_url
+    Rails.env.production? ? "http://chatty-server.herokuapp.com/" : "http://0.0.0.0:5001"
+  end
+end
+</code></pre></div>  </div>
+
+  <p>In order for Heroku to manage the asset pipeline your application must
+be <a href="http://devcenter.heroku.com/articles/rails3">deployed to Heroku Cedar’s
+stack</a>. Unfortunately the
+Cedar stack doesn’t include Varnish caching, requiring you to enable
+caching via <a href="http://devcenter.heroku.com/articles/memcache#deploying_to_heroku">memcache and the dalli
+gem</a>.
+I found that deploying a new version would not necessarily clear the
+cache and and I had to do it manually (connect to console:
+<code class="highlighter-rouge">heroku run console</code>):</p>
+
+  <p>Clearing the cache</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dc = Dalli::Client.new('localhost:11211')
+dc.flush_all
+</code></pre></div>  </div>
+
+  <h2 id="final-thoughts">Final Thoughts</h2>
+
+  <p>Relying entirely on pub/sub to communicate between modules worked really
+well in this application, but I wonder if it would scale to a larger
+application? I’d also be curious to know how other developers are
+combining Backbone apps with Rails, I suspect there are a number of ways
+to do it.</p>
+
+  <p><a href="https://github.com/liamks/Chatty">Code on Github</a></p>
+
+  <p>Posted by Liam Kaufman Feb 25th, 2012</p>
+
+</blockquote>
+
+</article>
+<hr>
+
+<p>
+  <strong>Source</strong>:
+  <a href="http://liamkaufman.com/blog/2012/02/25/adding_real-time_to_rails_with_socket.IO_nodejs_and_backbonejs_with_demo/">
+    http://liamkaufman.com/blog/2012/02/25/adding_real-time_to_rails_with_socket.IO_nodejs_and_backbonejs_with_demo/
+  </a>
+</p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

@@ -1,0 +1,166 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Changing the "Return To Shop" link and text in an empty WooCommerce cart</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/wordpress/2016/12/20/changing-the-return-to-shop-link-and-text-in-an-empty-woocommerce-cart/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>Changing the "Return To Shop" link and text in an empty WooCommerce cart</h1>
+Dec 20, 2016
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/wordpress">wordpress</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/wordpress">wordpress</a></li> <li role="presentation"><a href="/swaac/tags/woocommerce">woocommerce</a></li> <li role="presentation"><a href="/swaac/tags/customization">customization</a></li> <li role="presentation"><a href="/swaac/tags/say-what">say-what</a></li> 
+</header>
+
+<article>
+  <p>Tonight’s learning opportunity provided by the lovely Elise who brings
+fun things to research (after some hair pulling and teeth gnashing).</p>
+
+<p>In WooCommerce, if you’re cart is empty, it displays a link “Return To
+Shop” which if clicked takes you back to the Shop page.</p>
+
+<p>In this case, though, Elise wanted it to go to a different URL, and
+didn’t want it to say “Return To Shop”.</p>
+
+<p>We looked high and low in the plugin, delving through the source and
+the html output to try and figure out where this was getting called.</p>
+
+<p>Elise had to leave before we solved it, but later slacked me this
+link:</p>
+
+<ul>
+  <li><a href="https://nicola.blog/2015/07/20/change-the-return-to-shop-button-url-in-the-cart-page/">Change the Return to shop button URL in the cart page</a></li>
+</ul>
+
+<p>Meanwhile, I’d grep’d the source tree of the WooCommerce plugin I’d
+installed in my sandbaox, and found the following in
+<code class="highlighter-rouge">wp-content/plugins/woocommerce/templates/cart/cart-empty.php</code>, line
+36:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" />3<br data-jekyll-commonmark-ghpages="" />4<br data-jekyll-commonmark-ghpages="" />5<br data-jekyll-commonmark-ghpages="" />6<br data-jekyll-commonmark-ghpages="" />7<br data-jekyll-commonmark-ghpages="" />8<br data-jekyll-commonmark-ghpages="" />9<br data-jekyll-commonmark-ghpages="" />10<br data-jekyll-commonmark-ghpages="" />11<br data-jekyll-commonmark-ghpages="" />12<br data-jekyll-commonmark-ghpages="" />13<br data-jekyll-commonmark-ghpages="" />14<br data-jekyll-commonmark-ghpages="" />15<br data-jekyll-commonmark-ghpages="" />16<br data-jekyll-commonmark-ghpages="" />17<br data-jekyll-commonmark-ghpages="" />18<br data-jekyll-commonmark-ghpages="" />19<br data-jekyll-commonmark-ghpages="" />20<br data-jekyll-commonmark-ghpages="" />21<br data-jekyll-commonmark-ghpages="" />22<br data-jekyll-commonmark-ghpages="" />23<br data-jekyll-commonmark-ghpages="" />24<br data-jekyll-commonmark-ghpages="" />25<br data-jekyll-commonmark-ghpages="" />26<br data-jekyll-commonmark-ghpages="" />27<br data-jekyll-commonmark-ghpages="" />28<br data-jekyll-commonmark-ghpages="" />29<br data-jekyll-commonmark-ghpages="" />30<br data-jekyll-commonmark-ghpages="" />31<br data-jekyll-commonmark-ghpages="" />32<br data-jekyll-commonmark-ghpages="" />33<br data-jekyll-commonmark-ghpages="" />34<br data-jekyll-commonmark-ghpages="" />35<br data-jekyll-commonmark-ghpages="" />36<br data-jekyll-commonmark-ghpages="" />37<br data-jekyll-commonmark-ghpages="" />38<br data-jekyll-commonmark-ghpages="" />39<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="cp">&lt;?php</span><br data-jekyll-commonmark-ghpages="" /><span class="sd">/**<br data-jekyll-commonmark-ghpages="" /> * Empty cart page<br data-jekyll-commonmark-ghpages="" /> *<br data-jekyll-commonmark-ghpages="" /> * This template can be overridden by copying it to yourtheme/woocommerce/cart/cart-empty.php.<br data-jekyll-commonmark-ghpages="" /> *<br data-jekyll-commonmark-ghpages="" /> * HOWEVER, on occasion WooCommerce will need to update template files and you<br data-jekyll-commonmark-ghpages="" /> * (the theme developer) will need to copy the new files to your theme to<br data-jekyll-commonmark-ghpages="" /> * maintain compatibility. We try to do this as little as possible, but it does<br data-jekyll-commonmark-ghpages="" /> * happen. When this occurs the version of the template file will be bumped and<br data-jekyll-commonmark-ghpages="" /> * the readme will list any important changes.<br data-jekyll-commonmark-ghpages="" /> *<br data-jekyll-commonmark-ghpages="" /> * @see 	    https://docs.woocommerce.com/document/template-structure/<br data-jekyll-commonmark-ghpages="" /> * @author  WooThemes<br data-jekyll-commonmark-ghpages="" /> * @package WooCommerce/Templates<br data-jekyll-commonmark-ghpages="" /> * @version 2.0.0<br data-jekyll-commonmark-ghpages="" /> */</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nb">defined</span><span class="p">(</span> <span class="s1">'ABSPATH'</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />	<span class="k">exit</span><span class="p">;</span> <span class="c1">// Exit if accessed directly<br data-jekyll-commonmark-ghpages="" /></span><span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="nx">wc_print_notices</span><span class="p">();</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="cp">?&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"cart-empty"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />	<span class="cp">&lt;?php</span> <span class="nx">_e</span><span class="p">(</span> <span class="s1">'Your cart is currently empty.'</span><span class="p">,</span> <span class="s1">'woocommerce'</span> <span class="p">)</span> <span class="cp">?&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;/p&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="cp">&lt;?php</span> <span class="nx">do_action</span><span class="p">(</span> <span class="s1">'woocommerce_cart_is_empty'</span> <span class="p">);</span> <span class="cp">?&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span> <span class="nx">wc_get_page_id</span><span class="p">(</span> <span class="s1">'shop'</span> <span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">)</span> <span class="o">:</span> <span class="cp">?&gt;</span><br data-jekyll-commonmark-ghpages="" />	<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"return-to-shop"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"button wc-backward"</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">esc_url</span><span class="p">(</span> <span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'woocommerce_return_to_shop_redirect'</span><span class="p">,</span> <span class="nx">wc_get_page_permalink</span><span class="p">(</span> <span class="s1">'shop'</span> <span class="p">)</span> <span class="p">)</span> <span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />			<span class="cp">&lt;?php</span> <span class="nx">_e</span><span class="p">(</span> <span class="s1">'Return To Shop'</span><span class="p">,</span> <span class="s1">'woocommerce'</span> <span class="p">)</span> <span class="cp">?&gt;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;/a&gt;</span><br data-jekyll-commonmark-ghpages="" />	<span class="nt">&lt;/p&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="cp">&lt;?php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>This showed the link creating, the variable
+<code class="highlighter-rouge">woocommerce_return_to_shop_redirect</code> filter, and the text being
+applied to the anchor tag.</p>
+
+<p>The comments in the file would have led us to copy the above template
+and change the text, but that felt wrong, so I went looking for how to
+change the localization text that matches ‘Return To Shop’ in the
+woocommerce <code class="highlighter-rouge">.pot</code> files.</p>
+
+<p>I was directed to the following page:</p>
+
+<ul>
+  <li><a href="https://docs.woocommerce.com/document/woocommerce-localization/">Translating WooCommerce (Localization)</a></li>
+</ul>
+
+<p>down to the last section on the page:</p>
+
+<ul>
+  <li><a href="https://docs.woocommerce.com/document/woocommerce-localization/#section-6">Translating Text without a localization file</a></li>
+</ul>
+
+<p>which in turn led me to the “Say What?” plugin at:</p>
+
+<ul>
+  <li><a href="https://wordpress.org/plugins/say-what/">Say what? WordPress Plugin</a></li>
+</ul>
+
+<p>Now with both of these solutions in hand, Elise is able to change both
+the url and the label of the button in the cart.</p>
+
+</article>
+<hr>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

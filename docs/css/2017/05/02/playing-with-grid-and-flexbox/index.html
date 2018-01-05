@@ -1,0 +1,163 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Playing with Grid and Flexbox</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/css/2017/05/02/playing-with-grid-and-flexbox/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>Playing with Grid and Flexbox</h1>
+May 2, 2017
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/css">css</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/css">css</a></li> <li role="presentation"><a href="/swaac/tags/grid">grid</a></li> <li role="presentation"><a href="/swaac/tags/flexbox">flexbox</a></li> 
+</header>
+
+<article>
+  <p>So last month, March 2017, Grid CSS support dropped for almost all the
+major browsers. Grid is a pretty nice system for 2-dimensional layout
+while Flexbox remains a good system for 1-dimensional layout. A lot of
+folks have been
+asking <a href="https://css-tricks.com/css-grid-replace-flexbox/" title="No. Well, mostly no.">if Grid replaces Flexbox but it does not</a>. In
+fact, they can play really well together.</p>
+
+<h2 id="gridcss-holy-grail-layout">GridCSS Holy Grail Layout</h2>
+
+<p>The [holy grail] layout is a pretty common one, seen pretty much
+everywhere:</p>
+
+<ul>
+  <li>header and footer</li>
+  <li>middle content area with left and right sidebars</li>
+</ul>
+
+<p>Creating it in Grid was something I wanted to try to figure out as a
+way of learning. My attempt is over on CodePen.io:</p>
+
+<p data-height="265" data-theme-id="0" data-slug-hash="zwwwwZ" data-default-tab="result" data-user="tamouse" data-embed-version="2" data-pen-title="GridCSS holy grail" class="codepen">See the Pen <a href="http://codepen.io/tamouse/pen/zwwwwZ/">GridCSS holy grail</a> by Tamara Temple (<a href="http://codepen.io/tamouse">@tamouse</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+
+<p>I’m still struggling with getting the height to stretch out if the
+content does not naturally fill the window.</p>
+
+<h2 id="flexbox-dashboard-with-grid-section">Flexbox Dashboard with Grid Section</h2>
+
+<p>This was more successful. I wanted a full-height left navigation panel
+and a masonry-style right panel that would let various guages and
+displays flow nicely.</p>
+
+<p data-height="265" data-theme-id="0" data-slug-hash="EmmXdr" data-default-tab="result" data-user="tamouse" data-embed-version="2" data-pen-title="Flexbox Dashboard with Grid Section" class="codepen">See the Pen <a href="http://codepen.io/tamouse/pen/EmmXdr/">Flexbox Dashboard with Grid Section</a> by Tamara Temple (<a href="http://codepen.io/tamouse">@tamouse</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+
+<p>It’s not really responsive, I’d like it if the left panel shrunk down
+when the viewport gets narrow enough, but I don’t think I can make
+that happen on codepen.</p>
+
+<h2 id="links">Links</h2>
+
+<ul>
+  <li><a href="http://codepen.io/tamouse/pen/zwwwwZ" title="GridCSS holy grail">GridCSS Holy Grail</a></li>
+  <li>
+    <p><a href="http://codepen.io/tamouse/pen/EmmXdr" title="Flex Dashboard with Grid Section">Flexbox Dashboard</a></p>
+  </li>
+  <li><a href="https://css-tricks.com/css-grid-replace-flexbox/" title="No. Well, mostly no.">Grid vs. Flexbox</a></li>
+  <li><a href="https://www.youtube.com/watch?v=tjHOLtouElA" title="Rachel Andrew Presentation: Start Using Grid Today">Rachel Andrew’s Start using grid today (video)</a></li>
+  <li><a href="https://hackernoon.com/getting-started-with-css-grid-layout-8e00de547daf" title="Hackernoon: Getting started with Grid Layout">Getting started with CSS Grid</a></li>
+  <li><a href="https://css-tricks.com/css-grid-one-layout-multiple-ways/" title="One layout, Multiple Ways in CSS Grid">One Layout, Multiple Ways</a></li>
+</ul>
+
+<script async="" src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+
+</article>
+<hr>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

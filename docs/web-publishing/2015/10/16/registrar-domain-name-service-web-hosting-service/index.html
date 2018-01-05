@@ -1,0 +1,268 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Terminology: Registrar, Domain Name Service, Web Hosting Service</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/web-publishing/2015/10/16/registrar-domain-name-service-web-hosting-service/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>Terminology: Registrar, Domain Name Service, Web Hosting Service</h1>
+Oct 16, 2015
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/web-publishing">web-publishing</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/web-development">web-development</a></li> <li role="presentation"><a href="/swaac/tags/publishing">publishing</a></li> <li role="presentation"><a href="/swaac/tags/web-publishing">web-publishing</a></li> <li role="presentation"><a href="/swaac/tags/registrar">registrar</a></li> <li role="presentation"><a href="/swaac/tags/dns">dns</a></li> <li role="presentation"><a href="/swaac/tags/domain-name-service">domain-name-service</a></li> <li role="presentation"><a href="/swaac/tags/web-hosting">web-hosting</a></li> <li role="presentation"><a href="/swaac/tags/web-hosting-service">web-hosting-service</a></li> <li role="presentation"><a href="/swaac/tags/providers">providers</a></li> <li role="presentation"><a href="/swaac/tags/glossary">glossary</a></li> <li role="presentation"><a href="/swaac/tags/definitions">definitions</a></li> <li role="presentation"><a href="/swaac/tags/GDI">GDI</a></li> <li role="presentation"><a href="/swaac/tags/classes">classes</a></li> <li role="presentation"><a href="/swaac/tags/front-end-series">front-end-series</a></li> 
+</header>
+
+<article>
+  <p>Recently, in a <a href="http://www.meetup.com/Girl-Develop-It-Minneapolis/events/224752393/" title="Girl Develop It! Advanced HTML &amp; CSS">class</a> I was assisting at, a question came up that
+involved understanding who has permissions to change what shows up for
+a given domain name.</p>
+
+<hr />
+
+<p><strong>Contents:</strong></p>
+
+<ul id="markdown-toc">
+  <li><a href="#three-roles-of-hosting" id="markdown-toc-three-roles-of-hosting">Three Roles of Hosting</a>    <ul>
+      <li><a href="#in-a-nutshell" id="markdown-toc-in-a-nutshell">In a Nutshell</a></li>
+      <li><a href="#the-web-site-host" id="markdown-toc-the-web-site-host">The Web Site Host</a></li>
+      <li><a href="#the-registrar" id="markdown-toc-the-registrar">The Registrar</a></li>
+      <li><a href="#the-domain-name-service" id="markdown-toc-the-domain-name-service">The Domain Name Service</a></li>
+    </ul>
+  </li>
+  <li><a href="#permissions-roles" id="markdown-toc-permissions-roles">Permissions, Roles</a>    <ul>
+      <li><a href="#domain-name-ownership" id="markdown-toc-domain-name-ownership">Domain Name Ownership</a></li>
+      <li><a href="#web-site-content-ownership" id="markdown-toc-web-site-content-ownership">Web Site Content Ownership</a></li>
+      <li><a href="#domain-name-service-resolution-ownership" id="markdown-toc-domain-name-service-resolution-ownership">Domain Name Service Resolution Ownership</a></li>
+    </ul>
+  </li>
+  <li><a href="#conclusion" id="markdown-toc-conclusion">Conclusion</a></li>
+</ul>
+
+<hr />
+
+<h2 id="three-roles-of-hosting">Three Roles of Hosting</h2>
+
+<p>There are three major roles involved in getting your web site content
+displayed to a user:</p>
+
+<ul>
+  <li>The Web Site Host, who sells you your <strong>web hosting package</strong>.</li>
+  <li>The Registrar, who sells you your <strong>domain name</strong>.</li>
+  <li>The Domain Name Service, aka <strong>DNS</strong>, who connects your <strong>domain name</strong>
+with your <strong>web site</strong>.</li>
+</ul>
+
+<p>All three of these roles might be fulfilled by the same company; a
+company such as <a href="http://gandi.net">Gandi.net</a> provides all three of
+these services. Sometimes, they are fulfilled by different
+companies. Sometimes, you may be providing some of these parts if
+you’re a hosting reseller.</p>
+
+<h3 id="in-a-nutshell">In a Nutshell</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th style="text-align: left">Web Host</th>
+      <th style="text-align: left">Registrar</th>
+      <th style="text-align: left">Domain Name Service</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Provides space for web site contents, which you decide how to fill.</td>
+      <td style="text-align: left">Registers domain name.</td>
+      <td style="text-align: left">Connects domain name and IP address.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Provides IP address to web site contents.</td>
+      <td style="text-align: left">Lets domain name owner decide who will provide the domain name service</td>
+      <td style="text-align: left">Lets the DNS record owner decide how the IP address will be resolved</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Serves web site content when a request comes to the IP address</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="the-web-site-host">The Web Site Host</h3>
+
+<p>The Web Site Host, aka “web hosting service”, aka “host”, is who you rent space
+from to hold the files of your web site. The host provides you with an
+<strong>IP Address</strong>, a sequence of 4 numbers, e.g. 174.53.192.61. (This is
+IP version 4, IPv4. There is also IP version 6, IPv6, where the
+numbers look a lot different, like so:
+2601:443:1:1605:e4de:d6dd:4943:326d ) That address is precisely where
+the world will find your website. As no one wants to remember a set of
+numbers like that, we have domain names.</p>
+
+<p>When you rent space, you provide the actual content (html, images,
+scripts, css, etc.) that will be displayed to the user, and the host
+provides the web server that will display that information when asked
+for at that IP address. You are given complete control over the files
+that will be displayed. (If you aren’t, change web hosts.)</p>
+
+<h3 id="the-registrar">The Registrar</h3>
+
+<p>The Registrar is who you buy your domain name from. Domain names
+aren’t so much “bought” as “rented”, as you can only remain in control
+of the name as long as you pay an annual fee for that name.</p>
+
+<p>You are given control over the domain name to be able to say what DNS
+will be used to <strong>resolve</strong> your name. “Resolve” is the term that says
+“My domain name points to this IP address”, and is a rather
+complicated, messy process that we’re all glad someone else
+maintains.</p>
+
+<h3 id="the-domain-name-service">The Domain Name Service</h3>
+
+<p>The DNS provides the glue between your domain name and your web site
+IP address. The DNS lets you say how your domain will resolve to that
+IP address, and provides the servers that perform that resolution. You
+are given control (possibly limited) over how that resolution
+happens. As the actual records that perform the mapping can seem
+rather arcane, most DNS providers give you an easier way to manage
+those entries.</p>
+
+<p>In most cases, you’ll want an <strong>A</strong> record that directly maps a domain
+name to an IP address. Sometimes you will want a <strong>CNAME</strong> record that
+maps one domain name to another. <a href="https://www.wikipedia.org/">Wikipedia</a> has a complete
+<a href="https://en.wikipedia.org/wiki/List_of_DNS_record_types">list of DNS record types</a></p>
+
+<hr />
+
+<h2 id="permissions-roles">Permissions, Roles</h2>
+
+<p>The hypothetical scenario from the <a href="http://www.meetup.com/Girl-Develop-It-Minneapolis/events/224752393/" title="Girl Develop It! Advanced HTML &amp; CSS">class</a>, “If I’m hosting my
+boyfriend’s website, and I want to change change where it’s pointing
+to, could I do that?” comes down to this: who owns what?</p>
+
+<h3 id="domain-name-ownership">Domain Name Ownership</h3>
+
+<p>The person who buys a domain name from a registrar has the ability to
+change where that domain is resolved. If your boyfriend bought, then
+he can decide. If you bought it on his behalf, you can change it. If
+you have access to his account at the registrar, you can change it,
+but he can change it back.</p>
+
+<h3 id="web-site-content-ownership">Web Site Content Ownership</h3>
+
+<p>Some of you have taken advantage of the web hosting reseller package,
+in which case, you can be a web hosting provider yourself. As someone
+who sells such a service, you can control what is on your customer’s
+site, but just like your upstream provider, you wouldn’t really want
+them to do that. But again, you have the power to change things.</p>
+
+<h3 id="domain-name-service-resolution-ownership">Domain Name Service Resolution Ownership</h3>
+
+<p>This can be the tricky part, because, again in the case where you’re
+doing the hosting reseller thing, you will likely also have the
+control over the DNS record, and could point your boyfriend’s domain
+name at a different IP address (<strong>A</strong> record), or another domain name
+(<strong>CNAME</strong> record).</p>
+
+<hr />
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Ultimately, like most everywhere else on the net, if you have the
+credentials to change something, you can. It isn’t always ethical to
+do so, of course.</p>
+
+</article>
+<hr>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

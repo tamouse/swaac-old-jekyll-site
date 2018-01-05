@@ -1,0 +1,472 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Setting up your Mac for working on the command line.</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/pages/learning/beginner/setting-up-your-mac-for-working-on-the-command-line/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>Setting up your Mac for working on the command line. </h1>
+
+</header>
+
+<article>
+<p>Before beginning, I strongly urge you to get Michael Hartl’s
+<a href="https://www.learnenough.com/command-line-tutorial">Learn Enough Command Line to Be Dangerous</a>
+which is seriously the best introduction to this whole thing.</p>
+
+<p>See also: <a href="/pages/learning/beginner/conventions-used-in-this-section">Conventions Used in This Section</a>.</p>
+
+<h4 class="no_toc" id="page-contents">Page Contents</h4>
+
+<ul id="markdown-toc">
+  <li><a href="#intro" id="markdown-toc-intro">Intro</a></li>
+  <li><a href="#youll-need-to-know" id="markdown-toc-youll-need-to-know">You’ll need to know</a></li>
+  <li><a href="#gathering-current-information" id="markdown-toc-gathering-current-information">Gathering Current Information</a></li>
+  <li><a href="#if-you-dont-have-any-of-the-three-files" id="markdown-toc-if-you-dont-have-any-of-the-three-files">If you don’t have any of the three files</a>    <ul>
+      <li><a href="#what-are-the-bash_profile-and-profile-file-about" id="markdown-toc-what-are-the-bash_profile-and-profile-file-about">What are the <code class="highlighter-rouge">.bash_profile</code> and <code class="highlighter-rouge">.profile</code> file about?</a></li>
+      <li><a href="#the-profile-file" id="markdown-toc-the-profile-file">The <code class="highlighter-rouge">.profile</code> file</a></li>
+    </ul>
+  </li>
+  <li><a href="#if-you-have-bash_profile-but-none-of-the-others" id="markdown-toc-if-you-have-bash_profile-but-none-of-the-others">If you have <code class="highlighter-rouge">.bash_profile</code>, but none of the others</a></li>
+  <li><a href="#if-you-have-profile-but-none-of-the-others" id="markdown-toc-if-you-have-profile-but-none-of-the-others">If you have <code class="highlighter-rouge">.profile</code>, but none of the others</a></li>
+  <li><a href="#if-you-do-not-have-a-bashrc-file" id="markdown-toc-if-you-do-not-have-a-bashrc-file">If you do NOT have a <code class="highlighter-rouge">.bashrc</code> file</a>    <ul>
+      <li><a href="#what-is-the-bashrc-file-all-about" id="markdown-toc-what-is-the-bashrc-file-all-about">What is the <code class="highlighter-rouge">.bashrc</code> file all about?</a></li>
+      <li><a href="#creating-the-bashrc-file" id="markdown-toc-creating-the-bashrc-file">Creating the <code class="highlighter-rouge">.bashrc</code> file</a></li>
+    </ul>
+  </li>
+  <li><a href="#if-you-have-bashrc-but-neither-bash_profile-or-profile" id="markdown-toc-if-you-have-bashrc-but-neither-bash_profile-or-profile">If you have <code class="highlighter-rouge">.bashrc</code> but neither <code class="highlighter-rouge">.bash_profile</code> or <code class="highlighter-rouge">.profile</code></a></li>
+  <li><a href="#if-you-have-bashrc-and-one-or-both-of-bash_profile-and-profile" id="markdown-toc-if-you-have-bashrc-and-one-or-both-of-bash_profile-and-profile">If you have <code class="highlighter-rouge">.bashrc</code>, and one or both of <code class="highlighter-rouge">.bash_profile</code> and <code class="highlighter-rouge">.profile</code></a></li>
+</ul>
+
+<h2 id="intro">Intro</h2>
+
+<p>I’d love to provide the TL;DR for this, but I can’t. I don’t know
+what’s on your system already, what level you’re at, or even a kind
+voice to listen to your questions and respond.</p>
+
+<p>Using the caommand line effectively means having it configured to your
+needs. So this page is going to introduce how to configure your
+command line.</p>
+
+<p>There are two, sometimes three, files involved in this:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">.bash_profile</code></li>
+  <li><code class="highlighter-rouge">.profile</code></li>
+  <li><code class="highlighter-rouge">.bashrc</code></li>
+</ul>
+
+<p>The rest of this will tell you how to set them up.</p>
+
+<h2 id="youll-need-to-know">You’ll need to know</h2>
+
+<ul>
+  <li><a href="/swaac/pages/learning/beginner/how-do-i-get-to-the-command-line-on-a-mac/">How to open Terminal on a Mac</a></li>
+  <li>
+    <p>Various shell commands:</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">cd</code></li>
+      <li><code class="highlighter-rouge">chmod</code></li>
+      <li><code class="highlighter-rouge">cp</code></li>
+      <li><code class="highlighter-rouge">echo</code></li>
+      <li><code class="highlighter-rouge">ls</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="gathering-current-information">Gathering Current Information</h2>
+
+<ol>
+  <li>
+    <p><a href="/swaac/pages/learning/beginner/how-do-i-get-to-the-command-line-on-a-mac/">Open up the Terminal</a></p>
+  </li>
+  <li>
+    <p>Run the command <code class="highlighter-rouge">ls -1 .profile .bash_profile .bashrc</code></p>
+
+    <p>The “-1” (“minus-one”) option produces a listing of file names in a
+single column. It’s not necessary, but it’s a little easier to read
+for short listings.</p>
+
+    <p>The <code class="highlighter-rouge">ls</code> command has <em>lots</em> of options which can be learned about
+using the <code class="highlighter-rouge">man ls</code> command and reading the manual page.</p>
+
+    <p>You could see something like the following:</p>
+
+    <p class="terminal-output">ls: .bash_profile: No such file or directory
+ls: .bashrc: No such file or directory
+ls: .profile: No such file or directory</p>
+
+    <p>in which case you don’t have any of those files, which is okay.</p>
+
+    <p>You might see something like this:</p>
+
+    <p class="terminal-output">ls: .bash_profile: No such file or directory
+ls: .profile: No such file or directory
+.bashrc</p>
+
+    <p>in which case you have the <code class="highlighter-rouge">.bashrc</code> file, but you don’t have the
+others, which is also okay.</p>
+  </li>
+</ol>
+
+<p>In fact, <em>any</em> combination is okay, there’ll be a section below on
+each case.</p>
+
+<p>Here are the combinations:</p>
+
+<ol>
+  <li>You don’t have any of them (default OSX setup)</li>
+  <li>You have <code class="highlighter-rouge">.profile</code> but not the other two</li>
+  <li>You have <code class="highlighter-rouge">.bash_profile</code> but not the other two</li>
+  <li>You have <code class="highlighter-rouge">.bashrc</code> but not the other two</li>
+  <li>You have <code class="highlighter-rouge">.bash_profile</code> and <code class="highlighter-rouge">.bashrc</code>, but not <code class="highlighter-rouge">.profile</code></li>
+  <li>You have <code class="highlighter-rouge">.profile</code> and <code class="highlighter-rouge">.bashrc</code>, but not <code class="highlighter-rouge">.bash_profile</code></li>
+  <li>You have all three</li>
+</ol>
+
+<h2 id="if-you-dont-have-any-of-the-three-files">If you don’t have any of the three files</h2>
+
+<p>In this section, we’ll talk about when none of those files exist
+yet. This is easiest to deal with starting off.</p>
+
+<h3 id="what-are-the-bash_profile-and-profile-file-about">What are the <code class="highlighter-rouge">.bash_profile</code> and <code class="highlighter-rouge">.profile</code> file about?</h3>
+
+<p>On Unix- and Linux-based systems, the command line is also referred to
+as “The Shell”. By default, Mac’s use the program “bash” as the
+command line shell.</p>
+
+<p>When you start up Terminal, it launches a “login shell” by starting
+the program <code class="highlighter-rouge">/bin/bash</code>. This program then looks for two files in your
+user’s [home directory][homedir]: <code class="highlighter-rouge">.bash_profile</code> and <code class="highlighter-rouge">.profile</code>.</p>
+
+<p>It’s important to note that if <code class="highlighter-rouge">bash</code> finds <code class="highlighter-rouge">.bash_profile</code>, it will
+run that file, otherwise it will run <code class="highlighter-rouge">.profile</code>. There may come a time
+when you install a software development command-line tool that creates
+a <code class="highlighter-rouge">.bash_profile</code>, and you can find all the things you put in
+<code class="highlighter-rouge">.profile</code> are not being set up. Likewise, you might install a
+software command line tool that only expects things to be initialized
+in <code class="highlighter-rouge">.profile</code> and then that tool’s setting won’t happen
+correctly. It’s confusing, to be sure.</p>
+
+<p>There’s always more than one way to deal with this, of course. Perhaps
+the best way is to start with the <code class="highlighter-rouge">.bash_profile</code> and make all your
+initialisation happen there.</p>
+
+<p>I prefer to do the following though:</p>
+
+<ol>
+  <li>
+    <p>Create a <code class="highlighter-rouge">.bash_profile</code> in your home directory with the following
+contents:</p>
+
+    <p class="file-contents">#!/bin/bash
+[ -f $HOME/.profile ] &amp;&amp; source $HOME/.profile</p>
+
+    <p>What this does is execute the <code class="highlighter-rouge">.profile</code> file if it exists. In this
+way you can have initialisation code put in either file and it will
+be run. The <em>major</em> caveat on this is to make sure if there’s
+initialisation code in both <code class="highlighter-rouge">.bash_profile</code> and <code class="highlighter-rouge">.profile</code> it does
+not cause any problems if it gets run twice. Usually this is okay,
+but it can be a source of errors.</p>
+  </li>
+  <li>
+    <p>Create the <code class="highlighter-rouge">.profile</code> file and place the initialisation codes you
+want to manage there.</p>
+  </li>
+</ol>
+
+<h3 id="the-profile-file">The <code class="highlighter-rouge">.profile</code> file</h3>
+
+<p>As noted, this file contains initialisation codes. Here’s where you
+can set environment variables that are used throughout your command
+line sessions.</p>
+
+<p>One such environment variable is <code class="highlighter-rouge">PATH</code> – this is the variable used
+to find command line programs on your computer. Sometimes you’ll need
+to extend this variable when you install a new piece of software.</p>
+
+<p>Jump into your command line now and type:</p>
+
+<p class="terminal-command">$ echo $PATH</p>
+
+<p class="call-out">Incidently, that <em>first</em> “$” on the line above is <em>not</em> part of the
+command; it is there to indicate the command line prompt (which could
+be much more complicated). It’s used here to tell you something you
+should be typing. What you’ll actually type is what follows the space
+after the “$”, i.e. just “echo $PATH”.</p>
+
+<p>On the stock Mac install, you’ll probably see something like:</p>
+
+<p class="terminal-output">/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</p>
+
+<p>(It might be slightly different, or it might have been  changed
+previously.)</p>
+
+<p>Let’s take the case where you just recently install the “Sass” program
+which pre-processed CSS files in a special format. After you’ve run
+the <code class="highlighter-rouge">gem install sass --user-install</code> command, you may have seen a
+warning like the following:</p>
+
+<p class="terminal-output">WARNING:  You don’t have /Users/noob/.gem/ruby/2.0.0/bin in your PATH,
+gem executables will not run.</p>
+
+<p>While not an error, not addressing this warning is going to be very
+painful for you.</p>
+
+<p>So let’s add that indicated directory to our PATH environment
+variable. We do this in the <code class="highlighter-rouge">.profile</code> file like so:</p>
+
+<p class="file-contents">export PATH=$PATH:$HOME/.gem/ruby/2.0.0/bin</p>
+
+<p>Save and close your <code class="highlighter-rouge">.profile</code> file, switch back to your command line,
+and type the following:</p>
+
+<p class="terminal-command">$ source $HOME/.profile
+$ echo $PATH</p>
+
+<p>Now you should see the following:</p>
+
+<p class="terminal-output">usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/noob/.gem/ruby/2.0.0/bin</p>
+
+<h2 id="if-you-have-bash_profile-but-none-of-the-others">If you have <code class="highlighter-rouge">.bash_profile</code>, but none of the others</h2>
+
+<p>If you already have one, the easiest is to add the following line at
+the bottom of the file:</p>
+
+<p class="file-contents">[ -f $HOME/.profile ] &amp;&amp; source $HOME/.profile</p>
+
+<p>then save and close the file.</p>
+
+<p>Then open a new file named <code class="highlighter-rouge">.profile</code> and enter the following in it:</p>
+
+<p class="file-contents">#!/bin/bash</p>
+
+<p>Then you can add whatever other initialisation codes you want in
+<code class="highlighter-rouge">.profile</code>. Follow the example in the previous section to append
+something to your <code class="highlighter-rouge">PATH</code> environment variable.</p>
+
+<h2 id="if-you-have-profile-but-none-of-the-others">If you have <code class="highlighter-rouge">.profile</code>, but none of the others</h2>
+
+<p>Create a <code class="highlighter-rouge">.bash_profile</code> in your home directory with the following
+contents:</p>
+
+<p class="file-contents">#!/bin/bash
+[ -f $HOME/.profile ] &amp;&amp; source $HOME/.profile</p>
+
+<p>That’s all, really.</p>
+
+<h2 id="if-you-do-not-have-a-bashrc-file">If you do NOT have a <code class="highlighter-rouge">.bashrc</code> file</h2>
+
+<p>This is the default starting point for a new user.</p>
+
+<h3 id="what-is-the-bashrc-file-all-about">What is the <code class="highlighter-rouge">.bashrc</code> file all about?</h3>
+
+<p>The <code class="highlighter-rouge">.bashrc</code> file in your home directory will be executed whenever an
+<em>interactive</em> shell gets invoked. Calling <code class="highlighter-rouge">bash</code> from the command line
+from a is considered an <em>interactive</em> shell. It is <em>not</em> run,
+however, when a <em>login</em> shell is started, which is what happens when
+you start up a new Terminal window.</p>
+
+<p>Confusing? Yes. Try the following to see what is happening.</p>
+
+<p>Edit your <code class="highlighter-rouge">.profile</code> and add the following line to the end:</p>
+
+<p class="file-contents">echo “.profile ran”</p>
+
+<p>Edit <code class="highlighter-rouge">.bashrc</code> (creating it if necessary) and put the following at the
+end:</p>
+
+<p class="file-contents">echo “.bashrc ran”</p>
+
+<p>Now open a <em>new</em> Terminal window (Command-N) and see what is
+printed. You should <em>just</em> see “.profile ran” before the prompt:</p>
+
+<p class="terminal-output">.profile ran
+$</p>
+
+<p>Your command prompt will be different of course.</p>
+
+<p>Now run an interactive bash:</p>
+
+<p class="terminal-command">$ bash</p>
+
+<p>You should now see something like:</p>
+
+<p class="terminal-output">.bashrc ran
+bash-3.2$</p>
+
+<p>You can see that the <code class="highlighter-rouge">.bashrc</code> file is not run on starting up a new
+window. (You might also see your command prompt change! We’ll fix that
+in a second.)</p>
+
+<p>What we actually <em>want</em> usually, is to have the <code class="highlighter-rouge">.bashrc</code> file run for
+a login shell as well.</p>
+
+<p>To do that, we need to fix up the <code class="highlighter-rouge">.profile</code> file with the following
+line at the end of the file:</p>
+
+<p class="file-contents">[ -x $HOME/.bashrc ] &amp;&amp; source $HOME/.bashrc</p>
+
+<p>This will cause the <code class="highlighter-rouge">.bashrc</code> file to be executed at the end of the
+<code class="highlighter-rouge">.profile</code> file’s executing but only <em>if</em> the <code class="highlighter-rouge">.bashrc</code> file is
+<strong>executable</strong>.</p>
+
+<p>This gives a little extra control, if we don’t want <code class="highlighter-rouge">.bashrc</code> to run
+at login, we can unset it’s execution bit. But for now, let’s set it:</p>
+
+<p class="terminal-command">$ chmod +x $HOME/.bashrc
+$ ls -l .bashrc</p>
+
+<p>And you should see something like:</p>
+
+<p class="terminal-output">-rwxr-xr-x  1 noob  staff  32 Aug  7 01:01 .bashrc</p>
+
+<p>Which shows it’s become executable for everyone on the system.</p>
+
+<p>Close the Terminal window and open a new one. Now you should see the
+following before the first command line prompt:</p>
+
+<p class="terminal-output">.bashrc ran
+.profile ran</p>
+
+<p>You can remove those two “echo” commands from <code class="highlighter-rouge">.profile</code> and <code class="highlighter-rouge">.bashrc</code>
+if you wish, or leave them in as tracers while you’re working with
+them.</p>
+
+<h3 id="creating-the-bashrc-file">Creating the <code class="highlighter-rouge">.bashrc</code> file</h3>
+
+<p>This file initialized <em>each</em> interactive shell, including setting some
+environment variables used by <code class="highlighter-rouge">bash</code>, aliases, and other settings.</p>
+
+<p>There is a global <code class="highlighter-rouge">/etc/bashrc</code> file that is a good starting point for
+your own.</p>
+
+<p>Run the following command:</p>
+
+<p class="terminal-command">$ cp /etc/bashrc $HOME/.bashrc</p>
+
+<p>This will <strong>overwrite</strong> the <code class="highlighter-rouge">.bashrc</code> file you just made, but that’s
+okay since there really wasn’t anything in it.</p>
+
+<p>Give the new file execute permission:</p>
+
+<p class="terminal-command">$ chmod +x $HOME/.bashrc</p>
+
+<p>Close the Terminal window and open a new one.</p>
+
+<h2 id="if-you-have-bashrc-but-neither-bash_profile-or-profile">If you have <code class="highlighter-rouge">.bashrc</code> but neither <code class="highlighter-rouge">.bash_profile</code> or <code class="highlighter-rouge">.profile</code></h2>
+
+<p>In this case, you want to add running the <code class="highlighter-rouge">.bashrc</code> file for <em>login</em>
+shells so those settings are available.</p>
+
+<p>Add the following line to the end of your <code class="highlighter-rouge">.profile</code>:</p>
+
+<p class="file-contents">[ -x $HOME/.bashrc ] &amp;&amp; source $HOME/.bashrc</p>
+
+<p>as in the previous section. You may need to set the execute bit on
+<code class="highlighter-rouge">.bashrc</code> as well:</p>
+
+<p class="terminal-command">$ chmod +x .bashrc</p>
+
+<h2 id="if-you-have-bashrc-and-one-or-both-of-bash_profile-and-profile">If you have <code class="highlighter-rouge">.bashrc</code>, and one or both of <code class="highlighter-rouge">.bash_profile</code> and <code class="highlighter-rouge">.profile</code></h2>
+
+<p>If you only have one of <code class="highlighter-rouge">.bash_profile</code> or <code class="highlighter-rouge">.profile</code> see the
+appropriate section above.</p>
+
+<p>Make sure one of those two files is calling <code class="highlighter-rouge">.bashrc</code> as in the
+previous section. If neither do, put the line into <code class="highlighter-rouge">.profile</code>.</p>
+
+</article>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

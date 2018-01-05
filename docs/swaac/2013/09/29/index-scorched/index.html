@@ -1,0 +1,233 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Scorched</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/swaac/2013/09/29/index-scorched/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>Scorched</h1>
+Sep 29, 2013
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/swaac">swaac</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/ruby">ruby</a></li> <li role="presentation"><a href="/swaac/tags/framework">framework</a></li> <li role="presentation"><a href="/swaac/tags/web">web</a></li> <li role="presentation"><a href="/swaac/tags/controller">controller</a></li> <li role="presentation"><a href="/swaac/tags/minimal">minimal</a></li> 
+</header>
+
+<article>
+  <p>A repost of <a href="http://scorchedrb.com/">http://scorchedrb.com/</a>.</p>
+
+<blockquote>
+  <h1 id="simple-powerful-scorched"><a href="http://scorchedrb.com">Simple, Powerful, Scorched</a></h1>
+
+  <p>Scorched is a generic, unopinionated, DRY, light-weight web framework for Ruby. It provides a generic yet powerful set of constructs for processing HTTP requests, with which websites and applications of almost any scale can be built.</p>
+
+  <p>If you’ve used a light-weight DSL-based Ruby web framework before, such as Sinatra, Scorched should look quite familiar. Scorched is a true evolutionary enhancement of Sinatra, with more power, focus, and less clutter.</p>
+
+  <h2 id="getting-started">Getting Started</h2>
+
+  <p>Install the canister…</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ gem install scorched
+</code></pre></div>  </div>
+
+  <p>Open the valve…</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># hello_world.ru
+require 'scorched'
+class App &lt; Scorched::Controller
+  get '/' do
+    'hello world'
+  end
+end
+run App
+</code></pre></div>  </div>
+
+  <p>And light the flame…</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rackup hello_world.ru
+</code></pre></div>  </div>
+
+  <h4 id="a-note-on-requirements">A Note on Requirements</h4>
+
+  <p>Scorched requires Ruby 2.0 or above. If you’ve got Ruby 2.0.0-p195 and newer, you’re good. Otherwise, you need to ensure that your version of Ruby 2.0 includes <a href="http://bugs.ruby-lang.org/projects/ruby-trunk/repository/revisions/39919">changeset 39919</a> in order to avoid suffering from <a href="http://bugs.ruby-lang.org/issues/8100">random segmentation faults</a>.</p>
+
+  <h2 id="the-errors-of-our-past-and-present">The Errors of Our Past (and Present!)</h2>
+
+  <p>One of the mistakes made by a lot of other Ruby frameworks is to not leverage the power of the class. Consequentially, this makes for some awkwardness. Helpers, for example, are a classical reinvention of what classes and modules are already made to solve. Scorched implements Controllers as classes, which, in addition to having their own DSL, allow you to define and call whatever you need as standard instance methods. The decision to allow developers to implement helpers and other common functionality as standard instance methods not only makes Controllers somewhat more predictable and familiar, but also allows for such helpers to be inheritable via plain old class inheritance.</p>
+
+  <p>Another design oversight of other frameworks is the lack of consideration for the hierarchical nature of websites and the fact that sub-directories are often expected to inherit attributes of their parents. Scorched supports sub-controllers to any arbitrary depth, with each controller’s configuration, filters, route conditions, etc. applied along the way. This can help in many areas of web development, including security, restful interfaces, and interchangeable content types.</p>
+
+  <h2 id="design-philosophy">Design Philosophy</h2>
+
+  <p>Scorched has a relatively simple design philosophy. The main objective is to keep Scorched lean and generic. Scorched refrains from expressing any opinion about how you should design and structure your application. The general idea is to give developers the constructs to quickly put together small, medium and even large websites and applications.</p>
+
+  <p>There is little need for a framework to be opinionated if the opinions of the developer can be quickly and easily built into it on a per-application basis. To do this effectively, developers will really need to understand Scorched, and the best way to facilitate that is to lower the learning curve, by keeping the core design logical, predictable and concise.</p>
+
+  <h2 id="magicians-not-welcome">Magicians Not Welcome</h2>
+
+  <p>Scorched aims to be raw and transparent. Magic has no place. A thoughtful and simple design means there’s no requirement for magic. Because of that, most developers should be able to master Scorched in an evening.</p>
+
+  <p>Part of what keeps Scorched lightweight is that unlike other lightweight web frameworks that attempt to hide Rack in the background, Scorched makes no such attempt, very rarely providing functionality that overlaps with what’s already provided by Rack. In fact, familiarity with Rack is somewhat of a pre-requisite to mastering Scorched.</p>
+
+  <h2 id="first-impressions">First Impressions</h2>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class MyApp &lt; Scorched::Controller
+
+  # From the most simple route possible...
+  get '/' do
+    "Hello World"
+  end
+
+  # To something that gets the muscle's flexing
+  route '/articles/:title/::opts', 2, method: ['GET', 'POST'], content_type: :json do
+    # Do what you want in here. Note, the second argument is the optional route priority.
+  end
+
+  # Anonymous controllers allow for convenient route grouping to which filters and conditions can be applied
+  controller conditions: {media_type: 'application/json'} do
+    get '/articles/*' do |page|
+      {title: 'Scorched Rocks', body: '...', created_at: '27/08/2012', created_by: 'Bob'}
+    end
+
+    after do
+      response.body = response.body.to_json
+    end
+  end
+
+  # The things you get for free by using Classes for Controllers (...that's directed at you Padrino)
+  def my_little_helper
+    # Do some crazy awesome stuff that no route can resist using.
+  end
+
+  # You can always avoid the routing helpers and add mappings manually. Anything that responds to #call is a valid
+  # target, with the only minor exception being that proc's are instance_exec'd, not call'd.
+  self &lt;&lt; {pattern: '/admin', priority: 10, target: My3rdPartyAdminApp}
+  self &lt;&lt; {pattern: '**', conditions: {maintenance_mode: true}, target: proc { |env|
+    @request.body &lt;&lt; 'Maintenance underway, please be patient.'
+  }}
+end
+</code></pre></div>  </div>
+
+  <p>This API shouldn’t look too foreign to anyone familiar with frameworks like Sinatra, and the potential power at hand should be obvious. The <code class="highlighter-rouge">route</code> method demonstrates a few minor features of Scorched:</p>
+
+  <ul>
+    <li>Multi-method routes - Because sometimes the difference between a GET and POST can be a single line of code. If no methods are provided, the route receives all HTTP methods.</li>
+    <li>Named Wildcards - Not an original idea, but you may note the named wildcard with the double colon. This maps to the ‘**’ glob directive, which will span forward-slashes while matching. The single asterisk (or colon) behaves like the single asterisk glob directive, and will not match forward-slashes.</li>
+    <li>Route priorities - Routes (referred to as mappings internally) can be assigned priorities. A priority can be any arbitrary number by which the routes are ordered. The higher the number, the higher the priority.</li>
+    <li>Conditions - Conditions are merely procs defined on the controller which are inherited (and can be overriden) by child controllers. When a request comes in, mappings that match the requested URL, first have their conditions evaluated in the context of the controller instance, before control is handed off to the target associated with that mapping. It’s a very simple implementation that comes with a lot of flexibility.</li>
+  </ul>
+
+  <h2 id="links">Links</h2>
+
+  <ul>
+    <li><a href="http://scorchedrb.com">Website</a></li>
+    <li><a href="http://rubydoc.info/gems/scorched">Online API Reference</a></li>
+    <li><a href="http://github.com/wardrop/Scorched">GitHub Project</a></li>
+    <li><a href="http://github.com/wardrop/Scorched/issues">Issue Tracker</a></li>
+    <li><a href="https://groups.google.com/d/forum/scorched">Discussion/Mailing List</a></li>
+  </ul>
+
+  <p>Using Scorched v0.16</p>
+</blockquote>
+
+</article>
+<hr>
+
+<p>
+  <strong>Source</strong>:
+  <a href="http://scorchedrb.com/">
+    http://scorchedrb.com/
+  </a>
+</p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

@@ -1,0 +1,269 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Using Emacs's org-mode and editing YAML frontmatter in Jekyll posts</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/emacs/org-mode/2015/05/25/using-emacss-org-mode-and-editing-yaml-frontmatter-in-jekyll-posts/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>Using Emacs's org-mode and editing YAML frontmatter in Jekyll posts</h1>
+May 25, 2015
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/emacs">emacs</a></li><li role="presentation"><a href="/swaac/categories/org-mode">org-mode</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/jekyll">jekyll</a></li> <li role="presentation"><a href="/swaac/tags/yaml">yaml</a></li> <li role="presentation"><a href="/swaac/tags/frontmatter">frontmatter</a></li> <li role="presentation"><a href="/swaac/tags/babel">babel</a></li> <li role="presentation"><a href="/swaac/tags/learning">learning</a></li> 
+</header>
+
+<article>
+  <p>Poking around a bit yesterday and this morning, I have been looking
+for an answer to the question: “How can I edit YAML frontmatter in a
+Jekyll post written with Emacs’s org-mode?”</p>
+
+<p>Whew!! long question. I asked on the <code class="highlighter-rouge">#emacs</code> channel on
+<code class="highlighter-rouge">irc.freenode.net</code>, but no one had any answers there. I asked on
+<code class="highlighter-rouge">stackoverflow</code> and Google+ Emacs Community.</p>
+
+<p>For the purposes of asking, I wrote up a <a href="https://gist.github.com/tamouse/eb8432d916459b180007">gist</a>
+showing succinctly the issues I was having and the final answer I got
+on G+.</p>
+
+<hr />
+
+<h2 id="the-problem">The Problem:</h2>
+
+<p>I’ve been through the links on orgmode.com about doing this, but
+there’s still something missing about it for me.</p>
+
+<p>Jekyll posts and pages begin with YAML frontmatter. This is placed in
+the .org file with <code class="highlighter-rouge">#+BEGIN_HTML</code> / <code class="highlighter-rouge">#+END_HTML</code> guards.  That limits me
+to sub-editing that section (with <code class="highlighter-rouge">C-c '</code>) in <code class="highlighter-rouge">html-mode</code>. I can’t switch
+to <code class="highlighter-rouge">yaml-mode</code> and back to <code class="highlighter-rouge">html-mode</code> to edit it as YAML, though, as it
+somehow loses context and can’t switch out of the sub-edit mode.</p>
+
+<p>Is there some way to do what I wish, i.e. edit the frontmatter in YAML
+mode?</p>
+
+<p>File <code class="highlighter-rouge">1-with-html.org-raw</code> shows what one is “supposed” to do, place the
+frontmatter ins the html block, and this renders exactly as I’d prefer
+it, but doesn’t let me edit the content in <code class="highlighter-rouge">yaml-mode</code>, only
+<code class="highlighter-rouge">html-mode</code>. This renders out correctly with running <code class="highlighter-rouge">jekyll build</code>.</p>
+
+<p>File <code class="highlighter-rouge">4-with-yaml.org-raw</code> shows what was suggested, with a src block
+for yaml text, and using the <code class="highlighter-rouge">:results html</code> flag.  This ends up
+causing the block’s content to be rendered in markdown as a verbatum
+block, i.e., pushed to the right 4 spaces.  That causes problems when
+run through jekyll, as it renders the frontmatter as content.</p>
+
+<p>What I need is for that source YAML block to be rendered just as is,
+i.e. copied directly without changes at all. The initial suggestion to
+add <code class="highlighter-rouge">:result html</code> did not do as I’d hoped, sadly.</p>
+
+<h3 id="the-org-mode-post-source-using-html-blocks">The org-mode post source, using html blocks</h3>
+
+<p>Using the standard <code class="highlighter-rouge">#+BEGIN_HTML</code> / <code class="highlighter-rouge">#+END_HTML</code>:</p>
+
+<script src="https://gist.github.com/tamouse/eb8432d916459b180007.js?file=1-with-html.org-raw"> </script>
+
+<p>Give the desired output:</p>
+
+<script src="https://gist.github.com/tamouse/eb8432d916459b180007.js?file=2-with-html.md-raw"> </script>
+
+<p>and:</p>
+
+<script src="https://gist.github.com/tamouse/eb8432d916459b180007.js?file=3-with-html.html-raw"> </script>
+
+<h3 id="the-org-mode-post-source-using-src-yaml-blocks">The org-mode post source, using src yaml blocks</h3>
+
+<p>Using <code class="highlighter-rouge">#+begin_src yaml</code> :</p>
+
+<script src="https://gist.github.com/tamouse/eb8432d916459b180007.js?file=4-with-yaml.org-raw"> </script>
+
+<p>Permitted me to edit the block in YAML mode, but when it was output,
+it gave a verbatum markdown block for the YAML, so it looked like
+content rather than front matter:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">---<br data-jekyll-commonmark-ghpages="" />    layout: post<br data-jekyll-commonmark-ghpages="" />    title: test post<br data-jekyll-commonmark-ghpages="" />    gallery:<br data-jekyll-commonmark-ghpages="" />      path: abc123<br data-jekyll-commonmark-ghpages="" />      images:<br data-jekyll-commonmark-ghpages="" />        - blah.png<br data-jekyll-commonmark-ghpages="" />        - bloo.png<br data-jekyll-commonmark-ghpages="" />    ---<br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /># hello world<br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />*this* is the **reason** for the &lt;span class="underline"&gt;season&lt;/span&gt;.</code></pre></figure>
+
+<hr />
+
+<h2 id="the-solution">The Solution:</h2>
+
+<p>From user
+<a href="https://plus.google.com/u/0/113921962847063269060">Left Right</a> on the
+G+ Emacs community, I got the direction and help I need to make this
+work. The final answer was to tell babel how to execute YAML source:</p>
+
+<figure class="highlight"><pre><code class="language-lisp" data-lang="lisp">(defun org-babel-execute:yaml (body params) body)</code></pre></figure>
+
+<p>Now I have the output I want.</p>
+
+<p>The org-mode source:</p>
+
+<script src="https://gist.github.com/tamouse/eb8432d916459b180007.js?file=4-with-yaml.org-raw"> </script>
+
+<p>Generated the markdown:</p>
+
+<script src="https://gist.github.com/tamouse/eb8432d916459b180007.js?file=5-with-yaml.md-raw"> </script>
+
+<p>Which in turn produced the html I want:</p>
+
+<script src="https://gist.github.com/tamouse/eb8432d916459b180007.js?file=6-with-yaml.html-raw"> </script>
+
+<p>Finally, looking at the difference of the html generated with both
+html and yaml blocks, we see the only difference is the title:</p>
+
+<script src="https://gist.github.com/tamouse/eb8432d916459b180007.js?file=zz-diff.out"> </script>
+
+<hr />
+
+<h2 id="conclusion">Conclusion:</h2>
+
+<ol>
+  <li>
+    <p>Add the above elisp code to your <code class="highlighter-rouge">.emacs</code> file or equivalent.</p>
+  </li>
+  <li>
+    <p>Start your Jekyll blog post with:</p>
+  </li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#+STARTUP: showall indent
+#+OPTIONS: toc:nil
+#+BEGIN_SRC yaml :exports results :results value html
+---
+layout: post
+title: The Title
+---
+#+END_SRC
+</code></pre></div></div>
+
+<p>You can now edit the frontmatter in <code class="highlighter-rouge">yaml-mode</code> using <code class="highlighter-rouge">C-c '</code>.</p>
+
+<p>Then, when you run the markdown export, the frontmatter will be
+properly placed.</p>
+
+<p>Yay!</p>
+
+<h2 id="future">Future</h2>
+
+<p>The <em>next</em> thing I need to figure out is how to properly use source
+blocks to insert code snippets into a post, and have babel emit the
+proper Jekyll code blocks with the right language selected.</p>
+
+<p>Entering in the org file:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">#+begin_src ruby<br data-jekyll-commonmark-ghpages="" />  # Ruby code<br data-jekyll-commonmark-ghpages="" />  puts "hello, world!"<br data-jekyll-commonmark-ghpages="" />#+end_src</code></pre></figure>
+
+<p>and have it produce in the markdown:</p>
+
+<pre><code>{% highlight ruby %}
+# Ruby code
+puts "hello, world!"
+{% endhighlight %}
+</code></pre>
+
+<p>Resulting in:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Ruby code</span><br data-jekyll-commonmark-ghpages="" /><span class="nb">puts</span> <span class="s2">"hello, world!"</span></code></pre></figure>
+
+
+</article>
+<hr>
+
+<p>
+  <strong>Source</strong>:
+  <a href="https://gist.github.com/tamouse/eb8432d916459b180007">
+    https://gist.github.com/tamouse/eb8432d916459b180007
+  </a>
+</p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

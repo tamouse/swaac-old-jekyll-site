@@ -1,0 +1,138 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Bootstrap Follies: Solving a repsonsive positioning problem</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/technology/2013/10/24/bootstrap-follies-solving-a-repsonsive-positioning-problem/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>Bootstrap Follies: Solving a repsonsive positioning problem</h1>
+Oct 24, 2013
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/technology">technology</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/twitter-bootstrap">twitter-bootstrap</a></li> 
+</header>
+
+<article>
+  <p>From a <a href="https://plus.google.com/106228045683754487176/posts/iJXoDjPHKbn">recent post</a>
+on the Twitter Bootstrap google plus community, the correspondent
+wanted to know how to make a sidebar move under a navigation bar in a
+layout, like so:</p>
+
+<p><img src="/images/layout-saine-jeune.jpg" alt="" /></p>
+
+<p>The following <a href="http://jsfiddle.net/Eqcjg/2/">jsfiddle</a>
+explains how pretty well:</p>
+
+<p><em>(Note that there’s no Javascript in the fiddle, click on the HTML,
+CSS, and result.)</em></p>
+
+<iframe width="100%" height="300" src="http://jsfiddle.net/Eqcjg/2/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" />3<br data-jekyll-commonmark-ghpages="" />4<br data-jekyll-commonmark-ghpages="" />5<br data-jekyll-commonmark-ghpages="" />6<br data-jekyll-commonmark-ghpages="" />7<br data-jekyll-commonmark-ghpages="" />8<br data-jekyll-commonmark-ghpages="" />9<br data-jekyll-commonmark-ghpages="" />10<br data-jekyll-commonmark-ghpages="" />11<br data-jekyll-commonmark-ghpages="" />12<br data-jekyll-commonmark-ghpages="" />13<br data-jekyll-commonmark-ghpages="" />14<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-xs-12 col-md-8"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"well one"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/div&gt;</span><br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;/div&gt;</span><br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-xs-12 col-md-4"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"well two"</span><span class="nt">&gt;</span>2<span class="nt">&lt;/div&gt;</span><br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;/div&gt;</span><br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-xs-12 col-md-8"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"well three"</span><span class="nt">&gt;</span>3<span class="nt">&lt;/div&gt;</span><br data-jekyll-commonmark-ghpages="" />      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"well four"</span><span class="nt">&gt;</span>4<span class="nt">&lt;/div&gt;</span>     <br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;/div&gt;</span><br data-jekyll-commonmark-ghpages="" />  <span class="nt">&lt;/div&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;/div&gt;</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" />3<br data-jekyll-commonmark-ghpages="" />4<br data-jekyll-commonmark-ghpages="" />5<br data-jekyll-commonmark-ghpages="" />6<br data-jekyll-commonmark-ghpages="" />7<br data-jekyll-commonmark-ghpages="" />8<br data-jekyll-commonmark-ghpages="" />9<br data-jekyll-commonmark-ghpages="" />10<br data-jekyll-commonmark-ghpages="" />11<br data-jekyll-commonmark-ghpages="" />12<br data-jekyll-commonmark-ghpages="" />13<br data-jekyll-commonmark-ghpages="" />14<br data-jekyll-commonmark-ghpages="" />15<br data-jekyll-commonmark-ghpages="" />16<br data-jekyll-commonmark-ghpages="" />17<br data-jekyll-commonmark-ghpages="" />18<br data-jekyll-commonmark-ghpages="" />19<br data-jekyll-commonmark-ghpages="" />20<br data-jekyll-commonmark-ghpages="" />21<br data-jekyll-commonmark-ghpages="" />22<br data-jekyll-commonmark-ghpages="" />23<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="k">@import</span> <span class="sx">url('//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css')</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="c">/*<br data-jekyll-commonmark-ghpages="" />  this is the magic right here - the media query for screen size that<br data-jekyll-commonmark-ghpages="" />  only floats the particular divs to the right. <br data-jekyll-commonmark-ghpages="" />*/</span><br data-jekyll-commonmark-ghpages="" /><span class="k">@media</span> <span class="n">screen</span> <span class="n">and</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">970px</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="nc">.col-md-8</span><span class="p">{</span><br data-jekyll-commonmark-ghpages="" />        <span class="nl">float</span><span class="p">:</span><span class="nb">right</span> <br data-jekyll-commonmark-ghpages="" />    <span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><span class="nc">.one</span><span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="nl">min-height</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><span class="nc">.two</span><span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="nl">min-height</span><span class="p">:</span> <span class="m">800px</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><span class="nc">.three</span><span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="nl">min-height</span><span class="p">:</span> <span class="m">400px</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><span class="nc">.four</span><span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="nl">min-height</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>The way this works is to set up the various column options in TBS for
+your divs. In the medium format, <code class="highlighter-rouge">col-md-8</code> gets floated to the right
+side of the page. Since there are two <code class="highlighter-rouge">div</code>s that get set that way,
+when the page is narrowed the <code class="highlighter-rouge">col-md-8</code> goes out of play and the
+<code class="highlighter-rouge">col-xs-12</code> goes into play, reordering the stack.</p>
+
+<p>Pretty cool solution, actually.</p>
+
+
+</article>
+<hr>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

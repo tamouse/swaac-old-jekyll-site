@@ -1,0 +1,323 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>ruby - Can't get page data from Jekyll plugin - Stack Overflow</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/swaac/2013/10/15/ruby-cant-get-page-data-from-jekyll-plugin-stack-overflow/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>ruby - Can't get page data from Jekyll plugin - Stack Overflow</h1>
+Oct 15, 2013
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/swaac">swaac</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/jekyll">jekyll</a></li> <li role="presentation"><a href="/swaac/tags/issues">issues</a></li> <li role="presentation"><a href="/swaac/tags/stackoverflow">stackoverflow</a></li> <li role="presentation"><a href="/swaac/tags/answers">answers</a></li> 
+</header>
+
+<article>
+  <p>A repost of <a href="http://stackoverflow.com/questions/10264249/cant-get-page-data-from-jekyll-plugin">http://stackoverflow.com/questions/10264249/cant-get-page-data-from-jekyll-plugin</a>.</p>
+
+<blockquote>
+  <h1 id="cant-get-page-data-from-jekyll-plugin">Can’t get page data from Jekyll plugin</h1>
+
+  <p>I’m trying to write a custom tag plugin for Jekyll that will output a hierarchical navigation tree of all the pages (not posts) on the site. I’m basically wanting a bunch nested <code class="highlighter-rouge">&lt;ul&gt;</code>’s with links (with the page title as the link text) to the pages with the current page noted by a certain CSS class.</p>
+
+  <p>I’m very inexperienced with ruby. I’m a PHP guy.</p>
+
+  <p>I figured I’d start just by trying to iterate through all the pages and output a one-dimensional list just to make sure I could at least do that. Here’s what I have so far:</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module Jekyll
+
+  class NavTree &lt; Liquid::Tag
+    def initialize(tag_name, text, tokens)
+      super
+    end
+
+    def render(context)
+      site = context.registers[:site]
+      output = '&lt;ul&gt;'
+      site.pages.each do |page|
+        output += '&lt;li&gt;&lt;a href="'+page.url+'"&gt;'+page.title+'&lt;/a&gt;&lt;/li&gt;'
+      end
+      output += '&lt;ul&gt;'
+
+      output
+    end
+  end
+
+end
+
+Liquid::Template.register_tag('nav_tree', Jekyll::NavTree)
+</code></pre></div>  </div>
+
+  <p>And I’m inserting it into my liquid template via <code class="highlighter-rouge">{\% nav_tree %\}</code>.</p>
+
+  <p>The problem is that the <code class="highlighter-rouge">page</code> variable in the code above doesn’t have all the data that you’d expect. <code class="highlighter-rouge">page.title</code> is undefined and <code class="highlighter-rouge">page.url</code> is just the basename with a forward slash in front of it (e.g. for <code class="highlighter-rouge">/a/b/c.html</code>, it’s just giving me <code class="highlighter-rouge">/c.html</code>).</p>
+
+  <p>What am I doing wrong?</p>
+
+  <p><strong>Side note:</strong> I already tried doing this with pure Liquid markup, and I eventually gave up. I can easily iterate through <code class="highlighter-rouge">site.pages</code> just fine with Liquid, but I couldn’t figure out a way to appropriately nest the lists.</p>
+
+  <p>asked Apr 22 ‘12 at 0:34</p>
+
+  <p><a href="/users/451201/jnrbsn"></a></p>
+
+  <p><img src="https://www.gravatar.com/avatar/08557ea48b0f92938bb0c01356ad606e?s=32&amp;d=identicon&amp;r=PG" alt="" /></p>
+
+  <p><a href="/users/451201/jnrbsn">jnrbsn</a><br />
+ 669411</p>
+
+  <hr />
+
+  <hr />
+
+  <p>I created <a href="https://github.com/mojombo/jekyll/issues/548">an issue on GitHub</a> to see if anybody there knows the answer. –  <a href="/users/451201/jnrbsn" title="669 reputation">jnrbsn</a> Apr 30 ‘12 at 16:21</p>
+
+  <hr />
+
+  <hr />
+
+  <p>Did you ever manage to get the nesting working? I’d love to see the final code if so –  <a href="/users/401096/brand" title="1412 reputation">Brand</a> Aug 21 ‘12 at 19:35</p>
+
+  <hr />
+
+  <hr />
+
+  <p>@Brand Unfortunately, I never got around to finishing it. –  <a href="/users/451201/jnrbsn" title="669 reputation">jnrbsn</a> Aug 23 ‘12 at 23:19</p>
+
+  <hr />
+
+  <hr />
+
+  <p>I managed to hack the hierachical page tree together. It’s not pretty but I’ve posted it here: <a href="https://gist.github.com/3536551">gist.github.com/3536551</a> in case anyone else stumbles on this question –  <a href="/users/401096/brand" title="1412 reputation">Brand</a> Aug 30 ‘12 at 18:24</p>
+
+  <h2 id="2-answers">2 Answers</h2>
+
+  <p><a href="/questions/10264249/cant-get-page-data-from-jekyll-plugin?answertab=active#tab-top" title="Answers with the latest activity first">active</a> <a href="/questions/10264249/cant-get-page-data-from-jekyll-plugin?answertab=oldest#tab-top" title="Answers in the order they were provided">oldest</a> <a href="/questions/10264249/cant-get-page-data-from-jekyll-plugin?answertab=votes#tab-top" title="Answers with the highest score first">votes</a></p>
+
+  <p>up vote 3 down vote accepted</p>
+
+  <p>Try:</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module Jekyll
+
+  # Add accessor for directory
+  class Page
+          attr_reader :dir
+  end
+
+
+  class NavTree &lt; Liquid::Tag
+    def initialize(tag_name, text, tokens)
+      super
+    end
+
+    def render(context)
+      site = context.registers[:site]
+      output = '&lt;ul&gt;'
+      site.pages.each do |page|
+        output += '&lt;li&gt;&lt;a href="'+page.dir+page.url+'"&gt;'+(page.data['title'] || page.url) +'&lt;/a&gt;&lt;/li&gt;'
+      end
+        output += '&lt;ul&gt;'
+
+      output
+    end
+  end
+
+end
+
+Liquid::Template.register_tag('nav_tree', Jekyll::NavTree)
+</code></pre></div>  </div>
+
+  <table>
+    <tbody>
+      <tr>
+        <td><a href="/a/10813490" title="short permalink to this answer">share</a></td>
+        <td><a href="/posts/10813490/edit">improve this answer</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><a href="/posts/10813490/revisions" title="show all edits to this post">edited Jun 4 ‘12 at 9:39</a></p>
+
+  <p>answered May 30 ‘12 at 9:26</p>
+
+  <p><a href="/users/1425619/mikael-borg"></a></p>
+
+  <p><img src="https://www.gravatar.com/avatar/1e1bf93381c676a431bc932e041b7e02?s=32&amp;d=identicon&amp;r=PG" alt="" /></p>
+
+  <p><a href="/users/1425619/mikael-borg">Mikael Borg</a><br />
+ 464</p>
+
+  <hr />
+
+  <hr />
+
+  <p>With this code, I get <code class="highlighter-rouge">Liquid error: can't convert nil into String</code>. –  <a href="/users/451201/jnrbsn" title="669 reputation">jnrbsn</a> May 30 ‘12 at 18:11</p>
+
+  <hr />
+
+  <hr />
+
+  <table>
+    <tbody>
+      <tr>
+        <td>You probably had a page without a title, so that page.data[‘title’] is nil. Replace w/ e.g. (page.data[‘title’]</td>
+        <td> </td>
+        <td>page.url) . –  <a href="/users/1425619/mikael-borg" title="46 reputation">Mikael Borg</a> Jun 4 ‘12 at 9:37</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr />
+  <p>1  <br />
+  — —</p>
+
+  <p>Sorry for the delayed response. You were correct. I had a page without a title. Your solution works. –  <a href="/users/451201/jnrbsn" title="669 reputation">jnrbsn</a> Jun 15 ‘12 at 4:32</p>
+
+  <p>up vote 3 down vote</p>
+
+  <p><code class="highlighter-rouge">page.title</code> is not always defined (example: <code class="highlighter-rouge">atom.xml</code>). You have to check if it is defined. Then you can take <code class="highlighter-rouge">page.name</code> or not process the entry…</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def render(context)
+  site = context.registers[:site]
+  output = '&lt;ul&gt;'
+  site.pages.each do |page|
+    unless page.data['title'].nil?
+      t = page.data['title']
+    else
+      t = page.name
+    end
+    output += "&lt;li&gt;&lt;a href="'+page.dir+page.url+'"&gt;'+t+'&lt;/a&gt;&lt;/li&gt;"
+  end
+  output += '&lt;ul&gt;'
+  output
+end
+</code></pre></div>  </div>
+
+  <table>
+    <tbody>
+      <tr>
+        <td><a href="/a/10877244" title="short permalink to this answer">share</a></td>
+        <td><a href="/posts/10877244/edit">improve this answer</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>answered Jun 4 ‘12 at 6:39</p>
+
+  <p><a href="/users/690003/undx"></a></p>
+
+  <p><img src="https://www.gravatar.com/avatar/a171009618468e8caa6d327c52e1a000?s=32&amp;d=identicon&amp;r=PG" alt="" /></p>
+
+  <p><a href="/users/690003/undx">undx</a><br />
+ 1363</p>
+
+  <hr />
+
+  <hr />
+
+  <p>Shorten that unless..end a bit to: <code class="highlighter-rouge">t = page.data['title'] || page.name</code> –  <a href="/users/742446/tamouse" title="314 reputation">tamouse</a> 20 mins ago</p>
+</blockquote>
+
+
+</article>
+<hr>
+
+<p>
+  <strong>Source</strong>:
+  <a href="http://stackoverflow.com/questions/10264249/cant-get-page-data-from-jekyll-plugin">
+    http://stackoverflow.com/questions/10264249/cant-get-page-data-from-jekyll-plugin
+  </a>
+</p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

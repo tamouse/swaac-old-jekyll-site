@@ -1,0 +1,195 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Notes on using ActionMailer in Rails</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/rails/2017/05/06/notes-on-using-actionmailer-in-rails/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>Notes on using ActionMailer in Rails</h1>
+May 6, 2017
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/rails">rails</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/rails">rails</a></li> <li role="presentation"><a href="/swaac/tags/ruby">ruby</a></li> <li role="presentation"><a href="/swaac/tags/actionmailer">actionmailer</a></li> 
+</header>
+
+<article>
+  <p>(This article was originally posted on Sat Aug 24 10:39:09 2013 in
+wiki.tamaratemple.com. It deserves a new home.)</p>
+
+<p><a href="http://guides.rubyonrails.org/action_mailer_basics.html">ActionMailer</a> allows
+a Rails application to send and receive emails in a fashion similar to
+a Rails controller. You can have multi-part bodies, templates,
+attachments, and so on. It isn’t quite a complete ecosystem, as you
+need to have a transport for sending and recieving mail, and you need
+to have a way of accurately testing your emails, so I’m going to write
+some notes to complete that view.</p>
+
+<h2 id="first-read-the-documentation">First, read the documentation</h2>
+
+<p><a href="http://guides.rubyonrails.org/">The Rails Guides</a> provide the
+basics for getting up and running using ActionMailer.</p>
+
+<p>In addition,
+the
+<a href="http://api.rubyonrails.org/classes/ActionMailer/Base.html">api docs</a>
+provides more details on the usage of the methods in ActionMailer.</p>
+
+<h2 id="testing-considerations">Testing Considerations</h2>
+
+<p>Since we are all good TDD/BDD-ers (we are, right?), I’m going to start
+with how you can set up your Rails environment for testing your
+mailers.</p>
+
+<p>The Rails Guides provide a section
+on
+<a href="http://guides.rubyonrails.org/testing.html#testing-your-mailers">testing your mailers</a>,
+which you should go off and read right now.</p>
+
+<h3 id="delivery-mode-test">Delivery Mode <code class="highlighter-rouge">:test</code></h3>
+
+<p>The simplest setup for this, especially useful for unit and functional
+testing, is to set the delivery mode for action mailer to <code class="highlighter-rouge">:test</code> in
+the <code class="highlighter-rouge">test</code> environment.</p>
+
+<p><strong>File:</strong> <code class="highlighter-rouge">config/environments/test.rb</code>:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="c1"># Tell Action Mailer not to deliver emails to the real world.</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># The :test delivery method accumulates sent emails in the</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># ActionMailer::Base.deliveries array.</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">config</span><span class="p">.</span><span class="nf">action_mailer</span><span class="p">.</span><span class="nf">delivery_method</span> <span class="o">=</span> <span class="ss">:test</span></code></pre></figure>
+
+<p>In a new Rails app, this is the default setting, so you don’t really
+need to do anything in particular.</p>
+
+<h3 id="mailcatcher-for-round-trip-testing">MailCatcher For Round-Trip Testing</h3>
+
+<p>While it is often the case that you should not bother to test the
+underlying delivery mechanisms, sometimes you really want to see what
+your email is going to look like in the eyes of the
+receiver. <a href="http://mailcatcher.me/">MailCatcher</a> to the
+rescue. MailCatcher is a nice utility that emulates an SMTP
+connection and provides a webmail view of the mails it catches. To use
+MailCatcher, after you’ve installed it according to the instructions,
+is to set up your environments files appropriately. In this case, I’m
+going to set it in the <code class="highlighter-rouge">development</code> environment.</p>
+
+<p><strong>File:</strong> <code class="highlighter-rouge">config/environments/development.rb</code>:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="n">config</span><span class="p">.</span><span class="nf">action_mailer</span><span class="p">.</span><span class="nf">deliver_method</span> <span class="o">=</span> <span class="ss">:smtp</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">config</span><span class="p">.</span><span class="nf">action_mailer</span><span class="p">.</span><span class="nf">smtp_settings</span> <span class="o">=</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="ss">:address</span> <span class="o">=&gt;</span> <span class="s1">'localhost'</span><span class="p">,</span><br data-jekyll-commonmark-ghpages="" />    <span class="ss">:port</span> <span class="o">=&gt;</span> <span class="mi">1025</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">}</span></code></pre></figure>
+
+<p>When you cause mails to be sent with your mailer, the mails can be
+seen by pointing your browser at <a href="http://localhost:1080">http://localhost:1080</a> and it
+works like your typical web mail reader. (You can’t reply or forward,
+obviously.)</p>
+
+<h2 id="intercepting-emails-on-staging">Intercepting Emails on Staging</h2>
+
+<p>When getting ready to deploy a project update, generally a good
+practice is to deploy to a staging server that mirrors your production
+environment as closely as possible to see if there will be any errors
+during final deploy. One of the things frequently done in this is a
+run with a copy (or near copy) of production data.</p>
+
+<p>However, you probably don’t want mail going out indiscrimantly from
+your staging environment to your users, so the thing you want to do
+here is intercept the emails. You can set up mailcatcher like above,
+but there are alternatives, such as catching all mail and switch the
+outbound addresses to something more benign.</p>
+
+<p><a href="http://guides.rubyonrails.org/action_mailer_basics.html#intercepting-emails">Someone thought this through already</a>
+The example works perfectly for what I need to be able to do full
+systems testing on staging without worrying about sending bogus
+emails to users!</p>
+
+</article>
+<hr>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

@@ -1,0 +1,158 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Validation Contexts</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/swaac/2015/01/20/validation-contexts/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>Validation Contexts</h1>
+Jan 20, 2015
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/swaac">swaac</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/rails">rails</a></li> <li role="presentation"><a href="/swaac/tags/validation">validation</a></li> <li role="presentation"><a href="/swaac/tags/links">links</a></li> <li role="presentation"><a href="/swaac/tags/justin-weiss">justin-weiss</a></li> <li role="presentation"><a href="/swaac/tags/practicing-rails">practicing-rails</a></li> 
+</header>
+
+<article>
+  <p>By introduction, <a href="http://www.justinweiss.com">Justin Weiss</a> is a
+rather prolific blogger, journaler, and writer about Rails. He has a
+book that’s coming out,
+<a href="http://www.justinweiss.com/book">Practicing Rails</a> that is the book I
+wish I had written, and I am thoroughly indebted to Justin for
+writing. The book is <em>exactly</em> the way I go about learning how
+programming concepts, language features, framework features, and all
+that stuff work.</p>
+
+<p>In <a href="http://www.justinweiss.com/blog/2014/09/15/a-lightweight-way-to-handle-different-validation-situations/">this article</a>, Justin covers Rails’s
+<a href="http://api.rubyonrails.org/classes/ActiveModel/Validations.html#method-i-valid-3F">validation contexts</a>, a poorly-documented (to date) feature that
+allows different validation tests to be run during model operations.
+The article references another article,
+<a href="http://blog.arkency.com/2014/04/mastering-rails-validations-contexts/">http://blog.arkency.com/2014/04/mastering-rails-validations-contexts/</a>,
+which goes even further into the topic.</p>
+
+<h2 id="in-a-nutshell-or-the-tldr">In a nutshell, or, the TL;DR</h2>
+
+<p>You can read (and you <em>should</em> read) those other articles for more
+details. I’m merely going to capture the bottom line here.</p>
+
+<p>In the model, you define validation contexts using the <code class="highlighter-rouge">on:</code> keyword:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="c1"># ...</span>
+  <span class="n">validates_precense_of</span> <span class="ss">:body</span><span class="p">,</span> <span class="ss">on: :publish</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>To use validation contexts, you pass in the context to the <code class="highlighter-rouge">.valid?</code>
+method of the model:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vi">@post</span><span class="p">.</span><span class="nf">valid?</span><span class="p">(</span><span class="ss">:publish</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The examples indicate this is can be used in the <code class="highlighter-rouge">PostsController</code> for
+example, but Justin’s book goes even a bit further in explaining how
+they’re really useful in testing, and in the Rails console (i.e. REPL
+driven development).</p>
+
+</article>
+<hr>
+
+<p>
+  <strong>Source</strong>:
+  <a href="http://www.justinweiss.com/blog/2014/09/15/a-lightweight-way-to-handle-different-validation-situations/">
+    http://www.justinweiss.com/blog/2014/09/15/a-lightweight-way-to-handle-different-validation-situations/
+  </a>
+</p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

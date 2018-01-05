@@ -1,0 +1,292 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>json - How to send raw post data in a Rails functional test? - Stack Overflow</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/swaac/2013/09/17/json-how-to-send-raw-post-data-in-a-rails-functional-test-stack-overflow/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>json - How to send raw post data in a Rails functional test? - Stack Overflow</h1>
+Sep 17, 2013
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/swaac">swaac</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/testing">testing</a></li> <li role="presentation"><a href="/swaac/tags/rails">rails</a></li> <li role="presentation"><a href="/swaac/tags/json">json</a></li> 
+</header>
+
+<article>
+  <p><strong>Note:</strong> I tried playing with this in
+<code class="highlighter-rouge">~/Project/rubystuff/railsstuff/my_newer_app/spec/controllers/shout_controller_spec.rb</code>
+and could not quite get it to work.</p>
+
+<!--more-->
+
+<blockquote>
+  <h2 id="how-to-send-raw-post-data-in-a-rails-functional-test">How to send raw post data in a Rails functional test?</h2>
+
+  <p>I’m looking to send raw post data (e.g. unparamaterized json) to one of
+my controllers for testing: ``</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class LegacyOrderUpdateControllerTest &lt; ActionController::TestCase
+ test "sending json" do
+   post :index, '{"foo":"bar", "bool":true}'
+ end
+end
+</code></pre></div>  </div>
+
+  <p>but this gives me a
+<code class="highlighter-rouge">NoMethodError: undefined method </code>symbolize_keys’ for #<String:0x00000102cb6080>`</String:0x00000102cb6080></p>
+
+  <p>What is the correct way to send raw post data in
+ActionController::TestCase?</p>
+
+  <p>Here is some controller code</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def index
+    post_data = request.body.read
+    req = JSON.parse(post_data)
+</code></pre></div>  </div>
+
+  <h2 id="7-answers">7 Answers</h2>
+
+  <p>I ran across the same issue today and found a solution.</p>
+
+  <p>In your test_helper.rb define the following method inside of
+ActiveSupport::TestCase:</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  def raw_post(action, params, body)
+    @request.env['RAW_POST_DATA'] = body
+    response = post(action, params)
+    @request.env.delete('RAW_POST_DATA')
+    response
+  end
+</code></pre></div>  </div>
+
+  <p>In your functional test, use it just like the <code class="highlighter-rouge">post</code> method but pass the
+raw post body as the third argument.</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class LegacyOrderUpdateControllerTest &lt; ActionController::TestCase
+ test "sending json" do
+   raw_post :index, {}, {:foo =&gt; "bar", :bool =&gt; true}.to_json
+ end
+end
+</code></pre></div>  </div>
+
+  <p>I tested this on Rails 2.3.4 when reading the raw post body using</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>request.raw_post
+</code></pre></div>  </div>
+
+  <p>instead of</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>request.body.read
+</code></pre></div>  </div>
+
+  <p>If you look at the <a href="http://github.com/rails/rails/blob/2-3-stable/actionpack/lib/action_controller/request.rb#L381">source code</a>
+you’ll see that raw_post just wraps request.body.read with a check for
+this RAW_POST_DATA in the request env hash.</p>
+
+  <p>This approach continues to work correctly in Rails 3.1</p>
+
+  <p>Huh, yeah And Rails 3.2 too. Thanks!</p>
+
+  <p>Make sure you’re using request.raw_post (as in this answer) instead of
+request.body when parsing the JSON in your controller, or you’ll get a
+weird error about “can’t convert StringIO into String”.</p>
+
+  <p>This doesn’t work in rails 3.2.10+</p>
+
+  <p>I actually solved the same issues just adding one line before simulating
+the rspec post request. What you do is to populate the
+“RAW_POST_DATA”. I tried to remove the attributes var on the post
+:create, but if I do so, it do not find the action.</p>
+
+  <p>Here my final solution.</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def do_create(attributes)
+  request.env['RAW_POST_DATA'] = attributes.to_json
+  post :create, attributes
+end 
+</code></pre></div>  </div>
+
+  <p>In the controller the code you need to read the JSON is something
+similar to this</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">@property</span> <span class="o">=</span> <span class="n">Property</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">JSON</span><span class="p">.</span><span class="n">parse</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="n">read</span><span class="p">))</span>
+</code></pre></div>  </div>
+
+  <p>great! Just one line, and I had it work even without the <code class="highlighter-rouge">attributes</code>
+sent in to post.</p>
+</blockquote>
+
+<blockquote>
+  <p>Looking at stack trace running a test you can acquire more control on
+request preparation: ActionDispatch::Integration::RequestHelpers.post
+=&gt;
+<a href="https://github.com/rails/rails/blob/master/actionpack/lib/action_dispatch/testing/integration.rb">ActionDispatch::Integration::Session.process</a>
+=&gt;
+<a href="https://github.com/brynary/rack-test/blob/master/lib/rack/test.rb">Rack::Test::Session.env_for</a></p>
+
+  <p>You can pass json string as :params AND specify a content type
+“application/json”. In other case content type will be set to
+“application/x-www-form-urlencoded” and your json will be parsed
+properly.</p>
+
+  <p>So all you need is to specify “CONTENT_TYPE”:</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>post :index, '{"foo":"bar", "bool":true}', "CONTENT_TYPE" =&gt; 'application/json'
+</code></pre></div>  </div>
+
+  <p>This does not work for me. I get an error like “undefined method
+`symbolize_keys’ for #&lt;String:0x00000102b4b0d8&gt;”</p>
+
+  <p>The <code class="highlighter-rouge">post</code> method expects a hash of name-value pairs, so you’ll need to
+do something like this:</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>post :index, :data =&gt; '{"foo":"bar", "bool":true}'
+</code></pre></div>  </div>
+
+  <p>Then, in your controller, get the data to be parsed like this:</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>post_data = params[:data]
+</code></pre></div>  </div>
+
+  <p>I’ve tried this, it needs to be completely raw though
+{“response”:”error”,”errors”:”can’t parse request: 598: unexpected token
+at ‘data=</p>
+
+  <p>If you are using RSpec (&gt;= 2.12.0) and writing Request specs, the
+module that is included is <code class="highlighter-rouge">ActionDispatch::Integration::Runner</code>. If you
+take a look at the source code you can notice that the
+<a href="https://github.com/rails/rails/blob/4147e0feaddac0e86c9b1f52eec4b1e33d7d6591/actionpack/lib/action_dispatch/testing/integration.rb#L39">post</a>
+method calls
+<a href="https://github.com/rails/rails/blob/4147e0feaddac0e86c9b1f52eec4b1e33d7d6591/actionpack/lib/action_dispatch/testing/integration.rb#L254">process</a>
+which accepts a <code class="highlighter-rouge">rack_env</code> parameter.</p>
+
+  <p>All this means that you can simply do the following in your spec:</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#spec/requests/articles_spec.rb
+
+post '/articles', {}, {'RAW_POST_DATA' =&gt; 'something'}
+</code></pre></div>  </div>
+
+  <p>And in the controller:</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#app/controllers/articles_controller.rb
+
+def create
+  puts request.body.read
+end
+</code></pre></div>  </div>
+
+  <p>Maybe it’s the way you’re formatting your JSON, it might need to be
+escaped some how? Try doing this:</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>post :index, :data =&gt; {:foo =&gt; 'bar', :bool =&gt; true }.to_json
+</code></pre></div>  </div>
+
+  <p>This will turn the hash into json, and hopefully that should work. If
+not… well then I’m all out of ideas =)</p>
+</blockquote>
+
+
+</article>
+<hr>
+
+<p>
+  <strong>Source</strong>:
+  <a href="http://stackoverflow.com/questions/2103977/how-to-send-raw-post-data-in-a-rails-functional-test">
+    http://stackoverflow.com/questions/2103977/how-to-send-raw-post-data-in-a-rails-functional-test
+  </a>
+</p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>
