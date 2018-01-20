@@ -1,0 +1,152 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>TIL: Some Jest testing tricks</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/testing/2018/01/19/til-some-jest-testing-tricks/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>TIL: Some Jest testing tricks</h1>
+Jan 19, 2018
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/testing">testing</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/jest">jest</a></li> <li role="presentation"><a href="/swaac/tags/testing">testing</a></li> <li role="presentation"><a href="/swaac/tags/react">react</a></li> <li role="presentation"><a href="/swaac/tags/instance">instance</a></li> <li role="presentation"><a href="/swaac/tags/beforeEach">beforeEach</a></li> <li role="presentation"><a href="/swaac/tags/beforeAll">beforeAll</a></li> <li role="presentation"><a href="/swaac/tags/setup-teardown">setup-teardown</a></li> 
+</header>
+
+<article>
+  <p>Deeper learning after much pondering and RTFM for Jest</p>
+
+<ul id="markdown-toc">
+  <li><a href="#til-using-beforeall-and-beforeeach-in-jest-tests" id="markdown-toc-til-using-beforeall-and-beforeeach-in-jest-tests">TIL: using beforeAll and beforeEach in jest tests</a></li>
+  <li><a href="#til-you-can-call-instance-variables-and-functions-on-an-enzyme-wrapper" id="markdown-toc-til-you-can-call-instance-variables-and-functions-on-an-enzyme-wrapper">TIL: you can call instance variables and functions on an Enzyme wrapper</a></li>
+</ul>
+
+<h2 id="til-using-beforeall-and-beforeeach-in-jest-tests">TIL: using beforeAll and beforeEach in jest tests</h2>
+
+<p>This has been bugging me for awhile. I have wanted to set up things
+in <code class="highlighter-rouge">beforeAll</code> and <code class="highlighter-rouge">beforeEach</code> functions, like I do in RSpec, but
+couldn’t quite figure out how to get them in the <code class="highlighter-rouge">it</code> calls.</p>
+
+<p>Turns out to be stupid simple. All you need to do is set the items
+on the <code class="highlighter-rouge">global</code> context, like so:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">beforeAll</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">global</span><span class="p">.</span><span class="nx">TagsInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tags</span><span class="p">({</span><br data-jekyll-commonmark-ghpages="" />    <span class="na">item</span><span class="p">:</span> <span class="nx">item</span><span class="p">,</span><br data-jekyll-commonmark-ghpages="" />    <span class="na">item_type</span><span class="p">:</span> <span class="s2">"Job"</span><span class="p">,</span><br data-jekyll-commonmark-ghpages="" />    <span class="na">data</span><span class="p">:</span> <span class="nx">data</span><span class="p">,</span><br data-jekyll-commonmark-ghpages="" />    <span class="na">mutate</span><span class="p">:</span> <span class="nx">noop</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">})</span><br data-jekyll-commonmark-ghpages="" /><span class="p">})</span></code></pre></figure>
+
+<p>After the suite finishes, clear out the item:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">afterAll</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">global</span><span class="p">.</span><span class="nx">TagsInstance</span> <span class="o">=</span> <span class="kc">undefined</span><br data-jekyll-commonmark-ghpages="" /><span class="p">})</span></code></pre></figure>
+
+<p>I suppose that pollutes the global space, so one might want to do
+it in a namespace, and then clear that every time, too:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">beforeEach</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">global</span><span class="p">.</span><span class="nx">beforeEach</span><span class="p">.</span><span class="nx">actual</span> <span class="o">=</span> <span class="nx">mount</span><span class="p">(</span><br data-jekyll-commonmark-ghpages="" />    <span class="o">&lt;</span><span class="nx">Tag</span> <span class="nx">item</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">}</span><span class="sr">/</span><span class="err">&gt;<br data-jekyll-commonmark-ghpages="" /></span>  <span class="p">)</span><br data-jekyll-commonmark-ghpages="" /><span class="p">})</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="nx">afterEach</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">global</span><span class="p">.</span><span class="nx">beforeEach</span> <span class="o">=</span> <span class="kc">undefined</span><br data-jekyll-commonmark-ghpages="" /><span class="p">})</span></code></pre></figure>
+
+<h1 id="til-you-can-call-instance-variables-and-functions-on-an-enzyme-wrapper">TIL: you can call instance variables and functions on an Enzyme wrapper</h1>
+
+<p>Okay, this is very cool. I didn’t know this would work BUT IT DOES!</p>
+
+<p>This involves a few different things:</p>
+
+<ul>
+  <li>calling a method on a mounted instance of a component</li>
+  <li>putting an expect on a callback</li>
+  <li>interogating a mounted component’s state</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">it</span><span class="p">(</span><span class="s2">"can i call stuff directly?"</span><span class="p">,</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="kd">const</span> <span class="nx">actual</span> <span class="o">=</span> <span class="nx">mount</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">MyComponent</span> <span class="o">/&gt;</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" />  <span class="nx">actual</span><span class="p">.</span><span class="nx">instance</span><span class="p">().</span><span class="nx">setState</span><span class="p">({</span> <span class="na">boo</span><span class="p">:</span> <span class="s2">"boo"</span><span class="p">},</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="nx">expect</span><span class="p">(</span><span class="nx">actual</span><span class="p">.</span><span class="nx">instance</span><span class="p">().</span><span class="nx">state</span><span class="p">.</span><span class="nx">boo</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="s2">"boo"</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">})</span><br data-jekyll-commonmark-ghpages="" /><span class="p">})</span></code></pre></figure>
+
+
+</article>
+<hr>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>

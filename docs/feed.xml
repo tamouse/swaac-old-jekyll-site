@@ -5,9 +5,76 @@
     <description>The development blog of tamouse</description>
     <link>https://tamouse.github.io//swaac/</link>
     <atom:link href="https://tamouse.github.io//swaac/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 04 Jan 2018 22:44:23 -0600</pubDate>
-    <lastBuildDate>Thu, 04 Jan 2018 22:44:23 -0600</lastBuildDate>
+    <pubDate>Fri, 19 Jan 2018 22:42:03 -0600</pubDate>
+    <lastBuildDate>Fri, 19 Jan 2018 22:42:03 -0600</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title>TIL: Some Jest testing tricks</title>
+        <description>&lt;p&gt;Deeper learning after much pondering and RTFM for Jest&lt;/p&gt;
+
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#til-using-beforeall-and-beforeeach-in-jest-tests&quot; id=&quot;markdown-toc-til-using-beforeall-and-beforeeach-in-jest-tests&quot;&gt;TIL: using beforeAll and beforeEach in jest tests&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#til-you-can-call-instance-variables-and-functions-on-an-enzyme-wrapper&quot; id=&quot;markdown-toc-til-you-can-call-instance-variables-and-functions-on-an-enzyme-wrapper&quot;&gt;TIL: you can call instance variables and functions on an Enzyme wrapper&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;til-using-beforeall-and-beforeeach-in-jest-tests&quot;&gt;TIL: using beforeAll and beforeEach in jest tests&lt;/h2&gt;
+
+&lt;p&gt;This has been bugging me for awhile. I have wanted to set up things
+in &lt;code class=&quot;highlighter-rouge&quot;&gt;beforeAll&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;beforeEach&lt;/code&gt; functions, like I do in RSpec, but
+couldn’t quite figure out how to get them in the &lt;code class=&quot;highlighter-rouge&quot;&gt;it&lt;/code&gt; calls.&lt;/p&gt;
+
+&lt;p&gt;Turns out to be stupid simple. All you need to do is set the items
+on the &lt;code class=&quot;highlighter-rouge&quot;&gt;global&lt;/code&gt; context, like so:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;beforeAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;nb&quot;&gt;global&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;TagsInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Tags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;    &lt;span class=&quot;na&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;    &lt;span class=&quot;na&quot;&gt;item_type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Job&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;    &lt;span class=&quot;na&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;    &lt;span class=&quot;na&quot;&gt;mutate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;noop&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;After the suite finishes, clear out the item:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;afterAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;nb&quot;&gt;global&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;TagsInstance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;undefined&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;I suppose that pollutes the global space, so one might want to do
+it in a namespace, and then clear that every time, too:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;beforeEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;nb&quot;&gt;global&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;beforeEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;actual&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Tag&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;nx&quot;&gt;afterEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;nb&quot;&gt;global&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;beforeEach&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;undefined&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h1 id=&quot;til-you-can-call-instance-variables-and-functions-on-an-enzyme-wrapper&quot;&gt;TIL: you can call instance variables and functions on an Enzyme wrapper&lt;/h1&gt;
+
+&lt;p&gt;Okay, this is very cool. I didn’t know this would work BUT IT DOES!&lt;/p&gt;
+
+&lt;p&gt;This involves a few different things:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;calling a method on a mounted instance of a component&lt;/li&gt;
+  &lt;li&gt;putting an expect on a callback&lt;/li&gt;
+  &lt;li&gt;interogating a mounted component’s state&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;can i call stuff directly?&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;actual&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;MyComponent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;nx&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;boo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;boo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;    &lt;span class=&quot;nx&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;boo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;boo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+</description>
+        <pubDate>Fri, 19 Jan 2018 22:12:00 -0600</pubDate>
+        <link>https://tamouse.github.io//swaac/testing/2018/01/19/til-some-jest-testing-tricks/</link>
+        <guid isPermaLink="true">https://tamouse.github.io//swaac/testing/2018/01/19/til-some-jest-testing-tricks/</guid>
+        
+        <category>jest</category>
+        
+        <category>testing</category>
+        
+        <category>react</category>
+        
+        <category>instance</category>
+        
+        <category>beforeEach</category>
+        
+        <category>beforeAll</category>
+        
+        <category>setup-teardown</category>
+        
+        
+        <category>testing</category>
+        
+      </item>
     
       <item>
         <title>Side-by-side layout with CSS Grid</title>
@@ -524,49 +591,6 @@ yup
         <category>jest</category>
         
         <category>unit-test</category>
-        
-        
-        <category>graphql</category>
-        
-      </item>
-    
-      <item>
-        <title>Talk: Learning React+GraphQL+Apollo with Rails GraphQL API All At Once</title>
-        <description>&lt;p&gt;Last month, September 2017, I gave a talk twice on my experiences
-learning React, GraphQl, Apollo Client, along with installing a
-GraphQL API to an ancient legacy app, all at once.&lt;/p&gt;
-
-&lt;p&gt;The version of the talk I gave at the JavaScript MN meetup was
-recorded, and you can see it
-here: &lt;a href=&quot;https://www.youtube.com/watch?v=udMfM4rh_1g&quot;&gt;https://www.youtube.com/watch?v=udMfM4rh_1g&lt;/a&gt;&lt;/p&gt;
-
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/udMfM4rh_1g?rel=0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;
-&lt;/iframe&gt;
-
-&lt;p&gt;The version I gave the prior Monday at the Ruby MN meetup was much
-longer, and included quite a bit of information on the Ruby GraphQL
-API. Maybe someday it will all get filmed. :D&lt;/p&gt;
-
-&lt;p&gt;In the meantime, the slides are up on Github
-at &lt;a href=&quot;https://tamouse.github.io/Talk-Rails-GraphQL-React/#/&quot;&gt;https://tamouse.github.io/Talk-Rails-GraphQL-React/#/&lt;/a&gt; (The slide
-repo is at &lt;a href=&quot;https://github.com/tamouse/Talk-Rails-GraphQL-React&quot;&gt;https://github.com/tamouse/Talk-Rails-GraphQL-React&lt;/a&gt;.)&lt;/p&gt;
-
-&lt;p&gt;The repo that contains my sandbox / learning application is
-at &lt;a href=&quot;https://github.com/tamouse/r5_graphql_react&quot;&gt;https://github.com/tamouse/r5_graphql_react&lt;/a&gt;.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 02 Oct 2017 09:40:00 -0500</pubDate>
-        <link>https://tamouse.github.io//swaac/graphql/2017/10/02/talk-learning-react-plus-graphql-plus-apollo-with-rails-graphql-api-all-at-once/</link>
-        <guid isPermaLink="true">https://tamouse.github.io//swaac/graphql/2017/10/02/talk-learning-react-plus-graphql-plus-apollo-with-rails-graphql-api-all-at-once/</guid>
-        
-        <category>graphql</category>
-        
-        <category>react</category>
-        
-        <category>apollo</category>
-        
-        <category>rails</category>
-        
-        <category>api</category>
         
         
         <category>graphql</category>
