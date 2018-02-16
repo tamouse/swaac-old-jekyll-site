@@ -5,9 +5,47 @@
     <description>The development blog of tamouse</description>
     <link>https://tamouse.github.io//swaac/</link>
     <atom:link href="https://tamouse.github.io//swaac/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 10 Feb 2018 20:19:39 -0800</pubDate>
-    <lastBuildDate>Sat, 10 Feb 2018 20:19:39 -0800</lastBuildDate>
+    <pubDate>Thu, 15 Feb 2018 16:44:58 -0800</pubDate>
+    <lastBuildDate>Thu, 15 Feb 2018 16:44:58 -0800</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title>How to reset iOS simulator</title>
+        <description>&lt;p&gt;I ran into an issue recently where I was trying to debug a problem in
+a project, but had a problem accessing the right data server since I
+was logged into a local development server, and really needed to get
+back to the “new app” state.&lt;/p&gt;
+
+&lt;p&gt;I searched for “reset xcode simulator” via DDG and first hit came up
+with &lt;a href=&quot;https://stackoverflow.com/questions/16195859/reset-ios-simulator-application-data-to-run-app-for-first-time#16195931&quot;&gt;https://stackoverflow.com/questions/16195859/reset-ios-simulator-application-data-to-run-app-for-first-time#16195931&lt;/a&gt; which gave me an answer.&lt;/p&gt;
+
+&lt;p&gt;The command line versions work, but it can be a pain to get the UDID
+for the simulator. Doing it from the running simulator was easier, but
+of course the menu options are different than discussed in the
+stackoverflow answer.&lt;/p&gt;
+
+&lt;p&gt;I found it on the Simulator
+(Version 10.0 (SimulatorApp-835.2.1) seen in the following screen
+shot:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/swaac/images/reset-ios-simulator.png&quot; alt=&quot;Reset IOS Simulator Screenshot&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 15 Feb 2018 16:07:00 -0800</pubDate>
+        <link>https://tamouse.github.io//swaac/ios/2018/02/15/how-to-reset-ios-simulator/</link>
+        <guid isPermaLink="true">https://tamouse.github.io//swaac/ios/2018/02/15/how-to-reset-ios-simulator/</guid>
+        
+        <category>ios</category>
+        
+        <category>simulator</category>
+        
+        <category>development</category>
+        
+        <category>reset</category>
+        
+        
+        <category>ios</category>
+        
+      </item>
     
       <item>
         <title>Polyfills for find() and findIndex() in JavaScript</title>
@@ -670,44 +708,6 @@ and problems. Keep clear what’s important.&lt;/p&gt;
         
         
         <category>people</category>
-        
-      </item>
-    
-      <item>
-        <title>TIL: React setState is async, and has a callback</title>
-        <description>&lt;p&gt;While this wasn’t &lt;em&gt;today&lt;/em&gt; exactly, I just learned this recently, and
-it made a difference for something I was working on.&lt;/p&gt;
-
-&lt;p&gt;I had been looking around for a way to determine if the component’s
-state had changed as I expected, mostly doing some debugging and
-tracing, I discovered that &lt;code class=&quot;highlighter-rouge&quot;&gt;setState&lt;/code&gt; is an asynchronous function. The
-second parameter to &lt;code class=&quot;highlighter-rouge&quot;&gt;setState&lt;/code&gt; is a callback function that runs when
-the state has finished updating.&lt;/p&gt;
-
-&lt;p&gt;The &lt;a href=&quot;https://stackoverflow.com/a/42038724/742446&quot;&gt;discussion&lt;/a&gt; at
-&lt;a href=&quot;https://stackoverflow.com/questions/42038590/when-to-use-react-setstate-callback&quot;&gt;stackoverflow&lt;/a&gt; gives a quite detailed explanation,
-which is great.&lt;/p&gt;
-
-&lt;p&gt;In my case, doing a simplistic &lt;code class=&quot;highlighter-rouge&quot;&gt;console.log&lt;/code&gt; debugging thing, I ended
-up with&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;handleUpdate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;payload&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;    &lt;span class=&quot;na&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;    &lt;span class=&quot;na&quot;&gt;other&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;someOtherCrap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mutate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;    &lt;span class=&quot;na&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;payload&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;        &lt;span class=&quot;na&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;newData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;      &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;    &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;There are much better reasons for having that callback, of course, but
-this is the one I found a need for at the time.&lt;/p&gt;
-</description>
-        <pubDate>Fri, 27 Oct 2017 17:35:00 -0700</pubDate>
-        <link>https://tamouse.github.io//swaac/webdev/2017/10/27/til-react-setstate-is-async-and-has-a-callback/</link>
-        <guid isPermaLink="true">https://tamouse.github.io//swaac/webdev/2017/10/27/til-react-setstate-is-async-and-has-a-callback/</guid>
-        
-        <category>webdev</category>
-        
-        <category>react</category>
-        
-        <category>setState</category>
-        
-        
-        <category>webdev</category>
         
       </item>
     
