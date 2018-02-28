@@ -5,9 +5,150 @@
     <description>The development blog of tamouse</description>
     <link>https://tamouse.github.io//swaac/</link>
     <atom:link href="https://tamouse.github.io//swaac/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 15 Feb 2018 16:44:58 -0800</pubDate>
-    <lastBuildDate>Thu, 15 Feb 2018 16:44:58 -0800</lastBuildDate>
+    <pubDate>Wed, 28 Feb 2018 11:12:31 -0800</pubDate>
+    <lastBuildDate>Wed, 28 Feb 2018 11:12:31 -0800</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title>Git Merge &quot;dry run&quot;</title>
+        <description>&lt;p&gt;There’s no specific thing called a “dry run merge” with git, but it’s
+simple enough to simulate.&lt;/p&gt;
+
+&lt;p&gt;In the sample below, &lt;code class=&quot;highlighter-rouge&quot;&gt;BRANCH&lt;/code&gt; is being merged &lt;strong&gt;into&lt;/strong&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;TARGET&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout &lt;span class=&quot;nv&quot;&gt;$TARGET&lt;/span&gt;
+git merge &lt;span class=&quot;nt&quot;&gt;--no-commit&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--no-ff&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$BRANCH&lt;/span&gt;
+git diff &lt;span class=&quot;nt&quot;&gt;--cached&lt;/span&gt;
+git merge &lt;span class=&quot;nt&quot;&gt;--abort&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can look for any potential merge conflicts after the first command
+as well and see what you might be up against.&lt;/p&gt;
+
+&lt;p&gt;Note you need &lt;em&gt;both&lt;/em&gt; the &lt;code class=&quot;highlighter-rouge&quot;&gt;--no-commit&lt;/code&gt; &lt;em&gt;AND&lt;/em&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;--no-ff&lt;/code&gt; flags to
+prevent the merge from occurring if it’s possible for a fast-forward
+merge to occur (likely).&lt;/p&gt;
+</description>
+        <pubDate>Wed, 28 Feb 2018 10:30:00 -0800</pubDate>
+        <link>https://tamouse.github.io//swaac/git/2018/02/28/git-merge-dry-run/</link>
+        <guid isPermaLink="true">https://tamouse.github.io//swaac/git/2018/02/28/git-merge-dry-run/</guid>
+        
+        <category>git</category>
+        
+        <category>merge</category>
+        
+        <category>dry-run</category>
+        
+        <category>tools</category>
+        
+        
+        <category>git</category>
+        
+      </item>
+    
+      <item>
+        <title>Passing the Time between Rails and React.js</title>
+        <description>&lt;p&gt;One of the problems I’ve encountered with a recent project is
+maintaining the integrity of Time and Date information going back and
+forth between a Rails server and a React client.&lt;/p&gt;
+
+&lt;p&gt;While the issue isn’t necessarily specific to React, it affects any
+sort of JavaScript client using &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date&quot; title=&quot;JavaScript Date Built-in Object on MDN&quot;&gt;JavaScript’s Date&lt;/a&gt; object.&lt;/p&gt;
+
+&lt;p&gt;The source of my frustration with this particular project is that the
+dates in the client are passed around in various different formats,
+and there is a lot of reformatting of the dates happening.&lt;/p&gt;
+
+&lt;p&gt;One of my sort of tenants of programming is to never format a date
+or time (or datetime, if you will) until it’s necessary to display it
+to the user. (This applies in general, but a lot for times.)&lt;/p&gt;
+
+&lt;p&gt;On the Rails side, as on most Unix-based systems, times are objects
+with an underlying float value with the integer part being the number
+of seconds since the Unix Epoc, 1970-01-01 at midnight UTC. (Often
+times one can see dates such as Dec 31, 1969 show up because of
+timezone conversions to North America. No, in fact, zero time is &lt;em&gt;not&lt;/em&gt; on
+Wednesday everywhere.)&lt;/p&gt;
+
+&lt;p&gt;Rails has the ability to translate time in and out of storage quite
+well, but it’s sometimes tricky.&lt;/p&gt;
+
+&lt;p&gt;JavaScript has the ability create and parse dates and times, but it’s
+lousy at formatting nice date, which brings in the &lt;code class=&quot;highlighter-rouge&quot;&gt;moment&lt;/code&gt; library
+which is quite popular.&lt;/p&gt;
+
+&lt;p&gt;What I’m talking about here, though, is the passing of time
+information back and forth between a Rails server and the JavaScript
+client.&lt;/p&gt;
+
+&lt;p&gt;Most of the time, when you serialize a Rails record, the time
+information is converted to a string, with the default format that
+looks like: &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;Wed, 28 Feb 2018 17:59:28 UTC +00:00&quot;&lt;/code&gt; (the output of
+&lt;code class=&quot;highlighter-rouge&quot;&gt;.to_s&lt;/code&gt;). In nearly every case, that’s not a very useful value to be
+passing to other programs, which is why I’m converting it to
+JSON, presumably.&lt;/p&gt;
+
+&lt;p&gt;So, the better conversion, to avoid all confusion about timezones,
+time formats, etc., is to convert it to milliseconds, both going out
+and coming back, and convert accordingly, e.g.:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(object.created_at.to_f * 1000).to_i
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In GraphQL-land, this would be the &lt;code class=&quot;highlighter-rouge&quot;&gt;lambda&lt;/code&gt; on the &lt;code class=&quot;highlighter-rouge&quot;&gt;resolve&lt;/code&gt; entry for
+a &lt;code class=&quot;highlighter-rouge&quot;&gt;field&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;field :created_at_ms, &quot;Time of creation in milliseconds&quot; do
+  resolve -&amp;gt;(object, _args, _context) { (object.created_at.to_f * 1000).to_i }
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Or create a resolver class:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TimeFieldMilliseconds&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;field&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;vi&quot;&gt;@field&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;public_send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;field&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_i&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And declare the field as:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;field :created_at_ms, &quot;Time of creation in milliseconds&quot; { resolve TimeFieldMillisecond.new(:created_at) }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;On the client side, convert the milliseconds to a Date object as:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let createdAt = new Date(object.created_at_ms)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;or when using moment:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let createdAt = moment(object.created_at_ms)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Thu, 15 Feb 2018 18:39:00 -0800</pubDate>
+        <link>https://tamouse.github.io//swaac/webdev/2018/02/15/passing-the-time-between-rails-and-react-dot-js/</link>
+        <guid isPermaLink="true">https://tamouse.github.io//swaac/webdev/2018/02/15/passing-the-time-between-rails-and-react-dot-js/</guid>
+        
+        <category>time-formats</category>
+        
+        <category>rails</category>
+        
+        <category>react</category>
+        
+        <category>data-interchange</category>
+        
+        
+        <category>webdev</category>
+        
+      </item>
     
       <item>
         <title>How to reset iOS simulator</title>
@@ -617,97 +758,6 @@ field to fill in.&lt;/p&gt;
         
         
         <category>testing</category>
-        
-      </item>
-    
-      <item>
-        <title>Making Capybara wait a little longer for just one test</title>
-        <description>&lt;p&gt;I needed to add some time to a Capybara test that was checking some
-AJAX in my code. I didn’t want to increase the waiting time overall,
-just for this one particular transaction.&lt;/p&gt;
-
-&lt;p&gt;Capybara has a &lt;code class=&quot;highlighter-rouge&quot;&gt;default_wait_time&lt;/code&gt; setting in the configuration, so it
-makes sense there’s a way to set wait time some other way that’s &lt;em&gt;not&lt;/em&gt;
-the default.&lt;/p&gt;
-
-&lt;p&gt;I couldn’t find anything in the readme, and I didn’t know what to
-search for in the docs. I entered a general set of search terms in
-google, to no particular avail. I finally settled on the rather brute
-force desperation “How do I change Capybara’s wait time for just one
-test?” and got a page at reddit that covered it exactly:
-&lt;a href=&quot;https://www.reddit.com/r/rails/comments/25xrdy/is_there_a_way_to_change_capybaras_wait_time_just/&quot;&gt;https://www.reddit.com/r/rails/comments/25xrdy/is_there_a_way_to_change_capybaras_wait_time_just/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The top two answers provide the best solutions, I think, as they
-expose features available in Capybara that I didn’t know existed.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;Capybara&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;using_wait_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;c1&quot;&gt;# .. run your test in this block&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;c1&quot;&gt;# .. and it will wait n seconds&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;c1&quot;&gt;# .. for items to appear in the page&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.reddit.com/r/rails/comments/25xrdy/is_there_a_way_to_change_capybaras_wait_time_just/chm1fe1/&quot;&gt;https://www.reddit.com/r/rails/comments/25xrdy/is_there_a_way_to_change_capybaras_wait_time_just/chm1fe1/&lt;/a&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;have_selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#my_thing&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;wait: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;c1&quot;&gt;# .. the above will wait 5 seconds for&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;c1&quot;&gt;# .. `#my_button` item to appear on the page&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.reddit.com/r/rails/comments/25xrdy/is_there_a_way_to_change_capybaras_wait_time_just/chm383m/&quot;&gt;https://www.reddit.com/r/rails/comments/25xrdy/is_there_a_way_to_change_capybaras_wait_time_just/chm383m/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Pretty dang cool!&lt;/p&gt;
-</description>
-        <pubDate>Wed, 15 Nov 2017 08:29:00 -0800</pubDate>
-        <link>https://tamouse.github.io//swaac/testing/2017/11/15/making-capybara-wait-a-little-longer-for-just-one-test/</link>
-        <guid isPermaLink="true">https://tamouse.github.io//swaac/testing/2017/11/15/making-capybara-wait-a-little-longer-for-just-one-test/</guid>
-        
-        <category>capybara</category>
-        
-        <category>testing</category>
-        
-        <category>delay</category>
-        
-        <category>using_wait_time</category>
-        
-        
-        <category>testing</category>
-        
-      </item>
-    
-      <item>
-        <title>Gerald Wienberg: My most challenging experience as a software developer</title>
-        <description>&lt;p&gt;&lt;a href=&quot;http://www.geraldmweinberg.com/&quot;&gt;Gerald Weinberg&lt;/a&gt; is a long-time
-writer and commenter on the field of software enginering. I’ve been a
-longtime fan of Jerry, and had the privilege and pleasure of meeting
-him, working with him on some stuff back at HP, and attending one of
-his seminars.&lt;/p&gt;
-
-&lt;p&gt;He’s always proven faithful to my vision of how the field of software
-development should be run, in a humane, thoughtful, and intelligent
-fashion.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;&quot;&gt;Here’s his answer&lt;/a&gt; to the question: “What was your most challenging
-experience in software development?”&lt;/p&gt;
-
-&lt;p&gt;The moral at the end is really the most important take-away for all of
-us learning and working in this area:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Moral: We may think that hardware and software errors are
-challenging, but nothing matches the difficulty of confronting human
-errors—especially when those humans are managers willing to hide
-errors in order to make schedules.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Software development is ultimately a human system, focused on solving
-human problems. This also brings into it all the human fallabilities
-and problems. Keep clear what’s important.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 29 Oct 2017 17:13:00 -0700</pubDate>
-        <link>https://tamouse.github.io//swaac/people/2017/10/29/gerald-wienberg-my-most-challenging-experience-as-a-software-developer/</link>
-        <guid isPermaLink="true">https://tamouse.github.io//swaac/people/2017/10/29/gerald-wienberg-my-most-challenging-experience-as-a-software-developer/</guid>
-        
-        <category>jerry</category>
-        
-        <category>weinberg</category>
-        
-        <category>people</category>
-        
-        
-        <category>people</category>
         
       </item>
     
