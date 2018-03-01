@@ -5,9 +5,38 @@
     <description>The development blog of tamouse</description>
     <link>https://tamouse.github.io//swaac/</link>
     <atom:link href="https://tamouse.github.io//swaac/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 28 Feb 2018 11:12:31 -0800</pubDate>
-    <lastBuildDate>Wed, 28 Feb 2018 11:12:31 -0800</lastBuildDate>
+    <pubDate>Thu, 01 Mar 2018 10:55:01 -0800</pubDate>
+    <lastBuildDate>Thu, 01 Mar 2018 10:55:01 -0800</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title>Github Tricks: Turn off White Space Diffs</title>
+        <description>&lt;p&gt;Fighting your way through a code review with a lot of changes simply
+due to white space changes?&lt;/p&gt;
+
+&lt;p&gt;Github to the rescue!&lt;/p&gt;
+
+&lt;p&gt;Append &lt;code class=&quot;highlighter-rouge&quot;&gt;?w=1&lt;/code&gt; to the end of the &lt;code class=&quot;highlighter-rouge&quot;&gt;.../files&lt;/code&gt; url to view the diff
+&lt;em&gt;without&lt;/em&gt; white space changes.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 01 Mar 2018 10:51:00 -0800</pubDate>
+        <link>https://tamouse.github.io//swaac/github/2018/03/01/github-tricks-turn-off-white-space-diffs/</link>
+        <guid isPermaLink="true">https://tamouse.github.io//swaac/github/2018/03/01/github-tricks-turn-off-white-space-diffs/</guid>
+        
+        <category>github</category>
+        
+        <category>tricks</category>
+        
+        <category>whitespace</category>
+        
+        <category>pull-requests</category>
+        
+        <category>code-reviews</category>
+        
+        
+        <category>github</category>
+        
+      </item>
     
       <item>
         <title>Git Merge &quot;dry run&quot;</title>
@@ -703,58 +732,6 @@ from
         <category>capybara</category>
         
         <category>wait-time</category>
-        
-        
-        <category>testing</category>
-        
-      </item>
-    
-      <item>
-        <title>TIL: Capybara fill_in wants the id, not the CSS selector id</title>
-        <description>&lt;p&gt;So today I learned that one should pay closer attention to what the
-documetation says instead of just assuming you already know. RTFM^2.&lt;/p&gt;
-
-&lt;p&gt;In Capybara, you can fill in fields in forms using the &lt;code class=&quot;highlighter-rouge&quot;&gt;.fill_in()&lt;/code&gt;
-method. In
-&lt;a href=&quot;http://www.rubydoc.info/github/teamcapybara/capybara/master/Capybara/Node/Actions#fill_in-instance_method&quot;&gt;the documentation&lt;/a&gt;
-it discusses the types of locators you can use:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Locate a text field or text area and fill it in with the given text
-The field can be found via its name, id or label text.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;It doesn’t say &lt;em&gt;anything&lt;/em&gt; about using a CSS selector!&lt;/p&gt;
-
-&lt;p&gt;So: this does not work:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@modal.fill_in(&quot;#new-job-number-input-#{@job.id}&quot;, with: &quot;999&quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;But this, however, &lt;strong&gt;DOES&lt;/strong&gt; work:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@modal.fill_in(&quot;new-job-number-input-#{@job.id}&quot;, with: &quot;999&quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;That one, single “#” at the beginning of the string was throwing me
-off, causing me to reach for other sorts of shenannigans to find the
-field to fill in.&lt;/p&gt;
-
-&lt;p&gt;Hooray, persistence!&lt;/p&gt;
-</description>
-        <pubDate>Thu, 16 Nov 2017 14:12:00 -0800</pubDate>
-        <link>https://tamouse.github.io//swaac/testing/2017/11/16/til-capybara-fill-in-wants-the-id-not-the-css-selector-id/</link>
-        <guid isPermaLink="true">https://tamouse.github.io//swaac/testing/2017/11/16/til-capybara-fill-in-wants-the-id-not-the-css-selector-id/</guid>
-        
-        <category>capybara</category>
-        
-        <category>rails</category>
-        
-        <category>testing</category>
-        
-        <category>forms</category>
-        
-        <category>fill_in</category>
         
         
         <category>testing</category>
