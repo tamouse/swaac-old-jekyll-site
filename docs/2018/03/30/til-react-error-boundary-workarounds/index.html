@@ -77,9 +77,9 @@ Mar 30, 2018
 </header>
 
 <article>
-  <p>Reently working on a next-gen standalone react client for my work, I
-decided I wanted to put in error boundaries, which were introduced in
-React v16. From the <a href="">docs</a>:</p>
+  <p>Recently I was working on a next-gen standalone react client for my
+work, and I decided I wanted to put in error boundaries, which were
+introduced in React v16. From the <a href="">docs</a>:</p>
 
 <blockquote>
   <p>Error boundaries are React components that catch JavaScript errors
@@ -91,7 +91,7 @@ lifecycle methods, and in constructors of the whole tree below them.</p>
 
 <p>This is well and good, but the first thing I ran into was how to catch
 errors that happen outside of the space React’s error boundaries work
-in:</p>
+in. The following aren’t caught by <code class="highlighter-rouge">componentDidCatch</code>:</p>
 
 <ul>
   <li>Event handlers</li>
@@ -147,6 +147,12 @@ error in state. Down in the <code class="highlighter-rouge">render</code> method
 Example</a> by Tamara Temple (<a href="https://codepen.io/tamouse">@tamouse</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async="" src="https://static.codepen.io/assets/embed/ei.js"></script>
 
+<p> </p>
+
+<p> </p>
+
+<p>It turns out I didn’t use this to handle login errors, but it was a
+useful excursion and learning experience anyway.</p>
 
 </article>
 <hr>

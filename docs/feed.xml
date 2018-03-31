@@ -5,15 +5,15 @@
     <description>The development blog of tamouse</description>
     <link>https://tamouse.github.io//swaac/</link>
     <atom:link href="https://tamouse.github.io//swaac/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 31 Mar 2018 01:25:39 -0500</pubDate>
-    <lastBuildDate>Sat, 31 Mar 2018 01:25:39 -0500</lastBuildDate>
+    <pubDate>Sat, 31 Mar 2018 01:35:02 -0500</pubDate>
+    <lastBuildDate>Sat, 31 Mar 2018 01:35:02 -0500</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
         <title>TIL: React Error boundary workarounds</title>
-        <description>&lt;p&gt;Reently working on a next-gen standalone react client for my work, I
-decided I wanted to put in error boundaries, which were introduced in
-React v16. From the &lt;a href=&quot;&quot;&gt;docs&lt;/a&gt;:&lt;/p&gt;
+        <description>&lt;p&gt;Recently I was working on a next-gen standalone react client for my
+work, and I decided I wanted to put in error boundaries, which were
+introduced in React v16. From the &lt;a href=&quot;&quot;&gt;docs&lt;/a&gt;:&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Error boundaries are React components that catch JavaScript errors
@@ -25,7 +25,7 @@ lifecycle methods, and in constructors of the whole tree below them.&lt;/p&gt;
 
 &lt;p&gt;This is well and good, but the first thing I ran into was how to catch
 errors that happen outside of the space React’s error boundaries work
-in:&lt;/p&gt;
+in. The following aren’t caught by &lt;code class=&quot;highlighter-rouge&quot;&gt;componentDidCatch&lt;/code&gt;:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Event handlers&lt;/li&gt;
@@ -81,6 +81,12 @@ error in state. Down in the &lt;code class=&quot;highlighter-rouge&quot;&gt;rend
 Example&lt;/a&gt; by Tamara Temple (&lt;a href=&quot;https://codepen.io/tamouse&quot;&gt;@tamouse&lt;/a&gt;) on &lt;a href=&quot;https://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
 &lt;script async=&quot;&quot; src=&quot;https://static.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;
 
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;It turns out I didn’t use this to handle login errors, but it was a
+useful excursion and learning experience anyway.&lt;/p&gt;
 </description>
         <pubDate>Fri, 30 Mar 2018 00:00:00 -0500</pubDate>
         <link>https://tamouse.github.io//swaac/2018/03/30/til-react-error-boundary-workarounds/</link>

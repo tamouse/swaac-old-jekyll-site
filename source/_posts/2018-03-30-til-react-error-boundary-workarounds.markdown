@@ -6,9 +6,9 @@ tags: [react, errors, error-handling, error-boundaries, componentDidCatch]
 source: https://reactjs.org/docs/error-boundaries.html
 ---
 
-Reently working on a next-gen standalone react client for my work, I
-decided I wanted to put in error boundaries, which were introduced in
-React v16. From the [docs]({{ page.sourc }}):
+Recently I was working on a next-gen standalone react client for my
+work, and I decided I wanted to put in error boundaries, which were
+introduced in React v16. From the [docs]({{ page.sourc }}):
 
 > Error boundaries are React components that catch JavaScript errors
 > anywhere in their child component tree, log those errors, and
@@ -18,7 +18,7 @@ React v16. From the [docs]({{ page.sourc }}):
 
 This is well and good, but the first thing I ran into was how to catch
 errors that happen outside of the space React's error boundaries work
-in:
+in. The following aren't caught by `componentDidCatch`:
 
 * Event handlers
 * Asynchronous code (e.g. setTimeout or requestAnimationFrame callbacks)
@@ -79,3 +79,11 @@ Example</a> by Tamara Temple (<a
 href="https://codepen.io/tamouse">@tamouse</a>) on <a
 href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+&nbsp;
+
+&nbsp;
+
+
+It turns out I didn't use this to handle login errors, but it was a
+useful excursion and learning experience anyway.
