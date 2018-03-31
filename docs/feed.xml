@@ -5,9 +5,99 @@
     <description>The development blog of tamouse</description>
     <link>https://tamouse.github.io//swaac/</link>
     <atom:link href="https://tamouse.github.io//swaac/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 01 Mar 2018 10:55:01 -0800</pubDate>
-    <lastBuildDate>Thu, 01 Mar 2018 10:55:01 -0800</lastBuildDate>
+    <pubDate>Sat, 31 Mar 2018 01:25:39 -0500</pubDate>
+    <lastBuildDate>Sat, 31 Mar 2018 01:25:39 -0500</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title>TIL: React Error boundary workarounds</title>
+        <description>&lt;p&gt;Reently working on a next-gen standalone react client for my work, I
+decided I wanted to put in error boundaries, which were introduced in
+React v16. From the &lt;a href=&quot;&quot;&gt;docs&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Error boundaries are React components that catch JavaScript errors
+anywhere in their child component tree, log those errors, and
+display a fallback UI instead of the component tree that
+crashed. Error boundaries catch errors during rendering, in
+lifecycle methods, and in constructors of the whole tree below them.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This is well and good, but the first thing I ran into was how to catch
+errors that happen outside of the space React’s error boundaries work
+in:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Event handlers&lt;/li&gt;
+  &lt;li&gt;Asynchronous code (e.g. setTimeout or requestAnimationFrame callbacks)&lt;/li&gt;
+  &lt;li&gt;Server side rendering&lt;/li&gt;
+  &lt;li&gt;Errors thrown in the error boundary itself (rather than its
+children)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The particular problem I was working on was catching login errors,
+which were returned as a promise rejection. Since the error boundary
+didn’t handle this, i searched for help on this, and got it in the
+React.MN slack.&lt;/p&gt;
+
+&lt;p&gt;After thinking about it, it does make sense, since React is
+declarative, this pretty much has to be handled as some form of
+state. The key is, what to do?&lt;/p&gt;
+
+&lt;p&gt;I took a page out of some previous work where I was doing a
+&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Redirect/&amp;gt;&lt;/code&gt; when a state entry became &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt; , so I did it again for
+this. I’d catch the rejected promise in the handler, and set a state
+variable to &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;login&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;logon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// do logon stuff when it works&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;hasError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;So now there’s a state variable &lt;code class=&quot;highlighter-rouge&quot;&gt;hasError&lt;/code&gt; that’s true, and the actual
+error in state. Down in the &lt;code class=&quot;highlighter-rouge&quot;&gt;render&lt;/code&gt; method:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hasError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// go on with no error&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This does the bubble-up necessary for the error boundary to catch it.&lt;/p&gt;
+
+&lt;p&gt;Here’s a codepen:&lt;/p&gt;
+
+&lt;p data-height=&quot;735&quot; data-theme-id=&quot;0&quot; data-slug-hash=&quot;ZxxdGO&quot; data-default-tab=&quot;js,result&quot; data-user=&quot;tamouse&quot; data-embed-version=&quot;2&quot; data-pen-title=&quot;ErrorBoundary Example&quot; class=&quot;codepen&quot;&gt;See the Pen &lt;a href=&quot;https://codepen.io/tamouse/pen/ZxxdGO/&quot;&gt;ErrorBoundary
+Example&lt;/a&gt; by Tamara Temple (&lt;a href=&quot;https://codepen.io/tamouse&quot;&gt;@tamouse&lt;/a&gt;) on &lt;a href=&quot;https://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
+&lt;script async=&quot;&quot; src=&quot;https://static.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;
+
+</description>
+        <pubDate>Fri, 30 Mar 2018 00:00:00 -0500</pubDate>
+        <link>https://tamouse.github.io//swaac/2018/03/30/til-react-error-boundary-workarounds/</link>
+        <guid isPermaLink="true">https://tamouse.github.io//swaac/2018/03/30/til-react-error-boundary-workarounds/</guid>
+        
+        <category>react</category>
+        
+        <category>errors</category>
+        
+        <category>error-handling</category>
+        
+        <category>error-boundaries</category>
+        
+        <category>componentDidCatch</category>
+        
+        
+      </item>
     
       <item>
         <title>Github Tricks: Turn off White Space Diffs</title>
@@ -19,7 +109,7 @@ due to white space changes?&lt;/p&gt;
 &lt;p&gt;Append &lt;code class=&quot;highlighter-rouge&quot;&gt;?w=1&lt;/code&gt; to the end of the &lt;code class=&quot;highlighter-rouge&quot;&gt;.../files&lt;/code&gt; url to view the diff
 &lt;em&gt;without&lt;/em&gt; white space changes.&lt;/p&gt;
 </description>
-        <pubDate>Thu, 01 Mar 2018 10:51:00 -0800</pubDate>
+        <pubDate>Thu, 01 Mar 2018 10:51:00 -0600</pubDate>
         <link>https://tamouse.github.io//swaac/github/2018/03/01/github-tricks-turn-off-white-space-diffs/</link>
         <guid isPermaLink="true">https://tamouse.github.io//swaac/github/2018/03/01/github-tricks-turn-off-white-space-diffs/</guid>
         
@@ -58,7 +148,7 @@ as well and see what you might be up against.&lt;/p&gt;
 prevent the merge from occurring if it’s possible for a fast-forward
 merge to occur (likely).&lt;/p&gt;
 </description>
-        <pubDate>Wed, 28 Feb 2018 10:30:00 -0800</pubDate>
+        <pubDate>Wed, 28 Feb 2018 10:30:00 -0600</pubDate>
         <link>https://tamouse.github.io//swaac/git/2018/02/28/git-merge-dry-run/</link>
         <guid isPermaLink="true">https://tamouse.github.io//swaac/git/2018/02/28/git-merge-dry-run/</guid>
         
@@ -162,7 +252,7 @@ end
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let createdAt = moment(object.created_at_ms)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
-        <pubDate>Thu, 15 Feb 2018 18:39:00 -0800</pubDate>
+        <pubDate>Thu, 15 Feb 2018 18:39:00 -0600</pubDate>
         <link>https://tamouse.github.io//swaac/webdev/2018/02/15/passing-the-time-between-rails-and-react-dot-js/</link>
         <guid isPermaLink="true">https://tamouse.github.io//swaac/webdev/2018/02/15/passing-the-time-between-rails-and-react-dot-js/</guid>
         
@@ -200,7 +290,7 @@ shot:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/swaac/images/reset-ios-simulator.png&quot; alt=&quot;Reset IOS Simulator Screenshot&quot; /&gt;&lt;/p&gt;
 </description>
-        <pubDate>Thu, 15 Feb 2018 16:07:00 -0800</pubDate>
+        <pubDate>Thu, 15 Feb 2018 16:07:00 -0600</pubDate>
         <link>https://tamouse.github.io//swaac/ios/2018/02/15/how-to-reset-ios-simulator/</link>
         <guid isPermaLink="true">https://tamouse.github.io//swaac/ios/2018/02/15/how-to-reset-ios-simulator/</guid>
         
@@ -390,7 +480,7 @@ there, and some intended functionality went missing.&lt;/p&gt;
 unfamiliarity. Starting to learn bits of functional programming can
 improve the understandability of code for yourself.&lt;/p&gt;
 </description>
-        <pubDate>Sat, 10 Feb 2018 00:00:00 -0800</pubDate>
+        <pubDate>Sat, 10 Feb 2018 00:00:00 -0600</pubDate>
         <link>https://tamouse.github.io//swaac/javascript/2018/02/10/polyfills-for-find-and-findIndex/</link>
         <guid isPermaLink="true">https://tamouse.github.io//swaac/javascript/2018/02/10/polyfills-for-find-and-findIndex/</guid>
         
@@ -457,7 +547,7 @@ it in a namespace, and then clear that every time, too:&lt;/p&gt;
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;can i call stuff directly?&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;actual&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;MyComponent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;nx&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;boo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;boo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;    &lt;span class=&quot;nx&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;boo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;boo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 </description>
-        <pubDate>Fri, 19 Jan 2018 22:12:00 -0800</pubDate>
+        <pubDate>Fri, 19 Jan 2018 22:12:00 -0600</pubDate>
         <link>https://tamouse.github.io//swaac/testing/2018/01/19/til-some-jest-testing-tricks/</link>
         <guid isPermaLink="true">https://tamouse.github.io//swaac/testing/2018/01/19/til-some-jest-testing-tricks/</guid>
         
@@ -543,7 +633,7 @@ like exactly, but I’m sure it &lt;em&gt;is&lt;/em&gt; a &lt;code class=&quot;h
 
 &lt;p&gt;to get the react app to fill the full window height like I want it.&lt;/p&gt;
 </description>
-        <pubDate>Sun, 03 Dec 2017 21:58:00 -0800</pubDate>
+        <pubDate>Sun, 03 Dec 2017 21:58:00 -0600</pubDate>
         <link>https://tamouse.github.io//swaac/css/2017/12/03/side-by-side-layout-with-css-grid/</link>
         <guid isPermaLink="true">https://tamouse.github.io//swaac/css/2017/12/03/side-by-side-layout-with-css-grid/</guid>
         
@@ -576,7 +666,7 @@ debugger / study the backtrace.&lt;/p&gt;
 
 &lt;p&gt;H/T &lt;code class=&quot;highlighter-rouge&quot;&gt;#emacs&lt;/code&gt; channel on Freenode.&lt;/p&gt;
 </description>
-        <pubDate>Sun, 03 Dec 2017 21:54:00 -0800</pubDate>
+        <pubDate>Sun, 03 Dec 2017 21:54:00 -0600</pubDate>
         <link>https://tamouse.github.io//swaac/emacs/2017/12/03/til-emacs-toggle-debug-on-exit/</link>
         <guid isPermaLink="true">https://tamouse.github.io//swaac/emacs/2017/12/03/til-emacs-toggle-debug-on-exit/</guid>
         
@@ -676,7 +766,7 @@ if you’re interested in reading it.&lt;/p&gt;
 Don't Know JS Series by Kyle Simpson (@getify) on Github.com&quot;&gt;You-Dont-Know-JS&lt;/a&gt; and
 give him some love. Buy the books, become a patreon!&lt;/p&gt;
 </description>
-        <pubDate>Thu, 23 Nov 2017 09:05:00 -0800</pubDate>
+        <pubDate>Thu, 23 Nov 2017 09:05:00 -0600</pubDate>
         <link>https://tamouse.github.io//swaac/javascript/2017/11/23/whats-falsy-in-javascript/</link>
         <guid isPermaLink="true">https://tamouse.github.io//swaac/javascript/2017/11/23/whats-falsy-in-javascript/</guid>
         
@@ -688,53 +778,6 @@ give him some love. Buy the books, become a patreon!&lt;/p&gt;
         
         
         <category>javascript</category>
-        
-      </item>
-    
-      <item>
-        <title>TIL: Capybara.has_current_path</title>
-        <description>&lt;p&gt;I’m an infrequent user of Capybara, preferring other means to
-test. But I reach for it when it’s needed. That being said, I haven’t
-been up to speed on all the features of more recent releases.&lt;/p&gt;
-
-&lt;p&gt;One thing that I’d been used to in writing tests is explicitly putting
-in a &lt;code class=&quot;highlighter-rouge&quot;&gt;sleep&lt;/code&gt; when the stack is switching pages in the middle of a
-test, and checking the &lt;code class=&quot;highlighter-rouge&quot;&gt;current_url&lt;/code&gt; matches a given path.&lt;/p&gt;
-
-&lt;p&gt;Instead, as of version 2.5, there’s a method called &lt;code class=&quot;highlighter-rouge&quot;&gt;has_current_path?&lt;/code&gt;
-(which evolves to &lt;code class=&quot;highlighter-rouge&quot;&gt;have_current_path&lt;/code&gt; in RSpec matchers)
-that works with Capybara’s wait time (i.e., the test waits until the
-current path satisifies the argument given) which gives a much cleaner
-test than inserting sleeps.&lt;/p&gt;
-
-&lt;p&gt;This:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;scenario&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;item is deleted when clicked&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;n&quot;&gt;modal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;click_on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Delete This Item&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;nb&quot;&gt;sleep&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;current_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;match&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;%r{/items$}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;becomes:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;scenario&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;item is deleted when clicked&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;n&quot;&gt;modal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;click_on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Delete This Item&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;  &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;have_current_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;%r{/items$}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;(Note that &lt;code class=&quot;highlighter-rouge&quot;&gt;has_current_path?&lt;/code&gt; will take either a string or a regexp.)&lt;/p&gt;
-
-&lt;p&gt;I was led to this
-from
-&lt;a href=&quot;https://stackoverflow.com/questions/33533512/test-page-redirection-with-capybara-rspec/33535004#33535004&quot;&gt;https://stackoverflow.com/questions/33533512/test-page-redirection-with-capybara-rspec/33535004#33535004&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Mon, 20 Nov 2017 09:54:00 -0800</pubDate>
-        <link>https://tamouse.github.io//swaac/testing/2017/11/20/til-capybara-dot-has-current-path/</link>
-        <guid isPermaLink="true">https://tamouse.github.io//swaac/testing/2017/11/20/til-capybara-dot-has-current-path/</guid>
-        
-        <category>testing</category>
-        
-        <category>rails</category>
-        
-        <category>capybara</category>
-        
-        <category>wait-time</category>
-        
-        
-        <category>testing</category>
         
       </item>
     

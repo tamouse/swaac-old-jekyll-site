@@ -1,0 +1,188 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>TIL: React Error boundary workarounds</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/2018/03/30/til-react-error-boundary-workarounds/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>TIL: React Error boundary workarounds</h1>
+Mar 30, 2018
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/react">react</a></li> <li role="presentation"><a href="/swaac/tags/errors">errors</a></li> <li role="presentation"><a href="/swaac/tags/error-handling">error-handling</a></li> <li role="presentation"><a href="/swaac/tags/error-boundaries">error-boundaries</a></li> <li role="presentation"><a href="/swaac/tags/componentDidCatch">componentDidCatch</a></li> 
+</header>
+
+<article>
+  <p>Reently working on a next-gen standalone react client for my work, I
+decided I wanted to put in error boundaries, which were introduced in
+React v16. From the <a href="">docs</a>:</p>
+
+<blockquote>
+  <p>Error boundaries are React components that catch JavaScript errors
+anywhere in their child component tree, log those errors, and
+display a fallback UI instead of the component tree that
+crashed. Error boundaries catch errors during rendering, in
+lifecycle methods, and in constructors of the whole tree below them.</p>
+</blockquote>
+
+<p>This is well and good, but the first thing I ran into was how to catch
+errors that happen outside of the space React’s error boundaries work
+in:</p>
+
+<ul>
+  <li>Event handlers</li>
+  <li>Asynchronous code (e.g. setTimeout or requestAnimationFrame callbacks)</li>
+  <li>Server side rendering</li>
+  <li>Errors thrown in the error boundary itself (rather than its
+children)</li>
+</ul>
+
+<p>The particular problem I was working on was catching login errors,
+which were returned as a promise rejection. Since the error boundary
+didn’t handle this, i searched for help on this, and got it in the
+React.MN slack.</p>
+
+<p>After thinking about it, it does make sense, since React is
+declarative, this pretty much has to be handled as some form of
+state. The key is, what to do?</p>
+
+<p>I took a page out of some previous work where I was doing a
+<code class="highlighter-rouge">&lt;Redirect/&gt;</code> when a state entry became <code class="highlighter-rouge">true</code> , so I did it again for
+this. I’d catch the rejected promise in the handler, and set a state
+variable to <code class="highlighter-rouge">true</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">login</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">logon</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span>
+      <span class="c1">// do logon stuff when it works</span>
+    <span class="p">)</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+        <span class="na">hasError</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">error</span>
+      <span class="p">})</span>
+    <span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>So now there’s a state variable <code class="highlighter-rouge">hasError</code> that’s true, and the actual
+error in state. Down in the <code class="highlighter-rouge">render</code> method:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">hasError</span><span class="p">)</span> <span class="k">throw</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">error</span>
+
+  <span class="c1">// go on with no error</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This does the bubble-up necessary for the error boundary to catch it.</p>
+
+<p>Here’s a codepen:</p>
+
+<p data-height="735" data-theme-id="0" data-slug-hash="ZxxdGO" data-default-tab="js,result" data-user="tamouse" data-embed-version="2" data-pen-title="ErrorBoundary Example" class="codepen">See the Pen <a href="https://codepen.io/tamouse/pen/ZxxdGO/">ErrorBoundary
+Example</a> by Tamara Temple (<a href="https://codepen.io/tamouse">@tamouse</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async="" src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+
+</article>
+<hr>
+
+<p>
+  <strong>Source</strong>:
+  <a href="https://reactjs.org/docs/error-boundaries.html">
+    https://reactjs.org/docs/error-boundaries.html
+  </a>
+</p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>
