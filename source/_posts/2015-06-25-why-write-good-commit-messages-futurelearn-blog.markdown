@@ -12,7 +12,7 @@ tags:
 - "messages"
 - "communication"
 - "teamwork"
-- "UTF-8"
+- "utf-8"
 - "emoji"
 link:
   href: "https://about.futurelearn.com/blog/a-commit-message-from-our-repo-2/"

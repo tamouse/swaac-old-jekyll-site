@@ -100,7 +100,20 @@ underlying object:</p>
 <blockquote>
 
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" />3<br data-jekyll-commonmark-ghpages="" />4<br data-jekyll-commonmark-ghpages="" />5<br data-jekyll-commonmark-ghpages="" />6<br data-jekyll-commonmark-ghpages="" />7<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="k">class</span> <span class="nc">Profile</span> <span class="o">&lt;</span> <span class="no">SimpleDelegator</span><br data-jekyll-commonmark-ghpages="" />  <span class="kp">extend</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">Naming</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="k">def</span> <span class="nf">to_model</span><br data-jekyll-commonmark-ghpages="" />    <span class="nb">self</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></pre></td></tr></tbody></table></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="k">class</span> <span class="nc">Profile</span> <span class="o">&lt;</span> <span class="no">SimpleDelegator</span>
+  <span class="kp">extend</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">Naming</span>
+
+  <span class="k">def</span> <span class="nf">to_model</span>
+    <span class="nb">self</span>
+  <span class="k">end</span>
+<span class="k">end</span></pre></td></tr></tbody></table></code></pre></figure>
 
 
 </blockquote>

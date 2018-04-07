@@ -101,7 +101,13 @@ to every Markdown heading.</p>
 <p>(This is SCSS code which uses the <code class="highlighter-rouge">$navbar-height</code> variable defined by
 bootstrap. In plain old CSS you’d just use the number.)</p>
 
-<figure class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="o">*[</span><span class="nt">id</span><span class="o">]</span><span class="nd">:before</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />    <span class="nl">content</span><span class="p">:</span> <span class="s2">" "</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />    <span class="nl">margin-top</span><span class="p">:</span> <span class="nf">-</span><span class="p">(</span><span class="nv">$navbar-height</span><span class="o">+</span><span class="m">25</span><span class="p">);</span> <span class="c1">// Set the Appropriate Height<br data-jekyll-commonmark-ghpages="" /></span>    <span class="nl">height</span><span class="p">:</span> <span class="p">(</span><span class="nv">$navbar-height</span><span class="o">+</span><span class="m">25</span><span class="p">);</span> <span class="c1">// Set the Appropriate Height<br data-jekyll-commonmark-ghpages="" /></span>    <span class="nl">visibility</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="o">*[</span><span class="nt">id</span><span class="o">]</span><span class="nd">:before</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
+    <span class="nl">content</span><span class="p">:</span> <span class="s2">" "</span><span class="p">;</span>
+    <span class="nl">margin-top</span><span class="p">:</span> <span class="nf">-</span><span class="p">(</span><span class="nv">$navbar-height</span><span class="o">+</span><span class="m">25</span><span class="p">);</span> <span class="c1">// Set the Appropriate Height
+</span>    <span class="nl">height</span><span class="p">:</span> <span class="p">(</span><span class="nv">$navbar-height</span><span class="o">+</span><span class="m">25</span><span class="p">);</span> <span class="c1">// Set the Appropriate Height
+</span>    <span class="nl">visibility</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
 
 <p>So whereever there’s a element with the <code class="highlighter-rouge">id</code> tag now, there’s an
 invisible CSS <code class="highlighter-rouge">:before</code> section that pushes the item down. It’s
@@ -111,14 +117,21 @@ items that might be just above the heading.</p>
 <p>One problem I did run into was using the table of contents generator
 in Kramdown:</p>
 
-<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown"><span class="p">*</span> Content<br data-jekyll-commonmark-ghpages="" />{:toc}</code></pre></figure>
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown"><span class="p">*</span> Content
+{:toc}</code></pre></figure>
 
 <p>This creates a list of interior page links, but also puts an <code class="highlighter-rouge">id</code>
 attribute on each link in the list item, so adding this reversed the
 effect of the prior “push down”, so that the list bullets aligned with
 the list items.</p>
 
-<figure class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="nt">li</span> <span class="o">*[</span><span class="nt">id</span><span class="o">]</span><span class="nd">:before</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="nl">display</span><span class="p">:</span> <span class="nb">inherit</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />    <span class="nl">content</span><span class="p">:</span> <span class="s1">''</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />    <span class="nl">margin-top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />    <span class="nl">height</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />    <span class="nl">visibility</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="nt">li</span> <span class="o">*[</span><span class="nt">id</span><span class="o">]</span><span class="nd">:before</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="nb">inherit</span><span class="p">;</span>
+    <span class="nl">content</span><span class="p">:</span> <span class="s1">''</span><span class="p">;</span>
+    <span class="nl">margin-top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">visibility</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
 
 
 </article>

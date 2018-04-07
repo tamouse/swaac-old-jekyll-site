@@ -1,6 +1,5 @@
 # Sort the site posts by slug instead of date
 
-require 'pry'
 module Jekyll
 
   module SlugSort

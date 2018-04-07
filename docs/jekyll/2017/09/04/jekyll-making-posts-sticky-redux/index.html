@@ -88,12 +88,22 @@ category, though, and can make the post’s permalink look silly.</p>
 <p>In your posts that you want to be sticky, add a page variable to the
 front matter:</p>
 
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span><br data-jekyll-commonmark-ghpages="" /><span class="na">layout</span><span class="pi">:</span> <span class="s">post</span><br data-jekyll-commonmark-ghpages="" /><span class="na">sticky</span><span class="pi">:</span> <span class="no">true</span><br data-jekyll-commonmark-ghpages="" /><span class="c1"># ...</span><br data-jekyll-commonmark-ghpages="" /><span class="nn">---</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
+<span class="na">sticky</span><span class="pi">:</span> <span class="no">true</span>
+<span class="c1"># ...</span>
+<span class="nn">---</span></code></pre></figure>
 
 <p>Then in your page where you want the sticky posts to appear first, use
 the following template:</p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html">{% for post in site.posts %}{% if post.sticky %}<br data-jekyll-commonmark-ghpages="" />* [{{post.title}}]({{post.url}}) {{post.date|date_to_string}}<br data-jekyll-commonmark-ghpages="" />{% endif %}{% endfor %}<br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />{% for post in site.posts %}{% unless post.sticky %}<br data-jekyll-commonmark-ghpages="" />* [{{post.title}}]({{post.url}}) {{post.date|date_to_string}}<br data-jekyll-commonmark-ghpages="" />{% endunless %}{% endfor %}</code></pre></figure>
+<figure class="highlight"><pre><code class="language-html" data-lang="html">{% for post in site.posts %}{% if post.sticky %}
+* [{{post.title}}]({{post.url}}) {{post.date|date_to_string}}
+{% endif %}{% endfor %}
+
+{% for post in site.posts %}{% unless post.sticky %}
+* [{{post.title}}]({{post.url}}) {{post.date|date_to_string}}
+{% endunless %}{% endfor %}</code></pre></figure>
 
 <p>If you wanted the sticky posts to show up again in the lower section,
 just remove the <code class="highlighter-rouge">unless-endunless</code> condition in the second loop.</p>
@@ -111,14 +121,21 @@ posts.</p>
 
 <p>In <code class="highlighter-rouge">_config.yml</code></p>
 
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">collections</span><span class="pi">:</span><br data-jekyll-commonmark-ghpages="" />  <span class="pi">-</span> <span class="s">important</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">collections</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">important</span></code></pre></figure>
 
 <p>Create the sticky posts in the <code class="highlighter-rouge">_important</code> folder like regular posts.</p>
 
 <p>The file you want to show the sticky and regular post then can have
 the following construction:</p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html">{% for post in site.important %}<br data-jekyll-commonmark-ghpages="" />* [{{post.title}}]({{post.url}}) {{post.date|date_to_string}}<br data-jekyll-commonmark-ghpages="" />{% endfor %}<br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />{% for post in site.posts %}<br data-jekyll-commonmark-ghpages="" />* [{{post.title}}]({{post.url}}) {{post.date|date_to_string}}<br data-jekyll-commonmark-ghpages="" />{% endfor %}</code></pre></figure>
+<figure class="highlight"><pre><code class="language-html" data-lang="html">{% for post in site.important %}
+* [{{post.title}}]({{post.url}}) {{post.date|date_to_string}}
+{% endfor %}
+
+{% for post in site.posts %}
+* [{{post.title}}]({{post.url}}) {{post.date|date_to_string}}
+{% endfor %}</code></pre></figure>
 
 <hr />
 

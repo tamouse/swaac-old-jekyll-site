@@ -87,7 +87,13 @@ it turns out.</p>
 
 <h2 id="script">Script</h2>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'open-uri'</span><br data-jekyll-commonmark-ghpages="" /><span class="nb">require</span> <span class="s1">'nokogiri'</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="n">url</span><span class="o">=</span><span class="s2">"http://wiki.tamaratemple.com/"</span><br data-jekyll-commonmark-ghpages="" /><span class="n">content</span><span class="o">=</span><span class="no">Nokogiri</span><span class="o">::</span><span class="no">HTML</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">url</span><span class="p">))</span><br data-jekyll-commonmark-ghpages="" /><span class="n">keywords</span><span class="o">=</span><span class="n">content</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="s1">'//meta[@name="keywords"]'</span><span class="p">).</span><span class="nf">attr</span><span class="p">(</span><span class="s1">'content'</span><span class="p">).</span><span class="nf">value</span><br data-jekyll-commonmark-ghpages="" /><span class="nb">puts</span> <span class="n">keywords</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'open-uri'</span>
+<span class="nb">require</span> <span class="s1">'nokogiri'</span>
+
+<span class="n">url</span><span class="o">=</span><span class="s2">"http://wiki.tamaratemple.com/"</span>
+<span class="n">content</span><span class="o">=</span><span class="no">Nokogiri</span><span class="o">::</span><span class="no">HTML</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">url</span><span class="p">))</span>
+<span class="n">keywords</span><span class="o">=</span><span class="n">content</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="s1">'//meta[@name="keywords"]'</span><span class="p">).</span><span class="nf">attr</span><span class="p">(</span><span class="s1">'content'</span><span class="p">).</span><span class="nf">value</span>
+<span class="nb">puts</span> <span class="n">keywords</span></code></pre></figure>
 
 <h2 id="output">Output</h2>
 

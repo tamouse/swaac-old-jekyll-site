@@ -141,7 +141,16 @@ name of the relationship as the foreign key.</p>
 
 <p>Here’s what the migration might look like:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">CreateCategories</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">def</span> <span class="nf">change</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">create_table</span> <span class="ss">:categories</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span><br data-jekyll-commonmark-ghpages="" />      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:name</span><br data-jekyll-commonmark-ghpages="" />      <span class="n">t</span><span class="p">.</span><span class="nf">integer</span> <span class="ss">:parent_id</span><span class="p">,</span> <span class="n">index</span><br data-jekyll-commonmark-ghpages="" />      <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span> <span class="ss">null: </span><span class="kp">false</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">end</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">add_foreign_key</span> <span class="ss">:categories</span><span class="p">,</span> <span class="ss">:categories</span><span class="p">,</span> <span class="ss">column: :parent_id</span><span class="p">,</span> <span class="ss">primary_key: :id</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">CreateCategories</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">create_table</span> <span class="ss">:categories</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:name</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">integer</span> <span class="ss">:parent_id</span><span class="p">,</span> <span class="n">index</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span> <span class="ss">null: </span><span class="kp">false</span>
+    <span class="k">end</span>
+    <span class="n">add_foreign_key</span> <span class="ss">:categories</span><span class="p">,</span> <span class="ss">:categories</span><span class="p">,</span> <span class="ss">column: :parent_id</span><span class="p">,</span> <span class="ss">primary_key: :id</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
 
 <p>(N.B.: you need to create the foreign key after the table it’s
 referencing has been created, so make sure the foreign key definition
@@ -152,7 +161,10 @@ is outsite the <code class="highlighter-rouge">create_table</code> block.)</p>
 <p>Turning to the model now, we have to put in the directives that tell
 Rails how to use this self-referecing foreign key.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Category</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">belongs_to</span> <span class="ss">:parent</span><span class="p">,</span> <span class="ss">class_name: </span><span class="s2">"Category"</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">has_many</span> <span class="ss">:children</span><span class="p">,</span> <span class="ss">class_name: </span><span class="s2">"Category"</span><span class="p">,</span> <span class="ss">foreign_key: :parent_id</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Category</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">belongs_to</span> <span class="ss">:parent</span><span class="p">,</span> <span class="ss">class_name: </span><span class="s2">"Category"</span>
+  <span class="n">has_many</span> <span class="ss">:children</span><span class="p">,</span> <span class="ss">class_name: </span><span class="s2">"Category"</span><span class="p">,</span> <span class="ss">foreign_key: :parent_id</span>
+<span class="k">end</span></code></pre></figure>
 
 <p>This is all we need to be able to be able to link up a category with
 it’s parent, and to be able to find the children of a parent.</p>
@@ -163,7 +175,18 @@ node to have a parent.</p>
 
 <p>Let’s try a few of these out:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">root</span> <span class="o">=</span> <span class="no">Category</span><span class="p">.</span><span class="nf">create</span> <span class="ss">name: </span><span class="s2">"Root"</span><br data-jekyll-commonmark-ghpages="" /><span class="c1"># =&gt; #&lt;Category:0x007fd0d983cc08 id: 326, name: "Root", parent_id: nil, created_at: Wed, 16 Dec 2015 02:15:18 UTC +00:00, updated_at: Wed, 16 Dec 2015 02:15:18 UTC +00:00&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="n">a</span> <span class="o">=</span> <span class="no">Category</span><span class="p">.</span><span class="nf">create</span> <span class="ss">name: </span><span class="s2">"A"</span><span class="p">,</span> <span class="ss">parent: </span><span class="n">root</span><br data-jekyll-commonmark-ghpages="" /><span class="c1"># =&gt; #&lt;Category:0x007fd0dd9e3d50 id: 327, name: "A", parent_id: 326, created_at: Wed, 16 Dec 2015 02:17:01 UTC +00:00, updated_at: Wed, 16 Dec 2015 02:17:01 UTC +00:00&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="n">a1</span> <span class="o">=</span> <span class="no">Category</span><span class="p">.</span><span class="nf">create</span> <span class="ss">name: </span><span class="s2">"A.1"</span><span class="p">,</span> <span class="ss">parent: </span><span class="n">a</span><br data-jekyll-commonmark-ghpages="" /><span class="c1"># =&gt; #&lt;Category:0x007fd0dd91e3c0 id: 328, name: "A.1", parent_id: 327, created_at: Wed, 16 Dec 2015 02:17:53 UTC +00:00, updated_at: Wed, 16 Dec 2015 02:17:53 UTC +00:00&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="n">a1</span><span class="p">.</span><span class="nf">parent</span><br data-jekyll-commonmark-ghpages="" /><span class="c1"># =&gt; #&lt;Category:0x007fd0dd9e3d50 id: 327, name: "A", parent_id: 326, created_at: Wed, 16 Dec 2015 02:17:01 UTC +00:00, updated_at: Wed, 16 Dec 2015 02:17:01 UTC +00:00&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="n">root</span><span class="p">.</span><span class="nf">parent</span><br data-jekyll-commonmark-ghpages="" /><span class="c1"># =&gt; nil</span><br data-jekyll-commonmark-ghpages="" /><span class="n">root</span><span class="p">.</span><span class="nf">children</span><br data-jekyll-commonmark-ghpages="" /><span class="c1"># =&gt; [#&lt;Category:0x007fd0dc6a3010  id: 327,  name: "A",  parent_id: 326,  created_at: Wed, 16 Dec 2015 02:17:01 UTC +00:00,  updated_at: Wed, 16 Dec 2015 02:17:01 UTC +00:00&gt;]</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">root</span> <span class="o">=</span> <span class="no">Category</span><span class="p">.</span><span class="nf">create</span> <span class="ss">name: </span><span class="s2">"Root"</span>
+<span class="c1"># =&gt; #&lt;Category:0x007fd0d983cc08 id: 326, name: "Root", parent_id: nil, created_at: Wed, 16 Dec 2015 02:15:18 UTC +00:00, updated_at: Wed, 16 Dec 2015 02:15:18 UTC +00:00&gt;</span>
+<span class="n">a</span> <span class="o">=</span> <span class="no">Category</span><span class="p">.</span><span class="nf">create</span> <span class="ss">name: </span><span class="s2">"A"</span><span class="p">,</span> <span class="ss">parent: </span><span class="n">root</span>
+<span class="c1"># =&gt; #&lt;Category:0x007fd0dd9e3d50 id: 327, name: "A", parent_id: 326, created_at: Wed, 16 Dec 2015 02:17:01 UTC +00:00, updated_at: Wed, 16 Dec 2015 02:17:01 UTC +00:00&gt;</span>
+<span class="n">a1</span> <span class="o">=</span> <span class="no">Category</span><span class="p">.</span><span class="nf">create</span> <span class="ss">name: </span><span class="s2">"A.1"</span><span class="p">,</span> <span class="ss">parent: </span><span class="n">a</span>
+<span class="c1"># =&gt; #&lt;Category:0x007fd0dd91e3c0 id: 328, name: "A.1", parent_id: 327, created_at: Wed, 16 Dec 2015 02:17:53 UTC +00:00, updated_at: Wed, 16 Dec 2015 02:17:53 UTC +00:00&gt;</span>
+<span class="n">a1</span><span class="p">.</span><span class="nf">parent</span>
+<span class="c1"># =&gt; #&lt;Category:0x007fd0dd9e3d50 id: 327, name: "A", parent_id: 326, created_at: Wed, 16 Dec 2015 02:17:01 UTC +00:00, updated_at: Wed, 16 Dec 2015 02:17:01 UTC +00:00&gt;</span>
+<span class="n">root</span><span class="p">.</span><span class="nf">parent</span>
+<span class="c1"># =&gt; nil</span>
+<span class="n">root</span><span class="p">.</span><span class="nf">children</span>
+<span class="c1"># =&gt; [#&lt;Category:0x007fd0dc6a3010  id: 327,  name: "A",  parent_id: 326,  created_at: Wed, 16 Dec 2015 02:17:01 UTC +00:00,  updated_at: Wed, 16 Dec 2015 02:17:01 UTC +00:00&gt;]</span></code></pre></figure>
 
 <p>We can see that “A.1”’s parent is “A”, and the “ROOT” has no parent at all, as we expect.</p>
 
@@ -174,7 +197,9 @@ to find out if the current category is the root of the tree. We could
 make it a bit more clear though by adding in some predicate methods on
 the instances:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">is_parent?</span><br data-jekyll-commonmark-ghpages="" />  <span class="o">!!</span><span class="nb">self</span><span class="p">.</span><span class="nf">parent</span><span class="p">.</span><span class="nf">nil?</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">is_parent?</span>
+  <span class="o">!!</span><span class="nb">self</span><span class="p">.</span><span class="nf">parent</span><span class="p">.</span><span class="nf">nil?</span>
+<span class="k">end</span></code></pre></figure>
 
 <h3 id="aside-whats-up-with-that-bang-bang">Aside: what’s up with that bang-bang?</h3>
 
@@ -190,13 +215,21 @@ parent. You can always say <code class="highlighter-rouge">!category.parent?</co
 bang operator again waiting to be missed. If we use another method
 here we can obtain more readability.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">has_parent?</span><br data-jekyll-commonmark-ghpages="" />  <span class="o">!!</span><span class="nb">self</span><span class="p">.</span><span class="nf">parent</span><span class="p">.</span><span class="nf">present?</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">has_parent?</span>
+  <span class="o">!!</span><span class="nb">self</span><span class="p">.</span><span class="nf">parent</span><span class="p">.</span><span class="nf">present?</span>
+<span class="k">end</span></code></pre></figure>
 
 <h2 id="you-promised-me-a-sister">You promised me a sister!</h2>
 
 <p>What about siblings? This also turns out to be fairly easy.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">siblings</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">if</span> <span class="n">parent</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">parent</span><span class="p">.</span><span class="nf">children</span><span class="p">.</span><span class="nf">where</span><span class="p">.</span><span class="nf">not</span><span class="p">(</span><span class="ss">id: </span><span class="nb">self</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">else</span><br data-jekyll-commonmark-ghpages="" />    <span class="no">Category</span><span class="p">.</span><span class="nf">top_level</span><span class="p">.</span><span class="nf">where</span><span class="p">.</span><span class="nf">not</span><span class="p">(</span><span class="ss">id: </span><span class="nb">self</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">siblings</span>
+  <span class="k">if</span> <span class="n">parent</span>
+    <span class="n">parent</span><span class="p">.</span><span class="nf">children</span><span class="p">.</span><span class="nf">where</span><span class="p">.</span><span class="nf">not</span><span class="p">(</span><span class="ss">id: </span><span class="nb">self</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span>
+  <span class="k">else</span>
+    <span class="no">Category</span><span class="p">.</span><span class="nf">top_level</span><span class="p">.</span><span class="nf">where</span><span class="p">.</span><span class="nf">not</span><span class="p">(</span><span class="ss">id: </span><span class="nb">self</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
 
 <p>This gives all the children of the current node’s parent without
 itself.  In addition, there is the special case where the current node
@@ -215,7 +248,9 @@ is passed in. But what about setting the very first category where
 there are no other nodes? It turns out this is rather simple to
 accomodate as well without doing a lot of conditionals.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">ensure_one_root</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">self</span><span class="p">.</span><span class="nf">parent</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">root</span> <span class="k">if</span> <span class="n">parent_id</span><span class="p">.</span><span class="nf">nil?</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">ensure_one_root</span>
+  <span class="nb">self</span><span class="p">.</span><span class="nf">parent</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">root</span> <span class="k">if</span> <span class="n">parent_id</span><span class="p">.</span><span class="nf">nil?</span>
+<span class="k">end</span></code></pre></figure>
 
 <p>This looks at the current object <code class="highlighter-rouge">self</code> and sees if the parent id is
 presently nil. If it is, it then searches for the current root of the
@@ -235,7 +270,10 @@ specific category id? What happens then, mousegirl?”</p>
 the root of the tree if there is no root. Let’s add a guard and stop
 the save if that’s tried:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">ensure_one_root</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">return</span> <span class="kp">false</span> <span class="k">if</span> <span class="nb">self</span> <span class="o">==</span> <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">root</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">self</span><span class="p">.</span><span class="nf">parent</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">root</span> <span class="k">if</span> <span class="n">parent_id</span><span class="p">.</span><span class="nf">nil?</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">ensure_one_root</span>
+  <span class="k">return</span> <span class="kp">false</span> <span class="k">if</span> <span class="nb">self</span> <span class="o">==</span> <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">root</span>
+  <span class="nb">self</span><span class="p">.</span><span class="nf">parent</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">root</span> <span class="k">if</span> <span class="n">parent_id</span><span class="p">.</span><span class="nf">nil?</span>
+<span class="k">end</span></code></pre></figure>
 
 <p>The guard clause will find out if the current object <code class="highlighter-rouge">self</code> is the
 same as the root by fetching the root via the class method. Returning
@@ -255,18 +293,49 @@ place. My personal preference is to put these sorts of things up in
 the class, but there’s no hard-and-fast rule about it, to my
 knowledge. (Please comment if you find otherwise?)</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">make_root</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">self</span><span class="p">.</span><span class="nf">transaction</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">old_root</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">root</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">old_root</span><span class="p">.</span><span class="nf">update_column</span><span class="p">(</span><span class="ss">:parent_id</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">other</span><span class="p">.</span><span class="nf">update_column</span><span class="p">(</span><span class="ss">:parent_id</span><span class="p">,</span> <span class="kp">nil</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">make_root</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+  <span class="nb">self</span><span class="p">.</span><span class="nf">transaction</span> <span class="k">do</span>
+    <span class="n">old_root</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">root</span>
+    <span class="n">old_root</span><span class="p">.</span><span class="nf">update_column</span><span class="p">(</span><span class="ss">:parent_id</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span>
+    <span class="n">other</span><span class="p">.</span><span class="nf">update_column</span><span class="p">(</span><span class="ss">:parent_id</span><span class="p">,</span> <span class="kp">nil</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
 
 <p>We’re using <code class="highlighter-rouge">update_column</code> (which calls <code class="highlighter-rouge">update_columns</code> underneath)
 in order to bypass the <code class="highlighter-rouge">before_save</code> callback. <small><a href="http://api.rubyonrails.org/classes/ActiveRecord/Persistence.html#method-i-update_column">(reference)</a></small></p>
 
 <p>Next we’ll add an instance method that just calls the class method:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"> <span class="k">def</span> <span class="nf">make_root</span><br data-jekyll-commonmark-ghpages="" />   <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">make_root</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" /> <span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"> <span class="k">def</span> <span class="nf">make_root</span>
+   <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">make_root</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+ <span class="k">end</span></code></pre></figure>
 
 <p>And we can see it works:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">root</span> <span class="o">=</span> <span class="no">Category</span><span class="p">.</span><span class="nf">create</span> <span class="ss">name: </span><span class="s2">"ROOT"</span><br data-jekyll-commonmark-ghpages="" /><span class="c1"># =&gt; #&lt;Category:0x007f9cbb792480 id: 4, name: "ROOT", parent_id: nil, created_at: Wed, 16 Dec 2015 03:27:01 UTC +00:00, updated_at: Wed, 16 Dec 2015 03:27:01 UTC +00:00&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="n">other</span> <span class="o">=</span> <span class="no">Category</span><span class="p">.</span><span class="nf">create</span> <span class="ss">name: </span><span class="s2">"OTHER"</span><br data-jekyll-commonmark-ghpages="" /><span class="c1"># =&gt; #&lt;Category:0x007f9cbd9ca408 id: 5, name: "OTHER", parent_id: 4, created_at: Wed, 16 Dec 2015 03:27:12 UTC +00:00, updated_at: Wed, 16 Dec 2015 03:27:12 UTC +00:00&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="n">other</span><span class="p">.</span><span class="nf">make_root</span><br data-jekyll-commonmark-ghpages="" /><span class="c1">#   (0.1ms)  begin transaction</span><br data-jekyll-commonmark-ghpages="" /><span class="c1">#  Category Load (0.1ms)  SELECT  "categories".* FROM "categories" WHERE "categories"."parent_id" IS NULL  ORDER BY "categories"."id" ASC LIMIT 1</span><br data-jekyll-commonmark-ghpages="" /><span class="c1">#  SQL (0.3ms)  UPDATE "categories" SET "parent_id" = 5 WHERE "categories"."id" = ?  [["id", 4]]</span><br data-jekyll-commonmark-ghpages="" /><span class="c1">#  SQL (0.4ms)  UPDATE "categories" SET "parent_id" = NULL WHERE "categories"."id" = ?  [["id", 5]]</span><br data-jekyll-commonmark-ghpages="" /><span class="c1">#   (1.7ms)  commit transaction</span><br data-jekyll-commonmark-ghpages="" /><span class="c1"># =&gt; true</span><br data-jekyll-commonmark-ghpages="" /><span class="c1">#</span><br data-jekyll-commonmark-ghpages="" /><span class="c1"># NOTE: the transaction is doing both updates safely. if one fails,</span><br data-jekyll-commonmark-ghpages="" /><span class="c1"># they both fail</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="n">other</span><span class="p">.</span><span class="nf">is_root?</span><br data-jekyll-commonmark-ghpages="" /><span class="c1"># =&gt; true</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="c1"># Because root was changed in the database, but our local instance of</span><br data-jekyll-commonmark-ghpages="" /><span class="c1"># it hasn't been updated, we need to reload it. This can often be a</span><br data-jekyll-commonmark-ghpages="" /><span class="c1"># problem if you don't remember to do this!</span><br data-jekyll-commonmark-ghpages="" /><span class="n">root</span><span class="p">.</span><span class="nf">reload</span><br data-jekyll-commonmark-ghpages="" /><span class="n">root</span><span class="p">.</span><span class="nf">is_root?</span><br data-jekyll-commonmark-ghpages="" /><span class="c1"># =&gt; false</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">root</span> <span class="o">=</span> <span class="no">Category</span><span class="p">.</span><span class="nf">create</span> <span class="ss">name: </span><span class="s2">"ROOT"</span>
+<span class="c1"># =&gt; #&lt;Category:0x007f9cbb792480 id: 4, name: "ROOT", parent_id: nil, created_at: Wed, 16 Dec 2015 03:27:01 UTC +00:00, updated_at: Wed, 16 Dec 2015 03:27:01 UTC +00:00&gt;</span>
+<span class="n">other</span> <span class="o">=</span> <span class="no">Category</span><span class="p">.</span><span class="nf">create</span> <span class="ss">name: </span><span class="s2">"OTHER"</span>
+<span class="c1"># =&gt; #&lt;Category:0x007f9cbd9ca408 id: 5, name: "OTHER", parent_id: 4, created_at: Wed, 16 Dec 2015 03:27:12 UTC +00:00, updated_at: Wed, 16 Dec 2015 03:27:12 UTC +00:00&gt;</span>
+<span class="n">other</span><span class="p">.</span><span class="nf">make_root</span>
+<span class="c1">#   (0.1ms)  begin transaction</span>
+<span class="c1">#  Category Load (0.1ms)  SELECT  "categories".* FROM "categories" WHERE "categories"."parent_id" IS NULL  ORDER BY "categories"."id" ASC LIMIT 1</span>
+<span class="c1">#  SQL (0.3ms)  UPDATE "categories" SET "parent_id" = 5 WHERE "categories"."id" = ?  [["id", 4]]</span>
+<span class="c1">#  SQL (0.4ms)  UPDATE "categories" SET "parent_id" = NULL WHERE "categories"."id" = ?  [["id", 5]]</span>
+<span class="c1">#   (1.7ms)  commit transaction</span>
+<span class="c1"># =&gt; true</span>
+<span class="c1">#</span>
+<span class="c1"># NOTE: the transaction is doing both updates safely. if one fails,</span>
+<span class="c1"># they both fail</span>
+
+<span class="n">other</span><span class="p">.</span><span class="nf">is_root?</span>
+<span class="c1"># =&gt; true</span>
+
+<span class="c1"># Because root was changed in the database, but our local instance of</span>
+<span class="c1"># it hasn't been updated, we need to reload it. This can often be a</span>
+<span class="c1"># problem if you don't remember to do this!</span>
+<span class="n">root</span><span class="p">.</span><span class="nf">reload</span>
+<span class="n">root</span><span class="p">.</span><span class="nf">is_root?</span>
+<span class="c1"># =&gt; false</span></code></pre></figure>
 
 <h2 id="siblings-redux">Siblings, redux</h2>
 
@@ -282,7 +351,67 @@ top.)</p>
 
 <p>Here’s our final code:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Category</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">belongs_to</span> <span class="ss">:parent</span><span class="p">,</span> <span class="ss">class_name: </span><span class="s2">"Category"</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">has_many</span> <span class="ss">:children</span><span class="p">,</span> <span class="ss">class_name: </span><span class="s2">"Category"</span><span class="p">,</span> <span class="ss">foreign_key: :parent_id</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="n">scope</span> <span class="ss">:with_children</span><span class="p">,</span> <span class="o">-&gt;</span><span class="p">()</span> <span class="p">{</span> <span class="n">joins</span><span class="p">(</span><span class="ss">:children</span><span class="p">).</span><span class="nf">distinct</span> <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">scope</span> <span class="ss">:top_level</span><span class="p">,</span> <span class="o">-&gt;</span><span class="p">()</span> <span class="p">{</span> <span class="n">where</span><span class="p">(</span><span class="ss">parent_id: </span><span class="kp">nil</span><span class="p">)</span> <span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="n">before_save</span> <span class="ss">:ensure_one_root</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="c1">##</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># CLASS METHODS</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1">##</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">root</span><br data-jekyll-commonmark-ghpages="" />    <span class="nb">self</span><span class="p">.</span><span class="nf">top_level</span><span class="p">.</span><span class="nf">first</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">make_root</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" />    <span class="nb">self</span><span class="p">.</span><span class="nf">transaction</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />      <span class="n">old_root</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">root</span><br data-jekyll-commonmark-ghpages="" />      <span class="n">old_root</span><span class="p">.</span><span class="nf">update_column</span><span class="p">(</span><span class="ss">:parent_id</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" />      <span class="n">other</span><span class="p">.</span><span class="nf">update_column</span><span class="p">(</span><span class="ss">:parent_id</span><span class="p">,</span> <span class="kp">nil</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">end</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="c1">##</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># INSTANCE METHODS</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1">##</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="k">def</span> <span class="nf">siblings</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">if</span> <span class="n">parent</span><br data-jekyll-commonmark-ghpages="" />      <span class="n">parent</span><span class="p">.</span><span class="nf">children</span><span class="p">.</span><span class="nf">where</span><span class="p">.</span><span class="nf">not</span><span class="p">(</span><span class="ss">id: </span><span class="nb">self</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">else</span><br data-jekyll-commonmark-ghpages="" />      <span class="no">Category</span><span class="p">.</span><span class="nf">top_level</span><span class="p">.</span><span class="nf">where</span><span class="p">.</span><span class="nf">not</span><span class="p">(</span><span class="ss">id: </span><span class="nb">self</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">end</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="k">def</span> <span class="nf">has_parent?</span><br data-jekyll-commonmark-ghpages="" />    <span class="nb">self</span><span class="p">.</span><span class="nf">parent</span><span class="p">.</span><span class="nf">present?</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="k">def</span> <span class="nf">is_leaf?</span><br data-jekyll-commonmark-ghpages="" />    <span class="nb">self</span><span class="p">.</span><span class="nf">children</span><span class="p">.</span><span class="nf">empty?</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="k">def</span> <span class="nf">is_root?</span><br data-jekyll-commonmark-ghpages="" />    <span class="nb">self</span><span class="p">.</span><span class="nf">parent</span><span class="p">.</span><span class="nf">nil?</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="k">def</span> <span class="nf">make_root</span><br data-jekyll-commonmark-ghpages="" />    <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">make_root</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="kp">private</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="k">def</span> <span class="nf">ensure_one_root</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">return</span> <span class="kp">false</span> <span class="k">if</span> <span class="nb">self</span> <span class="o">==</span> <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">root</span><br data-jekyll-commonmark-ghpages="" />    <span class="nb">self</span><span class="p">.</span><span class="nf">parent</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">root</span> <span class="k">if</span> <span class="n">parent_id</span><span class="p">.</span><span class="nf">nil?</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Category</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">belongs_to</span> <span class="ss">:parent</span><span class="p">,</span> <span class="ss">class_name: </span><span class="s2">"Category"</span>
+  <span class="n">has_many</span> <span class="ss">:children</span><span class="p">,</span> <span class="ss">class_name: </span><span class="s2">"Category"</span><span class="p">,</span> <span class="ss">foreign_key: :parent_id</span>
+
+  <span class="n">scope</span> <span class="ss">:with_children</span><span class="p">,</span> <span class="o">-&gt;</span><span class="p">()</span> <span class="p">{</span> <span class="n">joins</span><span class="p">(</span><span class="ss">:children</span><span class="p">).</span><span class="nf">distinct</span> <span class="p">}</span>
+  <span class="n">scope</span> <span class="ss">:top_level</span><span class="p">,</span> <span class="o">-&gt;</span><span class="p">()</span> <span class="p">{</span> <span class="n">where</span><span class="p">(</span><span class="ss">parent_id: </span><span class="kp">nil</span><span class="p">)</span> <span class="p">}</span>
+
+  <span class="n">before_save</span> <span class="ss">:ensure_one_root</span>
+
+  <span class="c1">##</span>
+  <span class="c1"># CLASS METHODS</span>
+  <span class="c1">##</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">root</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">top_level</span><span class="p">.</span><span class="nf">first</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">make_root</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">transaction</span> <span class="k">do</span>
+      <span class="n">old_root</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">root</span>
+      <span class="n">old_root</span><span class="p">.</span><span class="nf">update_column</span><span class="p">(</span><span class="ss">:parent_id</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span>
+      <span class="n">other</span><span class="p">.</span><span class="nf">update_column</span><span class="p">(</span><span class="ss">:parent_id</span><span class="p">,</span> <span class="kp">nil</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="c1">##</span>
+  <span class="c1"># INSTANCE METHODS</span>
+  <span class="c1">##</span>
+
+  <span class="k">def</span> <span class="nf">siblings</span>
+    <span class="k">if</span> <span class="n">parent</span>
+      <span class="n">parent</span><span class="p">.</span><span class="nf">children</span><span class="p">.</span><span class="nf">where</span><span class="p">.</span><span class="nf">not</span><span class="p">(</span><span class="ss">id: </span><span class="nb">self</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span>
+    <span class="k">else</span>
+      <span class="no">Category</span><span class="p">.</span><span class="nf">top_level</span><span class="p">.</span><span class="nf">where</span><span class="p">.</span><span class="nf">not</span><span class="p">(</span><span class="ss">id: </span><span class="nb">self</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">has_parent?</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">parent</span><span class="p">.</span><span class="nf">present?</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">is_leaf?</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">children</span><span class="p">.</span><span class="nf">empty?</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">is_root?</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">parent</span><span class="p">.</span><span class="nf">nil?</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">make_root</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">make_root</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">ensure_one_root</span>
+    <span class="k">return</span> <span class="kp">false</span> <span class="k">if</span> <span class="nb">self</span> <span class="o">==</span> <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">root</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">parent</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">root</span> <span class="k">if</span> <span class="n">parent_id</span><span class="p">.</span><span class="nf">nil?</span>
+  <span class="k">end</span>
+
+<span class="k">end</span></code></pre></figure>
 
 <p>You can see this application with tests at the
 <a href="https://github.com/tamouse/example_nested_category">Github Repository</a>.</p>

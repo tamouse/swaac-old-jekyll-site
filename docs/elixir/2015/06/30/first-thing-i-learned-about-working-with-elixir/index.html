@@ -82,7 +82,35 @@ installing it (a breeze, way easier than ruby), I start up the Elixir
 REPL, IEx, type a few bon mots and then I’m stuck trying to quit the
 thing.</p>
 
-<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>iex<br data-jekyll-commonmark-ghpages="" />Erlang/OTP 18 <span class="o">[</span>erts-7.0] <span class="o">[</span><span class="nb">source</span><span class="o">]</span> <span class="o">[</span>64-bit] <span class="o">[</span>smp:2:2] <span class="o">[</span>async-threads:10] <span class="o">[</span>kernel-poll:false]<br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />Interactive Elixir <span class="o">(</span>1.0.5<span class="o">)</span> - press Ctrl+C to <span class="nb">exit</span> <span class="o">(</span><span class="nb">type </span>h<span class="o">()</span> ENTER <span class="k">for </span><span class="nb">help</span><span class="o">)</span><br data-jekyll-commonmark-ghpages="" />iex<span class="o">(</span>1<span class="o">)&gt;</span> 40+2<br data-jekyll-commonmark-ghpages="" />42<br data-jekyll-commonmark-ghpages="" />iex<span class="o">(</span>2<span class="o">)&gt;</span> <span class="s2">"hello"</span>&lt;<span class="o">&gt;</span><span class="s2">"world"</span><br data-jekyll-commonmark-ghpages="" /><span class="s2">"helloworld"</span><br data-jekyll-commonmark-ghpages="" />iex<span class="o">(</span>3<span class="o">)&gt;</span> quit<br data-jekyll-commonmark-ghpages="" /><span class="k">**</span> <span class="o">(</span>RuntimeError<span class="o">)</span> undefined <span class="k">function</span>: quit/0<br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />iex<span class="o">(</span>3<span class="o">)&gt;</span> <span class="nb">exit</span><br data-jekyll-commonmark-ghpages="" /><span class="k">**</span> <span class="o">(</span>RuntimeError<span class="o">)</span> undefined <span class="k">function</span>: <span class="nb">exit</span>/0<br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />iex<span class="o">(</span>3<span class="o">)&gt;</span> <span class="c"># Tried several things here: Ctrl-C, Ctrl-D, finally read</span><br data-jekyll-commonmark-ghpages="" />        <span class="c"># about Ctrl-G and tried that, giving me the switch command:</span><br data-jekyll-commonmark-ghpages="" />User switch <span class="nb">command</span><br data-jekyll-commonmark-ghpages="" /> <span class="nt">--</span><span class="o">&gt;</span> ?<br data-jekyll-commonmark-ghpages="" />  c <span class="o">[</span>nn]            - connect to job<br data-jekyll-commonmark-ghpages="" />  i <span class="o">[</span>nn]            - interrupt job<br data-jekyll-commonmark-ghpages="" />  k <span class="o">[</span>nn]            - <span class="nb">kill </span>job<br data-jekyll-commonmark-ghpages="" />  j                 - list all <span class="nb">jobs<br data-jekyll-commonmark-ghpages="" />  </span>s <span class="o">[</span>shell]         - start <span class="nb">local </span>shell<br data-jekyll-commonmark-ghpages="" />  r <span class="o">[</span>node <span class="o">[</span>shell]]  - start remote shell<br data-jekyll-commonmark-ghpages="" />  q                 - quit erlang<br data-jekyll-commonmark-ghpages="" />  ? | h             - this message<br data-jekyll-commonmark-ghpages="" /> <span class="nt">--</span><span class="o">&gt;</span> q<br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="nv">$ </span><span class="c"># and out!</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>iex
+Erlang/OTP 18 <span class="o">[</span>erts-7.0] <span class="o">[</span><span class="nb">source</span><span class="o">]</span> <span class="o">[</span>64-bit] <span class="o">[</span>smp:2:2] <span class="o">[</span>async-threads:10] <span class="o">[</span>kernel-poll:false]
+
+Interactive Elixir <span class="o">(</span>1.0.5<span class="o">)</span> - press Ctrl+C to <span class="nb">exit</span> <span class="o">(</span><span class="nb">type </span>h<span class="o">()</span> ENTER <span class="k">for </span><span class="nb">help</span><span class="o">)</span>
+iex<span class="o">(</span>1<span class="o">)&gt;</span> 40+2
+42
+iex<span class="o">(</span>2<span class="o">)&gt;</span> <span class="s2">"hello"</span>&lt;<span class="o">&gt;</span><span class="s2">"world"</span>
+<span class="s2">"helloworld"</span>
+iex<span class="o">(</span>3<span class="o">)&gt;</span> quit
+<span class="k">**</span> <span class="o">(</span>RuntimeError<span class="o">)</span> undefined <span class="k">function</span>: quit/0
+
+iex<span class="o">(</span>3<span class="o">)&gt;</span> <span class="nb">exit</span>
+<span class="k">**</span> <span class="o">(</span>RuntimeError<span class="o">)</span> undefined <span class="k">function</span>: <span class="nb">exit</span>/0
+
+iex<span class="o">(</span>3<span class="o">)&gt;</span> <span class="c"># Tried several things here: Ctrl-C, Ctrl-D, finally read</span>
+        <span class="c"># about Ctrl-G and tried that, giving me the switch command:</span>
+User switch <span class="nb">command</span>
+ <span class="nt">--</span><span class="o">&gt;</span> ?
+  c <span class="o">[</span>nn]            - connect to job
+  i <span class="o">[</span>nn]            - interrupt job
+  k <span class="o">[</span>nn]            - <span class="nb">kill </span>job
+  j                 - list all <span class="nb">jobs
+  </span>s <span class="o">[</span>shell]         - start <span class="nb">local </span>shell
+  r <span class="o">[</span>node <span class="o">[</span>shell]]  - start remote shell
+  q                 - quit erlang
+  ? | h             - this message
+ <span class="nt">--</span><span class="o">&gt;</span> q
+
+<span class="nv">$ </span><span class="c"># and out!</span></code></pre></figure>
 
 <p>Fun stuff, but it did panic me a little as the normal things I tried
 didn’t work.</p>

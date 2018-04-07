@@ -97,7 +97,22 @@ are two approaches to this, either hooking before_save or using a
 validation. I prefer using a validation as it also provides some
 feedback to the caller.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Transaction</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="n">validate</span> <span class="ss">:force_immutable</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># ....</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="kp">private</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="k">def</span> <span class="nf">force_immutable</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">if</span> <span class="nb">self</span><span class="p">.</span><span class="nf">changed?</span> <span class="o">&amp;&amp;</span> <span class="nb">self</span><span class="p">.</span><span class="nf">persisted?</span><br data-jekyll-commonmark-ghpages="" />      <span class="n">errors</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="ss">:base</span><span class="p">,</span> <span class="ss">:immutable</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" />      <span class="c1"># Optional: restore the original record</span><br data-jekyll-commonmark-ghpages="" />      <span class="nb">self</span><span class="p">.</span><span class="nf">reload</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">end</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Transaction</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+
+  <span class="n">validate</span> <span class="ss">:force_immutable</span>
+
+  <span class="c1"># ....</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">force_immutable</span>
+    <span class="k">if</span> <span class="nb">self</span><span class="p">.</span><span class="nf">changed?</span> <span class="o">&amp;&amp;</span> <span class="nb">self</span><span class="p">.</span><span class="nf">persisted?</span>
+      <span class="n">errors</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="ss">:base</span><span class="p">,</span> <span class="ss">:immutable</span><span class="p">)</span>
+      <span class="c1"># Optional: restore the original record</span>
+      <span class="nb">self</span><span class="p">.</span><span class="nf">reload</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
 
 <p><code class="highlighter-rouge">force_immutable</code> will only invalidate the operation when the record
 is “dirty” which is checked with the <code class="highlighter-rouge">.changed?</code> method, <strong>and</strong> the
@@ -126,7 +141,24 @@ caller.</p>
 <p>I use the same mechanism of the validation, but here individual
 attributes are checked to see if they’ve changed in some way.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Order</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><br data-jekyll-commonmark-ghpages="" />  <span class="no">IMMUTABLE</span> <span class="o">=</span> <span class="sx">%w{po_number}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="n">validate</span> <span class="ss">:force_immutable</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># ...</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="kp">private</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="k">def</span> <span class="nf">force_immutable</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">if</span> <span class="nb">self</span><span class="p">.</span><span class="nf">persisted?</span><br data-jekyll-commonmark-ghpages="" />      <span class="no">IMMUTABLE</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="kp">attr</span><span class="o">|</span><br data-jekyll-commonmark-ghpages="" />        <span class="nb">self</span><span class="p">.</span><span class="nf">changed</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="kp">attr</span><span class="p">)</span> <span class="o">&amp;&amp;</span><br data-jekyll-commonmark-ghpages="" />          <span class="n">errors</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="kp">attr</span><span class="p">,</span> <span class="ss">:immutable</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" />      <span class="k">end</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">end</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Order</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="no">IMMUTABLE</span> <span class="o">=</span> <span class="sx">%w{po_number}</span>
+
+  <span class="n">validate</span> <span class="ss">:force_immutable</span>
+
+  <span class="c1"># ...</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">force_immutable</span>
+    <span class="k">if</span> <span class="nb">self</span><span class="p">.</span><span class="nf">persisted?</span>
+      <span class="no">IMMUTABLE</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="kp">attr</span><span class="o">|</span>
+        <span class="nb">self</span><span class="p">.</span><span class="nf">changed</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="kp">attr</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+          <span class="n">errors</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="kp">attr</span><span class="p">,</span> <span class="ss">:immutable</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
 
 <p>Inside the <code class="highlighter-rouge">force_immutable</code> method, the validation is only performed
 on an already persisted record. For every element of the <code class="highlighter-rouge">IMMUTABLE</code>
@@ -142,7 +174,25 @@ you wish. It’s a bit more work than simply reloading the entire record
 as I did above, because the caller may have made legitimate changes as
 well as the changes to immutable attributes.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Order</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><br data-jekyll-commonmark-ghpages="" />  <span class="no">IMMUTABLE</span> <span class="o">=</span> <span class="sx">%w{po_number}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="n">validate</span> <span class="ss">:force_immutable</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># ...</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="kp">private</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="k">def</span> <span class="nf">force_immutable</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">if</span> <span class="nb">self</span><span class="p">.</span><span class="nf">persisted?</span><br data-jekyll-commonmark-ghpages="" />      <span class="no">IMMUTABLE</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="kp">attr</span><span class="o">|</span><br data-jekyll-commonmark-ghpages="" />        <span class="nb">self</span><span class="p">.</span><span class="nf">changed</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="kp">attr</span><span class="p">)</span> <span class="o">&amp;&amp;</span><br data-jekyll-commonmark-ghpages="" />          <span class="n">errors</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="kp">attr</span><span class="p">,</span> <span class="ss">:immutable</span><span class="p">)</span> <span class="o">&amp;&amp;</span><br data-jekyll-commonmark-ghpages="" />          <span class="nb">self</span><span class="p">[</span><span class="kp">attr</span><span class="p">]</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">changed_attributes</span><span class="p">[</span><span class="kp">attr</span><span class="p">]</span><br data-jekyll-commonmark-ghpages="" />      <span class="k">end</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">end</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Order</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="no">IMMUTABLE</span> <span class="o">=</span> <span class="sx">%w{po_number}</span>
+
+  <span class="n">validate</span> <span class="ss">:force_immutable</span>
+
+  <span class="c1"># ...</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">force_immutable</span>
+    <span class="k">if</span> <span class="nb">self</span><span class="p">.</span><span class="nf">persisted?</span>
+      <span class="no">IMMUTABLE</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="kp">attr</span><span class="o">|</span>
+        <span class="nb">self</span><span class="p">.</span><span class="nf">changed</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="kp">attr</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+          <span class="n">errors</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="kp">attr</span><span class="p">,</span> <span class="ss">:immutable</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+          <span class="nb">self</span><span class="p">[</span><span class="kp">attr</span><span class="p">]</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">changed_attributes</span><span class="p">[</span><span class="kp">attr</span><span class="p">]</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
 
 
 </article>

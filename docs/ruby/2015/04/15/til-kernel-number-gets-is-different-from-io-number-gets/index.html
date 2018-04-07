@@ -73,7 +73,7 @@ Apr 15, 2015
 
 
  &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/ruby">ruby</a></li></ul>
- &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/gets">gets</a></li> <li role="presentation"><a href="/swaac/tags/ARGV">ARGV</a></li> <li role="presentation"><a href="/swaac/tags/learning">learning</a></li> <li role="presentation"><a href="/swaac/tags/TIL">TIL</a></li> 
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/gets">gets</a></li> <li role="presentation"><a href="/swaac/tags/argv">argv</a></li> <li role="presentation"><a href="/swaac/tags/learning">learning</a></li> <li role="presentation"><a href="/swaac/tags/til">til</a></li> 
 </header>
 
 <article>
@@ -108,15 +108,76 @@ from them sequentially:</p>
 
 <h3 id="examples">Examples</h3>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">puts</span> <span class="s2">"just a loop. ^C to exit"</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="kp">loop</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">print</span> <span class="s2">"&gt; "</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># This will read from ARGF a line at a time</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">command</span> <span class="o">=</span> <span class="nb">gets</span><span class="p">.</span><span class="nf">chomp</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># To make it read *only* from stdin when there are command line</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># arguments, you have to use STDIN explicitly:</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># command = STDIN.gets.chomp</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="nb">puts</span> <span class="s2">"Command: &gt;&gt;</span><span class="si">#{</span><span class="n">command</span><span class="p">.</span><span class="nf">inspect</span><span class="si">}</span><span class="s2">&lt;&lt;"</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">puts</span> <span class="s2">"just a loop. ^C to exit"</span>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">$ ruby gets_loop.rb<br data-jekyll-commonmark-ghpages="" />just a loop. ^C to exit<br data-jekyll-commonmark-ghpages="" />&gt; hello, world<br data-jekyll-commonmark-ghpages="" />Command: &gt;&gt;"hello, world"&lt;&lt;<br data-jekyll-commonmark-ghpages="" />&gt; ^Cgets_loop.rb:23:in `gets': Interrupt<br data-jekyll-commonmark-ghpages="" />	from gets_loop.rb:23:in `gets'<br data-jekyll-commonmark-ghpages="" />	from gets_loop.rb:23:in `block in &lt;main&gt;'<br data-jekyll-commonmark-ghpages="" />	from gets_loop.rb:19:in `loop'<br data-jekyll-commonmark-ghpages="" />	from gets_loop.rb:19:in `&lt;main&gt;'<br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />$ ruby gets_loop.rb these are some words<br data-jekyll-commonmark-ghpages="" />just a loop. ^C to exit<br data-jekyll-commonmark-ghpages="" />&gt; gets_loop.rb:23:in `gets': No such file or directory @ rb_sysopen - these (Errno::ENOENT)<br data-jekyll-commonmark-ghpages="" />	from gets_loop.rb:23:in `gets'<br data-jekyll-commonmark-ghpages="" />	from gets_loop.rb:23:in `block in &lt;main&gt;'<br data-jekyll-commonmark-ghpages="" />	from gets_loop.rb:19:in `loop'<br data-jekyll-commonmark-ghpages="" />	from gets_loop.rb:19:in `&lt;main&gt;'</code></pre></figure>
+<span class="kp">loop</span> <span class="k">do</span>
+  <span class="nb">print</span> <span class="s2">"&gt; "</span>
+
+  <span class="c1"># This will read from ARGF a line at a time</span>
+  <span class="n">command</span> <span class="o">=</span> <span class="nb">gets</span><span class="p">.</span><span class="nf">chomp</span>
+
+  <span class="c1"># To make it read *only* from stdin when there are command line</span>
+  <span class="c1"># arguments, you have to use STDIN explicitly:</span>
+  <span class="c1"># command = STDIN.gets.chomp</span>
+
+  <span class="nb">puts</span> <span class="s2">"Command: &gt;&gt;</span><span class="si">#{</span><span class="n">command</span><span class="p">.</span><span class="nf">inspect</span><span class="si">}</span><span class="s2">&lt;&lt;"</span>
+<span class="k">end</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">$ ruby gets_loop.rb
+just a loop. ^C to exit
+&gt; hello, world
+Command: &gt;&gt;"hello, world"&lt;&lt;
+&gt; ^Cgets_loop.rb:23:in `gets': Interrupt
+	from gets_loop.rb:23:in `gets'
+	from gets_loop.rb:23:in `block in &lt;main&gt;'
+	from gets_loop.rb:19:in `loop'
+	from gets_loop.rb:19:in `&lt;main&gt;'
+
+
+
+$ ruby gets_loop.rb these are some words
+just a loop. ^C to exit
+&gt; gets_loop.rb:23:in `gets': No such file or directory @ rb_sysopen - these (Errno::ENOENT)
+	from gets_loop.rb:23:in `gets'
+	from gets_loop.rb:23:in `block in &lt;main&gt;'
+	from gets_loop.rb:19:in `loop'
+	from gets_loop.rb:19:in `&lt;main&gt;'</code></pre></figure>
 
 <p>Let’s change it to <code class="highlighter-rouge">STDIN.gets</code>:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">puts</span> <span class="s2">"just a loop. ^C to exit"</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="kp">loop</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">print</span> <span class="s2">"&gt; "</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># This will read from ARGF a line at a time</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># command = gets.chomp</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># To make it read *only* from stdin when there are command line</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># arguments, you have to use STDIN explicitly:</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">command</span> <span class="o">=</span> <span class="no">STDIN</span><span class="p">.</span><span class="nf">gets</span><span class="p">.</span><span class="nf">chomp</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="nb">puts</span> <span class="s2">"Command: &gt;&gt;</span><span class="si">#{</span><span class="n">command</span><span class="p">.</span><span class="nf">inspect</span><span class="si">}</span><span class="s2">&lt;&lt;"</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">puts</span> <span class="s2">"just a loop. ^C to exit"</span>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">$ ruby gets_loop.rb<br data-jekyll-commonmark-ghpages="" />just a loop. ^C to exit<br data-jekyll-commonmark-ghpages="" />&gt; hello, world<br data-jekyll-commonmark-ghpages="" />Command: &gt;&gt;"hello, world"&lt;&lt;<br data-jekyll-commonmark-ghpages="" />&gt; ^Cgets_loop.rb:27:in `gets': Interrupt<br data-jekyll-commonmark-ghpages="" />	from gets_loop.rb:27:in `block in &lt;main&gt;'<br data-jekyll-commonmark-ghpages="" />	from gets_loop.rb:19:in `loop'<br data-jekyll-commonmark-ghpages="" />	from gets_loop.rb:19:in `&lt;main&gt;'<br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />$ ruby gets_loop.rb these are some words<br data-jekyll-commonmark-ghpages="" />just a loop. ^C to exit<br data-jekyll-commonmark-ghpages="" />&gt; hello again, you world you<br data-jekyll-commonmark-ghpages="" />Command: &gt;&gt;"hello again, you world you"&lt;&lt;<br data-jekyll-commonmark-ghpages="" />&gt; ^Cgets_loop.rb:27:in `gets': Interrupt<br data-jekyll-commonmark-ghpages="" />	from gets_loop.rb:27:in `block in &lt;main&gt;'<br data-jekyll-commonmark-ghpages="" />	from gets_loop.rb:19:in `loop'<br data-jekyll-commonmark-ghpages="" />	from gets_loop.rb:19:in `&lt;main&gt;'</code></pre></figure>
+<span class="kp">loop</span> <span class="k">do</span>
+  <span class="nb">print</span> <span class="s2">"&gt; "</span>
+
+  <span class="c1"># This will read from ARGF a line at a time</span>
+  <span class="c1"># command = gets.chomp</span>
+
+  <span class="c1"># To make it read *only* from stdin when there are command line</span>
+  <span class="c1"># arguments, you have to use STDIN explicitly:</span>
+  <span class="n">command</span> <span class="o">=</span> <span class="no">STDIN</span><span class="p">.</span><span class="nf">gets</span><span class="p">.</span><span class="nf">chomp</span>
+
+  <span class="nb">puts</span> <span class="s2">"Command: &gt;&gt;</span><span class="si">#{</span><span class="n">command</span><span class="p">.</span><span class="nf">inspect</span><span class="si">}</span><span class="s2">&lt;&lt;"</span>
+<span class="k">end</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">$ ruby gets_loop.rb
+just a loop. ^C to exit
+&gt; hello, world
+Command: &gt;&gt;"hello, world"&lt;&lt;
+&gt; ^Cgets_loop.rb:27:in `gets': Interrupt
+	from gets_loop.rb:27:in `block in &lt;main&gt;'
+	from gets_loop.rb:19:in `loop'
+	from gets_loop.rb:19:in `&lt;main&gt;'
+
+
+$ ruby gets_loop.rb these are some words
+just a loop. ^C to exit
+&gt; hello again, you world you
+Command: &gt;&gt;"hello again, you world you"&lt;&lt;
+&gt; ^Cgets_loop.rb:27:in `gets': Interrupt
+	from gets_loop.rb:27:in `block in &lt;main&gt;'
+	from gets_loop.rb:19:in `loop'
+	from gets_loop.rb:19:in `&lt;main&gt;'</code></pre></figure>
 
 <p>You can see it now works the same way with and without command line
 arguments.</p>

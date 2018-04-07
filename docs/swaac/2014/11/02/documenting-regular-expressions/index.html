@@ -98,17 +98,34 @@ Nov 2, 2014
 
 <p>The above regex is quite simple, most people should understand it well enough. But for illustration, let’s break this up a bit, beautify it, and add some comments:</p>
 
-<figure class="highlight"><pre><code class="language-perl" data-lang="perl"><span class="nv">$is_blank_re</span> <span class="o">=</span><br data-jekyll-commonmark-ghpages="" />    <span class="sx">qr{<br data-jekyll-commonmark-ghpages="" />       ^                    # match the beginning of the string<br data-jekyll-commonmark-ghpages="" />       \s*                  # match zero or more white spaces<br data-jekyll-commonmark-ghpages="" />       $                    # match the end of the string<br data-jekyll-commonmark-ghpages="" />      }</span><span class="nv">x</span><span class="p">;</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-perl" data-lang="perl"><span class="nv">$is_blank_re</span> <span class="o">=</span>
+    <span class="sx">qr{
+       ^                    # match the beginning of the string
+       \s*                  # match zero or more white spaces
+       $                    # match the end of the string
+      }</span><span class="nv">x</span><span class="p">;</span></code></pre></figure>
 
 <p>This at least makes it clearer what each element of the regex <em>is</em> and what it <em>does</em>. Using the regex defined is the same in either case:</p>
 
 <p>In <code class="highlighter-rouge">perl</code>:</p>
 
-<figure class="highlight"><pre><code class="language-perl" data-lang="perl"><span class="k">while</span> <span class="p">(</span><span class="nv">$line</span> <span class="o">=</span> <span class="sr">&lt;STDIN&gt;</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">next</span> <span class="k">if</span> <span class="p">(</span> <span class="nv">$line</span> <span class="o">=~</span> <span class="sr">m{$is_blank_re}</span> <span class="p">);</span><br data-jekyll-commonmark-ghpages="" />    <span class="c1"># process the line</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-perl" data-lang="perl"><span class="k">while</span> <span class="p">(</span><span class="nv">$line</span> <span class="o">=</span> <span class="sr">&lt;STDIN&gt;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">next</span> <span class="k">if</span> <span class="p">(</span> <span class="nv">$line</span> <span class="o">=~</span> <span class="sr">m{$is_blank_re}</span> <span class="p">);</span>
+    <span class="c1"># process the line</span>
+<span class="p">}</span></code></pre></figure>
 
 <p>Similarly, in <code class="highlighter-rouge">ruby</code>:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">is_blank</span> <span class="o">=</span> <span class="sr">%r{<br data-jekyll-commonmark-ghpages="" />  ^       # matches beginning of line<br data-jekyll-commonmark-ghpages="" />  </span><span class="se">\s</span><span class="sr">*     # match zero or more white spaces<br data-jekyll-commonmark-ghpages="" />  $       # match end of the line<br data-jekyll-commonmark-ghpages="" />}x</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="no">STDIN</span><span class="p">.</span><span class="nf">each_line</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">next</span> <span class="k">if</span> <span class="n">line</span><span class="p">.</span><span class="nf">match</span> <span class="n">is_blank</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># ... process the line</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">is_blank</span> <span class="o">=</span> <span class="sr">%r{
+  ^       # matches beginning of line
+  </span><span class="se">\s</span><span class="sr">*     # match zero or more white spaces
+  $       # match end of the line
+}x</span>
+
+<span class="no">STDIN</span><span class="p">.</span><span class="nf">each_line</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
+  <span class="k">next</span> <span class="k">if</span> <span class="n">line</span><span class="p">.</span><span class="nf">match</span> <span class="n">is_blank</span>
+  <span class="c1"># ... process the line</span>
+<span class="k">end</span></code></pre></figure>
 
 <h2 id="language-implementations">Language Implementations</h2>
 

@@ -108,7 +108,12 @@ DigitalOcean.</li>
   </li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">Host &lt;DROPLET NAME&gt;<br data-jekyll-commonmark-ghpages="" />  User tamara<br data-jekyll-commonmark-ghpages="" />  IdentityFile ~/.ssh/id_rsa<br data-jekyll-commonmark-ghpages="" />  AddkeysToAgent yes<br data-jekyll-commonmark-ghpages="" />  ForwardAgent yes<br data-jekyll-commonmark-ghpages="" />  HostName &lt;DROPLET IP&gt;</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">Host &lt;DROPLET NAME&gt;
+  User tamara
+  IdentityFile ~/.ssh/id_rsa
+  AddkeysToAgent yes
+  ForwardAgent yes
+  HostName &lt;DROPLET IP&gt;</code></pre></figure>
 
 <ul>
   <li>[ ] log into the new droplet</li>
@@ -207,7 +212,8 @@ on
 <a href="https://github.com/nodesource/distributions#installation-instructions">nodesource/distributions</a></li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="nt">-sL</span> https://deb.nodesource.com/setup_7.x | <span class="nb">sudo</span> <span class="nt">-E</span> bash -<br data-jekyll-commonmark-ghpages="" /><span class="nb">sudo </span>apt-get install <span class="nt">-y</span> nodejs</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">curl <span class="nt">-sL</span> https://deb.nodesource.com/setup_7.x | <span class="nb">sudo</span> <span class="nt">-E</span> bash -
+<span class="nb">sudo </span>apt-get install <span class="nt">-y</span> nodejs</code></pre></figure>
 
 <ul>
   <li>
@@ -220,7 +226,12 @@ using
   </li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo </span>apt-get install software-properties-common<br data-jekyll-commonmark-ghpages="" /><span class="nb">sudo </span>apt-add-repository ppa:brightbox/ruby-ng<br data-jekyll-commonmark-ghpages="" /><span class="nb">sudo </span>apt-get update<br data-jekyll-commonmark-ghpages="" /><span class="nb">sudo </span>apt-get install ruby2.4<br data-jekyll-commonmark-ghpages="" /><span class="nb">sudo </span>gem install bundler rake<br data-jekyll-commonmark-ghpages="" /><span class="nb">sudo </span>gem install rails</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo </span>apt-get install software-properties-common
+<span class="nb">sudo </span>apt-add-repository ppa:brightbox/ruby-ng
+<span class="nb">sudo </span>apt-get update
+<span class="nb">sudo </span>apt-get install ruby2.4
+<span class="nb">sudo </span>gem install bundler rake
+<span class="nb">sudo </span>gem install rails</code></pre></figure>
 
 <h2 id="setting-up-the-application">setting up the application</h2>
 

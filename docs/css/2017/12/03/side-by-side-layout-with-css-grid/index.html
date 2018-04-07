@@ -123,11 +123,23 @@ block elements</strong> height to 100%.</p>
 <p>The canonical react app, as <code class="highlighter-rouge">create-react-app</code> defines it, looks like
 so:</p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;html&gt;</span><br data-jekyll-commonmark-ghpages="" />  <span class="nt">&lt;head&gt;</span> .... <span class="nt">&lt;/head&gt;</span><br data-jekyll-commonmark-ghpages="" />  <span class="nt">&lt;body&gt;</span><br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>React app loading...<span class="nt">&lt;/div&gt;</span><br data-jekyll-commonmark-ghpages="" />  <span class="nt">&lt;/body&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;/html&gt;</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span> .... <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>React app loading...<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span></code></pre></figure>
 
 <p>After the react app loads, it looks like so:</p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;html&gt;</span><br data-jekyll-commonmark-ghpages="" />  <span class="nt">&lt;head&gt;</span> .... <span class="nt">&lt;/head&gt;</span><br data-jekyll-commonmark-ghpages="" />  <span class="nt">&lt;body&gt;</span><br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />      <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"react__app"</span><span class="nt">&gt;</span>... <span class="nt">&lt;/div&gt;</span><br data-jekyll-commonmark-ghpages="" />    <span class="nt">&lt;/div&gt;</span><br data-jekyll-commonmark-ghpages="" />  <span class="nt">&lt;/body&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;/html&gt;</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span> .... <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"react__app"</span><span class="nt">&gt;</span>... <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span></code></pre></figure>
 
 <p>(Just off the top of my head, I’m unsure what the react app’s <code class="highlighter-rouge">div</code> looks
 like exactly, but I’m sure it <em>is</em> a <code class="highlighter-rouge">div</code> element so the below will work.)</p>

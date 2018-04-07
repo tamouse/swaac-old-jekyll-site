@@ -90,7 +90,28 @@ sometimes bring simplicity to the development process</p>
 
 </blockquote>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">gem</span> <span class="s2">"better_errors"</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gem</span> <span class="s2">"binding_of_caller"</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gem</span> <span class="s1">'annotate'</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gem</span> <span class="s1">'bullet'</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gem</span> <span class="s1">'debugger'</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gem</span> <span class="s1">'flay'</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gem</span> <span class="s1">'hirb'</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gem</span> <span class="s1">'localtunnel'</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gem</span> <span class="s1">'lol_dba'</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gem</span> <span class="s1">'mailcatcher'</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gem</span> <span class="s1">'meta_request'</span><span class="p">,</span><span class="s1">'0.2.1'</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gem</span> <span class="s1">'pry'</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gem</span> <span class="s1">'pry-doc'</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gem</span> <span class="s1">'quiet_assets'</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gem</span> <span class="s1">'rack-mini-profiler'</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gem</span> <span class="s1">'railroady'</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gem</span> <span class="s1">'rails-footnotes'</span><span class="p">,</span> <span class="s1">'&gt;= 3.7.5.rc4'</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gem</span> <span class="s1">'rails_best_practices'</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gem</span> <span class="s1">'reek'</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gem</span> <span class="s1">'request-log-analyzer'</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gem</span> <span class="s1">'smusher'</span><br data-jekyll-commonmark-ghpages="" /><span class="n">gem</span> <span class="s1">'zeus'</span> <span class="c1"># don't add this in your gemfile.</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">gem</span> <span class="s2">"better_errors"</span>
+<span class="n">gem</span> <span class="s2">"binding_of_caller"</span>
+<span class="n">gem</span> <span class="s1">'annotate'</span>
+<span class="n">gem</span> <span class="s1">'bullet'</span>
+<span class="n">gem</span> <span class="s1">'debugger'</span>
+<span class="n">gem</span> <span class="s1">'flay'</span>
+<span class="n">gem</span> <span class="s1">'hirb'</span>
+<span class="n">gem</span> <span class="s1">'localtunnel'</span>
+<span class="n">gem</span> <span class="s1">'lol_dba'</span>
+<span class="n">gem</span> <span class="s1">'mailcatcher'</span>
+<span class="n">gem</span> <span class="s1">'meta_request'</span><span class="p">,</span><span class="s1">'0.2.1'</span>
+<span class="n">gem</span> <span class="s1">'pry'</span>
+<span class="n">gem</span> <span class="s1">'pry-doc'</span>
+<span class="n">gem</span> <span class="s1">'quiet_assets'</span>
+<span class="n">gem</span> <span class="s1">'rack-mini-profiler'</span>
+<span class="n">gem</span> <span class="s1">'railroady'</span>
+<span class="n">gem</span> <span class="s1">'rails-footnotes'</span><span class="p">,</span> <span class="s1">'&gt;= 3.7.5.rc4'</span>
+<span class="n">gem</span> <span class="s1">'rails_best_practices'</span>
+<span class="n">gem</span> <span class="s1">'reek'</span>
+<span class="n">gem</span> <span class="s1">'request-log-analyzer'</span>
+<span class="n">gem</span> <span class="s1">'smusher'</span>
+<span class="n">gem</span> <span class="s1">'zeus'</span> <span class="c1"># don't add this in your gemfile.</span></code></pre></figure>
 
 <blockquote>
 
@@ -115,7 +136,19 @@ schema of the model on the top of the model. Something like this.</li>
 
 </blockquote>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># == Schema Info</span><br data-jekyll-commonmark-ghpages="" /><span class="c1">#</span><br data-jekyll-commonmark-ghpages="" /><span class="c1"># Table name: line_items</span><br data-jekyll-commonmark-ghpages="" /><span class="c1">#</span><br data-jekyll-commonmark-ghpages="" /><span class="c1">#  id                  :integer(11)    not null, primary key</span><br data-jekyll-commonmark-ghpages="" /><span class="c1">#  quantity            :integer(11)    not null</span><br data-jekyll-commonmark-ghpages="" /><span class="c1">#  product_id          :integer(11)    not null</span><br data-jekyll-commonmark-ghpages="" /><span class="c1">#  unit_price          :float</span><br data-jekyll-commonmark-ghpages="" /><span class="c1">#  order_id            :integer(11)</span><br data-jekyll-commonmark-ghpages="" /><span class="c1">#</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="k">class</span> <span class="nc">LineItem</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><br data-jekyll-commonmark-ghpages="" /><span class="n">belongs_to</span> <span class="ss">:product</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># == Schema Info</span>
+<span class="c1">#</span>
+<span class="c1"># Table name: line_items</span>
+<span class="c1">#</span>
+<span class="c1">#  id                  :integer(11)    not null, primary key</span>
+<span class="c1">#  quantity            :integer(11)    not null</span>
+<span class="c1">#  product_id          :integer(11)    not null</span>
+<span class="c1">#  unit_price          :float</span>
+<span class="c1">#  order_id            :integer(11)</span>
+<span class="c1">#</span>
+
+<span class="k">class</span> <span class="nc">LineItem</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+<span class="n">belongs_to</span> <span class="ss">:product</span></code></pre></figure>
 
 <blockquote>
 

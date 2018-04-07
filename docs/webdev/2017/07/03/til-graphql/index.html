@@ -112,17 +112,34 @@ data’s types, fields, functions, queries, and schemas.</p>
 <p>Let’s look at an example. Supposed you had a data model that looked
 something like this, from ActiveRecord in Rails:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">create_table</span> <span class="ss">:posts</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">t</span><span class="p">.</span><span class="nf">text</span> <span class="ss">:body</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">t</span><span class="p">.</span><span class="nf">boolean</span> <span class="ss">:published</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span><span class="p">,</span> <span class="ss">default: </span><span class="kp">false</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">t</span><span class="p">.</span><span class="nf">datetime</span> <span class="ss">:published_at</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">create_table</span> <span class="ss">:posts</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+  <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+  <span class="n">t</span><span class="p">.</span><span class="nf">text</span> <span class="ss">:body</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+  <span class="n">t</span><span class="p">.</span><span class="nf">boolean</span> <span class="ss">:published</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span><span class="p">,</span> <span class="ss">default: </span><span class="kp">false</span>
+  <span class="n">t</span><span class="p">.</span><span class="nf">datetime</span> <span class="ss">:published_at</span>
+
+  <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span>
+<span class="k">end</span></code></pre></figure>
 
 <p>An example of a GraphQL type that describes a post looks like:</p>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">type Post {<br data-jekyll-commonmark-ghpages="" />  id: ID<br data-jekyll-commonmark-ghpages="" />  title: String<br data-jekyll-commonmark-ghpages="" />  body: String<br data-jekyll-commonmark-ghpages="" />  published: Boolean<br data-jekyll-commonmark-ghpages="" />  published_at: String<br data-jekyll-commonmark-ghpages="" />  created_at: String<br data-jekyll-commonmark-ghpages="" />  updated_at: String<br data-jekyll-commonmark-ghpages="" />}</code></pre></figure>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">type Post {
+  id: ID
+  title: String
+  body: String
+  published: Boolean
+  published_at: String
+  created_at: String
+  updated_at: String
+}</code></pre></figure>
 
 <h3 id="queries">Queries</h3>
 
 <p>Based on that Post type, you can construct a Query that retrieves posts:</p>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">type Query {<br data-jekyll-commonmark-ghpages="" />  post: Post<br data-jekyll-commonmark-ghpages="" />}</code></pre></figure>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">type Query {
+  post: Post
+}</code></pre></figure>
 
 <p>(Indeed, queries are also types.)</p>
 
@@ -198,7 +215,19 @@ the GraphQL syntax, although of course fit to Ruby.</p>
 
 <p>For example, the default query created looks like this:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Types</span><span class="o">::</span><span class="no">QueryType</span> <span class="o">=</span> <span class="no">GraphQL</span><span class="o">::</span><span class="no">ObjectType</span><span class="p">.</span><span class="nf">define</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">name</span> <span class="s2">"Query"</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># Add root-level fields here.</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># They will be entry points for queries on your schema.</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># TODO: remove me</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">field</span> <span class="ss">:testField</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">String</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">description</span> <span class="s2">"An example field added by the generator"</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">resolve</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />      <span class="s2">"Hello World!"</span><br data-jekyll-commonmark-ghpages="" />    <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Types</span><span class="o">::</span><span class="no">QueryType</span> <span class="o">=</span> <span class="no">GraphQL</span><span class="o">::</span><span class="no">ObjectType</span><span class="p">.</span><span class="nf">define</span> <span class="k">do</span>
+  <span class="nb">name</span> <span class="s2">"Query"</span>
+  <span class="c1"># Add root-level fields here.</span>
+  <span class="c1"># They will be entry points for queries on your schema.</span>
+
+  <span class="c1"># TODO: remove me</span>
+  <span class="n">field</span> <span class="ss">:testField</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">String</span> <span class="k">do</span>
+    <span class="n">description</span> <span class="s2">"An example field added by the generator"</span>
+    <span class="n">resolve</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span> <span class="p">{</span>
+      <span class="s2">"Hello World!"</span>
+    <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
 
 <h2 id="learning">Learning</h2>
 
@@ -212,14 +241,49 @@ entries.</p>
 
 <p>I wrote the following as the data type for the Post model:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Types</span><span class="o">::</span><span class="no">PostType</span> <span class="o">=</span> <span class="no">GraphQL</span><span class="o">::</span><span class="no">ObjectType</span><span class="p">.</span><span class="nf">define</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">name</span> <span class="s2">"Post"</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">description</span> <span class="s2">"A short post of content with a title, may be draft or published."</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">field</span> <span class="ss">:id</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">ID</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">description</span> <span class="s2">"internal ID"</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">field</span> <span class="ss">:title</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">String</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">description</span> <span class="s2">"title of the post"</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">field</span> <span class="ss">:body</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">String</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">description</span> <span class="s2">"the post content"</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">field</span> <span class="ss">:published</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">Boolean</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">description</span> <span class="s2">"true if the post has been published"</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">field</span> <span class="ss">:published_at</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">String</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">description</span> <span class="s2">"the date the post was published"</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">field</span> <span class="ss">:created_at</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">String</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">description</span> <span class="s2">"date the post entry was created"</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">field</span> <span class="ss">:updated_at</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">String</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">description</span> <span class="s2">"date the post entry was last updated"</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Types</span><span class="o">::</span><span class="no">PostType</span> <span class="o">=</span> <span class="no">GraphQL</span><span class="o">::</span><span class="no">ObjectType</span><span class="p">.</span><span class="nf">define</span> <span class="k">do</span>
+  <span class="nb">name</span> <span class="s2">"Post"</span>
+  <span class="n">description</span> <span class="s2">"A short post of content with a title, may be draft or published."</span>
+  <span class="n">field</span> <span class="ss">:id</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">ID</span> <span class="k">do</span>
+    <span class="n">description</span> <span class="s2">"internal ID"</span>
+  <span class="k">end</span>
+  <span class="n">field</span> <span class="ss">:title</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">String</span> <span class="k">do</span>
+    <span class="n">description</span> <span class="s2">"title of the post"</span>
+  <span class="k">end</span>
+  <span class="n">field</span> <span class="ss">:body</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">String</span> <span class="k">do</span>
+    <span class="n">description</span> <span class="s2">"the post content"</span>
+  <span class="k">end</span>
+  <span class="n">field</span> <span class="ss">:published</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">Boolean</span> <span class="k">do</span>
+    <span class="n">description</span> <span class="s2">"true if the post has been published"</span>
+  <span class="k">end</span>
+  <span class="n">field</span> <span class="ss">:published_at</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">String</span> <span class="k">do</span>
+    <span class="n">description</span> <span class="s2">"the date the post was published"</span>
+  <span class="k">end</span>
+  <span class="n">field</span> <span class="ss">:created_at</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">String</span> <span class="k">do</span>
+    <span class="n">description</span> <span class="s2">"date the post entry was created"</span>
+  <span class="k">end</span>
+  <span class="n">field</span> <span class="ss">:updated_at</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="no">String</span> <span class="k">do</span>
+    <span class="n">description</span> <span class="s2">"date the post entry was last updated"</span>
+  <span class="k">end</span>
+
+<span class="k">end</span></code></pre></figure>
 
 <h3 id="querytype">QueryType</h3>
 
 <p>Then modified the sample query to produce a query that would find a
 post by it’s ID:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Types</span><span class="o">::</span><span class="no">QueryType</span> <span class="o">=</span> <span class="no">GraphQL</span><span class="o">::</span><span class="no">ObjectType</span><span class="p">.</span><span class="nf">define</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">name</span> <span class="s2">"Query"</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># Add root-level fields here.</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># They will be entry points for queries on your schema.</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="n">field</span> <span class="ss">:post</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">PostType</span> <span class="k">do</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">argument</span> <span class="ss">:id</span><span class="p">,</span> <span class="o">!</span><span class="n">types</span><span class="o">.</span><span class="no">ID</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">description</span> <span class="s2">"find a post by id"</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">resolve</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span> <span class="p">{</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">id: </span><span class="n">args</span><span class="p">[</span><span class="s2">"id"</span><span class="p">])</span> <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Types</span><span class="o">::</span><span class="no">QueryType</span> <span class="o">=</span> <span class="no">GraphQL</span><span class="o">::</span><span class="no">ObjectType</span><span class="p">.</span><span class="nf">define</span> <span class="k">do</span>
+  <span class="nb">name</span> <span class="s2">"Query"</span>
+  <span class="c1"># Add root-level fields here.</span>
+  <span class="c1"># They will be entry points for queries on your schema.</span>
+
+  <span class="n">field</span> <span class="ss">:post</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">PostType</span> <span class="k">do</span>
+    <span class="n">argument</span> <span class="ss">:id</span><span class="p">,</span> <span class="o">!</span><span class="n">types</span><span class="o">.</span><span class="no">ID</span>
+    <span class="n">description</span> <span class="s2">"find a post by id"</span>
+    <span class="n">resolve</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span> <span class="p">{</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">id: </span><span class="n">args</span><span class="p">[</span><span class="s2">"id"</span><span class="p">])</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
 
 <p>Without changing anything else, I was able to successfully query the
 API to get a post.</p>

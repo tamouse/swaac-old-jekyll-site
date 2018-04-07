@@ -3,7 +3,7 @@ layout: post
 title: "TIL: Using enzyme's shallow render with MemoryRouter doesn't work"
 date: 2017-08-02 10:54
 categories: [testing]
-tags: [react, react-router, react-router-dom, MemoryRouter, jest, enzyme, testing]
+tags: [react, react-router, react-router-dom, memory-router, jest, enzyme, testing]
 ---
 
 Today, I was writing some React code that used the `<Link>` component

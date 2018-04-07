@@ -93,7 +93,8 @@ Jul 9, 2016
   <p>To run your app on iOS:</p>
 </blockquote>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd </span>your_app<br data-jekyll-commonmark-ghpages="" />react-native run-ios</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd </span>your_app
+react-native run-ios</code></pre></figure>
 
 <blockquote>
   <p>- or -</p>
@@ -109,11 +110,15 @@ Hit the Run button</p>
 Have an Android emulator running (quickest way to get started), or a device connected</p>
 </blockquote>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd </span>your_app<br data-jekyll-commonmark-ghpages="" />react-native run-android</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd </span>your_app
+react-native run-android</code></pre></figure>
 
 <h2 id="a-few-chores">A few chores</h2>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git init<br data-jekyll-commonmark-ghpages="" /><span class="nb">echo</span> <span class="s1">'description of your app'</span> | tee README.md <span class="o">&gt;</span> .git/description<br data-jekyll-commonmark-ghpages="" />hub create <span class="nt">-d</span> <span class="s2">"</span><span class="k">$(</span><span class="nb">cat </span>README.md<span class="k">)</span><span class="s2">"</span><br data-jekyll-commonmark-ghpages="" />npm init <span class="c"># fill in missing info</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git init
+<span class="nb">echo</span> <span class="s1">'description of your app'</span> | tee README.md <span class="o">&gt;</span> .git/description
+hub create <span class="nt">-d</span> <span class="s2">"</span><span class="k">$(</span><span class="nb">cat </span>README.md<span class="k">)</span><span class="s2">"</span>
+npm init <span class="c"># fill in missing info</span></code></pre></figure>
 
 <h2 id="watchman">Watchman</h2>
 
@@ -137,7 +142,9 @@ want to serve up.</p>
 
 <p>Create the <code class="highlighter-rouge">db.json</code> file with the following content:</p>
 
-<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w"><br data-jekyll-commonmark-ghpages="" />  </span><span class="s2">"todos"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"><br data-jekyll-commonmark-ghpages="" /></span><span class="p">}</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"todos"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
 
 <p>Make sure the key is in quotes – it’s <strong>JSON</strong> not JavaScript.</p>
 
@@ -161,7 +168,22 @@ though, since you can use any of the HTTP verbs with it, not just GET.</p>
 <p><strong>NOTE:</strong> remember that <code class="highlighter-rouge">.json()</code> on the <code class="highlighter-rouge">Response</code> object is a
 <em>function</em>.</p>
 
-<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" />3<br data-jekyll-commonmark-ghpages="" />4<br data-jekyll-commonmark-ghpages="" />5<br data-jekyll-commonmark-ghpages="" />6<br data-jekyll-commonmark-ghpages="" />7<br data-jekyll-commonmark-ghpages="" />8<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="k">export</span> <span class="kd">function</span> <span class="nx">fetchTodos</span><span class="p">()</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">return</span> <span class="nx">dispatch</span> <span class="o">=&gt;</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="nx">dispatch</span><span class="p">(</span><span class="nx">requestTodos</span><span class="p">())</span><br data-jekyll-commonmark-ghpages="" />    <span class="k">return</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">ENDPOINT</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" />      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span><br data-jekyll-commonmark-ghpages="" />      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">json</span> <span class="o">=&gt;</span> <span class="nx">dispatch</span><span class="p">(</span><span class="nx">receivedTodos</span><span class="p">(</span><span class="nx">json</span><span class="p">)))</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span></pre></td></tr></tbody></table></code></pre></figure>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="k">export</span> <span class="kd">function</span> <span class="nx">fetchTodos</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">dispatch</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">dispatch</span><span class="p">(</span><span class="nx">requestTodos</span><span class="p">())</span>
+    <span class="k">return</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">ENDPOINT</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">json</span> <span class="o">=&gt;</span> <span class="nx">dispatch</span><span class="p">(</span><span class="nx">receivedTodos</span><span class="p">(</span><span class="nx">json</span><span class="p">)))</span>
+  <span class="p">}</span>
+<span class="p">}</span></pre></td></tr></tbody></table></code></pre></figure>
 
 <h2 id="testing">Testing</h2>
 

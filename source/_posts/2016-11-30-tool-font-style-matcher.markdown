@@ -3,7 +3,7 @@ layout: post
 title: "Tool: Font Style Matcher"
 date: 2016-11-30 07:09
 categories: ["typography"]
-tags: ["FOUT", "fonts", "webfonts"]
+tags: ["fout", "fonts", "webfonts"]
 source: https://meowni.ca/font-style-matcher/
 
 ---

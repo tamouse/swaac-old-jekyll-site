@@ -3,7 +3,7 @@ layout: post
 title: "Terminology: Registrar, Domain Name Service, Web Hosting Service"
 date: 2015-10-16 04:20
 categories: ["web-publishing"]
-tags: ["web-development", "publishing", "web-publishing", "registrar", "dns", "domain-name-service", "web-hosting", "web-hosting-service", "providers", "glossary", "definitions", "GDI", "classes", "front-end-series"]
+tags: ["web-development", "publishing", "web-publishing", "registrar", "dns", "domain-name-service", "web-hosting", "web-hosting-service", "providers", "glossary", "definitions", "gdi", "classes", "front-end-series"]
 ---
 
 Recently, in a [class] I was assisting at, a question came up that

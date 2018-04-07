@@ -117,7 +117,10 @@ the <code class="highlighter-rouge">test</code> environment.</p>
 
 <p><strong>File:</strong> <code class="highlighter-rouge">config/environments/test.rb</code>:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="c1"># Tell Action Mailer not to deliver emails to the real world.</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># The :test delivery method accumulates sent emails in the</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1"># ActionMailer::Base.deliveries array.</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">config</span><span class="p">.</span><span class="nf">action_mailer</span><span class="p">.</span><span class="nf">delivery_method</span> <span class="o">=</span> <span class="ss">:test</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="c1"># Tell Action Mailer not to deliver emails to the real world.</span>
+  <span class="c1"># The :test delivery method accumulates sent emails in the</span>
+  <span class="c1"># ActionMailer::Base.deliveries array.</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">action_mailer</span><span class="p">.</span><span class="nf">delivery_method</span> <span class="o">=</span> <span class="ss">:test</span></code></pre></figure>
 
 <p>In a new Rails app, this is the default setting, so you don’t really
 need to do anything in particular.</p>
@@ -136,7 +139,11 @@ going to set it in the <code class="highlighter-rouge">development</code> enviro
 
 <p><strong>File:</strong> <code class="highlighter-rouge">config/environments/development.rb</code>:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="n">config</span><span class="p">.</span><span class="nf">action_mailer</span><span class="p">.</span><span class="nf">deliver_method</span> <span class="o">=</span> <span class="ss">:smtp</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">config</span><span class="p">.</span><span class="nf">action_mailer</span><span class="p">.</span><span class="nf">smtp_settings</span> <span class="o">=</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="ss">:address</span> <span class="o">=&gt;</span> <span class="s1">'localhost'</span><span class="p">,</span><br data-jekyll-commonmark-ghpages="" />    <span class="ss">:port</span> <span class="o">=&gt;</span> <span class="mi">1025</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">}</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="n">config</span><span class="p">.</span><span class="nf">action_mailer</span><span class="p">.</span><span class="nf">deliver_method</span> <span class="o">=</span> <span class="ss">:smtp</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">action_mailer</span><span class="p">.</span><span class="nf">smtp_settings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="ss">:address</span> <span class="o">=&gt;</span> <span class="s1">'localhost'</span><span class="p">,</span>
+    <span class="ss">:port</span> <span class="o">=&gt;</span> <span class="mi">1025</span>
+  <span class="p">}</span></code></pre></figure>
 
 <p>When you cause mails to be sent with your mailer, the mails can be
 seen by pointing your browser at <a href="http://localhost:1080">http://localhost:1080</a> and it

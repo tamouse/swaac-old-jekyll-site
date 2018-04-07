@@ -111,11 +111,23 @@ rule to display the sidebar when the input checkbox is checked.</p>
 
 <h3 id="normal-state">normal state</h3>
 
-<figure class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="nc">.sidebar</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="nl">width</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />  <span class="nl">background</span><span class="p">:</span> <span class="no">tomato</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />  <span class="nl">padding-top</span><span class="p">:</span> <span class="m">40px</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />  <span class="o">&gt;</span> <span class="o">*</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="nl">display</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="nc">.sidebar</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
+  <span class="nl">background</span><span class="p">:</span> <span class="no">tomato</span><span class="p">;</span>
+  <span class="nl">padding-top</span><span class="p">:</span> <span class="m">40px</span><span class="p">;</span>
+  <span class="o">&gt;</span> <span class="o">*</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
 
 <h3 id="checked-state">checked state</h3>
 
-<figure class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="nt">input</span><span class="nc">.sidebar-toggle</span><span class="nd">:checked</span> <span class="o">~</span> <span class="nc">.sidebar</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="nl">width</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />  <span class="o">&gt;</span> <span class="o">*</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="nl">display</span><span class="p">:</span> <span class="nb">inherit</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="nt">input</span><span class="nc">.sidebar-toggle</span><span class="nd">:checked</span> <span class="o">~</span> <span class="nc">.sidebar</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
+  <span class="o">&gt;</span> <span class="o">*</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="nb">inherit</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
 
 <p>Of course, this could be taken in all sorts of directions, but I
 wanted to try this out to see if it works.</p>

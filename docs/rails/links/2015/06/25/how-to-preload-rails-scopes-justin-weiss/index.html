@@ -84,7 +84,22 @@ clause, and then explains how to keep it DRY.</p>
 <p>If you’re just using scopes, you end up creating an N+1 query when
 gathering the association.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Review</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">belongs_to</span> <span class="ss">:restaurant</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">belongs_to</span> <span class="ss">:user</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="n">scope</span> <span class="ss">:positive</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">where</span><span class="p">(</span><span class="s2">"rating &gt; 3.0"</span><span class="p">)</span> <span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="k">class</span> <span class="nc">Restaurant</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">has_many</span> <span class="ss">:reviews</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">has_many</span> <span class="ss">:postitive_reviews</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">positive</span> <span class="p">},</span> <span class="ss">class_name: </span><span class="s2">"Review"</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">has_many</span> <span class="ss">:reviews</span><br data-jekyll-commonmark-ghpages="" />  <span class="n">has_many</span> <span class="ss">:postitive_reviews</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">positive</span> <span class="p">},</span> <span class="ss">class_name: </span><span class="s2">"Review"</span><br data-jekyll-commonmark-ghpages="" /><span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Review</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">belongs_to</span> <span class="ss">:restaurant</span>
+  <span class="n">belongs_to</span> <span class="ss">:user</span>
+
+  <span class="n">scope</span> <span class="ss">:positive</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">where</span><span class="p">(</span><span class="s2">"rating &gt; 3.0"</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Restaurant</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">has_many</span> <span class="ss">:reviews</span>
+  <span class="n">has_many</span> <span class="ss">:postitive_reviews</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">positive</span> <span class="p">},</span> <span class="ss">class_name: </span><span class="s2">"Review"</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">has_many</span> <span class="ss">:reviews</span>
+  <span class="n">has_many</span> <span class="ss">:postitive_reviews</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">positive</span> <span class="p">},</span> <span class="ss">class_name: </span><span class="s2">"Review"</span>
+<span class="k">end</span></code></pre></figure>
 
 <p>The scope <code class="highlighter-rouge">positive</code> can be reused in other scope-type statements,
 such as the associatoins above.</p>

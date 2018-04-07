@@ -130,7 +130,13 @@ it. A <em>very</em> common
 (<span style="color:red;font-weight:bold">but somewhat dangerous</span>)
 JS idiom is:</p>
 
-<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">blah</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1">// a guard clause; `foo` is coerced to a boolean by the `!` operator</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">foo</span><span class="p">)</span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />  <span class="c1">// carry on with the rest of blah</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">blah</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// a guard clause; `foo` is coerced to a boolean by the `!` operator</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">foo</span><span class="p">)</span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+
+  <span class="c1">// carry on with the rest of blah</span>
+
+<span class="p">}</span></code></pre></figure>
 
 <p>and <code class="highlighter-rouge">foo</code> is not explicitly a <code class="highlighter-rouge">boolean</code> value, such as <code class="highlighter-rouge">null</code>
 or <code class="highlighter-rouge">undefined</code>, when checking to make sure you’re not operating on
@@ -140,7 +146,13 @@ clause to prevent mischief from callers.</p>
 
 <p>You might also see this instead of an early return:</p>
 
-<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">blah</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1">// a guard clause, `foo` is coerced to a boolean by the `if`</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1">// statement directly</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">if</span> <span class="p">(</span><span class="nx">foo</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="c1">// carry on with `blah` knowing that `foo` is not `null` or `undefined`</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">blah</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// a guard clause, `foo` is coerced to a boolean by the `if`</span>
+  <span class="c1">// statement directly</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">foo</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// carry on with `blah` knowing that `foo` is not `null` or `undefined`</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
 
 <p>Of course, with both of these idioms, there can be problems with some
 of the other definitions for falsy: what happend when you intend to
@@ -149,7 +161,12 @@ pass in a value of <code class="highlighter-rouge">false</code> for <code class=
 <p>In such a case, I step back and stop using coercion and go for
 explicitness, and the idiom becomes:</p>
 
-<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">blah</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="c1">// a guard clause, explicit checking</span><br data-jekyll-commonmark-ghpages="" />  <span class="k">if</span> <span class="p">(</span><span class="nx">foo</span> <span class="o">!==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">foo</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="c1">// carry on with `blah` knowing *exactly* that `foo` is not `null` or `undefined`</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">blah</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// a guard clause, explicit checking</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">foo</span> <span class="o">!==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">foo</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// carry on with `blah` knowing *exactly* that `foo` is not `null` or `undefined`</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
 
 <p>So there we have it. The ECMAScript specification Kyle refers to above
 is at <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-toboolean">http://www.ecma-international.org/ecma-262/6.0/#sec-toboolean</a>

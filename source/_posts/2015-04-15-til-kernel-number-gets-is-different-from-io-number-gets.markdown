@@ -3,7 +3,7 @@ layout: post
 title: "TIL: Kernel#gets is different from IO#gets"
 date: 2015-04-15 21:33
 categories: ["ruby"]
-tags: ["gets", "ARGV", "learning", "TIL"]
+tags: ["gets", "argv", "learning", "til"]
 source: http://ruby-doc.org/core-2.2.1/Kernel.html#method-i-gets
 ---
 *Today I Learned*: `Kernel#gets` does more than `IO#gets` does, it is

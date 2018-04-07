@@ -90,7 +90,22 @@ the asynchronous tests finish. This had completely eluded me, but one
 of the HackTheGap mentors told me about it, and everything started to
 work.</p>
 
-<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" />3<br data-jekyll-commonmark-ghpages="" />4<br data-jekyll-commonmark-ghpages="" />5<br data-jekyll-commonmark-ghpages="" />6<br data-jekyll-commonmark-ghpages="" />7<br data-jekyll-commonmark-ghpages="" />8<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="nx">describe</span><span class="p">(</span><span class="s1">'tests'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="nx">it</span><span class="p">(</span><span class="s1">'does an async thing'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="nx">do_an_async_thing</span><span class="p">(</span><span class="nx">test_data</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />      <span class="nx">expect</span><span class="p">(</span><span class="nx">data</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">ok</span><span class="p">();</span><br data-jekyll-commonmark-ghpages="" />      <span class="nx">done</span><span class="p">();</span><br data-jekyll-commonmark-ghpages="" />    <span class="p">});</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">});</span><br data-jekyll-commonmark-ghpages="" /><span class="p">});</span></pre></td></tr></tbody></table></code></pre></figure>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="nx">describe</span><span class="p">(</span><span class="s1">'tests'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">'does an async thing'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">do_an_async_thing</span><span class="p">(</span><span class="nx">test_data</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">data</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">ok</span><span class="p">();</span>
+      <span class="nx">done</span><span class="p">();</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span></pre></td></tr></tbody></table></code></pre></figure>
 
 <p>Passing <code class="highlighter-rouge">done</code> to the <code class="highlighter-rouge">it</code> function callback is what sets things in
 motion. Mocha then knows there is some async piece to happen, and

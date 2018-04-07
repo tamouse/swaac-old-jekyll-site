@@ -101,7 +101,84 @@ installed in my sandbaox, and found the following in
 <code class="highlighter-rouge">wp-content/plugins/woocommerce/templates/cart/cart-empty.php</code>, line
 36:</p>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" />3<br data-jekyll-commonmark-ghpages="" />4<br data-jekyll-commonmark-ghpages="" />5<br data-jekyll-commonmark-ghpages="" />6<br data-jekyll-commonmark-ghpages="" />7<br data-jekyll-commonmark-ghpages="" />8<br data-jekyll-commonmark-ghpages="" />9<br data-jekyll-commonmark-ghpages="" />10<br data-jekyll-commonmark-ghpages="" />11<br data-jekyll-commonmark-ghpages="" />12<br data-jekyll-commonmark-ghpages="" />13<br data-jekyll-commonmark-ghpages="" />14<br data-jekyll-commonmark-ghpages="" />15<br data-jekyll-commonmark-ghpages="" />16<br data-jekyll-commonmark-ghpages="" />17<br data-jekyll-commonmark-ghpages="" />18<br data-jekyll-commonmark-ghpages="" />19<br data-jekyll-commonmark-ghpages="" />20<br data-jekyll-commonmark-ghpages="" />21<br data-jekyll-commonmark-ghpages="" />22<br data-jekyll-commonmark-ghpages="" />23<br data-jekyll-commonmark-ghpages="" />24<br data-jekyll-commonmark-ghpages="" />25<br data-jekyll-commonmark-ghpages="" />26<br data-jekyll-commonmark-ghpages="" />27<br data-jekyll-commonmark-ghpages="" />28<br data-jekyll-commonmark-ghpages="" />29<br data-jekyll-commonmark-ghpages="" />30<br data-jekyll-commonmark-ghpages="" />31<br data-jekyll-commonmark-ghpages="" />32<br data-jekyll-commonmark-ghpages="" />33<br data-jekyll-commonmark-ghpages="" />34<br data-jekyll-commonmark-ghpages="" />35<br data-jekyll-commonmark-ghpages="" />36<br data-jekyll-commonmark-ghpages="" />37<br data-jekyll-commonmark-ghpages="" />38<br data-jekyll-commonmark-ghpages="" />39<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="cp">&lt;?php</span><br data-jekyll-commonmark-ghpages="" /><span class="sd">/**<br data-jekyll-commonmark-ghpages="" /> * Empty cart page<br data-jekyll-commonmark-ghpages="" /> *<br data-jekyll-commonmark-ghpages="" /> * This template can be overridden by copying it to yourtheme/woocommerce/cart/cart-empty.php.<br data-jekyll-commonmark-ghpages="" /> *<br data-jekyll-commonmark-ghpages="" /> * HOWEVER, on occasion WooCommerce will need to update template files and you<br data-jekyll-commonmark-ghpages="" /> * (the theme developer) will need to copy the new files to your theme to<br data-jekyll-commonmark-ghpages="" /> * maintain compatibility. We try to do this as little as possible, but it does<br data-jekyll-commonmark-ghpages="" /> * happen. When this occurs the version of the template file will be bumped and<br data-jekyll-commonmark-ghpages="" /> * the readme will list any important changes.<br data-jekyll-commonmark-ghpages="" /> *<br data-jekyll-commonmark-ghpages="" /> * @see 	    https://docs.woocommerce.com/document/template-structure/<br data-jekyll-commonmark-ghpages="" /> * @author  WooThemes<br data-jekyll-commonmark-ghpages="" /> * @package WooCommerce/Templates<br data-jekyll-commonmark-ghpages="" /> * @version 2.0.0<br data-jekyll-commonmark-ghpages="" /> */</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nb">defined</span><span class="p">(</span> <span class="s1">'ABSPATH'</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />	<span class="k">exit</span><span class="p">;</span> <span class="c1">// Exit if accessed directly<br data-jekyll-commonmark-ghpages="" /></span><span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="nx">wc_print_notices</span><span class="p">();</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="cp">?&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"cart-empty"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />	<span class="cp">&lt;?php</span> <span class="nx">_e</span><span class="p">(</span> <span class="s1">'Your cart is currently empty.'</span><span class="p">,</span> <span class="s1">'woocommerce'</span> <span class="p">)</span> <span class="cp">?&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="nt">&lt;/p&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="cp">&lt;?php</span> <span class="nx">do_action</span><span class="p">(</span> <span class="s1">'woocommerce_cart_is_empty'</span> <span class="p">);</span> <span class="cp">?&gt;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span> <span class="nx">wc_get_page_id</span><span class="p">(</span> <span class="s1">'shop'</span> <span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">)</span> <span class="o">:</span> <span class="cp">?&gt;</span><br data-jekyll-commonmark-ghpages="" />	<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"return-to-shop"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"button wc-backward"</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">esc_url</span><span class="p">(</span> <span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'woocommerce_return_to_shop_redirect'</span><span class="p">,</span> <span class="nx">wc_get_page_permalink</span><span class="p">(</span> <span class="s1">'shop'</span> <span class="p">)</span> <span class="p">)</span> <span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span><br data-jekyll-commonmark-ghpages="" />			<span class="cp">&lt;?php</span> <span class="nx">_e</span><span class="p">(</span> <span class="s1">'Return To Shop'</span><span class="p">,</span> <span class="s1">'woocommerce'</span> <span class="p">)</span> <span class="cp">?&gt;</span><br data-jekyll-commonmark-ghpages="" />		<span class="nt">&lt;/a&gt;</span><br data-jekyll-commonmark-ghpages="" />	<span class="nt">&lt;/p&gt;</span><br data-jekyll-commonmark-ghpages="" /><span class="cp">&lt;?php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span></pre></td></tr></tbody></table></code></pre></figure>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+</pre></td><td class="code"><pre><span class="cp">&lt;?php</span>
+<span class="sd">/**
+ * Empty cart page
+ *
+ * This template can be overridden by copying it to yourtheme/woocommerce/cart/cart-empty.php.
+ *
+ * HOWEVER, on occasion WooCommerce will need to update template files and you
+ * (the theme developer) will need to copy the new files to your theme to
+ * maintain compatibility. We try to do this as little as possible, but it does
+ * happen. When this occurs the version of the template file will be bumped and
+ * the readme will list any important changes.
+ *
+ * @see 	    https://docs.woocommerce.com/document/template-structure/
+ * @author  WooThemes
+ * @package WooCommerce/Templates
+ * @version 2.0.0
+ */</span>
+
+<span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nb">defined</span><span class="p">(</span> <span class="s1">'ABSPATH'</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+	<span class="k">exit</span><span class="p">;</span> <span class="c1">// Exit if accessed directly
+</span><span class="p">}</span>
+
+<span class="nx">wc_print_notices</span><span class="p">();</span>
+
+<span class="cp">?&gt;</span>
+
+<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"cart-empty"</span><span class="nt">&gt;</span>
+	<span class="cp">&lt;?php</span> <span class="nx">_e</span><span class="p">(</span> <span class="s1">'Your cart is currently empty.'</span><span class="p">,</span> <span class="s1">'woocommerce'</span> <span class="p">)</span> <span class="cp">?&gt;</span>
+<span class="nt">&lt;/p&gt;</span>
+
+<span class="cp">&lt;?php</span> <span class="nx">do_action</span><span class="p">(</span> <span class="s1">'woocommerce_cart_is_empty'</span> <span class="p">);</span> <span class="cp">?&gt;</span>
+
+<span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span> <span class="nx">wc_get_page_id</span><span class="p">(</span> <span class="s1">'shop'</span> <span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">)</span> <span class="o">:</span> <span class="cp">?&gt;</span>
+	<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"return-to-shop"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"button wc-backward"</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">esc_url</span><span class="p">(</span> <span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'woocommerce_return_to_shop_redirect'</span><span class="p">,</span> <span class="nx">wc_get_page_permalink</span><span class="p">(</span> <span class="s1">'shop'</span> <span class="p">)</span> <span class="p">)</span> <span class="p">);</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span>
+			<span class="cp">&lt;?php</span> <span class="nx">_e</span><span class="p">(</span> <span class="s1">'Return To Shop'</span><span class="p">,</span> <span class="s1">'woocommerce'</span> <span class="p">)</span> <span class="cp">?&gt;</span>
+		<span class="nt">&lt;/a&gt;</span>
+	<span class="nt">&lt;/p&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span></pre></td></tr></tbody></table></code></pre></figure>
 
 <p>This showed the link creating, the variable
 <code class="highlighter-rouge">woocommerce_return_to_shop_redirect</code> filter, and the text being

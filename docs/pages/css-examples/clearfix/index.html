@@ -106,7 +106,22 @@ probably the smallest amount of code to enable this.</p>
 
 <p><code class="highlighter-rouge">clearfix</code> is pretty simple to implement in regular old CSS:</p>
 
-<figure class="highlight"><pre><code class="language-css" data-lang="css"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" />3<br data-jekyll-commonmark-ghpages="" />4<br data-jekyll-commonmark-ghpages="" />5<br data-jekyll-commonmark-ghpages="" />6<br data-jekyll-commonmark-ghpages="" />7<br data-jekyll-commonmark-ghpages="" />8<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="nc">.clearfix</span><span class="nd">:before</span><span class="o">,</span><br data-jekyll-commonmark-ghpages="" /><span class="nc">.clearfix</span><span class="nd">:after</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="nl">content</span><span class="p">:</span> <span class="s1">" "</span><span class="p">;</span> <span class="c">/* fixes a problem in Opera */</span><br data-jekyll-commonmark-ghpages="" />  <span class="nl">display</span><span class="p">:</span> <span class="n">table</span><span class="p">;</span> <span class="c">/* fixes a problem with collapsing margins */</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><span class="nc">.clearfix</span><span class="nd">:after</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="nl">clear</span><span class="p">:</span> <span class="nb">both</span><span class="p">;</span> <span class="c">/* this is what clears the floats */</span><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span></pre></td></tr></tbody></table></code></pre></figure>
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="nc">.clearfix</span><span class="nd">:before</span><span class="o">,</span>
+<span class="nc">.clearfix</span><span class="nd">:after</span> <span class="p">{</span>
+  <span class="nl">content</span><span class="p">:</span> <span class="s1">" "</span><span class="p">;</span> <span class="c">/* fixes a problem in Opera */</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="n">table</span><span class="p">;</span> <span class="c">/* fixes a problem with collapsing margins */</span>
+<span class="p">}</span>
+<span class="nc">.clearfix</span><span class="nd">:after</span> <span class="p">{</span>
+  <span class="nl">clear</span><span class="p">:</span> <span class="nb">both</span><span class="p">;</span> <span class="c">/* this is what clears the floats */</span>
+<span class="p">}</span></pre></td></tr></tbody></table></code></pre></figure>
 
 
 </article>

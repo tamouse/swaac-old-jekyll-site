@@ -124,27 +124,105 @@ add <code class="highlighter-rouge">:result html</code> did not do as I’d hope
 
 <p>Using the standard <code class="highlighter-rouge">#+BEGIN_HTML</code> / <code class="highlighter-rouge">#+END_HTML</code>:</p>
 
+<noscript><pre> #+STARTUP: showall
+#+options: toc:nil
+#+begin_html
+  ---
+  layout: post
+  title: test post with html block frontmatter
+  gallery:
+    path: abc123
+    images:
+      - blah.png
+      - bloo.png
+  ---
+#+end_html
+
+
+* hello world
+
+/this/ is the *reason* for the _season_.
+</pre></noscript>
 <script src="https://gist.github.com/tamouse/eb8432d916459b180007.js?file=1-with-html.org-raw"> </script>
 
 <p>Give the desired output:</p>
 
+<noscript><pre>---
+layout: post
+title: test post with html block frontmatter
+gallery:
+  path: abc123
+  images:
+    - blah.png
+    - bloo.png
+---
+
+# hello world
+
+*this* is the **reason** for the &lt;span class=&quot;underline&quot;&gt;season&lt;/span&gt;.
+</pre></noscript>
 <script src="https://gist.github.com/tamouse/eb8432d916459b180007.js?file=2-with-html.md-raw"> </script>
 
 <p>and:</p>
 
+<noscript><pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;h1 class=&quot;post-title&quot;&gt;test post with html block frontmatter&lt;/h1&gt;
+
+&lt;h1 id=&quot;hello-world&quot;&gt;hello world&lt;/h1&gt;
+
+&lt;p&gt;&lt;em&gt;this&lt;/em&gt; is the &lt;strong&gt;reason&lt;/strong&gt; for the &lt;span class=&quot;underline&quot;&gt;season&lt;/span&gt;.&lt;/p&gt;
+
+&lt;/div&gt;
+
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre></noscript>
 <script src="https://gist.github.com/tamouse/eb8432d916459b180007.js?file=3-with-html.html-raw"> </script>
 
 <h3 id="the-org-mode-post-source-using-src-yaml-blocks">The org-mode post source, using src yaml blocks</h3>
 
 <p>Using <code class="highlighter-rouge">#+begin_src yaml</code> :</p>
 
+<noscript><pre>#+STARTUP: showall expand
+#+options: toc:nil
+#+begin_src yaml :exports results :results value html
+  ---
+  layout: post
+  title: test post with yaml source block frontmatter
+  gallery:
+    path: abc123
+    images:
+      - blah.png
+      - bloo.png
+  ---
+#+end_src
+#+results:
+
+* hello world
+
+/this/ is the *reason* for the _season_.
+</pre></noscript>
 <script src="https://gist.github.com/tamouse/eb8432d916459b180007.js?file=4-with-yaml.org-raw"> </script>
 
 <p>Permitted me to edit the block in YAML mode, but when it was output,
 it gave a verbatum markdown block for the YAML, so it looked like
 content rather than front matter:</p>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">---<br data-jekyll-commonmark-ghpages="" />    layout: post<br data-jekyll-commonmark-ghpages="" />    title: test post<br data-jekyll-commonmark-ghpages="" />    gallery:<br data-jekyll-commonmark-ghpages="" />      path: abc123<br data-jekyll-commonmark-ghpages="" />      images:<br data-jekyll-commonmark-ghpages="" />        - blah.png<br data-jekyll-commonmark-ghpages="" />        - bloo.png<br data-jekyll-commonmark-ghpages="" />    ---<br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /># hello world<br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />*this* is the **reason** for the &lt;span class="underline"&gt;season&lt;/span&gt;.</code></pre></figure>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">---
+    layout: post
+    title: test post
+    gallery:
+      path: abc123
+      images:
+        - blah.png
+        - bloo.png
+    ---
+
+# hello world
+
+*this* is the **reason** for the &lt;span class="underline"&gt;season&lt;/span&gt;.</code></pre></figure>
 
 <hr />
 
@@ -161,19 +239,71 @@ work. The final answer was to tell babel how to execute YAML source:</p>
 
 <p>The org-mode source:</p>
 
+<noscript><pre>#+STARTUP: showall expand
+#+options: toc:nil
+#+begin_src yaml :exports results :results value html
+  ---
+  layout: post
+  title: test post with yaml source block frontmatter
+  gallery:
+    path: abc123
+    images:
+      - blah.png
+      - bloo.png
+  ---
+#+end_src
+#+results:
+
+* hello world
+
+/this/ is the *reason* for the _season_.
+</pre></noscript>
 <script src="https://gist.github.com/tamouse/eb8432d916459b180007.js?file=4-with-yaml.org-raw"> </script>
 
 <p>Generated the markdown:</p>
 
+<noscript><pre>---
+layout: post
+title: test post with yaml source block frontmatter
+gallery:
+  path: abc123
+  images:
+    - blah.png
+    - bloo.png
+---
+
+# hello world
+
+*this* is the **reason** for the &lt;span class=&quot;underline&quot;&gt;season&lt;/span&gt;.
+</pre></noscript>
 <script src="https://gist.github.com/tamouse/eb8432d916459b180007.js?file=5-with-yaml.md-raw"> </script>
 
 <p>Which in turn produced the html I want:</p>
 
+<noscript><pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;h1 class=&quot;post-title&quot;&gt;test post with yaml source block frontmatter&lt;/h1&gt;
+
+&lt;h1 id=&quot;hello-world&quot;&gt;hello world&lt;/h1&gt;
+
+&lt;p&gt;&lt;em&gt;this&lt;/em&gt; is the &lt;strong&gt;reason&lt;/strong&gt; for the &lt;span class=&quot;underline&quot;&gt;season&lt;/span&gt;.&lt;/p&gt;
+
+&lt;/div&gt;
+
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre></noscript>
 <script src="https://gist.github.com/tamouse/eb8432d916459b180007.js?file=6-with-yaml.html-raw"> </script>
 
 <p>Finally, looking at the difference of the html generated with both
 html and yaml blocks, we see the only difference is the title:</p>
 
+<noscript><pre>4c4
+&lt;     &lt;h1 class=&quot;post-title&quot;&gt;test post with html block frontmatter&lt;/h1&gt;
+---
+&gt;     &lt;h1 class=&quot;post-title&quot;&gt;test post with yaml source block frontmatter&lt;/h1&gt;
+</pre></noscript>
 <script src="https://gist.github.com/tamouse/eb8432d916459b180007.js?file=zz-diff.out"> </script>
 
 <hr />
@@ -214,7 +344,10 @@ proper Jekyll code blocks with the right language selected.</p>
 
 <p>Entering in the org file:</p>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">#+begin_src ruby<br data-jekyll-commonmark-ghpages="" />  # Ruby code<br data-jekyll-commonmark-ghpages="" />  puts "hello, world!"<br data-jekyll-commonmark-ghpages="" />#+end_src</code></pre></figure>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">#+begin_src ruby
+  # Ruby code
+  puts "hello, world!"
+#+end_src</code></pre></figure>
 
 <p>and have it produce in the markdown:</p>
 
@@ -226,7 +359,8 @@ puts "hello, world!"
 
 <p>Resulting in:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Ruby code</span><br data-jekyll-commonmark-ghpages="" /><span class="nb">puts</span> <span class="s2">"hello, world!"</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Ruby code</span>
+<span class="nb">puts</span> <span class="s2">"hello, world!"</span></code></pre></figure>
 
 
 </article>

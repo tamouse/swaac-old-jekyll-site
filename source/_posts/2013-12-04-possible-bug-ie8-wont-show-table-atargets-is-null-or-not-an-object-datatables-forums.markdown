@@ -3,7 +3,7 @@ layout: post
 title: "Possible bug: IE8 won't show table: \"'aTargets' is null or not an object\" - DataTables forums"
 date: 2013-12-04 12:31
 categories: [swaac]
-tags: [javascript,errors,IE]
+tags: [javascript,errors,ie]
 source: http://datatables.net/forums/discussion/comment/38391
 ---
 A repost of <{{page.source}}> from [DataTables](http://datatables.net).

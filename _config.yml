@@ -1,7 +1,3 @@
-baseurl: ''
-source: source
-destination: _site
-
 name: swaac.tamouse.org
 title: Software as a Craft
 author: Tamara Temple
@@ -13,13 +9,20 @@ github_username: tamouse
 social:
   twitter: tamouse
   github: tamouse
+defaults:
+  author: Tamara Temple
+
+
 permalink: pretty
 markdown: kramdown
 kramdown:
   input: GFM
   hard_wrap: false
-defaults:
-  author: Tamara Temple
+
+
+baseurl: ''
+source: source
+destination: _site
 
 s3path: "https://s3.amazonaws.com/swaac.tamouse.org/"
 
@@ -27,3 +30,7 @@ exclude:
   - '#*'
   - '.#*'
   - '*~'
+
+plugins:
+  - jekyll-category-pages
+  - jekyll-tag-pages

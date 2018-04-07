@@ -3,7 +3,7 @@ layout: post
 title: "TIL: Providing Defaults For EnvVars in Python 3"
 date: 2017-01-24 16:14
 categories: ["python"]
-tags: ["envvars", "defaults", "TIL", "python", "python3"]
+tags: ["envvars", "defaults", "til", "python", "python3"]
 
 ---
 

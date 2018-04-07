@@ -73,7 +73,7 @@ Jan 24, 2017
 
 
  &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/python">python</a></li></ul>
- &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/envvars">envvars</a></li> <li role="presentation"><a href="/swaac/tags/defaults">defaults</a></li> <li role="presentation"><a href="/swaac/tags/TIL">TIL</a></li> <li role="presentation"><a href="/swaac/tags/python">python</a></li> <li role="presentation"><a href="/swaac/tags/python3">python3</a></li> 
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/envvars">envvars</a></li> <li role="presentation"><a href="/swaac/tags/defaults">defaults</a></li> <li role="presentation"><a href="/swaac/tags/til">til</a></li> <li role="presentation"><a href="/swaac/tags/python">python</a></li> <li role="presentation"><a href="/swaac/tags/python3">python3</a></li> 
 </header>
 
 <article>
@@ -84,7 +84,10 @@ default.</p>
 <p>I’d been blissfully performing the following sort of passage when
 dealing with envvars:</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'FOO'</span><span class="p">):</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">foo_setting</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">envrion</span><span class="p">[</span><span class="s">'FOO'</span><span class="p">]</span><br data-jekyll-commonmark-ghpages="" /><span class="k">else</span><span class="p">:</span><br data-jekyll-commonmark-ghpages="" />    <span class="n">foo_setting</span> <span class="o">=</span> <span class="s">''</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'FOO'</span><span class="p">):</span>
+    <span class="n">foo_setting</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">envrion</span><span class="p">[</span><span class="s">'FOO'</span><span class="p">]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">foo_setting</span> <span class="o">=</span> <span class="s">''</span></code></pre></figure>
 
 <p>This is pretty wrong-headed in a few ways, including the fact that
 some things expect a setting to be <code class="highlighter-rouge">None</code> instead to ensure they work

@@ -7,7 +7,7 @@ layout: post
 title: "UX: What Does \"Flat Design\" Really Mean? (link)"
 date: 2013-12-23 23:53
 categories: swaac
-tags: [design, UX, web]
+tags: [design, ux, web]
 ---
 In a really good article,
 [*Is your interface what it needs to be?*](https://medium.com/building-things-on-the-internet/7c697fbbe8be)

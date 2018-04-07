@@ -93,16 +93,33 @@ couldn’t quite figure out how to get them in the <code class="highlighter-roug
 <p>Turns out to be stupid simple. All you need to do is set the items
 on the <code class="highlighter-rouge">global</code> context, like so:</p>
 
-<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">beforeAll</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">global</span><span class="p">.</span><span class="nx">TagsInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tags</span><span class="p">({</span><br data-jekyll-commonmark-ghpages="" />    <span class="na">item</span><span class="p">:</span> <span class="nx">item</span><span class="p">,</span><br data-jekyll-commonmark-ghpages="" />    <span class="na">item_type</span><span class="p">:</span> <span class="s2">"Job"</span><span class="p">,</span><br data-jekyll-commonmark-ghpages="" />    <span class="na">data</span><span class="p">:</span> <span class="nx">data</span><span class="p">,</span><br data-jekyll-commonmark-ghpages="" />    <span class="na">mutate</span><span class="p">:</span> <span class="nx">noop</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">})</span><br data-jekyll-commonmark-ghpages="" /><span class="p">})</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">beforeAll</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+  <span class="nb">global</span><span class="p">.</span><span class="nx">TagsInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tags</span><span class="p">({</span>
+    <span class="na">item</span><span class="p">:</span> <span class="nx">item</span><span class="p">,</span>
+    <span class="na">item_type</span><span class="p">:</span> <span class="s2">"Job"</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="nx">data</span><span class="p">,</span>
+    <span class="na">mutate</span><span class="p">:</span> <span class="nx">noop</span>
+  <span class="p">})</span>
+<span class="p">})</span></code></pre></figure>
 
 <p>After the suite finishes, clear out the item:</p>
 
-<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">afterAll</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">global</span><span class="p">.</span><span class="nx">TagsInstance</span> <span class="o">=</span> <span class="kc">undefined</span><br data-jekyll-commonmark-ghpages="" /><span class="p">})</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">afterAll</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+  <span class="nb">global</span><span class="p">.</span><span class="nx">TagsInstance</span> <span class="o">=</span> <span class="kc">undefined</span>
+<span class="p">})</span></code></pre></figure>
 
 <p>I suppose that pollutes the global space, so one might want to do
 it in a namespace, and then clear that every time, too:</p>
 
-<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">beforeEach</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">global</span><span class="p">.</span><span class="nx">beforeEach</span><span class="p">.</span><span class="nx">actual</span> <span class="o">=</span> <span class="nx">mount</span><span class="p">(</span><br data-jekyll-commonmark-ghpages="" />    <span class="o">&lt;</span><span class="nx">Tag</span> <span class="nx">item</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">}</span><span class="sr">/</span><span class="err">&gt;<br data-jekyll-commonmark-ghpages="" /></span>  <span class="p">)</span><br data-jekyll-commonmark-ghpages="" /><span class="p">})</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="nx">afterEach</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="nb">global</span><span class="p">.</span><span class="nx">beforeEach</span> <span class="o">=</span> <span class="kc">undefined</span><br data-jekyll-commonmark-ghpages="" /><span class="p">})</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">beforeEach</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+  <span class="nb">global</span><span class="p">.</span><span class="nx">beforeEach</span><span class="p">.</span><span class="nx">actual</span> <span class="o">=</span> <span class="nx">mount</span><span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">Tag</span> <span class="nx">item</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">}</span><span class="sr">/</span><span class="err">&gt;
+</span>  <span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nx">afterEach</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+  <span class="nb">global</span><span class="p">.</span><span class="nx">beforeEach</span> <span class="o">=</span> <span class="kc">undefined</span>
+<span class="p">})</span></code></pre></figure>
 
 <h1 id="til-you-can-call-instance-variables-and-functions-on-an-enzyme-wrapper">TIL: you can call instance variables and functions on an Enzyme wrapper</h1>
 
@@ -116,7 +133,12 @@ it in a namespace, and then clear that every time, too:</p>
   <li>interogating a mounted component’s state</li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">it</span><span class="p">(</span><span class="s2">"can i call stuff directly?"</span><span class="p">,</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span><br data-jekyll-commonmark-ghpages="" />  <span class="kd">const</span> <span class="nx">actual</span> <span class="o">=</span> <span class="nx">mount</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">MyComponent</span> <span class="o">/&gt;</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" />  <span class="nx">actual</span><span class="p">.</span><span class="nx">instance</span><span class="p">().</span><span class="nx">setState</span><span class="p">({</span> <span class="na">boo</span><span class="p">:</span> <span class="s2">"boo"</span><span class="p">},</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />    <span class="nx">expect</span><span class="p">(</span><span class="nx">actual</span><span class="p">.</span><span class="nx">instance</span><span class="p">().</span><span class="nx">state</span><span class="p">.</span><span class="nx">boo</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="s2">"boo"</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" />  <span class="p">})</span><br data-jekyll-commonmark-ghpages="" /><span class="p">})</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">it</span><span class="p">(</span><span class="s2">"can i call stuff directly?"</span><span class="p">,</span> <span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">actual</span> <span class="o">=</span> <span class="nx">mount</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">MyComponent</span> <span class="o">/&gt;</span><span class="p">)</span>
+  <span class="nx">actual</span><span class="p">.</span><span class="nx">instance</span><span class="p">().</span><span class="nx">setState</span><span class="p">({</span> <span class="na">boo</span><span class="p">:</span> <span class="s2">"boo"</span><span class="p">},</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">actual</span><span class="p">.</span><span class="nx">instance</span><span class="p">().</span><span class="nx">state</span><span class="p">.</span><span class="nx">boo</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="s2">"boo"</span><span class="p">)</span>
+  <span class="p">})</span>
+<span class="p">})</span></code></pre></figure>
 
 
 </article>

@@ -89,7 +89,114 @@ tribulations.</p>
 <p>This configuration is by no means unique, special, or anything other
 than a thing I cobbled together and that works for my needs.</p>
 
-<figure class="highlight"><pre><code class="language-nginx" data-lang="nginx"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1<br data-jekyll-commonmark-ghpages="" />2<br data-jekyll-commonmark-ghpages="" />3<br data-jekyll-commonmark-ghpages="" />4<br data-jekyll-commonmark-ghpages="" />5<br data-jekyll-commonmark-ghpages="" />6<br data-jekyll-commonmark-ghpages="" />7<br data-jekyll-commonmark-ghpages="" />8<br data-jekyll-commonmark-ghpages="" />9<br data-jekyll-commonmark-ghpages="" />10<br data-jekyll-commonmark-ghpages="" />11<br data-jekyll-commonmark-ghpages="" />12<br data-jekyll-commonmark-ghpages="" />13<br data-jekyll-commonmark-ghpages="" />14<br data-jekyll-commonmark-ghpages="" />15<br data-jekyll-commonmark-ghpages="" />16<br data-jekyll-commonmark-ghpages="" />17<br data-jekyll-commonmark-ghpages="" />18<br data-jekyll-commonmark-ghpages="" />19<br data-jekyll-commonmark-ghpages="" />20<br data-jekyll-commonmark-ghpages="" />21<br data-jekyll-commonmark-ghpages="" />22<br data-jekyll-commonmark-ghpages="" />23<br data-jekyll-commonmark-ghpages="" />24<br data-jekyll-commonmark-ghpages="" />25<br data-jekyll-commonmark-ghpages="" />26<br data-jekyll-commonmark-ghpages="" />27<br data-jekyll-commonmark-ghpages="" />28<br data-jekyll-commonmark-ghpages="" />29<br data-jekyll-commonmark-ghpages="" />30<br data-jekyll-commonmark-ghpages="" />31<br data-jekyll-commonmark-ghpages="" />32<br data-jekyll-commonmark-ghpages="" />33<br data-jekyll-commonmark-ghpages="" />34<br data-jekyll-commonmark-ghpages="" />35<br data-jekyll-commonmark-ghpages="" />36<br data-jekyll-commonmark-ghpages="" />37<br data-jekyll-commonmark-ghpages="" />38<br data-jekyll-commonmark-ghpages="" />39<br data-jekyll-commonmark-ghpages="" />40<br data-jekyll-commonmark-ghpages="" />41<br data-jekyll-commonmark-ghpages="" />42<br data-jekyll-commonmark-ghpages="" />43<br data-jekyll-commonmark-ghpages="" />44<br data-jekyll-commonmark-ghpages="" />45<br data-jekyll-commonmark-ghpages="" />46<br data-jekyll-commonmark-ghpages="" />47<br data-jekyll-commonmark-ghpages="" />48<br data-jekyll-commonmark-ghpages="" />49<br data-jekyll-commonmark-ghpages="" />50<br data-jekyll-commonmark-ghpages="" />51<br data-jekyll-commonmark-ghpages="" />52<br data-jekyll-commonmark-ghpages="" />53<br data-jekyll-commonmark-ghpages="" />54<br data-jekyll-commonmark-ghpages="" /></pre></td><td class="code"><pre><span class="c1"># -*- nginx -*-<br data-jekyll-commonmark-ghpages="" /># This is a generic virtual host file, it will map vhosts onto<br data-jekyll-commonmark-ghpages="" /># the appropriate subdirectory<br data-jekyll-commonmark-ghpages="" /></span><br data-jekyll-commonmark-ghpages="" /><span class="k">server</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />    <span class="kn">listen</span>   <span class="mi">80</span><span class="p">;</span> <span class="c1">## listen for ipv4<br data-jekyll-commonmark-ghpages="" /></span>    <span class="kn">listen</span>   <span class="s">[::]:80</span> <span class="s">default</span> <span class="s">ipv6only=on</span><span class="p">;</span> <span class="c1">## listen for ipv6<br data-jekyll-commonmark-ghpages="" /></span><br data-jekyll-commonmark-ghpages="" />    <span class="c1"># the following matches anything in HTTP_HOST, mapping www.$domain to $domain.<br data-jekyll-commonmark-ghpages="" /></span>    <span class="c1"># www.example.com and example.com will map to /var/www/example.com<br data-jekyll-commonmark-ghpages="" /></span>    <span class="c1"># www.wiki.example.com and wiki.example.com will map to /var/www/wiki.example.com<br data-jekyll-commonmark-ghpages="" /></span>    <span class="kn">server_name</span>  <span class="p">~</span><span class="sr">^(www\.)?(?&lt;domain&gt;.+)$;</span><br data-jekyll-commonmark-ghpages="" />    <span class="s">root</span>   <span class="n">/var/www/</span><span class="nv">$domain</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />    <span class="kn">index</span>  <span class="s">index.html</span> <span class="s">index.htm</span> <span class="s">index.php</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />    <span class="c1"># Uncomment to use per-domain access log<br data-jekyll-commonmark-ghpages="" /></span>    <span class="c1">#access_log  /var/log/nginx/$domain.access.log;<br data-jekyll-commonmark-ghpages="" /></span><br data-jekyll-commonmark-ghpages="" />    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />	<span class="kn">try_files</span> <span class="nv">$uri</span> <span class="nv">$uri</span><span class="n">/</span> <span class="n">/index.php</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />    <span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />    <span class="kn">location</span> <span class="s">@rewrites</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />	<span class="kn">rewrite</span> <span class="s">^</span> <span class="n">/index.php</span> <span class="s">last</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />    <span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />    <span class="c1"># This causes too many problems when posting a blog update.<br data-jekyll-commonmark-ghpages="" /></span>    <span class="c1"># # static files<br data-jekyll-commonmark-ghpages="" /></span>    <span class="c1"># location ~* \.(?:ico|css|js|gif|jpe?g|png|te?xt|html?)$ {<br data-jekyll-commonmark-ghpages="" /></span>    <span class="c1">#     expires max;<br data-jekyll-commonmark-ghpages="" /></span>    <span class="c1">#     add_header Pragma public;<br data-jekyll-commonmark-ghpages="" /></span>    <span class="c1">#     add_header Cache-Control "public, must-revalidate, proxy-revalidate";<br data-jekyll-commonmark-ghpages="" /></span>    <span class="c1"># }<br data-jekyll-commonmark-ghpages="" /></span><br data-jekyll-commonmark-ghpages="" />    <span class="kn">location</span> <span class="p">=</span> <span class="n">/robots.txt</span> <span class="p">{</span> <span class="kn">access_log</span> <span class="no">off</span><span class="p">;</span> <span class="kn">log_not_found</span> <span class="no">off</span><span class="p">;</span> <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />    <span class="kn">location</span> <span class="p">=</span> <span class="n">/favicon.ico</span> <span class="p">{</span> <span class="kn">access_log</span> <span class="no">off</span><span class="p">;</span> <span class="kn">log_not_found</span> <span class="no">off</span><span class="p">;</span> <span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />    <span class="c1"># deny access to . files and editor backup files<br data-jekyll-commonmark-ghpages="" /></span>    <span class="kn">location</span> <span class="p">~</span> <span class="sr">/\.</span> <span class="p">{</span> <span class="kn">deny</span>  <span class="s">all</span><span class="p">;</span> <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />    <span class="kn">location</span> <span class="p">~</span> <span class="sr">~$</span> <span class="p">{</span> <span class="kn">deny</span> <span class="s">all</span><span class="p">;</span> <span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" />    <span class="c1"># php files<br data-jekyll-commonmark-ghpages="" /></span>    <span class="kn">location</span> <span class="p">~</span> <span class="sr">\.php</span> <span class="p">{</span><br data-jekyll-commonmark-ghpages="" />	<span class="kn">location</span> <span class="p">~</span> <span class="sr">\..*/.*\.php$</span> <span class="p">{</span> <span class="kn">return</span> <span class="mi">404</span><span class="p">;</span> <span class="p">}</span><br data-jekyll-commonmark-ghpages="" />	<span class="kn">include</span> <span class="s">fastcgi_params</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />	<span class="kn">fastcgi_split_path_info</span> <span class="s">^(.+</span><span class="err">\</span><span class="s">.php)(/.+)</span>$<span class="p">;</span><br data-jekyll-commonmark-ghpages="" />	<span class="kn">fastcgi_param</span> <span class="s">PATH_INFO</span> <span class="nv">$fastcgi_path_info</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />	<span class="kn">fastcgi_param</span> <span class="s">PATH_TRANSLATED</span> <span class="nv">$document_root$fastcgi_path_info</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />	<span class="kn">fastcgi_param</span> <span class="s">SCRIPT_FILENAME</span> <span class="nv">$document_root$fastcgi_script_name</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />	<span class="kn">fastcgi_pass</span> <span class="s">unix:/var/run/php5-fpm.sock</span><span class="p">;</span><br data-jekyll-commonmark-ghpages="" />    <span class="p">}</span><br data-jekyll-commonmark-ghpages="" /><br data-jekyll-commonmark-ghpages="" /><span class="p">}</span></pre></td></tr></tbody></table></code></pre></figure>
+<figure class="highlight"><pre><code class="language-nginx" data-lang="nginx"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+</pre></td><td class="code"><pre><span class="c1"># -*- nginx -*-
+# This is a generic virtual host file, it will map vhosts onto
+# the appropriate subdirectory
+</span>
+<span class="k">server</span> <span class="p">{</span>
+
+    <span class="kn">listen</span>   <span class="mi">80</span><span class="p">;</span> <span class="c1">## listen for ipv4
+</span>    <span class="kn">listen</span>   <span class="s">[::]:80</span> <span class="s">default</span> <span class="s">ipv6only=on</span><span class="p">;</span> <span class="c1">## listen for ipv6
+</span>
+    <span class="c1"># the following matches anything in HTTP_HOST, mapping www.$domain to $domain.
+</span>    <span class="c1"># www.example.com and example.com will map to /var/www/example.com
+</span>    <span class="c1"># www.wiki.example.com and wiki.example.com will map to /var/www/wiki.example.com
+</span>    <span class="kn">server_name</span>  <span class="p">~</span><span class="sr">^(www\.)?(?&lt;domain&gt;.+)$;</span>
+    <span class="s">root</span>   <span class="n">/var/www/</span><span class="nv">$domain</span><span class="p">;</span>
+    <span class="kn">index</span>  <span class="s">index.html</span> <span class="s">index.htm</span> <span class="s">index.php</span><span class="p">;</span>
+
+    <span class="c1"># Uncomment to use per-domain access log
+</span>    <span class="c1">#access_log  /var/log/nginx/$domain.access.log;
+</span>
+    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+	<span class="kn">try_files</span> <span class="nv">$uri</span> <span class="nv">$uri</span><span class="n">/</span> <span class="n">/index.php</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kn">location</span> <span class="s">@rewrites</span> <span class="p">{</span>
+	<span class="kn">rewrite</span> <span class="s">^</span> <span class="n">/index.php</span> <span class="s">last</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># This causes too many problems when posting a blog update.
+</span>    <span class="c1"># # static files
+</span>    <span class="c1"># location ~* \.(?:ico|css|js|gif|jpe?g|png|te?xt|html?)$ {
+</span>    <span class="c1">#     expires max;
+</span>    <span class="c1">#     add_header Pragma public;
+</span>    <span class="c1">#     add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+</span>    <span class="c1"># }
+</span>
+    <span class="kn">location</span> <span class="p">=</span> <span class="n">/robots.txt</span> <span class="p">{</span> <span class="kn">access_log</span> <span class="no">off</span><span class="p">;</span> <span class="kn">log_not_found</span> <span class="no">off</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kn">location</span> <span class="p">=</span> <span class="n">/favicon.ico</span> <span class="p">{</span> <span class="kn">access_log</span> <span class="no">off</span><span class="p">;</span> <span class="kn">log_not_found</span> <span class="no">off</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="c1"># deny access to . files and editor backup files
+</span>    <span class="kn">location</span> <span class="p">~</span> <span class="sr">/\.</span> <span class="p">{</span> <span class="kn">deny</span>  <span class="s">all</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kn">location</span> <span class="p">~</span> <span class="sr">~$</span> <span class="p">{</span> <span class="kn">deny</span> <span class="s">all</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="c1"># php files
+</span>    <span class="kn">location</span> <span class="p">~</span> <span class="sr">\.php</span> <span class="p">{</span>
+	<span class="kn">location</span> <span class="p">~</span> <span class="sr">\..*/.*\.php$</span> <span class="p">{</span> <span class="kn">return</span> <span class="mi">404</span><span class="p">;</span> <span class="p">}</span>
+	<span class="kn">include</span> <span class="s">fastcgi_params</span><span class="p">;</span>
+	<span class="kn">fastcgi_split_path_info</span> <span class="s">^(.+</span><span class="err">\</span><span class="s">.php)(/.+)</span>$<span class="p">;</span>
+	<span class="kn">fastcgi_param</span> <span class="s">PATH_INFO</span> <span class="nv">$fastcgi_path_info</span><span class="p">;</span>
+	<span class="kn">fastcgi_param</span> <span class="s">PATH_TRANSLATED</span> <span class="nv">$document_root$fastcgi_path_info</span><span class="p">;</span>
+	<span class="kn">fastcgi_param</span> <span class="s">SCRIPT_FILENAME</span> <span class="nv">$document_root$fastcgi_script_name</span><span class="p">;</span>
+	<span class="kn">fastcgi_pass</span> <span class="s">unix:/var/run/php5-fpm.sock</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span></pre></td></tr></tbody></table></code></pre></figure>
 
 <p>I originally had the static file caching in place, but since I mainly
 post blog updates that are static, it was always forcing readers to

@@ -99,7 +99,17 @@ Nov 11, 2013
   <p>Implementing the solution in Ruby is fairly straightforward. <del>ActiveSupport</del> Enumerable provides the <code class="highlighter-rouge">group_by</code> and <code class="highlighter-rouge">sort_by</code> methods on collections, and we can use those to help us cut down on some typing.</p>
 
 </blockquote>
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">CatPicture</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="n">attr_accessible</span> <span class="ss">:category_id</span><span class="p">,</span> <span class="ss">:description</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:price</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="n">belongs_to</span> <span class="ss">:category</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">cheapest_per_category</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>     <span class="n">all</span><span class="p">.</span><span class="nf">group_by</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:category_id</span><span class="p">).</span><span class="nf">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">category_id</span><span class="p">,</span> <span class="n">subset</span><span class="o">|</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>       <span class="n">subset</span><span class="p">.</span><span class="nf">sort_by</span> <span class="p">{</span> <span class="o">|</span><span class="n">pic</span><span class="o">|</span> <span class="p">[</span><span class="n">pic</span><span class="p">.</span><span class="nf">price</span><span class="p">,</span> <span class="n">pic</span><span class="p">.</span><span class="nf">name</span><span class="p">]</span> <span class="p">}.</span><span class="nf">first</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>     <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">CatPicture</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+<span class="o">&gt;</span>   <span class="n">attr_accessible</span> <span class="ss">:category_id</span><span class="p">,</span> <span class="ss">:description</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:price</span>
+<span class="o">&gt;</span>   <span class="n">belongs_to</span> <span class="ss">:category</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span>   <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">cheapest_per_category</span>
+<span class="o">&gt;</span>     <span class="n">all</span><span class="p">.</span><span class="nf">group_by</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:category_id</span><span class="p">).</span><span class="nf">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">category_id</span><span class="p">,</span> <span class="n">subset</span><span class="o">|</span>
+<span class="o">&gt;</span>       <span class="n">subset</span><span class="p">.</span><span class="nf">sort_by</span> <span class="p">{</span> <span class="o">|</span><span class="n">pic</span><span class="o">|</span> <span class="p">[</span><span class="n">pic</span><span class="p">.</span><span class="nf">price</span><span class="p">,</span> <span class="n">pic</span><span class="p">.</span><span class="nf">name</span><span class="p">]</span> <span class="p">}.</span><span class="nf">first</span>
+<span class="o">&gt;</span>     <span class="k">end</span>
+<span class="o">&gt;</span>   <span class="k">end</span>
+<span class="o">&gt;</span> <span class="k">end</span>
+<span class="o">&gt;</span> </code></pre></figure>
 
 <blockquote>
 
@@ -129,7 +139,24 @@ Nov 11, 2013
   <p>We can improve performance by doing the filtering at the database level, rather than loading all cat pictures into memory each time.</p>
 
 </blockquote>
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">CatPicture</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="n">attr_accessible</span> <span class="ss">:category_id</span><span class="p">,</span> <span class="ss">:description</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:price</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="n">belongs_to</span> <span class="ss">:category</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">cheapest_per_category</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>     <span class="n">find_by_sql</span> <span class="o">&lt;&lt;-</span><span class="no">SQL</span><span class="sh"><br data-jekyll-commonmark-ghpages="" />&gt;       SELECT DISTINCT ON(category_id) cat_pictures.*<br data-jekyll-commonmark-ghpages="" />&gt;       FROM cat_pictures<br data-jekyll-commonmark-ghpages="" />&gt;       WHERE ((category_id, price) IN (<br data-jekyll-commonmark-ghpages="" />&gt;         SELECT category_id, min(price)<br data-jekyll-commonmark-ghpages="" />&gt;         FROM cat_pictures<br data-jekyll-commonmark-ghpages="" />&gt;         GROUP BY category_id<br data-jekyll-commonmark-ghpages="" />&gt;       ))<br data-jekyll-commonmark-ghpages="" />&gt;       ORDER BY category_id ASC, cat_pictures.name ASC<br data-jekyll-commonmark-ghpages="" />&gt;     SQL<br data-jekyll-commonmark-ghpages="" />&gt;   end<br data-jekyll-commonmark-ghpages="" />&gt; end<br data-jekyll-commonmark-ghpages="" />&gt; </span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">CatPicture</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+<span class="o">&gt;</span>   <span class="n">attr_accessible</span> <span class="ss">:category_id</span><span class="p">,</span> <span class="ss">:description</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:price</span>
+<span class="o">&gt;</span>   <span class="n">belongs_to</span> <span class="ss">:category</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span>   <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">cheapest_per_category</span>
+<span class="o">&gt;</span>     <span class="n">find_by_sql</span> <span class="o">&lt;&lt;-</span><span class="no">SQL</span><span class="sh">
+&gt;       SELECT DISTINCT ON(category_id) cat_pictures.*
+&gt;       FROM cat_pictures
+&gt;       WHERE ((category_id, price) IN (
+&gt;         SELECT category_id, min(price)
+&gt;         FROM cat_pictures
+&gt;         GROUP BY category_id
+&gt;       ))
+&gt;       ORDER BY category_id ASC, cat_pictures.name ASC
+&gt;     SQL
+&gt;   end
+&gt; end
+&gt; </span></code></pre></figure>
 
 <blockquote>
 
@@ -142,7 +169,20 @@ Nov 11, 2013
   <p>We can improve the implementation above by making it a true chainable scope. Whereas <code class="highlighter-rouge">find_by_sql</code> returns an array of objects, we can refactor this to return an ActiveRelation instead.</p>
 
 </blockquote>
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">CatPicture</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="n">attr_accessible</span> <span class="ss">:category_id</span><span class="p">,</span> <span class="ss">:description</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:price</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="n">belongs_to</span> <span class="ss">:category</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">cheapest_per_category</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>     <span class="n">where</span><span class="p">(</span><span class="s2">"(category_id, price) IN (</span><span class="si">#{</span><span class="n">category_id_and_lowest_price_sql</span><span class="si">}</span><span class="s2">)"</span><span class="p">).</span><span class="nf">select</span><span class="p">(</span><span class="s2">"DISTINCT ON(category_id) </span><span class="si">#{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">.*"</span><span class="p">).</span><span class="nf">order</span><span class="p">(</span><span class="s2">"category_id ASC, </span><span class="si">#{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">.name ASC"</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="kp">private</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">category_id_and_lowest_price_sql</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>     <span class="n">scoped</span><span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="s2">"category_id, min(price)"</span><span class="p">).</span><span class="nf">group</span><span class="p">(</span><span class="ss">:category_id</span><span class="p">).</span><span class="nf">to_sql</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">CatPicture</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+<span class="o">&gt;</span>   <span class="n">attr_accessible</span> <span class="ss">:category_id</span><span class="p">,</span> <span class="ss">:description</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:price</span>
+<span class="o">&gt;</span>   <span class="n">belongs_to</span> <span class="ss">:category</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span>   <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">cheapest_per_category</span>
+<span class="o">&gt;</span>     <span class="n">where</span><span class="p">(</span><span class="s2">"(category_id, price) IN (</span><span class="si">#{</span><span class="n">category_id_and_lowest_price_sql</span><span class="si">}</span><span class="s2">)"</span><span class="p">).</span><span class="nf">select</span><span class="p">(</span><span class="s2">"DISTINCT ON(category_id) </span><span class="si">#{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">.*"</span><span class="p">).</span><span class="nf">order</span><span class="p">(</span><span class="s2">"category_id ASC, </span><span class="si">#{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">.name ASC"</span><span class="p">)</span>
+<span class="o">&gt;</span>   <span class="k">end</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span>   <span class="kp">private</span>
+<span class="o">&gt;</span>   <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">category_id_and_lowest_price_sql</span>
+<span class="o">&gt;</span>     <span class="n">scoped</span><span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="s2">"category_id, min(price)"</span><span class="p">).</span><span class="nf">group</span><span class="p">(</span><span class="ss">:category_id</span><span class="p">).</span><span class="nf">to_sql</span>
+<span class="o">&gt;</span>   <span class="k">end</span>
+<span class="o">&gt;</span> <span class="k">end</span>
+<span class="o">&gt;</span> </code></pre></figure>
 
 <blockquote>
 
@@ -174,7 +214,19 @@ Nov 11, 2013
   <p>Let’s see how this would work with our dataset. First of all, let’s assume the following cat pictures:</p>
 
 </blockquote>
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&gt;</span> <span class="c1"># SELECT id, name, category_id, price FROM cat_pictures ORDER BY category_id, price;</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>  <span class="nb">id</span> <span class="o">|</span>         <span class="nb">name</span>         <span class="o">|</span> <span class="n">category_id</span> <span class="o">|</span> <span class="n">price</span> <br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <span class="o">----+----------------------+-------------+-------</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="mi">7</span> <span class="o">|</span> <span class="no">Triple</span> <span class="no">LOL</span>           <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span>  <span class="mf">9.99</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="mi">5</span> <span class="o">|</span> <span class="no">Hugs</span> <span class="n">not</span> <span class="no">Drugs</span>       <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span>  <span class="mf">9.99</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="mi">2</span> <span class="o">|</span> <span class="no">Puss</span> <span class="k">in</span> <span class="no">Boots</span>        <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span> <span class="mf">14.99</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="mi">3</span> <span class="o">|</span> <span class="no">Cats</span> <span class="no">Gone</span> <span class="no">By</span>         <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span> <span class="mf">19.99</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="mi">6</span> <span class="o">|</span> <span class="no">Cats</span> <span class="k">in</span> <span class="n">it</span> <span class="k">for</span> <span class="n">me</span>    <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span> <span class="mf">22.99</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="mi">4</span> <span class="o">|</span> <span class="no">Turkleton</span><span class="s1">'s Folly    |           2 | 11.99<br data-jekyll-commonmark-ghpages="" />&gt;   1 | Meowna Lisa          |           2 | 19.99<br data-jekyll-commonmark-ghpages="" />&gt;   8 | Lady Caterly'</span><span class="n">s</span> <span class="no">Lover</span> <span class="o">|</span>           <span class="mi">2</span> <span class="o">|</span> <span class="mf">22.99</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&gt;</span> <span class="c1"># SELECT id, name, category_id, price FROM cat_pictures ORDER BY category_id, price;</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span>  <span class="nb">id</span> <span class="o">|</span>         <span class="nb">name</span>         <span class="o">|</span> <span class="n">category_id</span> <span class="o">|</span> <span class="n">price</span> 
+<span class="o">&gt;</span> <span class="o">----+----------------------+-------------+-------</span>
+<span class="o">&gt;</span>   <span class="mi">7</span> <span class="o">|</span> <span class="no">Triple</span> <span class="no">LOL</span>           <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span>  <span class="mf">9.99</span>
+<span class="o">&gt;</span>   <span class="mi">5</span> <span class="o">|</span> <span class="no">Hugs</span> <span class="n">not</span> <span class="no">Drugs</span>       <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span>  <span class="mf">9.99</span>
+<span class="o">&gt;</span>   <span class="mi">2</span> <span class="o">|</span> <span class="no">Puss</span> <span class="k">in</span> <span class="no">Boots</span>        <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span> <span class="mf">14.99</span>
+<span class="o">&gt;</span>   <span class="mi">3</span> <span class="o">|</span> <span class="no">Cats</span> <span class="no">Gone</span> <span class="no">By</span>         <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span> <span class="mf">19.99</span>
+<span class="o">&gt;</span>   <span class="mi">6</span> <span class="o">|</span> <span class="no">Cats</span> <span class="k">in</span> <span class="n">it</span> <span class="k">for</span> <span class="n">me</span>    <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span> <span class="mf">22.99</span>
+<span class="o">&gt;</span>   <span class="mi">4</span> <span class="o">|</span> <span class="no">Turkleton</span><span class="s1">'s Folly    |           2 | 11.99
+&gt;   1 | Meowna Lisa          |           2 | 19.99
+&gt;   8 | Lady Caterly'</span><span class="n">s</span> <span class="no">Lover</span> <span class="o">|</span>           <span class="mi">2</span> <span class="o">|</span> <span class="mf">22.99</span>
+<span class="o">&gt;</span> </code></pre></figure>
 
 <blockquote>
 
@@ -183,12 +235,30 @@ Nov 11, 2013
   <p>Whereas a normal aggregate function with <code class="highlighter-rouge">GROUP BY</code> would collapse the results, a window function retains the original row. Let’s consider how this would affect the inner query from the subselect approach above:</p>
 
 </blockquote>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;</span> SELECT category_id, min<span class="o">(</span>price<span class="o">)</span> FROM cat_pictures GROUP BY category_id<span class="p">;</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>  category_id |  min  <br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <span class="nt">-------------</span>+-------<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>            1 |  9.99<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>            2 | 11.99<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;</span> SELECT category_id, min<span class="o">(</span>price<span class="o">)</span> FROM cat_pictures GROUP BY category_id<span class="p">;</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span>  category_id |  min  
+<span class="o">&gt;</span> <span class="nt">-------------</span>+-------
+<span class="o">&gt;</span>            1 |  9.99
+<span class="o">&gt;</span>            2 | 11.99
+<span class="o">&gt;</span> </code></pre></figure>
 
 <blockquote>
 
 </blockquote>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;</span> SELECT category_id, min<span class="o">(</span>price<span class="o">)</span> OVER <span class="o">(</span>PARTITION BY category_id<span class="o">)</span> FROM cat_pictures<span class="p">;</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>  category_id |  min  <br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <span class="nt">-------------</span>+-------<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>            1 |  9.99<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>            1 |  9.99<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>            1 |  9.99<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>            1 |  9.99<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>            1 |  9.99<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>            2 | 11.99<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>            2 | 11.99<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>            2 | 11.99<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;</span> SELECT category_id, min<span class="o">(</span>price<span class="o">)</span> OVER <span class="o">(</span>PARTITION BY category_id<span class="o">)</span> FROM cat_pictures<span class="p">;</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span>  category_id |  min  
+<span class="o">&gt;</span> <span class="nt">-------------</span>+-------
+<span class="o">&gt;</span>            1 |  9.99
+<span class="o">&gt;</span>            1 |  9.99
+<span class="o">&gt;</span>            1 |  9.99
+<span class="o">&gt;</span>            1 |  9.99
+<span class="o">&gt;</span>            1 |  9.99
+<span class="o">&gt;</span>            2 | 11.99
+<span class="o">&gt;</span>            2 | 11.99
+<span class="o">&gt;</span>            2 | 11.99
+<span class="o">&gt;</span> </code></pre></figure>
 
 <blockquote>
 
@@ -197,7 +267,19 @@ Nov 11, 2013
   <p>When a window frame is ordered, using an <code class="highlighter-rouge">ORDER BY</code> clause, even more options are possible. For example, consider the following:</p>
 
 </blockquote>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;</span> SELECT id, name, category_id, price, rank<span class="o">()</span> OVER <span class="o">(</span>PARTITION BY category_id ORDER BY price<span class="o">)</span> FROM cat_pictures<span class="p">;</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>  id |         name         | category_id | price | rank <br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <span class="nt">----</span>+----------------------+-------------+-------+------<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   7 | Triple LOL           |           1 |  9.99 |    1<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   5 | Hugs not Drugs       |           1 |  9.99 |    1<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   2 | Puss <span class="k">in </span>Boots        |           1 | 14.99 |    3<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   3 | Cats Gone By         |           1 | 19.99 |    4<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   6 | Cats <span class="k">in </span>it <span class="k">for </span>me    |           1 | 22.99 |    5<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   4 | Turkleton<span class="s1">'s Folly    |           2 | 11.99 |    1<br data-jekyll-commonmark-ghpages="" />&gt;   1 | Meowna Lisa          |           2 | 19.99 |    2<br data-jekyll-commonmark-ghpages="" />&gt;   8 | Lady Caterly'</span>s Lover |           2 | 22.99 |    3<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;</span> SELECT id, name, category_id, price, rank<span class="o">()</span> OVER <span class="o">(</span>PARTITION BY category_id ORDER BY price<span class="o">)</span> FROM cat_pictures<span class="p">;</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span>  id |         name         | category_id | price | rank 
+<span class="o">&gt;</span> <span class="nt">----</span>+----------------------+-------------+-------+------
+<span class="o">&gt;</span>   7 | Triple LOL           |           1 |  9.99 |    1
+<span class="o">&gt;</span>   5 | Hugs not Drugs       |           1 |  9.99 |    1
+<span class="o">&gt;</span>   2 | Puss <span class="k">in </span>Boots        |           1 | 14.99 |    3
+<span class="o">&gt;</span>   3 | Cats Gone By         |           1 | 19.99 |    4
+<span class="o">&gt;</span>   6 | Cats <span class="k">in </span>it <span class="k">for </span>me    |           1 | 22.99 |    5
+<span class="o">&gt;</span>   4 | Turkleton<span class="s1">'s Folly    |           2 | 11.99 |    1
+&gt;   1 | Meowna Lisa          |           2 | 19.99 |    2
+&gt;   8 | Lady Caterly'</span>s Lover |           2 | 22.99 |    3
+<span class="o">&gt;</span> </code></pre></figure>
 
 <blockquote>
 
@@ -206,26 +288,61 @@ Nov 11, 2013
   <p>Not so fast. Can you spot the issue with the above? The <code class="highlighter-rouge">rank()</code> window function assigns the same rank to ties, but we need the first one alphabetically in the case of “ties”. We can remedy that by using a different window function, <code class="highlighter-rouge">row_number()</code>, which guarantees different numbers.</p>
 
 </blockquote>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;</span> SELECT id, name, category_id, price, row_number<span class="o">()</span> OVER <span class="o">(</span>PARTITION BY category_id ORDER BY price, name<span class="o">)</span> FROM cat_pictures<span class="p">;</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>  id |         name         | category_id | price | row_number <br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <span class="nt">----</span>+----------------------+-------------+-------+------------<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   5 | Hugs not Drugs       |           1 |  9.99 |          1<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   7 | Triple LOL           |           1 |  9.99 |          2<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   2 | Puss <span class="k">in </span>Boots        |           1 | 14.99 |          3<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   3 | Cats Gone By         |           1 | 19.99 |          4<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   6 | Cats <span class="k">in </span>it <span class="k">for </span>me    |           1 | 22.99 |          5<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   4 | Turkleton<span class="s1">'s Folly    |           2 | 11.99 |          1<br data-jekyll-commonmark-ghpages="" />&gt;   1 | Meowna Lisa          |           2 | 19.99 |          2<br data-jekyll-commonmark-ghpages="" />&gt;   8 | Lady Caterly'</span>s Lover |           2 | 22.99 |          3<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;</span> SELECT id, name, category_id, price, row_number<span class="o">()</span> OVER <span class="o">(</span>PARTITION BY category_id ORDER BY price, name<span class="o">)</span> FROM cat_pictures<span class="p">;</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span>  id |         name         | category_id | price | row_number 
+<span class="o">&gt;</span> <span class="nt">----</span>+----------------------+-------------+-------+------------
+<span class="o">&gt;</span>   5 | Hugs not Drugs       |           1 |  9.99 |          1
+<span class="o">&gt;</span>   7 | Triple LOL           |           1 |  9.99 |          2
+<span class="o">&gt;</span>   2 | Puss <span class="k">in </span>Boots        |           1 | 14.99 |          3
+<span class="o">&gt;</span>   3 | Cats Gone By         |           1 | 19.99 |          4
+<span class="o">&gt;</span>   6 | Cats <span class="k">in </span>it <span class="k">for </span>me    |           1 | 22.99 |          5
+<span class="o">&gt;</span>   4 | Turkleton<span class="s1">'s Folly    |           2 | 11.99 |          1
+&gt;   1 | Meowna Lisa          |           2 | 19.99 |          2
+&gt;   8 | Lady Caterly'</span>s Lover |           2 | 22.99 |          3
+<span class="o">&gt;</span> </code></pre></figure>
 
 <blockquote>
 
   <p>Perfect! Looking at the rows with “1” as their “row_number”, we see what we expect, “Hugs not Drugs” and “Turkleton’s Folly”, which are the cheapest pictures from their categories. We can use an <code class="highlighter-rouge">IN</code> clause for filtering, similar to the previous approach:</p>
 
 </blockquote>
-<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">category_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">price</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <span class="k">FROM</span> <span class="n">cat_pictures</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <span class="k">WHERE</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">IN</span> <span class="p">(</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">row_number</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">category_id</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">price</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="k">FROM</span> <span class="n">cat_pictures</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <span class="p">);</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">category_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">price</span>
+<span class="o">&gt;</span> <span class="k">FROM</span> <span class="n">cat_pictures</span>
+<span class="o">&gt;</span> <span class="k">WHERE</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">IN</span> <span class="p">(</span>
+<span class="o">&gt;</span>   <span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">row_number</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">category_id</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">price</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="o">&gt;</span>   <span class="k">FROM</span> <span class="n">cat_pictures</span>
+<span class="o">&gt;</span> <span class="p">);</span>
+<span class="o">&gt;</span> </code></pre></figure>
 
 <blockquote>
 
 </blockquote>
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;</span>  id | category_id |         name         | price <br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <span class="nt">----</span>+-------------+----------------------+-------<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   5 |           1 | Hugs not Drugs       |  9.99<br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   4 |           2 | Turkleton<span class="s1">'s Folly    | 11.99<br data-jekyll-commonmark-ghpages="" />&gt; </span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;</span>  id | category_id |         name         | price 
+<span class="o">&gt;</span> <span class="nt">----</span>+-------------+----------------------+-------
+<span class="o">&gt;</span>   5 |           1 | Hugs not Drugs       |  9.99
+<span class="o">&gt;</span>   4 |           2 | Turkleton<span class="s1">'s Folly    | 11.99
+&gt; </span></code></pre></figure>
 
 <blockquote>
 
   <p>The where clause above filters records that both have an id that appears in the subquery next to a rank of 1. Now that we have the SQL down, let’s convert our Ruby model to take advantage of this window function technique:</p>
 
 </blockquote>
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">CatPicture</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="n">attr_accessible</span> <span class="ss">:category_id</span><span class="p">,</span> <span class="ss">:description</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:price</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>     <span class="n">belongs_to</span> <span class="ss">:category</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">cheapest_per_category</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>     <span class="n">where</span><span class="p">(</span><span class="s2">"(</span><span class="si">#{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">.id, 1) IN (</span><span class="si">#{</span><span class="n">price_rank_sql</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="kp">private</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">price_rank_sql</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>     <span class="n">scoped</span><span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="s2">"id, row_number() OVER (PARTITION BY category_id ORDER BY price ASC, name ASC)"</span><span class="p">).</span><span class="nf">to_sql</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span>   <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> <span class="k">end</span><br data-jekyll-commonmark-ghpages="" /><span class="o">&gt;</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">CatPicture</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+<span class="o">&gt;</span>   <span class="n">attr_accessible</span> <span class="ss">:category_id</span><span class="p">,</span> <span class="ss">:description</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:price</span>
+<span class="o">&gt;</span>     <span class="n">belongs_to</span> <span class="ss">:category</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span>   <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">cheapest_per_category</span>
+<span class="o">&gt;</span>     <span class="n">where</span><span class="p">(</span><span class="s2">"(</span><span class="si">#{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">.id, 1) IN (</span><span class="si">#{</span><span class="n">price_rank_sql</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+<span class="o">&gt;</span>   <span class="k">end</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span>   <span class="kp">private</span>
+<span class="o">&gt;</span>   <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">price_rank_sql</span>
+<span class="o">&gt;</span>     <span class="n">scoped</span><span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="s2">"id, row_number() OVER (PARTITION BY category_id ORDER BY price ASC, name ASC)"</span><span class="p">).</span><span class="nf">to_sql</span>
+<span class="o">&gt;</span>   <span class="k">end</span>
+<span class="o">&gt;</span> <span class="k">end</span>
+<span class="o">&gt;</span> </code></pre></figure>
 
 <blockquote>
 
