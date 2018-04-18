@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>So passes a real hero of the computing age. RIP Dennis Ritchie</title>
+    <title>TIL: Don't use vendor subdirectory on Heroku</title>
     <meta name="description" content="The development blog of tamouse">
     <link rel="stylesheet" href="/swaac/assets/css/main.css" />
-    <link rel="canonical" href="https://tamouse.github.io//swaac/swaac/2011/10/13/so-passes-a-real-hero-of-the-computing-age/">
+    <link rel="canonical" href="https://tamouse.github.io//swaac/webdev/2018/04/17/til-dont-use-vendor-subdirectory-on-heroku/">
     <link href="/swaac/favicon.png" rel="icon">
 </head>
 
@@ -68,25 +68,25 @@
 
         <main id="main-content" class="container-fluid">
           <header class="page-header">
-<h1>So passes a real hero of the computing age. RIP Dennis Ritchie</h1>
-Oct 13, 2011
+<h1>TIL: Don't use vendor subdirectory on Heroku</h1>
+Apr 17, 2018
 
 
- &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/swaac">swaac</a></li></ul>
- &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/dennis-ritchie">dennis-ritchie</a></li> 
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/webdev">webdev</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/heroku">heroku</a></li> 
 </header>
 
 <article>
-  <p>I just heard that Dennis Ritchie passed away:</p>
+  <p>I was helping a friend tonight with a problem they were having getting
+a tiny web app to run on heroku.</p>
 
-<div class="g-post" data-href="https://plus.google.com/101960720994009339267/posts/ENuEDDYfvKP"></div>
+<p>I spent quite some time trying to figure out the issue.</p>
 
-<p><a href="https://en.wikipedia.org/wiki/Dennis_Ritchie" title="Dennis MacAlistair Ritchie on Wikipedia">Dennis</a> was co-inventor of the C Programming Language, which all modern computer operating systems are based upon, with Brian Kernighan, and co-inventor of Unix, with Ken Thompson.</p>
+<p>It turns out that <code class="highlighter-rouge">Heroku</code> reserves the <code class="highlighter-rouge">vendor/</code> folder for it’s own
+use, so you can’t delivery files from it. (This is true for PHP
+applications, at least. We didn’t investigate further).</p>
 
-<p>Ritchie, Thompson and Kernighan were all big heroes and inspirations for me in my early career. Their influence is great; many, many people will not ever know how much influence these people have had on their daily lives.</p>
-
-<p>RIP, Dennis. :’(</p>
-
+<p>So, simple rule, don’t use the <code class="highlighter-rouge">vendor/</code> directory in your own app.</p>
 
 </article>
 <hr>

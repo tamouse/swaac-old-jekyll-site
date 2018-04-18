@@ -5,9 +5,33 @@
     <description>The development blog of tamouse</description>
     <link>https://tamouse.github.io//swaac/</link>
     <atom:link href="https://tamouse.github.io//swaac/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 07 Apr 2018 00:04:53 -0500</pubDate>
-    <lastBuildDate>Sat, 07 Apr 2018 00:04:53 -0500</lastBuildDate>
+    <pubDate>Tue, 17 Apr 2018 21:49:42 -0500</pubDate>
+    <lastBuildDate>Tue, 17 Apr 2018 21:49:42 -0500</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title>TIL: Don't use vendor subdirectory on Heroku</title>
+        <description>&lt;p&gt;I was helping a friend tonight with a problem they were having getting
+a tiny web app to run on heroku.&lt;/p&gt;
+
+&lt;p&gt;I spent quite some time trying to figure out the issue.&lt;/p&gt;
+
+&lt;p&gt;It turns out that &lt;code class=&quot;highlighter-rouge&quot;&gt;Heroku&lt;/code&gt; reserves the &lt;code class=&quot;highlighter-rouge&quot;&gt;vendor/&lt;/code&gt; folder for it’s own
+use, so you can’t delivery files from it. (This is true for PHP
+applications, at least. We didn’t investigate further).&lt;/p&gt;
+
+&lt;p&gt;So, simple rule, don’t use the &lt;code class=&quot;highlighter-rouge&quot;&gt;vendor/&lt;/code&gt; directory in your own app.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 17 Apr 2018 21:40:00 -0500</pubDate>
+        <link>https://tamouse.github.io//swaac/webdev/2018/04/17/til-dont-use-vendor-subdirectory-on-heroku/</link>
+        <guid isPermaLink="true">https://tamouse.github.io//swaac/webdev/2018/04/17/til-dont-use-vendor-subdirectory-on-heroku/</guid>
+        
+        <category>heroku</category>
+        
+        
+        <category>webdev</category>
+        
+      </item>
     
       <item>
         <title>TIL: React Error boundary workarounds</title>
@@ -716,125 +740,6 @@ debugger / study the backtrace.&lt;/p&gt;
         
         
         <category>emacs</category>
-        
-      </item>
-    
-      <item>
-        <title>What's Falsy in JavaScript?</title>
-        <description>&lt;p&gt;This is a question that comes up from time to time, and is sometimes a
-surprising answer.&lt;/p&gt;
-
-&lt;p&gt;“Falsy” is a term that generally means “These terms act as if they are
-&lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt; when used in comparisons”. There’s a corresponding term
-“Truthy” which generally means “everything else acts like
-&lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;”. These terms are used across many different languages, both
-typed and untyped.&lt;/p&gt;
-
-&lt;p&gt;In JavaScript, there is sometimes confusion and surprise. For clarity,
-I turn to &lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS&quot; title=&quot;You don't know JS on
-Github&quot;&gt;You Don’t Know
-JS&lt;/a&gt; by one of my master teachers, &lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS&quot;&gt;Kyle Simpson
-(@getify)&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;In &lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS/blob/master/types%20%26%20grammar/ch4.md#falsy-values&quot;&gt;Types &amp;amp; Grammar: Falsy Values&lt;/a&gt;,
-Kyle explains how things get defined as Falsy:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;All of JavaScript’s values can be divided into two categories:&lt;/p&gt;
-
-  &lt;ul&gt;
-    &lt;li&gt;values that will become &lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt; if coerced to &lt;code class=&quot;highlighter-rouge&quot;&gt;boolean&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;everything else (which will obviously become &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;)&lt;/li&gt;
-  &lt;/ul&gt;
-
-  &lt;p&gt;I’m not just being facetious. The JS spec defines a specific, narrow list of values that will coerce to &lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt; when coerced to a &lt;code class=&quot;highlighter-rouge&quot;&gt;boolean&lt;/code&gt; value.&lt;/p&gt;
-
-  &lt;p&gt;How do we know what the list of values is? In the ES5 spec, section 9.2 defines a &lt;code class=&quot;highlighter-rouge&quot;&gt;ToBoolean&lt;/code&gt; abstract operation, which says exactly what happens for all the possible values when you try to coerce them “to boolean.”&lt;/p&gt;
-
-  &lt;p&gt;From that table, we get the following as the so-called “falsy” values list:&lt;/p&gt;
-
-  &lt;ul&gt;
-    &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;undefined&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;+0, -0, and &lt;code class=&quot;highlighter-rouge&quot;&gt;NaN&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;””&lt;/li&gt;
-  &lt;/ul&gt;
-
-  &lt;p&gt;That’s it. If a value is on that list, it’s a “falsy” value, and it will coerce to &lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt; if you force a &lt;code class=&quot;highlighter-rouge&quot;&gt;boolean&lt;/code&gt; coercion on it.&lt;/p&gt;
-
-  &lt;p&gt;By logical conclusion, if a value is not on that list, it must be on another list, which we call the “truthy” values list. But JS doesn’t really define a “truthy” list per se. It gives some examples, such as saying explicitly that all objects are truthy, but mostly the spec just implies: &lt;strong&gt;anything not explicitly on the falsy list is therefore truthy&lt;/strong&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;If the term “coersion” is new to you, read &lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS/blob/master/types%20%26%20grammar/ch4.md#falsy-values&quot;&gt;the whole chapter on Coercion&lt;/a&gt;
-for a deeper understanding. Briefly, “coercion” means when you try to
-change the type of an expression into another in a programming
-language. We do this a lot in JavaScript when you might not realize
-it. A &lt;em&gt;very&lt;/em&gt; common
-(&lt;span style=&quot;color:red;font-weight:bold&quot;&gt;but somewhat dangerous&lt;/span&gt;)
-JS idiom is:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;blah&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// a guard clause; `foo` is coerced to a boolean by the `!` operator&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-  &lt;span class=&quot;c1&quot;&gt;// carry on with the rest of blah&lt;/span&gt;
-
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;and &lt;code class=&quot;highlighter-rouge&quot;&gt;foo&lt;/code&gt; is not explicitly a &lt;code class=&quot;highlighter-rouge&quot;&gt;boolean&lt;/code&gt; value, such as &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;
-or &lt;code class=&quot;highlighter-rouge&quot;&gt;undefined&lt;/code&gt;, when checking to make sure you’re not operating on
-such a value, it is &lt;em&gt;coerced&lt;/em&gt; into one (using that &lt;code class=&quot;highlighter-rouge&quot;&gt;.ToBoolean&lt;/code&gt; Kyle
-mentions above.) This idiom is used a lot in functions as a guard
-clause to prevent mischief from callers.&lt;/p&gt;
-
-&lt;p&gt;You might also see this instead of an early return:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;blah&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// a guard clause, `foo` is coerced to a boolean by the `if`&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// statement directly&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// carry on with `blah` knowing that `foo` is not `null` or `undefined`&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Of course, with both of these idioms, there can be problems with some
-of the other definitions for falsy: what happend when you intend to
-pass in a value of &lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt; for &lt;code class=&quot;highlighter-rouge&quot;&gt;foo&lt;/code&gt;?&lt;/p&gt;
-
-&lt;p&gt;In such a case, I step back and stop using coercion and go for
-explicitness, and the idiom becomes:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;blah&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// a guard clause, explicit checking&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;undefined&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// carry on with `blah` knowing *exactly* that `foo` is not `null` or `undefined`&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;So there we have it. The ECMAScript specification Kyle refers to above
-is at &lt;a href=&quot;http://www.ecma-international.org/ecma-262/6.0/#sec-toboolean&quot;&gt;http://www.ecma-international.org/ecma-262/6.0/#sec-toboolean&lt;/a&gt;
-if you’re interested in reading it.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;If you found this useful, please go visit Kyle’s site
-&lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS&quot; title=&quot;You
-Don't Know JS Series by Kyle Simpson (@getify) on Github.com&quot;&gt;You-Dont-Know-JS&lt;/a&gt; and
-give him some love. Buy the books, become a patreon!&lt;/p&gt;
-</description>
-        <pubDate>Thu, 23 Nov 2017 09:05:00 -0600</pubDate>
-        <link>https://tamouse.github.io//swaac/javascript/2017/11/23/whats-falsy-in-javascript/</link>
-        <guid isPermaLink="true">https://tamouse.github.io//swaac/javascript/2017/11/23/whats-falsy-in-javascript/</guid>
-        
-        <category>javascript</category>
-        
-        <category>falsy</category>
-        
-        <category>coercion</category>
-        
-        
-        <category>javascript</category>
         
       </item>
     
