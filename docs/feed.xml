@@ -5,8 +5,8 @@
     <description>The development blog of tamouse</description>
     <link>https://tamouse.github.io//swaac/</link>
     <atom:link href="https://tamouse.github.io//swaac/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 15 May 2018 01:13:26 -0500</pubDate>
-    <lastBuildDate>Tue, 15 May 2018 01:13:26 -0500</lastBuildDate>
+    <pubDate>Tue, 15 May 2018 01:15:09 -0500</pubDate>
+    <lastBuildDate>Tue, 15 May 2018 01:15:09 -0500</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
     
       <item>
@@ -99,6 +99,30 @@ want removed:&lt;/p&gt;
         
         
         <category>javascript</category>
+        
+      </item>
+    
+      <item>
+        <title>TIL: Don't use vendor subdirectory on Heroku</title>
+        <description>&lt;p&gt;I was helping a friend tonight with a problem they were having getting
+a tiny web app to run on heroku.&lt;/p&gt;
+
+&lt;p&gt;I spent quite some time trying to figure out the issue.&lt;/p&gt;
+
+&lt;p&gt;It turns out that &lt;code class=&quot;highlighter-rouge&quot;&gt;Heroku&lt;/code&gt; reserves the &lt;code class=&quot;highlighter-rouge&quot;&gt;vendor/&lt;/code&gt; folder for it’s own
+use, so you can’t delivery files from it. (This is true for PHP
+applications, at least. We didn’t investigate further).&lt;/p&gt;
+
+&lt;p&gt;So, simple rule, don’t use the &lt;code class=&quot;highlighter-rouge&quot;&gt;vendor/&lt;/code&gt; directory in your own app.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 17 Apr 2018 21:40:00 -0500</pubDate>
+        <link>https://tamouse.github.io//swaac/webdev/2018/04/17/til-dont-use-vendor-subdirectory-on-heroku/</link>
+        <guid isPermaLink="true">https://tamouse.github.io//swaac/webdev/2018/04/17/til-dont-use-vendor-subdirectory-on-heroku/</guid>
+        
+        <category>heroku</category>
+        
+        
+        <category>webdev</category>
         
       </item>
     
@@ -782,33 +806,6 @@ like exactly, but I’m sure it &lt;em&gt;is&lt;/em&gt; a &lt;code class=&quot;h
         
         
         <category>css</category>
-        
-      </item>
-    
-      <item>
-        <title>TIL: emacs toggle-debug-on-exit</title>
-        <description>&lt;p&gt;Today, I learned there’s a &lt;code class=&quot;highlighter-rouge&quot;&gt;toggle-debug-on-exit&lt;/code&gt; emacs function.&lt;/p&gt;
-
-&lt;p&gt;To use it:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;M-x toggle-debug-on-exit
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;then reproduce the problem when trying to exit emacs, and use the
-debugger / study the backtrace.&lt;/p&gt;
-
-&lt;p&gt;H/T &lt;code class=&quot;highlighter-rouge&quot;&gt;#emacs&lt;/code&gt; channel on Freenode.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 03 Dec 2017 21:54:00 -0600</pubDate>
-        <link>https://tamouse.github.io//swaac/emacs/2017/12/03/til-emacs-toggle-debug-on-exit/</link>
-        <guid isPermaLink="true">https://tamouse.github.io//swaac/emacs/2017/12/03/til-emacs-toggle-debug-on-exit/</guid>
-        
-        <category>emacs</category>
-        
-        <category>debugging</category>
-        
-        
-        <category>emacs</category>
         
       </item>
     
