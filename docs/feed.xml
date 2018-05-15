@@ -5,9 +5,102 @@
     <description>The development blog of tamouse</description>
     <link>https://tamouse.github.io//swaac/</link>
     <atom:link href="https://tamouse.github.io//swaac/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 07 Apr 2018 00:04:53 -0500</pubDate>
-    <lastBuildDate>Sat, 07 Apr 2018 00:04:53 -0500</lastBuildDate>
+    <pubDate>Tue, 15 May 2018 01:13:26 -0500</pubDate>
+    <lastBuildDate>Tue, 15 May 2018 01:13:26 -0500</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title>Removing entries from an object</title>
+        <description>&lt;p&gt;I was casting about for a simple way to remove specific keys from an
+object before returning it to a consumer function. In this particular
+case, I wanted to remove all the entries that began with an underscore
+(&lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;_&quot;&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;There’s nothing like Ruby’s Hash Enumerbles, but there is a library of
+such functions for JavaScript, &lt;a href=&quot;https://lodash.com&quot;&gt;lodash&lt;/a&gt; that fills
+in rather well.&lt;/p&gt;
+
+&lt;p&gt;For this exercise, I used the
+&lt;a href=&quot;https://lodash.com/docs/4.17.10#reduce&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;reduce&lt;/code&gt;&lt;/a&gt; function in the
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Collections&lt;/code&gt; set of functions.&lt;/p&gt;
+
+&lt;h2 id=&quot;reduce-syntax&quot;&gt;reduce syntax&lt;/h2&gt;
+
+&lt;p&gt;The syntax for lodash’s &lt;code class=&quot;highlighter-rouge&quot;&gt;reduce&lt;/code&gt; is:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;result = _.reduce(collection, filter, initialValue)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;the-filter&quot;&gt;the filter&lt;/h2&gt;
+
+&lt;p&gt;In the &lt;code class=&quot;highlighter-rouge&quot;&gt;reduce&lt;/code&gt; function, you need to provide it with an &lt;code class=&quot;highlighter-rouge&quot;&gt;iteratee&lt;/code&gt; –
+something that acts on the current thing in the collection and returns
+the updated accumulator.&lt;/p&gt;
+
+&lt;p&gt;The function signature for the filter (iteratee) is:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function filter(accumulator, value, key, collection)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If the collection is an &lt;code class=&quot;highlighter-rouge&quot;&gt;Object&lt;/code&gt;, the key is the current key. If the
+collection is an &lt;code class=&quot;highlighter-rouge&quot;&gt;Array&lt;/code&gt;, it’s the current index.&lt;/p&gt;
+
+&lt;p&gt;In my case, I want to dump all keys that start with underscore, so the
+filter function is:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;no_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;acc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;startsWith&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;_&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;acc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;acc&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;putting-it-all-together&quot;&gt;putting it all together&lt;/h2&gt;
+
+&lt;p&gt;In a simple example, I have &lt;code class=&quot;highlighter-rouge&quot;&gt;obj1&lt;/code&gt; that has a bad key: &lt;code class=&quot;highlighter-rouge&quot;&gt;_bad&lt;/code&gt; that I
+want removed:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;_bad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;good&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;no_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;accumulator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;startsWith&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;_&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;accumulator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;accumulator&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;reduce&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;no_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The end result in &lt;code class=&quot;highlighter-rouge&quot;&gt;obj2&lt;/code&gt; is:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{ good: 2 }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;which is just what I wanted.&lt;/p&gt;
+
+&lt;p&gt;There’s a &lt;code class=&quot;highlighter-rouge&quot;&gt;jsfiddle&lt;/code&gt; at &lt;a href=&quot;https://jsfiddle.net/tamouse/5f3L5dbz/&quot;&gt;https://jsfiddle.net/tamouse/5f3L5dbz/&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 15 May 2018 00:38:00 -0500</pubDate>
+        <link>https://tamouse.github.io//swaac/javascript/2018/05/15/removing-entries-from-an-object/</link>
+        <guid isPermaLink="true">https://tamouse.github.io//swaac/javascript/2018/05/15/removing-entries-from-an-object/</guid>
+        
+        <category>javascript</category>
+        
+        <category>lodash</category>
+        
+        <category>reduce</category>
+        
+        <category>snippets</category>
+        
+        
+        <category>javascript</category>
+        
+      </item>
     
       <item>
         <title>TIL: React Error boundary workarounds</title>
@@ -716,125 +809,6 @@ debugger / study the backtrace.&lt;/p&gt;
         
         
         <category>emacs</category>
-        
-      </item>
-    
-      <item>
-        <title>What's Falsy in JavaScript?</title>
-        <description>&lt;p&gt;This is a question that comes up from time to time, and is sometimes a
-surprising answer.&lt;/p&gt;
-
-&lt;p&gt;“Falsy” is a term that generally means “These terms act as if they are
-&lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt; when used in comparisons”. There’s a corresponding term
-“Truthy” which generally means “everything else acts like
-&lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;”. These terms are used across many different languages, both
-typed and untyped.&lt;/p&gt;
-
-&lt;p&gt;In JavaScript, there is sometimes confusion and surprise. For clarity,
-I turn to &lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS&quot; title=&quot;You don't know JS on
-Github&quot;&gt;You Don’t Know
-JS&lt;/a&gt; by one of my master teachers, &lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS&quot;&gt;Kyle Simpson
-(@getify)&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;In &lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS/blob/master/types%20%26%20grammar/ch4.md#falsy-values&quot;&gt;Types &amp;amp; Grammar: Falsy Values&lt;/a&gt;,
-Kyle explains how things get defined as Falsy:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;All of JavaScript’s values can be divided into two categories:&lt;/p&gt;
-
-  &lt;ul&gt;
-    &lt;li&gt;values that will become &lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt; if coerced to &lt;code class=&quot;highlighter-rouge&quot;&gt;boolean&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;everything else (which will obviously become &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;)&lt;/li&gt;
-  &lt;/ul&gt;
-
-  &lt;p&gt;I’m not just being facetious. The JS spec defines a specific, narrow list of values that will coerce to &lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt; when coerced to a &lt;code class=&quot;highlighter-rouge&quot;&gt;boolean&lt;/code&gt; value.&lt;/p&gt;
-
-  &lt;p&gt;How do we know what the list of values is? In the ES5 spec, section 9.2 defines a &lt;code class=&quot;highlighter-rouge&quot;&gt;ToBoolean&lt;/code&gt; abstract operation, which says exactly what happens for all the possible values when you try to coerce them “to boolean.”&lt;/p&gt;
-
-  &lt;p&gt;From that table, we get the following as the so-called “falsy” values list:&lt;/p&gt;
-
-  &lt;ul&gt;
-    &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;undefined&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;+0, -0, and &lt;code class=&quot;highlighter-rouge&quot;&gt;NaN&lt;/code&gt;&lt;/li&gt;
-    &lt;li&gt;””&lt;/li&gt;
-  &lt;/ul&gt;
-
-  &lt;p&gt;That’s it. If a value is on that list, it’s a “falsy” value, and it will coerce to &lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt; if you force a &lt;code class=&quot;highlighter-rouge&quot;&gt;boolean&lt;/code&gt; coercion on it.&lt;/p&gt;
-
-  &lt;p&gt;By logical conclusion, if a value is not on that list, it must be on another list, which we call the “truthy” values list. But JS doesn’t really define a “truthy” list per se. It gives some examples, such as saying explicitly that all objects are truthy, but mostly the spec just implies: &lt;strong&gt;anything not explicitly on the falsy list is therefore truthy&lt;/strong&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;If the term “coersion” is new to you, read &lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS/blob/master/types%20%26%20grammar/ch4.md#falsy-values&quot;&gt;the whole chapter on Coercion&lt;/a&gt;
-for a deeper understanding. Briefly, “coercion” means when you try to
-change the type of an expression into another in a programming
-language. We do this a lot in JavaScript when you might not realize
-it. A &lt;em&gt;very&lt;/em&gt; common
-(&lt;span style=&quot;color:red;font-weight:bold&quot;&gt;but somewhat dangerous&lt;/span&gt;)
-JS idiom is:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;blah&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// a guard clause; `foo` is coerced to a boolean by the `!` operator&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-  &lt;span class=&quot;c1&quot;&gt;// carry on with the rest of blah&lt;/span&gt;
-
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;and &lt;code class=&quot;highlighter-rouge&quot;&gt;foo&lt;/code&gt; is not explicitly a &lt;code class=&quot;highlighter-rouge&quot;&gt;boolean&lt;/code&gt; value, such as &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;
-or &lt;code class=&quot;highlighter-rouge&quot;&gt;undefined&lt;/code&gt;, when checking to make sure you’re not operating on
-such a value, it is &lt;em&gt;coerced&lt;/em&gt; into one (using that &lt;code class=&quot;highlighter-rouge&quot;&gt;.ToBoolean&lt;/code&gt; Kyle
-mentions above.) This idiom is used a lot in functions as a guard
-clause to prevent mischief from callers.&lt;/p&gt;
-
-&lt;p&gt;You might also see this instead of an early return:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;blah&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// a guard clause, `foo` is coerced to a boolean by the `if`&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// statement directly&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// carry on with `blah` knowing that `foo` is not `null` or `undefined`&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Of course, with both of these idioms, there can be problems with some
-of the other definitions for falsy: what happend when you intend to
-pass in a value of &lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt; for &lt;code class=&quot;highlighter-rouge&quot;&gt;foo&lt;/code&gt;?&lt;/p&gt;
-
-&lt;p&gt;In such a case, I step back and stop using coercion and go for
-explicitness, and the idiom becomes:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;blah&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// a guard clause, explicit checking&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;foo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;undefined&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// carry on with `blah` knowing *exactly* that `foo` is not `null` or `undefined`&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;So there we have it. The ECMAScript specification Kyle refers to above
-is at &lt;a href=&quot;http://www.ecma-international.org/ecma-262/6.0/#sec-toboolean&quot;&gt;http://www.ecma-international.org/ecma-262/6.0/#sec-toboolean&lt;/a&gt;
-if you’re interested in reading it.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;If you found this useful, please go visit Kyle’s site
-&lt;a href=&quot;https://github.com/getify/You-Dont-Know-JS&quot; title=&quot;You
-Don't Know JS Series by Kyle Simpson (@getify) on Github.com&quot;&gt;You-Dont-Know-JS&lt;/a&gt; and
-give him some love. Buy the books, become a patreon!&lt;/p&gt;
-</description>
-        <pubDate>Thu, 23 Nov 2017 09:05:00 -0600</pubDate>
-        <link>https://tamouse.github.io//swaac/javascript/2017/11/23/whats-falsy-in-javascript/</link>
-        <guid isPermaLink="true">https://tamouse.github.io//swaac/javascript/2017/11/23/whats-falsy-in-javascript/</guid>
-        
-        <category>javascript</category>
-        
-        <category>falsy</category>
-        
-        <category>coercion</category>
-        
-        
-        <category>javascript</category>
         
       </item>
     

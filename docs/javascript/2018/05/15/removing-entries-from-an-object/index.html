@@ -1,0 +1,184 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Removing entries from an object</title>
+    <meta name="description" content="The development blog of tamouse">
+    <link rel="stylesheet" href="/swaac/assets/css/main.css" />
+    <link rel="canonical" href="https://tamouse.github.io//swaac/javascript/2018/05/15/removing-entries-from-an-object/">
+    <link href="/swaac/favicon.png" rel="icon">
+</head>
+
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="full-height-wrapper">
+      <div class="two-column-wrapper">
+        <aside class="sidebar">
+
+  <header>
+    <nav id="" class="" role="navigation">
+      <div class="container-fluid">
+        <div class="">
+          <h2><a class="" href="/swaac/">Software as a Craft</a></h2>
+        </div>
+        <div id="" class="">
+          <ul class="">
+            
+            <li><a href="/swaac/pages/learning">Learning</a></li>
+            
+            <li><a href="/swaac/pages/all_posts">Posts</a></li>
+            
+            <li><a href="/swaac/pages">Pages</a></li>
+            
+            <li><a href="/swaac/tags">Tags</a></li>
+            
+            <li><a href="/swaac/categories">Categories</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <footer id="" class="" role="navigation">
+    <div class="container-fluid">
+      <div class="">
+        <a class="" href="http://www.tamouse.org">&copy; 2018 Tamara Temple</a>
+      </div>
+      <div id="" class="">
+        <ul class="">
+          <li><a href="//github.com/tamouse">github <i class="fa fa-github"></i></a></li>
+          <li><a href="//twitter.com/tamouse">twitter <i class="fa fa-twitter"></i></a></li>
+          <li><a href="/swaac/feed.xml">subscribe (RSS) <i class="fa fa-rss"></i></a></li>
+          <li><a href="/swaac/pages/colophon/">Colophon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</aside>
+
+        <main id="main-content" class="container-fluid">
+          <header class="page-header">
+<h1>Removing entries from an object</h1>
+May 15, 2018
+
+
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/javascript">javascript</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/javascript">javascript</a></li> <li role="presentation"><a href="/swaac/tags/lodash">lodash</a></li> <li role="presentation"><a href="/swaac/tags/reduce">reduce</a></li> <li role="presentation"><a href="/swaac/tags/snippets">snippets</a></li> 
+</header>
+
+<article>
+  <p>I was casting about for a simple way to remove specific keys from an
+object before returning it to a consumer function. In this particular
+case, I wanted to remove all the entries that began with an underscore
+(<code class="highlighter-rouge">"_"</code>).</p>
+
+<p>There’s nothing like Ruby’s Hash Enumerbles, but there is a library of
+such functions for JavaScript, <a href="https://lodash.com">lodash</a> that fills
+in rather well.</p>
+
+<p>For this exercise, I used the
+<a href="https://lodash.com/docs/4.17.10#reduce"><code class="highlighter-rouge">reduce</code></a> function in the
+<code class="highlighter-rouge">Collections</code> set of functions.</p>
+
+<h2 id="reduce-syntax">reduce syntax</h2>
+
+<p>The syntax for lodash’s <code class="highlighter-rouge">reduce</code> is:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>result = _.reduce(collection, filter, initialValue)
+</code></pre></div></div>
+
+<h2 id="the-filter">the filter</h2>
+
+<p>In the <code class="highlighter-rouge">reduce</code> function, you need to provide it with an <code class="highlighter-rouge">iteratee</code> –
+something that acts on the current thing in the collection and returns
+the updated accumulator.</p>
+
+<p>The function signature for the filter (iteratee) is:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function filter(accumulator, value, key, collection)
+</code></pre></div></div>
+
+<p>If the collection is an <code class="highlighter-rouge">Object</code>, the key is the current key. If the
+collection is an <code class="highlighter-rouge">Array</code>, it’s the current index.</p>
+
+<p>In my case, I want to dump all keys that start with underscore, so the
+filter function is:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">no_</span><span class="p">(</span><span class="nx">acc</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">key</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">acc</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">acc</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="putting-it-all-together">putting it all together</h2>
+
+<p>In a simple example, I have <code class="highlighter-rouge">obj1</code> that has a bad key: <code class="highlighter-rouge">_bad</code> that I
+want removed:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">_bad</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">good</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">no_</span><span class="p">(</span><span class="nx">accumulator</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">key</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">accumulator</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">accumulator</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">obj1</span><span class="p">,</span> <span class="nx">no_</span><span class="p">,</span> <span class="p">{})</span>
+</code></pre></div></div>
+
+<p>The end result in <code class="highlighter-rouge">obj2</code> is:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ good: 2 }
+</code></pre></div></div>
+
+<p>which is just what I wanted.</p>
+
+<p>There’s a <code class="highlighter-rouge">jsfiddle</code> at <a href="https://jsfiddle.net/tamouse/5f3L5dbz/">https://jsfiddle.net/tamouse/5f3L5dbz/</a></p>
+
+</article>
+<hr>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </main>
+      </div>
+    </div>
+    <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="/swaac/js/vendor/bootstrap.js"></script>
+<script src="https://use.fontawesome.com/9e3a326427.js"></script>
+<script src="/swaac/js/main.js"></script>
+
+    
+
+  </body>
+</html>
