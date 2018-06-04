@@ -5,9 +5,41 @@
     <description>The development blog of tamouse</description>
     <link>https://tamouse.github.io//swaac/</link>
     <atom:link href="https://tamouse.github.io//swaac/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 15 May 2018 01:15:09 -0500</pubDate>
-    <lastBuildDate>Tue, 15 May 2018 01:15:09 -0500</lastBuildDate>
+    <pubDate>Mon, 04 Jun 2018 11:56:56 -0500</pubDate>
+    <lastBuildDate>Mon, 04 Jun 2018 11:56:56 -0500</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title>TIL: Removing all Docker Containers and Images</title>
+        <description>&lt;p&gt;I needed to do a reset on my work machine of the Docker stuff I was
+using, so needed to know how to do this.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker rm &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;docker ps &lt;span class=&quot;nt&quot;&gt;-aq&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker rmi &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;docker images &lt;span class=&quot;nt&quot;&gt;-q&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker ps -aq&lt;/code&gt; gives a list of all the container hashes, which is
+given the &lt;code class=&quot;highlighter-rouge&quot;&gt;docker rm&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;p&gt;Similarly, &lt;code class=&quot;highlighter-rouge&quot;&gt;docker images -q&lt;/code&gt; lists all the docker image hashes, which
+is given to docker’s “remove images” &lt;code class=&quot;highlighter-rouge&quot;&gt;rmi&lt;/code&gt; command.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 04 Jun 2018 11:51:00 -0500</pubDate>
+        <link>https://tamouse.github.io//swaac/docker/2018/06/04/til-remove-all-docker-containers-and-images/</link>
+        <guid isPermaLink="true">https://tamouse.github.io//swaac/docker/2018/06/04/til-remove-all-docker-containers-and-images/</guid>
+        
+        <category>docker</category>
+        
+        <category>containers</category>
+        
+        <category>images</category>
+        
+        <category>removing</category>
+        
+        
+        <category>docker</category>
+        
+      </item>
     
       <item>
         <title>Removing entries from an object</title>
@@ -712,100 +744,6 @@ it in a namespace, and then clear that every time, too:&lt;/p&gt;
         
         
         <category>testing</category>
-        
-      </item>
-    
-      <item>
-        <title>Side-by-side layout with CSS Grid</title>
-        <description>&lt;p&gt;In my continuing search for my “best” web site layout, I’ve come down
-pretty strongly on the side-by-side “dashboard” style, where there
-aren’t page headers or footers. The reasons I’m not particularly
-liking page headers and footers has to do with the way I tend to
-scroll through sites, but pressing the spacebar. This tends to make
-the content scroll underneath the fixed headers, and I have to back up
-using the up arrow. It’s a pain with so many other websites,
-especially when they interpret using the up arrow as “The User must
-want more options in the header! Let’s make it BIGGER” which means I
-have to up arrow even more.&lt;/p&gt;
-
-&lt;p&gt;So.&lt;/p&gt;
-
-&lt;h2 id=&quot;creating-a-grid-side-by-side-layout-with-100-stretch&quot;&gt;Creating a Grid side-by-side layout with 100% stretch&lt;/h2&gt;
-
-&lt;p&gt;Here’s a &lt;a href=&quot;https://codepen.io/tamouse/pen/KyEPPG&quot; title=&quot;see on codepen.io&quot;&gt;Codepen.IO Pen&lt;/a&gt; that
-creates that layout using CSS Grid.&lt;/p&gt;
-
-&lt;p data-height=&quot;597&quot; data-theme-id=&quot;0&quot; data-slug-hash=&quot;KyEPPG&quot; data-default-tab=&quot;css,result&quot; data-user=&quot;tamouse&quot; data-embed-version=&quot;2&quot; data-pen-title=&quot;side-by-side dashboard layout using grid&quot; class=&quot;codepen&quot;&gt;See the Pen &lt;a href=&quot;https://codepen.io/tamouse/pen/KyEPPG/&quot;&gt;side-by-side dashboard layout using grid&lt;/a&gt; by Tamara Temple (&lt;a href=&quot;https://codepen.io/tamouse&quot;&gt;@tamouse&lt;/a&gt;) on &lt;a href=&quot;https://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
-&lt;script async=&quot;&quot; src=&quot;https://production-assets.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;
-
-&lt;p&gt; &lt;/p&gt;
-
-&lt;h2 id=&quot;the-important-thing-to-remember-about-this&quot;&gt;The important thing to remember about this:&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;When I want an inner block to stretch to the full height of the
-window, I must set that inner block element, &lt;strong&gt;and all wrapping
-block elements&lt;/strong&gt; height to 100%.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;making-this-work-on-a-react-app&quot;&gt;Making this work on a React app&lt;/h2&gt;
-
-&lt;p&gt;In a typical React app, I have 4 levels that need to be set to
-100%:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;html&lt;/li&gt;
-  &lt;li&gt;body&lt;/li&gt;
-  &lt;li&gt;app component&lt;/li&gt;
-  &lt;li&gt;the div inside the app component&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The canonical react app, as &lt;code class=&quot;highlighter-rouge&quot;&gt;create-react-app&lt;/code&gt; defines it, looks like
-so:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt; .... &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;app&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;React app loading...&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;After the react app loads, it looks like so:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt; .... &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;app&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;react__app&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;... &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;(Just off the top of my head, I’m unsure what the react app’s &lt;code class=&quot;highlighter-rouge&quot;&gt;div&lt;/code&gt; looks
-like exactly, but I’m sure it &lt;em&gt;is&lt;/em&gt; a &lt;code class=&quot;highlighter-rouge&quot;&gt;div&lt;/code&gt; element so the below will work.)&lt;/p&gt;
-
-&lt;p&gt;So I use this as my basic CSS:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#app&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;to get the react app to fill the full window height like I want it.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 03 Dec 2017 21:58:00 -0600</pubDate>
-        <link>https://tamouse.github.io//swaac/css/2017/12/03/side-by-side-layout-with-css-grid/</link>
-        <guid isPermaLink="true">https://tamouse.github.io//swaac/css/2017/12/03/side-by-side-layout-with-css-grid/</guid>
-        
-        <category>css</category>
-        
-        <category>grid</category>
-        
-        <category>layout</category>
-        
-        <category>webdesign</category>
-        
-        <category>react</category>
-        
-        
-        <category>css</category>
         
       </item>
     
