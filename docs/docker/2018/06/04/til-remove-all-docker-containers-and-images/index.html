@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>docker</title>
+    <title>TIL: Removing all Docker Containers and Images</title>
     <meta name="description" content="The development blog of tamouse">
     <link rel="stylesheet" href="/swaac/assets/css/main.css" />
-    <link rel="canonical" href="https://tamouse.github.io//swaac/category/docker/">
+    <link rel="canonical" href="https://tamouse.github.io//swaac/docker/2018/06/04/til-remove-all-docker-containers-and-images/">
     <link href="/swaac/favicon.png" rel="icon">
 </head>
 
@@ -67,52 +67,45 @@
 </aside>
 
         <main id="main-content" class="container-fluid">
-          <h1 class="page-header">docker</h1>
+          <header class="page-header">
+<h1>TIL: Removing all Docker Containers and Images</h1>
+Jun 4, 2018
 
-<div id="posts-index" class="container-fluid restrain-x">
-  
-  <div class="row">
-    <div class="col-xs-12">
-      <h2 class="hidden-sm hidden-xs"><a href="/swaac/docker/2018/06/04/til-remove-all-docker-containers-and-images/">TIL: Removing all Docker Containers and Images</a></h2>
-      <h3 class="hidden-md hidden-lg"><a href="/swaac/docker/2018/06/04/til-remove-all-docker-containers-and-images/">TIL: Removing all Docker Containers and Images</a></h3>
-      <span style="display:none;">2018-06-04 11:51:00 -0500</span>
-      <small class="nowrap">Jun 4, 2018</small>
-       &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/docker">docker</a></li></ul>
-       &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/docker">docker</a></li> <li role="presentation"><a href="/swaac/tags/containers">containers</a></li> <li role="presentation"><a href="/swaac/tags/images">images</a></li> <li role="presentation"><a href="/swaac/tags/removing">removing</a></li> 
 
-	<p><p>I needed to do a reset on my work machine of the Docker stuff I was
+ &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/docker">docker</a></li></ul>
+ &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/docker">docker</a></li> <li role="presentation"><a href="/swaac/tags/containers">containers</a></li> <li role="presentation"><a href="/swaac/tags/images">images</a></li> <li role="presentation"><a href="/swaac/tags/removing">removing</a></li> 
+</header>
+
+<article>
+  <p>I needed to do a reset on my work machine of the Docker stuff I was
 using, so needed to know how to do this.</p>
 
-</p>
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-xs-12">
-      <h2 class="hidden-sm hidden-xs"><a href="/swaac/docker/2015/06/28/interesting-uses-of-docker/">Interesting Uses Of Docker</a></h2>
-      <h3 class="hidden-md hidden-lg"><a href="/swaac/docker/2015/06/28/interesting-uses-of-docker/">Interesting Uses Of Docker</a></h3>
-      <span style="display:none;">2015-06-28 18:34:00 -0500</span>
-      <small class="nowrap">Jun 28, 2015</small>
-       &bullet; <ul class="link-list"><li>Categories:</li><li role="presentation"><a href="/swaac/categories/docker">docker</a></li></ul>
-       &bullet; <ul class="link-list"><li>Tags: </li><li role="presentation"><a href="/swaac/tags/docker">docker</a></li> <li role="presentation"><a href="/swaac/tags/containers">containers</a></li> <li role="presentation"><a href="/swaac/tags/links">links</a></li> <li role="presentation"><a href="/swaac/tags/jessica-frazelle">jessica-frazelle</a></li> <li role="presentation"><a href="/swaac/tags/desktop">desktop</a></li> 
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker rm <span class="k">$(</span>docker ps <span class="nt">-aq</span><span class="k">)</span>
+<span class="nv">$ </span>docker rmi <span class="k">$(</span>docker images <span class="nt">-q</span><span class="k">)</span>
+</code></pre></div></div>
 
-	<p><p>Jessie Frazelle’s blog article,
-<a href="https://blog.jessfraz.com/post/docker-containers-on-the-desktop/">Docker Containers on the Desktop</a>,
-shows something a bit different than I’ve seen before.</p>
+<p><code class="highlighter-rouge">docker ps -aq</code> gives a list of all the container hashes, which is
+given the <code class="highlighter-rouge">docker rm</code> command.</p>
 
-</p>
-    </div>
-  </div>
-  
+<p>Similarly, <code class="highlighter-rouge">docker images -q</code> lists all the docker image hashes, which
+is given to docker’s “remove images” <code class="highlighter-rouge">rmi</code> command.</p>
 
-  <div class="row">
-    <div class="col-xs-12">
-      <h2>
-	<a href="/swaac/pages/all_posts/">Index of all posts</a>
-      </h2>
-    </div>
-  </div>
-</div>
+</article>
+<hr>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'swaac'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
         </main>
