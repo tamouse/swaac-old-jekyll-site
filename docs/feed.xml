@@ -5,9 +5,56 @@
     <description>The development blog of tamouse</description>
     <link>https://tamouse.github.io//swaac/</link>
     <atom:link href="https://tamouse.github.io//swaac/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 11 Jul 2018 07:44:33 -0500</pubDate>
-    <lastBuildDate>Wed, 11 Jul 2018 07:44:33 -0500</lastBuildDate>
+    <pubDate>Mon, 13 Aug 2018 12:37:29 -0500</pubDate>
+    <lastBuildDate>Mon, 13 Aug 2018 12:37:29 -0500</lastBuildDate>
     <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title>TIL: WebStorm automatic import problems</title>
+        <description>&lt;p&gt;Working today in webstorm, I spent about an hour trying to figure out why a particular test was failing. I didn’t realize that webstorm had fumbled an automatic import line.&lt;/p&gt;
+
+&lt;p&gt;The situation was, I had copied copied a couple lines fron one file to another one, and webstorm is happy to offer to create the import statements for you when you do this.&lt;/p&gt;
+
+&lt;p&gt;However, webstorm may not get the actual import correct.&lt;/p&gt;
+
+&lt;p&gt;In this case, it wrote the import statement as&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import { graphql } from &quot;react-apollo/index&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;when it should have been&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import { graphql } from &quot;react-apollo&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This was throwing errors in testing that looked like&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ● Test suite failed to run
+
+    /Users/tamara.temple/Projects/react/kickserv/node_modules/react-apollo/index.js:1
+    ({&quot;Object.&amp;lt;anonymous&amp;gt;&quot;:function(module,exports,require,__dirname,__filename,global,jest){export * from './browser';
+                                                                                             ^^^^^^
+
+    SyntaxError: Unexpected token export
+
+      at ScriptTransformer._transformAndBuildScript (node_modules/jest-runtime/build/script_transformer.js:305:17)
+      at Object.&amp;lt;anonymous&amp;gt; (app/javascript/src/client/src/concepts/customers/new/NewCustomerModal.js:3:14)
+      at Object.&amp;lt;anonymous&amp;gt; (app/javascript/src/client/src/concepts/customers/new/NewCustomerModal.test.js:3:25)
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Mon, 13 Aug 2018 12:26:00 -0500</pubDate>
+        <link>https://tamouse.github.io//swaac/tools/2018/08/13/til-webstorm-automatic-imports-issues/</link>
+        <guid isPermaLink="true">https://tamouse.github.io//swaac/tools/2018/08/13/til-webstorm-automatic-imports-issues/</guid>
+        
+        <category>tools</category>
+        
+        <category>webstorm</category>
+        
+        
+        <category>tools</category>
+        
+      </item>
     
       <item>
         <title>FrontendMasters: JavaScript: The Hard Parts, Will Sentance</title>
@@ -641,44 +688,6 @@ end
         
         
         <category>webdev</category>
-        
-      </item>
-    
-      <item>
-        <title>How to reset iOS simulator</title>
-        <description>&lt;p&gt;I ran into an issue recently where I was trying to debug a problem in
-a project, but had a problem accessing the right data server since I
-was logged into a local development server, and really needed to get
-back to the “new app” state.&lt;/p&gt;
-
-&lt;p&gt;I searched for “reset xcode simulator” via DDG and first hit came up
-with &lt;a href=&quot;https://stackoverflow.com/questions/16195859/reset-ios-simulator-application-data-to-run-app-for-first-time#16195931&quot;&gt;https://stackoverflow.com/questions/16195859/reset-ios-simulator-application-data-to-run-app-for-first-time#16195931&lt;/a&gt; which gave me an answer.&lt;/p&gt;
-
-&lt;p&gt;The command line versions work, but it can be a pain to get the UDID
-for the simulator. Doing it from the running simulator was easier, but
-of course the menu options are different than discussed in the
-stackoverflow answer.&lt;/p&gt;
-
-&lt;p&gt;I found it on the Simulator
-(Version 10.0 (SimulatorApp-835.2.1) seen in the following screen
-shot:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/swaac/images/reset-ios-simulator.png&quot; alt=&quot;Reset IOS Simulator Screenshot&quot; /&gt;&lt;/p&gt;
-</description>
-        <pubDate>Thu, 15 Feb 2018 16:07:00 -0600</pubDate>
-        <link>https://tamouse.github.io//swaac/ios/2018/02/15/how-to-reset-ios-simulator/</link>
-        <guid isPermaLink="true">https://tamouse.github.io//swaac/ios/2018/02/15/how-to-reset-ios-simulator/</guid>
-        
-        <category>ios</category>
-        
-        <category>simulator</category>
-        
-        <category>development</category>
-        
-        <category>reset</category>
-        
-        
-        <category>ios</category>
         
       </item>
     
